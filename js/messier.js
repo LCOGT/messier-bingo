@@ -332,7 +332,6 @@ var catalogue = [{
 		var h = (((now.getUTCHours()+now.getUTCMinutes()/60) % 12)*360/12);
 		var m = ((now.getUTCMinutes() % 60)*360/60);
 		var s = ((now.getUTCSeconds() % 60)*360/60);
-		console.log(now.getUTCMinutes(),now.getUTCSeconds(),h,m,s)
 		var angs = [h,m,s];
 		var h, t, m, i;
 		for(var h = 0 ; h < this.hands.length ; h++){
