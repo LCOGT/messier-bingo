@@ -1,0 +1,56 @@
+html { height: 100%; overflow: auto; }
+
+body {
+	text-align: center;
+	font-size: 1em;
+	color: #202020;
+	margin: 0px;
+	padding: 0px;
+	background: #202020;
+	font-family: "Birch Std", Didot, "Bodoni MT", "Century Schoolbook", "Niagara Solid", Utopia, Georgia, Times, "Times New Roman", serif;
+}
+.jsonly { display: none; }
+
+#outer {
+	width: 1016px;
+	height: 610px;
+	margin: 0 auto;
+	padding: 2%;
+}
+
+#container {
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+	clear: both;
+	overflow: visible;
+	position: relative;
+	background: #a78763;
+	/*background: #a78763 url('../images/texture2.jpg') no-repeat center center;*/
+	/* Scale image - Safari 3+/Chrome Whatever+/IE 9+/Opera 10+/Firefox 3.6+ */
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	box-shadow: 0px 0px 15px #000000;
+}
+
+#title {
+	position: absolute;
+	top: 8%;
+	right: 18.5%;
+	font-size: 1em;
+	width: 34%;
+	bottom: 83%;
+	line-height: 1em;
+	font-weight: normal;
+	text-transform: uppercase;
+}
+
+#name {
+	position: absolute;
+	top: 31.95%;
+	left: 7.5%;
+	width: 11.5%;
+}
+
