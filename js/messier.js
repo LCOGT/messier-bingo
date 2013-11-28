@@ -103,18 +103,17 @@ var catalogue = [{
 		this.phrasebook = {
 			"code": "en",
 			"name": "English",
-			"messier": "Charles Messier",
+			"messier": "Msr Charles Messier",
 			"title": "Messier Bingo",
 			"instructions": "Instructions",
 			"power": "Powered by LCOGT"
 		};
+		this.keys = new Array();
 
 		// Process the input parameters/query string
 		this.init(inp);
 
 		//this.loadConfig();
-
-
 	
 		//if(this.islive) interval = window.setInterval(function(sky){ sky.setClock('now'); },1000,this);
 
@@ -131,6 +130,19 @@ var catalogue = [{
 		$(document).on('mousemove',{mb:this},function(e){
 			mb.moveEyes(e.clientX,e.clientY);
 		});
+
+		$(document).on('keypress',{mb:this},function(e){
+			if(!e) e = window.event;
+			var code = e.keyCode || e.charCode || e.which || 0;
+			e.data.mb.keypress(code,e);
+		});
+
+		this.registerKey('s',function(){  console.log(this); });
+		this.registerKey('i',function(){ this.toggleDial(); });
+
+		// Set the information toggle to on
+		this.setDial(true);
+
 		
 		var _obj = this;
 		this.eAnim = setInterval(function () { _obj.setTime(); }, 1000);
@@ -201,21 +213,28 @@ var catalogue = [{
 	MessierBingo.prototype.scaleBox = function(){
 
 		var scale = this.getScale();
+		var attr = {'transform':'s '+scale+','+scale+',0,0'};
 
-		this.texture.attr({'transform':'s '+scale+','+scale+',0,0'});
-		this.texture2.attr({'transform':'s '+scale+','+scale+',0,0'});
-		this.pipes.attr({'transform':'s '+scale+','+scale+',0,0'});
-		this.frame.attr({'transform':'s '+scale+','+scale+',0,0'});
-		this.clock.attr({'transform':'s '+scale+','+scale+',0,0'});
-		this.overlay.attr({'transform':'s '+scale+','+scale+',0,0'});
-		this.messier.attr({'transform':'s '+scale+','+scale+',0,0'});
-		this.portal.attr({'transform':'s '+scale+','+scale+',0,0'});
-		this.nuts.attr({'transform':'s '+scale+','+scale+',0,0'});
-		this.screws.attr({'transform':'s '+scale+','+scale+',0,0'});
+		this.texture.attr(attr);
+		this.texture2.attr(attr);
+		this.pipes.attr(attr);
+		this.frame.attr(attr);
+		this.clock.attr(attr);
+		this.overlay.attr(attr);
+		this.messier.attr(attr);
+		this.portal.attr(attr);
+		this.nuts.attr(attr);
+		this.screws.attr(attr);
+		this.dial.attr(attr);
 
+		// We need to be careful scaling things that have a rotation applied
+		var todo = new Array();
+		for(var h = 0 ; h < this.hands.length ; h++) todo.push(this.hands[h]);
+		for(var h = 0 ; h < this.dialhandle.length ; h++) todo.push(this.dialhandle[h]);
+		
 		var h, t, m, i;
-		for(var h = 0 ; h < this.hands.length ; h++){
-			t = this.hands[h].attr('transform');
+		for(var h = 0 ; h < todo.length ; h++){
+			t = todo[h].attr('transform');
 			m = false;
 			for(i = 0; i < t.length ; i++){
 				if(t[i][0] == 's' || t[i][0] == 'S'){
@@ -224,7 +243,7 @@ var catalogue = [{
 				}
 			}
 			if(!m) t.push(['S',scale,scale,0,0]);
-			this.hands[h].attr({'transform':t})
+			todo[h].attr({'transform':t})
 		}
 		return this;
 	}
@@ -294,7 +313,8 @@ var catalogue = [{
 		this.portal = this.box.set();
 		this.portal.push(
 			this.box.circle(661,455,266).attr({'fill':'270-#d8cda9:0-#cfc4a2:15-#b7ab8f:41-#8f8470:52-#857968:60-#817565:66-#74685b:71-#5f534a:80-#534741:82','stroke':0}),
-			this.box.circle(661,455,232).attr({'fill':'90-#d8cda9:0-#cfc4a2:1-#b7ab8f:5-#8f8470:15-#857968:20-#817565:30-#74685b:41-#5f534a:60-#534741:80','stroke':0}),
+			this.box.circle(661,455,234).attr({'fill':'#2a2521','stroke':0}),
+			this.box.circle(661,455,231).attr({'fill':'90-#d8cda9:0-#cfc4a2:1-#b7ab8f:5-#8f8470:15-#857968:20-#817565:30-#74685b:51-#5f534a:85-#534741','stroke':0}),
 			this.box.path('m 661,193 c -144,0 -260.737,116.735 -260.737,260.737 0,144.001 116.737,260.736 260.737,260.736 143.997,0 260.734,-116.735 260.734,-260.736 0,-144.002 -116.737,-260.737 -260.734,-260.737 m 0,490.184 c -126.723,0 -229.449,-102.727 -229.449,-229.447 0,-126.722 102.726,-229.448 229.449,-229.448 126.718,0 229.446,102.726 229.446,229.448 0,126.72 -102.729,229.447 -229.446,229.447').attr({'fill':'#534741','stroke':0,'opacity':0.76}),
 			this.box.image('images/glass.png',661-205,455-205,205,205)
 		);
@@ -315,6 +335,15 @@ var catalogue = [{
 		// Title bar
 		this.makeScrew(481,99,10);
 		this.makeScrew(834,99,10);
+		// Portal surround
+		this.makeScrew(570,225,7);
+		this.makeScrew(754,225,7);
+		this.makeScrew(754,684,7);
+		this.makeScrew(570,684,7);
+		this.makeScrew(888,360,7);
+		this.makeScrew(436,555,7);
+		this.makeScrew(436,360,7);
+		this.makeScrew(888,555,7);
 
 		this.hands = this.box.set();
 		this.hands.push(
@@ -323,29 +352,59 @@ var catalogue = [{
 			this.box.path('M 910.25 166.6875 L 910.0625 173.5 C 910.0625 173.5 908.879 173.5647 908.875 174.8125 C 908.87135 175.95114 909.9065 176.129 910.09375 176.15625 L 910.09375 179.28125 L 910.03125 184.0625 C 910.03125 184.0625 908.84417 184.133 908.8125 185.34375 C 908.7808 186.55451 910.03125 186.75 910.03125 186.75 C 910.03125 186.75 909.75 205.91887 909.75 207.6875 C 909.75 209.45613 909.5557 228.59514 909.625 229.9375 C 909.7132 231.64687 910.25 233.03125 910.25 233.03125 C 910.26605 232.98888 910.78815 231.62073 910.875 229.9375 C 910.9443 228.59514 910.75 209.45613 910.75 207.6875 C 910.75 205.91887 910.4375 186.75 910.4375 186.75 C 910.4375 186.75 911.7192 186.55451 911.6875 185.34375 C 911.65583 184.133 910.46875 184.0625 910.46875 184.0625 L 910.40625 179.28125 L 910.40625 176.15625 C 910.5935 176.129 911.62865 175.95114 911.625 174.8125 C 911.621 173.5647 910.4375 173.5 910.4375 173.5 L 910.25 166.6875 z M 910.09375 173.65625 L 910.09375 173.6875 C 910.1068 173.68509 910.1975 173.69152 910.25 173.6875 C 910.3025 173.69152 910.3932 173.68509 910.40625 173.6875 L 910.40625 173.65625 C 910.55918 173.67679 910.73184 173.76481 910.875 173.9375 C 911.17812 174.3032 911.3187 174.92121 910.96875 175.34375 C 910.66184 175.71429 910.36162 175.6968 910.28125 175.6875 C 910.28125 175.6875 910.23003 175.68619 910.21875 175.6875 C 910.13838 175.6968 909.83816 175.71429 909.53125 175.34375 C 909.1813 174.92121 909.32188 174.3032 909.625 173.9375 C 909.76816 173.76481 909.94082 173.67679 910.09375 173.65625 z M 910.03125 184.25 C 910.084 184.2426 910.0889 184.24982 910.125 184.25 C 910.17314 184.25023 910.25 184.25 910.25 184.25 L 910.375 184.25 C 910.49534 184.24942 910.68551 184.2683 910.875 184.4375 C 911.14025 184.67436 911.34574 185.26398 911.15625 185.71875 C 910.98499 186.12978 910.56198 186.25529 910.375 186.28125 C 910.35511 186.28401 910.32617 186.28038 910.3125 186.28125 C 910.2313 186.28658 910.21599 186.28303 910.1875 186.28125 C 910.17383 186.28038 910.14489 186.28401 910.125 186.28125 C 909.93802 186.25529 909.51501 186.12978 909.34375 185.71875 C 909.15426 185.26398 909.35975 184.67436 909.625 184.4375 C 909.75764 184.31906 909.90816 184.26726 910.03125 184.25 z').attr({'fill':'#534741','stroke':0}).transform('R0,910,222')
 		);
 
+		// Dial
+		this.dial = this.box.set();
+		var ox = 333;
+		var oy = 100;
+		this.dial.push(
+			this.box.circle(ox,oy+0.5,26).attr({'fill':'#2a2521','stroke':0}),
+			this.box.circle(ox,oy,25).attr({'fill':'270-#ddbc83-#be9c67:66-#ad8a57','stroke':0}),
+			this.box.circle(ox,oy,20).attr({'fill':'#ddbc83','stroke':0})
+		)
+		this.dialhandle = this.box.set();
+		this.dialhandle.push(
+			this.box.path("M "+(ox+0.5)+" "+(oy-6+0.5)+" l 5 10 t -5 30 l 0 0 t -5 -30 z").attr({'fill':'#2a2521','stroke':0}).transform('R0,'+ox+','+oy),
+			this.box.path("M "+ox+" "+(oy-6)+" l 5 10 t -5 27 l 0 0 t -5 -27 z").attr({'fill':'0-#2a2521-#ddbc83-#2a2521','stroke':0}).transform('R0,'+ox+','+oy)
+		);
+		this.dial.data('mb',this).click(function(e){ this.data('mb').toggleDial(); });
+		this.dialhandle.data('mb',this).click(function(e){ this.data('mb').toggleDial(); });
 
 		this.scaleBox();
+	}
+	
+	MessierBingo.prototype.toggleDial = function(){
+		if(typeof this.dialon!=="boolean") this.dialon = true;
+		this.dialon = !this.dialon;
+		this.setDial(this.dialon);
+	}
+
+	MessierBingo.prototype.setDial = function(on){
+		var ang = (on) ? 30 : -30;
+		var d,i;
+		for(d = 0 ; d < this.dialhandle.length; d++) this.updateRotation(this.dialhandle[d],ang,333,100);
+	}
+	
+	MessierBingo.prototype.updateRotation = function(el,ang,ox,oy){
+		var t = el.attr('transform');
+		var m = false;
+		for(var i = 0; i < t.length ; i++){
+			if(t[i][0] == 'r' || t[i][0] == 'R'){
+				t[i] = ['R',ang,ox,oy];
+				m = true;
+			}
+		}
+		if(!m) t.push(['R',ang,ox,oy]);
+		el.attr({'transform':t});
+		return this;
 	}
 	
 	MessierBingo.prototype.setTime = function(){
 		var now = new Date();
 		var h = (((now.getUTCHours()+now.getUTCMinutes()/60) % 12)*360/12);
 		var m = ((now.getUTCMinutes() % 60)*360/60);
-		var s = ((now.getUTCSeconds() % 60)*360/60);
+		var s = (((now.getUTCSeconds()+now.getUTCMilliseconds()/1000) % 60)*360/60);
 		var angs = [h,m,s];
-		var h, t, m, i;
-		for(var h = 0 ; h < this.hands.length ; h++){
-			t = this.hands[h].attr('transform');
-			m = false;
-			for(i = 0; i < t.length ; i++){
-				if(t[i][0] == 'r' || t[i][0] == 'R'){
-					t[i] = ['R',angs[h],910,222];
-					m = true;
-				}
-			}
-			if(!m) t.push(['R',angs[h],910,222]);
-			this.hands[h].attr({'transform':t});
-		}
+		for(var h = 0 ; h < this.hands.length ; h++) this.updateRotation(this.hands[h],angs[h],910,222);
 		return this;
 	}
 
@@ -385,7 +444,7 @@ var catalogue = [{
 		var path = 'M '+x1+','+y1+' a'+rad+','+rad+' 0 0,1 '+(x2-x1)+','+(y2-y1)+' M '+x3+','+y3+' a'+rad+','+rad+' 0 0,0 '+(x4-x3)+','+(y4-y3)+' z';
 		var path2 = 'M '+(x1+dx)+','+(y1+dy)+' a'+rad+','+rad+' 0 0,1 '+(x2-x1)+','+(y2-y1)+' M '+(x3+dx)+','+(y3+dy)+' a'+rad+','+rad+' 0 0,0 '+(x4-x3)+','+(y4-y3)+' z';
 		this.screws.push(
-			this.box.circle(ox+dx,oy+dy,r).attr({'fill':'#2a2521','stroke':0,'opacity':0.7}),
+			this.box.circle(ox+dx,oy+dy,r).attr({'fill':'#bc8550','stroke':0,'opacity':0.7}),
 			this.box.path(path2).attr({'fill':'#534741','stroke':0}),
 			this.box.path('M '+x1+' '+y1+' L '+(x1+dx)+' '+(y1+dy)+' L '+(x2+dx)+' '+(y2+dy)+' L '+(x2)+' '+(y2)+' z M '+x3+' '+y3+' L '+(x3+dx)+' '+(y3+dy)+' L '+(x4+dx)+' '+(y4+dy)+' L '+(x4)+' '+(y4)+' z').attr({'fill':'#534741','stroke':0	}),
 			this.box.path(path).attr({'fill':'#d1a974','stroke':0})
@@ -418,8 +477,45 @@ var catalogue = [{
 		return this;		
 	}
 
+	MessierBingo.prototype.keypress = function(charCode,event){
+		if(!event) event = { altKey: false };
+		for(var i = 0 ; i < this.keys.length ; i++){
+			if(this.keys[i].charCode == charCode && event.altKey == this.keys[i].altKey){
+				this.keys[i].fn.call(this,{event:event});
+				break;
+			}
+		}
+	}
 
-
+	// Register keyboard commands and associated functions
+	MessierBingo.prototype.registerKey = function(charCode,fn,txt){
+		if(typeof fn!="function") return this;
+		if(typeof charCode!="object") charCode = [charCode];
+		var aok, ch, c, i, alt, str;
+		for(c = 0 ; c < charCode.length ; c++){
+			alt = false;
+			if(typeof charCode[c]=="string"){
+				if(charCode[c].indexOf('alt')==0){
+					str = charCode[c];
+					alt = true;
+					charCode[c] = charCode[c].substring(4);
+				}else str = charCode[c];
+				ch = charCode[c].charCodeAt(0);
+			}else{
+				ch = charCode[c];
+				if(ch==37) str = "&larr;";
+				else if(ch==32) str = "space";
+				else if(ch==38) str = "up";
+				else if(ch==39) str = "&rarr;";
+				else if(ch==40) str = "down";
+				else str = String.fromCharCode(ch);
+			}
+			aok = true;
+			for(i = 0 ; i < this.keys.length ; i++){ if(this.keys.charCode == ch && this.keys.altKey == alt) aok = false; }
+			if(aok) this.keys.push({'str':str,'charCode':ch,'char':String.fromCharCode(ch),'fn':fn,'txt':txt,'altKey':alt});
+		}
+		return this;
+	}
 	$.messierbingo = function(placeholder,input) {
 		if(typeof input=="object") input.container = placeholder;
 		else {
