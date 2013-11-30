@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 13:55:18 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/ogg/2m0a/635768",
+  "avm": {
+   "code": "3.6.4.1",
+   "name": "Open Clusters"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope North operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": 11.811999999999999,
+  "exposure": 90.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2013/03/25/process-921-1.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2013/03/25/process-921-1_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/ogg/2m0a",
+   "tel": "Faulkes Telescope North"
+  },
+  "label": "M67",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/90",
+   "label": "Glenlola Collegiate"
+  },
+  "ra": 132.83384999999998,
+  "time": {
+   "creation": "Mon, 25 Mar 2013 11:37:28 +0000"
+  },
+  "views": 20
+ }
+}

@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 14:09:09 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/ogg/2m0a/42348",
+  "avm": {
+   "code": "5.1.1",
+   "name": "Spiral Galaxies"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope North operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": 11.8208,
+  "exposure": 60.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2009/12/16/process-845-1.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2009/12/16/process-845-1_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/ogg/2m0a",
+   "tel": "Faulkes Telescope North"
+  },
+  "label": "M96",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/3002",
+   "label": "ISYA North"
+  },
+  "ra": 161.68799999999999,
+  "time": {
+   "creation": "Wed, 16 Dec 2009 13:26:46 +0000"
+  },
+  "views": 71
+ }
+}

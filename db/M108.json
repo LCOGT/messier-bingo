@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 14:17:33 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/ogg/2m0a/3644",
+  "avm": {
+   "code": "5.1.1",
+   "name": "Spiral Galaxies"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Provided to Las Cumbres Observatory under license from the Dill Faulkes Educational Trust"
+  },
+  "dec": 55.6706,
+  "exposure": 120.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2004/12/15/process-3739-1.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2004/12/15/process-3739-1_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/ogg/2m0a",
+   "tel": "Faulkes Telescope North"
+  },
+  "label": "M108",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/235",
+   "label": "Gwernyfed High School"
+  },
+  "ra": 167.88299999999998,
+  "time": {
+   "creation": "Wed, 15 Dec 2004 12:37:51 +0000"
+  },
+  "views": 291
+ }
+}

@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 13:44:48 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/ogg/2m0a/634151",
+  "avm": {
+   "code": "3.6.4.1",
+   "name": "Open Clusters"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope North operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": 19.6721,
+  "exposure": 60.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2013/01/22/process-529-1.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2013/01/22/process-529-1_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/ogg/2m0a",
+   "tel": "Faulkes Telescope North"
+  },
+  "label": "M44",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/5092",
+   "label": "King's School, Canterbury, Kent, UK"
+  },
+  "ra": 130.09244999999999,
+  "time": {
+   "creation": "Tue, 22 Jan 2013 11:28:23 +0000"
+  },
+  "views": 27
+ }
+}

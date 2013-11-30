@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 13:33:18 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/coj/2m0a/642308",
+  "avm": {
+   "code": "4.2.1.1",
+   "name": "H II Regions"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope South operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": -22.971900000000002,
+  "exposure": 120.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2013/09/30/process-2906-2.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2013/09/30/process-2906-2_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/coj/2m0a",
+   "tel": "Faulkes Telescope South"
+  },
+  "label": "M20",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/2168",
+   "label": "Stafford Grammar School"
+  },
+  "ra": 270.67500000000001,
+  "time": {
+   "creation": "Mon, 30 Sep 2013 11:47:17 +0000"
+  },
+  "views": 18
+ }
+}

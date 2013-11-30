@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 05:36:16 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/coj/2m0a/642480",
+  "avm": {
+   "code": "4.1.3",
+   "name": "Planetary Nebulae"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope South operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": 22.716799999999999,
+  "exposure": 111.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2013/10/04/process-3031-2.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2013/10/04/process-3031-2_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/coj/2m0a",
+   "tel": "Faulkes Telescope South"
+  },
+  "label": "M27 (Dumbbell Nebula)",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/5002",
+   "label": "Towers School"
+  },
+  "ra": 299.90100000000001,
+  "time": {
+   "creation": "Fri, 04 Oct 2013 10:57:01 +0000"
+  },
+  "views": 30
+ }
+}

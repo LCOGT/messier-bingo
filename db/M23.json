@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 13:34:38 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/ogg/2m0a/624619",
+  "avm": {
+   "code": "3.6.4",
+   "name": "Clusters of Stars"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope North operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": -18.985299999999999,
+  "exposure": 90.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2012/04/03/process-5299-1.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2012/04/03/process-5299-1_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/ogg/2m0a",
+   "tel": "Faulkes Telescope North"
+  },
+  "label": "M23",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/404",
+   "label": "Longfield School"
+  },
+  "ra": 269.26949999999999,
+  "time": {
+   "creation": "Tue, 03 Apr 2012 15:06:36 +0000"
+  },
+  "views": 41
+ }
+}

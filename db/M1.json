@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 13:25:02 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/coj/2m0a/644123",
+  "avm": {
+   "code": "4.1.4",
+   "name": "Supernova Remnants"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope South operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": 22.0167,
+  "exposure": 180.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2013/11/27/process-3925-2.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2013/11/27/process-3925-2_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/coj/2m0a",
+   "tel": "Faulkes Telescope South"
+  },
+  "label": "M1",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/1322",
+   "label": "Wellington School"
+  },
+  "ra": 83.629199999999997,
+  "time": {
+   "creation": "Wed, 27 Nov 2013 14:19:51 +0000"
+  },
+  "views": 14
+ }
+}

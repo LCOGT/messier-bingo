@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 14:02:46 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/coj/2m0a/638679",
+  "avm": {
+   "code": "5.1.2",
+   "name": "Barred Galaxies"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope South operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": -29.867799999999999,
+  "exposure": 180.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2013/06/05/process-1465-2.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2013/06/05/process-1465-2_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/coj/2m0a",
+   "tel": "Faulkes Telescope South"
+  },
+  "label": "M83 (Southern Pinwheel Galaxy)",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/64",
+   "label": "Lancaster Girls' Grammar School"
+  },
+  "ra": 204.25049999999999,
+  "time": {
+   "creation": "Wed, 05 Jun 2013 11:43:14 +0000"
+  },
+  "views": 34
+ }
+}

@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 13:38:26 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/ogg/2m0a/618322",
+  "avm": {
+   "code": "5.2.2",
+   "name": "Dwarf Galaxies"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope North operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": 40.865299999999998,
+  "exposure": 90.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2011/09/21/process-1530-1.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2011/09/21/process-1530-1_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/ogg/2m0a",
+   "tel": "Faulkes Telescope North"
+  },
+  "label": "M32",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/2520",
+   "label": "Glebe School"
+  },
+  "ra": 10.674165,
+  "time": {
+   "creation": "Wed, 21 Sep 2011 14:27:22 +0000"
+  },
+  "views": 48
+ }
+}

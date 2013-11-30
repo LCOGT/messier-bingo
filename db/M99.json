@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 14:11:33 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/coj/2m0a/626125",
+  "avm": {
+   "code": "5.1.1",
+   "name": "Spiral Galaxies"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope South operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": 14.4186,
+  "exposure": 270.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2012/05/16/process-4426-2.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2012/05/16/process-4426-2_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/coj/2m0a",
+   "tel": "Faulkes Telescope South"
+  },
+  "label": "M99",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/1271",
+   "label": "St Davids College"
+  },
+  "ra": 184.7055,
+  "time": {
+   "creation": "Wed, 16 May 2012 08:38:48 +0000"
+  },
+  "views": 54
+ }
+}

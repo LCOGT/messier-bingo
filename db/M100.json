@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 14:12:13 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/coj/2m0a/623776",
+  "avm": {
+   "code": "5.1.1",
+   "name": "Spiral Galaxies"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope South operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": 15.822800000000001,
+  "exposure": 360.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2012/03/15/process-3226-2.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2012/03/15/process-3226-2_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/coj/2m0a",
+   "tel": "Faulkes Telescope South"
+  },
+  "label": "M100",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/4661",
+   "label": "BBC Stargazing"
+  },
+  "ra": 185.72999999999999,
+  "time": {
+   "creation": "Thu, 15 Mar 2012 13:44:50 +0000"
+  },
+  "views": 2055
+ }
+}

@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 05:28:58 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/ogg/2m0a/639672",
+  "avm": {
+   "code": "3.6.4.1",
+   "name": "Open Clusters"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope North operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": -6.2700199999999997,
+  "exposure": 30.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2013/06/28/process-3798-1.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2013/06/28/process-3798-1_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/ogg/2m0a",
+   "tel": "Faulkes Telescope North"
+  },
+  "label": "M11",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/578",
+   "label": "Simon Langton Grammar School for Boys"
+  },
+  "ra": 282.77550000000002,
+  "time": {
+   "creation": "Fri, 28 Jun 2013 10:15:42 +0000"
+  },
+  "views": 28
+ }
+}

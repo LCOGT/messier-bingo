@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 05:43:35 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/coj/2m0a/623667",
+  "avm": {
+   "code": "3.6.4.1",
+   "name": "Open Clusters"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope South operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": -20.754200000000001,
+  "exposure": 90.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2012/03/14/process-3185-2.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2012/03/14/process-3185-2_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/coj/2m0a",
+   "tel": "Faulkes Telescope South"
+  },
+  "label": "M41",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/415",
+   "label": "King Edward VI High School For Girls"
+  },
+  "ra": 101.49975000000001,
+  "time": {
+   "creation": "Wed, 14 Mar 2012 10:12:30 +0000"
+  },
+  "views": 50
+ }
+}

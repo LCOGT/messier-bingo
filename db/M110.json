@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 14:19:27 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/ogg/2m0a/22449",
+  "avm": {
+   "code": "5.2.2",
+   "name": "Dwarf Galaxies"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope North operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": 41.686900000000001,
+  "exposure": 180.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2007/07/18/process-2160-1.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2007/07/18/process-2160-1_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/ogg/2m0a",
+   "tel": "Faulkes Telescope North"
+  },
+  "label": "M110",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/406",
+   "label": "Daniel Duggan"
+  },
+  "ra": 10.091670000000001,
+  "time": {
+   "creation": "Wed, 18 Jul 2007 14:56:37 +0000"
+  },
+  "views": 29
+ }
+}

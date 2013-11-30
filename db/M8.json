@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 05:28:05 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/coj/2m0a/640408",
+  "avm": {
+   "code": "4.2.1.1",
+   "name": "H II Regions"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope South operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": -24.380199999999999,
+  "exposure": 60.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2013/07/13/process-1792-2.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2013/07/13/process-1792-2_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/coj/2m0a",
+   "tel": "Faulkes Telescope South"
+  },
+  "label": "M8",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/2957",
+   "label": "Burton Borough School"
+  },
+  "ra": 270.92249999999996,
+  "time": {
+   "creation": "Sat, 13 Jul 2013 14:46:40 +0000"
+  },
+  "views": 60
+ }
+}

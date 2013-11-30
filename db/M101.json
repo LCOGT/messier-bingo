@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 06:12:52 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/ogg/2m0a/625712",
+  "avm": {
+   "code": "5.1.1",
+   "name": "Spiral Galaxies"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope North operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": 54.3506,
+  "exposure": 360.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2012/04/27/process-5922-1.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2012/04/27/process-5922-1_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/ogg/2m0a",
+   "tel": "Faulkes Telescope North"
+  },
+  "label": "M101(Pinwheel Galaxy)",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/2018",
+   "label": "Stroud High School"
+  },
+  "ra": 210.80250000000001,
+  "time": {
+   "creation": "Fri, 27 Apr 2012 10:42:10 +0000"
+  },
+  "views": 55
+ }
+}

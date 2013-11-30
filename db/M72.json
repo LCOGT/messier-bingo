@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 05:57:19 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/ogg/2m0a/638764",
+  "avm": {
+   "code": "3.6.4.2",
+   "name": "Globular Clusters"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope North operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": -12.5367,
+  "exposure": 30.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2013/06/06/process-3072-1.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2013/06/06/process-3072-1_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/ogg/2m0a",
+   "tel": "Faulkes Telescope North"
+  },
+  "label": "M72",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/4856",
+   "label": "Perton Library"
+  },
+  "ra": 313.36499999999995,
+  "time": {
+   "creation": "Thu, 06 Jun 2013 14:14:58 +0000"
+  },
+  "views": 31
+ }
+}
