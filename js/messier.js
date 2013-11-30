@@ -541,7 +541,7 @@ var catalogue = [{
 			dataType: 'json',
 			context: this,
 			error: function(){
-				console.log('error ',i)
+				this.updateInfo(i,{'error':'error'});
 			},
 			success: function(data){
 				this.updateInfo(i,data);
@@ -559,9 +559,13 @@ var catalogue = [{
 		$('#panel .distance').html('<strong>Distance:</strong> '+(m.distance >= 60000 ? '>' : '')+(m.distance*1000)+' lyr');
 		$('#panel .type').html(m.type);
 		if(data){
-			$('#sky img').attr('src',data.observation.image.about);
-			//$('#panel .type').html(data.observation.avm.name);
-			$('#panel .credit').html('<strong>Image by:</strong> <em>'+data.observation.observer.label+'</em> using '+data.observation.instr.tel)
+			if(data.observation){
+				$('#sky img').attr('src',data.observation.image.about);
+				$('#panel .credit').html('<strong>Image by:</strong> <em>'+data.observation.observer.label+'</em> using '+data.observation.instr.tel)
+			}else{
+				$('#sky img').attr('src','');
+				$('#panel .credit').html('');
+			}
 		}
 	}
 	
