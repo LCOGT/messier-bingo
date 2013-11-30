@@ -252,6 +252,7 @@ var catalogue = [{
 		$(document).on('keypress',{mb:this},function(e){
 			if(!e) e = window.event;
 			var code = e.keyCode || e.charCode || e.which || 0;
+			console.log(code)
 			e.data.mb.keypress(code,e);
 		});
 
@@ -265,6 +266,7 @@ var catalogue = [{
 		this.registerKey('6',function(){ this.loadMessierObject(6); });
 		this.registerKey('7',function(){ this.loadMessierObject(7); });
 		this.registerKey('8',function(){ this.loadMessierObject(8); });
+		this.registerKey('n',function(){ this.next(); });
 		this.registerKey(39,function(){ this.next(); });
 
 		// Set the information toggle to on
@@ -555,6 +557,7 @@ var catalogue = [{
 		if($('#panel .messier').length == 0){
 			$('#panel').html('<h3 class="messier"></h3><p class="type"></p><p class="distance"></p><p class="credit"></p><p class="date"></p>');
 		}
+		$('#sky img').attr('src','images/iris.png');
 		$('#panel .messier').html(m.m+(m.name ? ' ('+m.name+')' : ''));
 		$('#panel .distance').html('<strong>Distance:</strong> '+(m.distance >= 60000 ? '>' : '')+(m.distance*1000)+' lyr');
 		$('#panel .type').html(m.type);
@@ -563,7 +566,7 @@ var catalogue = [{
 				$('#sky img').attr('src',data.observation.image.about);
 				$('#panel .credit').html('<strong>Image by:</strong> <em>'+data.observation.observer.label+'</em> using '+data.observation.instr.tel)
 			}else{
-				$('#sky img').attr('src','');
+				$('#sky img').attr('src','images/iris.png');
 				$('#panel .credit').html('');
 			}
 		}
