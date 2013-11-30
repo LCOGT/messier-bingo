@@ -96,6 +96,8 @@ var catalogue = [{
 		this.width = 1024;
 		this.height = 768;
 		this.aspect = 1024/768;	// The aspect ratio
+		this.todo = new Array(110);
+		for(var i = 0; i < this.todo.length; i++){ this.todo[i] = i+1; }
 
 		// Country codes at http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
 		this.language = (navigator.language) ? navigator.language : navigator.userLanguage;			// Set the user language
@@ -128,7 +130,7 @@ var catalogue = [{
 		$(document).on('mousemove',{mb:this},function(e){
 			var now = new Date();
 			mb.moveEyes(e.clientX,e.clientY);
-			console.log('Time '+(new Date()-now)+' ms')
+			//console.log('Time '+(new Date()-now)+' ms')
 		});
 
 		$(document).on('keypress',{mb:this},function(e){
@@ -139,23 +141,30 @@ var catalogue = [{
 
 		this.registerKey('s',function(){  console.log(this); });
 		this.registerKey('i',function(){ this.toggleDial(); });
-		this.registerKey('1',function(){ this.updateSky(1); });
-		this.registerKey('2',function(){ this.updateSky(2); });
-		this.registerKey('3',function(){ this.updateSky(3); });
-		this.registerKey('4',function(){ this.updateSky(4); });
-		this.registerKey('5',function(){ this.updateSky(5); });
-		this.registerKey('6',function(){ this.updateSky(6); });
-		this.registerKey('7',function(){ this.updateSky(7); });
-		this.registerKey('8',function(){ this.updateSky(8); });
+		this.registerKey('1',function(){ this.loadMessierObject(1); });
+		this.registerKey('2',function(){ this.loadMessierObject(2); });
+		this.registerKey('3',function(){ this.loadMessierObject(3); });
+		this.registerKey('4',function(){ this.loadMessierObject(4); });
+		this.registerKey('5',function(){ this.loadMessierObject(5); });
+		this.registerKey('6',function(){ this.loadMessierObject(6); });
+		this.registerKey('7',function(){ this.loadMessierObject(7); });
+		this.registerKey('8',function(){ this.loadMessierObject(8); });
+		this.registerKey(39,function(){ this.next(); });
 
 		// Set the information toggle to on
 		this.setDial(true);
 
 		
-		var _obj = this;
-		this.eAnim = setInterval(function () { _obj.setTime(); }, 1000);
+		this.tick();
+//		var _obj = this;
+//		this.eAnim = setInterval(function () { _obj.setTime(); }, 1000);
 
 		return this;
+	}
+	MessierBingo.prototype.tick = function(){
+		this.setTime();
+		var _obj = this;
+		this.eAnim = setTimeout(function () { _obj.tick(); }, 1000);
 	}
 
 	MessierBingo.prototype.resize = function(w,h){
@@ -397,17 +406,31 @@ var catalogue = [{
 		this.scaleBox();
 	}
 	
-	MessierBingo.prototype.updateSky = function(i){
-		if(i==1) src = 'http://rti.lcogt.net/observations/2013/11/27/process-3925-2.jpg';
-		if(i==2) src = 'http://rti.lcogt.net/observations/2013/10/22/process-3551-2.jpg';
-		if(i==3) src = 'http://rti.lcogt.net/observations/2013/07/07/process-4145-1.jpg';
-		if(i==4) src = 'http://rti.lcogt.net/observations/2012/04/02/process-5252-1.jpg';
-		if(i==5) src = 'http://rti.lcogt.net/observations/2013/09/19/process-5162-1.jpg';
-		if(i==6) src = 'http://rti.lcogt.net/observations/2012/09/26/process-1266-2.jpg';
-		if(i==7) src = 'http://rti.lcogt.net/observations/2013/08/07/process-1835-2.jpg';
-		if(i==8) src = 'http://rti.lcogt.net/observations/2013/08/13/process-1956-2.jpg';
-		$('#sky img').attr('src',src);
-		return this;
+	MessierBingo.prototype.next = function(){
+		if(this.todo.length == 0) return this;
+		var i;
+		if(this.todo.length > 1){
+			i = Math.round((this.todo.length-1)*Math.random());
+		}else if(this.todo.length == 1){
+			i = 0;
+		}
+		this.loadMessierObject(this.todo[i]);
+		this.todo.splice(i,1);
+		console.log(i,this.todo.length);
+	}
+	MessierBingo.prototype.loadMessierObject = function(i){
+		$.ajax({
+			url: 'db/M'+i+'.json',
+			method: 'GET',
+			dataType: 'json',
+			context: this,
+			error: function(){
+				console.log('error ',i)
+			},
+			success: function(data){
+				$('#sky img').attr('src',data.observation.image.about);
+			}
+		});
 	}
 	
 	MessierBingo.prototype.toggleDial = function(){
