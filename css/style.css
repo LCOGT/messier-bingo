@@ -7,9 +7,10 @@ body {
 	margin: 0px;
 	padding: 0px;
 	background: #202020;
-	font-family: "Birch Std", Didot, "Bodoni MT", "Century Schoolbook", "Niagara Solid", Utopia, Georgia, Times, "Times New Roman", serif;
 }
 .jsonly { display: none; }
+
+h1, h2, h3, h4 { margin:0px; font-family: "Birch Std", Didot, "Bodoni MT", "Century Schoolbook", "Niagara Solid", Utopia, Georgia, Times, "Times New Roman", serif; }
 
 #outer {
 	width: 1016px;
@@ -72,9 +73,11 @@ body {
 	font-size: 1em;
 	width: 34%;
 	bottom: 83%;
-	line-height: 1em;
 	font-weight: normal;
 	text-transform: uppercase;
+}
+#title h1 {
+	line-height: 1.7em;
 }
 
 #name {
@@ -82,5 +85,17 @@ body {
 	top: 31.95%;
 	left: 7.5%;
 	width: 11.5%;
+}
+
+#panel {
+	position: absolute;
+	top: 28%;
+	left: 24%;
+	width: 11%;
+	height: 55%;
+	background: rgba(255,255,255,0.8);
+	text-align: left;
+	padding: 0.5em;
+	font-size: 0.8em;
 }
 
