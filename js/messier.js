@@ -554,16 +554,25 @@ var catalogue = [{
 
 	MessierBingo.prototype.updateInfo = function(i,data){
 		var m = this.catalogue[i-1];
+		$('#sky img').attr('src','images/iris.png');
+		if(data && data.observation){
+			$('#sky img').attr('src',data.observation.image.thumb);
+		}
 		if($('#panel .messier').length == 0){
 			$('#panel').html('<h3 class="messier"></h3><p class="type"></p><p class="distance"></p><p class="credit"></p><p class="date"></p>');
 		}
-		$('#sky img').attr('src','images/iris.png');
 		$('#panel .messier').html(m.m+(m.name ? ' ('+m.name+')' : ''));
 		$('#panel .distance').html('<strong>Distance:</strong> '+(m.distance >= 60000 ? '>' : '')+(m.distance*1000)+' lyr');
 		$('#panel .type').html(m.type);
 		if(data){
 			if(data.observation){
-				$('#sky img').attr('src',data.observation.image.about);
+				$('#sky img').attr('src',data.observation.image.thumb);
+				cache = new Image();
+				var fn = function(){ $('#sky img').attr('src',cache.src); }
+				cache.onload = fn;
+				cache.src = data.observation.image.about;
+				if(cache.complete) fn();
+
 				$('#panel .credit').html('<strong>Image by:</strong> <em>'+data.observation.observer.label+'</em> using '+data.observation.instr.tel)
 			}else{
 				$('#sky img').attr('src','images/iris.png');
