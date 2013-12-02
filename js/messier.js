@@ -272,17 +272,14 @@ var catalogue = [{
 		// Set the information toggle to on
 		this.setDial(true);
 
-		
 		this.tick();
-//		var _obj = this;
-//		this.eAnim = setInterval(function () { _obj.setTime(); }, 1000);
 
 		return this;
 	}
 	MessierBingo.prototype.tick = function(){
 		this.setTime();
 		var _obj = this;
-		this.eAnim = setTimeout(function () { _obj.tick(); }, 60000);
+		this.eAnim = setTimeout(function () { _obj.tick(); }, 10000);
 	}
 
 	MessierBingo.prototype.resize = function(w,h){
@@ -366,6 +363,7 @@ var catalogue = [{
 		this.nuts.attr(attr);
 		this.screws.attr(attr);
 		this.dial.attr(attr);
+		this.nextbutton.attr(attr);
 		//this.glass.attr(attr);
 
 		// We need to be careful scaling things that have a rotation applied
@@ -406,8 +404,8 @@ var catalogue = [{
 
 		// pipes
 		this.pipes = this.box.set();
-		this.makePipe(880,512,100,100,14);
-		this.makePipe(880,542,75,70,14);
+		this.makePipe(860,532,100,100,14);
+		this.makePipe(860,562,75,70,14);
 
 		this.frame = this.box.set();
 		this.frame.push(
@@ -458,10 +456,7 @@ var catalogue = [{
 			this.box.circle(661,455,234).attr({'fill':'#2a2521','stroke':0}),
 			this.box.circle(661,455,231).attr({'fill':'90-#d8cda9:0-#cfc4a2:1-#b7ab8f:5-#8f8470:15-#857968:20-#817565:30-#74685b:51-#5f534a:85-#534741','stroke':0}),
 			this.box.path('m 661,193 c -144,0 -260.737,116.735 -260.737,260.737 0,144.001 116.737,260.736 260.737,260.736 143.997,0 260.734,-116.735 260.734,-260.736 0,-144.002 -116.737,-260.737 -260.734,-260.737 m 0,490.184 c -126.723,0 -229.449,-102.727 -229.449,-229.447 0,-126.722 102.726,-229.448 229.449,-229.448 126.718,0 229.446,102.726 229.446,229.448 0,126.72 -102.729,229.447 -229.446,229.447').attr({'fill':'#534741','stroke':0,'opacity':0.76})
-			//this.box.image('images/glass.png',661-205,455-205,205,205)
 		);
-		//this.portalview = Raphael('portalinner', this.wide, this.tall);
-		//this.glass = this.portalview.image('images/glass2.png',661-225,455-225,450,450);
 		
 		
 		this.nuts = this.box.set();
@@ -520,6 +515,20 @@ var catalogue = [{
 		this.dial.data('mb',this).click(function(e){ this.data('mb').toggleDial(); });
 		this.dialhandle.data('mb',this).click(function(e){ this.data('mb').toggleDial(); });
 
+
+		this.nextbutton = this.box.set();
+		var ox = 941;
+		var oy = 640;
+		var r = 40;
+		this.nextbutton.push(
+			this.box.circle(ox,oy+0.5,r).attr({'fill':'#534741','stroke':0}),
+			this.box.circle(ox,oy,r*0.95).attr({'fill':'#ddbc83','stroke':0}),
+			this.box.circle(ox,oy,r*0.81).attr({'fill':'90-#ddbc83-#be9c67:66-#ad8a57','stroke':0}),
+			this.box.circle(ox,oy,r*0.75).attr({'fill':'#f8f7f6','stroke':0,'cursor':'pointer'}),
+			this.box.path('M'+ox+','+oy+'m'+(-r*0.5)+','+(-r*0.2)+' l'+(r*0.5)+',0 l0,'+(-r*0.2)+' l'+(r*0.5)+','+(r*0.4)+' l'+(-r*0.5)+','+(r*0.4)+' l0,'+(-r*0.2)+'l'+(-r*0.5)+',0 z').attr({'fill':'#534741','stroke':0,'cursor':'pointer'})
+		);
+		this.nextbutton.data('mb',this).click(function(e){ this.data('mb').next(); });
+			
 		this.scaleBox();
 	}
 	
@@ -559,11 +568,12 @@ var catalogue = [{
 			$('#sky img').attr('src',data.observation.image.thumb);
 		}
 		if($('#panel .messier').length == 0){
-			$('#panel').html('<h3 class="messier"></h3><p class="type"></p><p class="distance"></p><p class="credit"></p><p class="date"></p>');
+			$('#panel').html('<h3 class="messier"></h3><p class="altname"></p><p class="type"></p><p class="distance"></p><p class="credit"></p><p class="date"></p>');
 		}
-		$('#panel .messier').html(m.m+(m.name ? ' ('+m.name+')' : ''));
+		$('#panel .messier').html(m.m);
+		$('#panel .altname').html((m.name) ? '('+m.name+')' : '');
 		$('#panel .distance').html('<strong>Distance:</strong> '+(m.distance >= 60000 ? '>' : '')+(m.distance*1000)+' lyr');
-		$('#panel .type').html(m.type);
+		$('#panel .type').html('<strong>Type:</strong> '+m.type);
 		if(data){
 			if(data.observation){
 				$('#sky img').attr('src',data.observation.image.thumb);
