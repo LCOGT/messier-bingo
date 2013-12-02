@@ -585,7 +585,7 @@ var catalogue = [{
 
 				$('#panel .credit').html('<strong>Image by:</strong> <em>'+data.observation.observer.label+'</em> using '+data.observation.instr.tel)
 			}else{
-				$('#sky img').attr('src','images/iris.png');
+				$('#sky img').attr('src','images/missing.png');
 				$('#panel .credit').html('');
 			}
 		}
