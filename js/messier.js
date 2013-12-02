@@ -527,7 +527,11 @@ var catalogue = [{
 			this.box.circle(ox,oy,r*0.75).attr({'fill':'#f8f7f6','stroke':0,'cursor':'pointer'}),
 			this.box.path('M'+ox+','+oy+'m'+(-r*0.5)+','+(-r*0.2)+' l'+(r*0.5)+',0 l0,'+(-r*0.2)+' l'+(r*0.5)+','+(r*0.4)+' l'+(-r*0.5)+','+(r*0.4)+' l0,'+(-r*0.2)+'l'+(-r*0.5)+',0 z').attr({'fill':'#534741','stroke':0,'cursor':'pointer'})
 		);
-		this.nextbutton.data('mb',this).click(function(e){ this.data('mb').next(); });
+		this.nextbutton.data('mb',this).click(function(e){ this.data('mb').next(); }).mouseover(function(){
+			this.data('mb').nextbutton[4].attr({'fill':'#2a2521'});
+		}).mouseout(function(){
+			this.data('mb').nextbutton[4].attr({'fill':'#534741'});
+		});
 			
 		this.scaleBox();
 	}
