@@ -572,7 +572,7 @@ var catalogue = [{
 			$('#sky img').attr('src',data.observation.image.thumb);
 		}
 		if($('#panel .messier').length == 0){
-			$('#panel').html('<h3 class="messier"></h3><p class="altname"></p><p class="type"></p><p class="distance"></p><p class="credit"></p><p class="date"></p>');
+			$('#panel').html('<h3 class="messier"></h3><p class="altname"></p><p class="type"></p><p class="distance"></p><p class="telescope"></p><p class="credit"></p><p class="date"></p><p class="download"></p>');
 		}
 		$('#panel .messier').html(m.m);
 		$('#panel .altname').html((m.name) ? '('+m.name+')' : '');
@@ -587,10 +587,13 @@ var catalogue = [{
 				cache.src = data.observation.image.about;
 				if(cache.complete) fn();
 
-				$('#panel .credit').html('<strong>Image by:</strong> <em>'+data.observation.observer.label+'</em> using '+data.observation.instr.tel)
+				$('#panel .telescope').html('<strong>Telescope:</strong> '+data.observation.instr.tel);
+				$('#panel .credit').html('<strong>Image by:</strong> '+data.observation.observer.label);
+				$('#panel .download').html('<a href="'+data.observation.about+'" target="observation">&raquo; Original</a>');
 			}else{
 				$('#sky img').attr('src','images/missing.png');
 				$('#panel .credit').html('');
+				$('#panel .download').html('');
 			}
 		}
 	}

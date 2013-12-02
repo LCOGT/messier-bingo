@@ -10,7 +10,7 @@ body {
 }
 .jsonly { display: none; }
 
-h1, h2, h3, h4, #name { margin:0px; font-family: "Birch Std", Didot, "Bodoni MT", "Century Schoolbook", "Niagara Solid", Utopia, Georgia, Times, "Times New Roman", serif; }
+h1, h2, h3, h4, #nametoggle, #insttoggle { margin:0px; font-family: "Birch Std", Didot, "Bodoni MT", "Century Schoolbook", "Niagara Solid", Utopia, Georgia, Times, "Times New Roman", serif; }
 
 #outer {
 	width: 1016px;
@@ -81,9 +81,16 @@ h1, h2, h3, h4, #name { margin:0px; font-family: "Birch Std", Didot, "Bodoni MT"
 	font-size: 2.4em;
 }
 
-#name {
+#nametoggle {
 	position: absolute;
 	top: 31.95%;
+	left: 7.5%;
+	width: 11.5%;
+}
+
+#insttoggle {
+	position: absolute;
+	top: 88.95%;
 	left: 7.5%;
 	width: 11.5%;
 }
@@ -99,10 +106,10 @@ h1, h2, h3, h4, #name { margin:0px; font-family: "Birch Std", Didot, "Bodoni MT"
 	padding: 0.5em;
 	font-size: 0.8em;
 	overflow: hidden;
+	font-family: "Bodoni MT", "Century Schoolbook", "Niagara Solid", Utopia, Georgia, Times, "Times New Roman", serif;
 }
 #panel h3 {
 	font-size: 1.5em;
-	font-stretch: extra-expanded;
 	font-family: "Bodoni MT", "Century Schoolbook", "Niagara Solid", Utopia, Georgia, Times, "Times New Roman", serif;
 }
 #panel .altname {
