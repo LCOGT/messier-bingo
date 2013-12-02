@@ -252,11 +252,9 @@ var catalogue = [{
 		$(document).on('keypress',{mb:this},function(e){
 			if(!e) e = window.event;
 			var code = e.keyCode || e.charCode || e.which || 0;
-			console.log(code)
 			e.data.mb.keypress(code,e);
 		});
 
-		this.registerKey('s',function(){  console.log(this); });
 		this.registerKey('i',function(){ this.toggleDial(); });
 		this.registerKey('1',function(){ this.loadMessierObject(1); });
 		this.registerKey('2',function(){ this.loadMessierObject(2); });
@@ -270,7 +268,8 @@ var catalogue = [{
 		this.registerKey(39,function(){ this.next(); });
 
 		// Set the information toggle to on
-		this.setDial(true);
+		this.dialon = true;
+		this.setDial(this.dialon);
 
 		this.tick();
 
@@ -542,8 +541,8 @@ var catalogue = [{
 		}
 		this.loadMessierObject(this.todo[i]);
 		this.todo.splice(i,1);
-		console.log(i,this.todo.length);
 	}
+
 	MessierBingo.prototype.loadMessierObject = function(i){
 		this.updateInfo(i);
 		$.ajax({
@@ -592,28 +591,34 @@ var catalogue = [{
 	}
 	
 	MessierBingo.prototype.toggleDial = function(){
-		if(typeof this.dialon!=="boolean") this.dialon = true;
-		this.dialon = !this.dialon;
-		this.setDial(this.dialon);
+		this.setDial(!this.dialon);
 	}
 
 	MessierBingo.prototype.setDial = function(on){
+		this.dialon = on;
 		var ang = (on) ? 30 : -30;
 		var d,i;
-		for(d = 0 ; d < this.dialhandle.length; d++) this.updateRotation(this.dialhandle[d],ang,333,100);
+		// We have to update it twice for some reason - bug
+		for(d = 0 ; d < this.dialhandle.length; d++){
+			this.updateRotation(this.dialhandle[d],ang,333,100);
+			this.updateRotation(this.dialhandle[d],ang,333,100);
+		}
+		if(this.dialon) $('#panel').show();
+		else $('#panel').hide();
 	}
 	
 	MessierBingo.prototype.updateRotation = function(el,ang,ox,oy){
-		var t = el.attr('transform');
-		var m = false;
-		for(var i = 0; i < t.length ; i++){
+		var t,m,i;
+		t = el.transform();
+		m = false;
+		for(i = 0; i < t.length ; i++){
 			if(t[i][0] == 'r' || t[i][0] == 'R'){
-				t[i] = ['R',ang,ox,oy];
+				t[i][1] = ang;
 				m = true;
 			}
 		}
 		if(!m) t.push(['R',ang,ox,oy]);
-		el.attr({'transform':t});
+		el.transform(t);
 		return this;
 	}
 	
