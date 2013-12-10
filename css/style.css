@@ -115,6 +115,15 @@ h1, h2, h3, h4, #nametoggle, #insttoggle { margin:0px; font-family: "Birch Std",
 	text-align: left;
 	font-size: 0.8em;
 	overflow: hidden;
+	border: 3px solid #766a5c;
+	border-left: 0px;
+	box-shadow: 1px 1px 3px #2a2521;
+	-webkit-border-top-right-radius: 3%;
+	-webkit-border-bottom-right-radius: 3%;
+	-moz-border-radius-topright: 3%;
+	-moz-border-radius-bottomright: 3%;
+	border-top-right-radius: 3%;
+	border-bottom-right-radius: 3%;
 	font-family: "Bodoni MT", "Century Schoolbook", "Niagara Solid", Utopia, Georgia, Times, "Times New Roman", serif;
 }
 #panel .content {
