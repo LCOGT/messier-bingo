@@ -182,7 +182,7 @@
 			{ 'm': 'M14', 'ngc': 'NGC 6402', 'name': '', 'type':'Globular cluster', 'distance': 27, 'constellation': 'Ophiuchus', 'mag': 9.5 },
 			{ 'm': 'M15', 'ngc': 'NGC 7078', 'name': '', 'type':'Globular cluster', 'distance': 33, 'constellation': 'Pegasus', 'mag': 6.2 },
 			{ 'm': 'M16', 'ngc': 'NGC 6611', 'name': 'Eagle Nebula', 'type':'Nebula/H II region with cluster', 'distance': 7, 'constellation': 'Serpens', 'mag': 6.5 },
-			{ 'm': 'M17', 'ngc': 'NGC 6618', 'name': 'Omega, Swan, Horseshoe, or Lobster Nebula', 'type':'Nebula/H II region with cluster', 'distance': 5, 'constellation': 'Sagittarius', 'mag': 6.0 },
+			{ 'm': 'M17', 'ngc': 'NGC 6618', 'name': 'Swan Nebula', 'type':'Nebula/H II region with cluster', 'distance': 5, 'constellation': 'Sagittarius', 'mag': 6.0 },
 			{ 'm': 'M18', 'ngc': 'NGC 6613', 'name': '', 'type':'Open cluster', 'distance': 6, 'constellation': 'Sagittarius', 'mag': 8.0 },
 			{ 'm': 'M19', 'ngc': 'NGC 6273', 'name': '', 'type':'Globular cluster', 'distance': 27, 'constellation': 'Ophiuchus', 'mag': 8.5 },
 			{ 'm': 'M20', 'ngc': 'NGC 6514', 'name': 'Trifid Nebula', 'type':'Nebula/H II region with cluster', 'distance': 5.2, 'constellation': 'Sagittarius', 'mag': 6.3 },
@@ -923,13 +923,17 @@
 	Pantograph.prototype.updateInfo = function(t,fn){
 		if(typeof t!=="number") t = 300;
 		var _obj = this;
-		_obj.panel.animate({'width':(0)+'px'},t);
-		_obj.group.animate({'path':_obj.pathout},t,function(){
+		if(this.me.dialon){
+			_obj.panel.animate({'width':(0)+'px'},t);
+			_obj.group.animate({'path':_obj.pathout},t,function(){
+				if(typeof fn==="function") fn.call(this.me);
+				_obj.group.animate({'path':_obj.pathon},t);
+				_obj.panel.animate({'width':(100*_obj.me.getScale()*(_obj.wout-_obj.won)/_obj.me.wide)+'%'},t);
+				_obj.panel.find('.inner').css({'width':_obj.me.getScale()*(_obj.wout-_obj.won)+'px'});
+			});		
+		}else{
 			if(typeof fn==="function") fn.call(this.me);
-			_obj.group.animate({'path':_obj.pathon},t);
-			_obj.panel.animate({'width':(100*_obj.me.getScale()*(_obj.wout-_obj.won)/_obj.me.wide)+'%'},t);
-			_obj.panel.find('.inner').css({'width':_obj.me.getScale()*(_obj.wout-_obj.won)+'px'});
-		});
+		}
 		return this;
 	}
 
