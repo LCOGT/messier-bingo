@@ -37,6 +37,10 @@ h1, h2, h3, h4, #nametoggle, #insttoggle { margin:0px; font-family: "Birch Std",
 	box-shadow: 0px 0px 15px #000000;
 	z-index: 1;
 }
+
+#paper {
+}
+
 #portal {
 	position: absolute;
 	left: 0px;
@@ -97,20 +101,32 @@ h1, h2, h3, h4, #nametoggle, #insttoggle { margin:0px; font-family: "Birch Std",
 
 #panel {
 	position: absolute;
-	top: 28%;
-	left: 24%;
-	width: 11%;
-	height: 58%;
-	background: rgba(255,255,255,0.8);
+	top: 38%;
+	left: 2%;
+	width: 0%;
+	height: 48%;
+	background: rgba(255,255,255,1);
 	text-align: left;
-	padding: 0.5em;
 	font-size: 0.8em;
 	overflow: hidden;
 	font-family: "Bodoni MT", "Century Schoolbook", "Niagara Solid", Utopia, Georgia, Times, "Times New Roman", serif;
 }
+#panel .inner {
+	position: absolute;
+}
+#panel .padded {
+	margin: 1em;
+}
 #panel h3 {
 	font-size: 1.5em;
 	font-family: "Bodoni MT", "Century Schoolbook", "Niagara Solid", Utopia, Georgia, Times, "Times New Roman", serif;
+}
+#panel a {
+	text-decoration: none;
+}
+#panel p {
+	margin-top: 0.5em;
+	margin-bottom: 0em;
 }
 #panel .altname {
 	margin-top: 0px;

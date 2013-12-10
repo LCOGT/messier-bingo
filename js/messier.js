@@ -36,7 +36,6 @@
             //also rotate the letter to correspond the path angle of derivative
             newTransformation+="R"+
                 (newP.alpha<360 ? 180+newP.alpha : newP.alpha);
-                console.log(newP,letter.getBBox())
             letter.transform(newTransformation);
         }
     };
@@ -337,6 +336,7 @@
 		var attr = {'left':Math.round(0.425*this.wide)+'px','width':Math.round(0.44*this.wide)+'px','top':Math.round(0.299*this.tall)+'px','height':Math.round(0.582*this.tall)+'px'};
 		$('#sky').css(attr);
 		$('#glass').css(attr);
+		if(this.pantograph) this.pantograph.resize();
 		
 		this.drawBox();
 
@@ -394,7 +394,6 @@
 		this.texture2.attr(attr);
 		this.pipes.attr(attr);
 		this.clock.attr(attr);
-		this.overlay.attr(attr);
 		this.messier.attr(attr);
 		this.portal.attr(attr);
 		this.nuts.attr(attr);
@@ -404,6 +403,8 @@
 
 		// We need to be careful scaling things that have a rotation applied
 		var todo = new Array();
+		for(var h = 0 ; h < this.pantograph.group.length ; h++) todo.push(this.pantograph.group[h]);
+		for(var h = 0 ; h < this.overlay.length ; h++) todo.push(this.overlay[h]);
 		for(var h = 0 ; h < this.frame.length ; h++) todo.push(this.frame[h]);
 		for(var h = 0 ; h < this.hands.length ; h++) todo.push(this.hands[h]);
 		for(var h = 0 ; h < this.dialhandle.length ; h++) todo.push(this.dialhandle[h]);
@@ -433,13 +434,18 @@
 			this.scaleBox();
 			return this;
 		}
-		var path;
+		var path,ox,oy,r;
 
 		// Create a canvas to draw on
 		this.box = Raphael(this.id, this.wide, this.tall);
 
 		this.texture = this.box.image('images/texture2.jpg',0,0,this.width,this.height);
 		this.texture2 = this.box.rect(0,0,this.width,this.height).attr({'fill':'#536814','opacity':0.1});
+
+		// Make the scissor/pantograph mechanism
+		this.pantograph = new Pantograph(this,420,450,400,200,60,4,$('#panel'));
+		this.pantograph.toggle();
+
 
 		// pipes
 		this.pipes = this.box.set();
@@ -470,19 +476,19 @@
 		// Main title
 		path = 'M 858.801,99 c 0,-12.957 -11.542,-22.51 -26.424,-23.836 v -6.494 c 0,-2.465 -3.014,-4.67 -5.935,-4.67 h -335.572 c -2.923,0 -6.494,2.205 -6.494,4.67 v 6.511 c -14.797,1.384 -26.25,10.913 -26.25,23.819 0,12.906 11.453,24.139 26.25,25.785 v 6.986 c 0,2.465 3.571,4.229 6.494,4.229 h 335.572 c 2.921,0 5.935,-1.764 5.935,-4.229 v -6.966 c 14.881,-1.577 26.423,-12.848 26.423,-25.805';
 		this.overlay.push(
-			this.box.path(path).attr({'fill':'#534741','stroke':0}),
+			this.box.path(path).attr({'fill':'#534741','stroke':0}).transform('t -1 -1.5'),
 			this.box.path(path).attr({'fill':'#f8f7f6','stroke':0})
 		);
 		// Messier Name label
 		path = 'M 80.46875 244 C 76.49275 244 74.125 245.705 74 248.875 L 74 249 L 72.15625 249 C 67.892251 249 62.46875 250.81925 62.46875 257.15625 C 62.46875 263.49625 67.892251 265 72.15625 265 L 74 265 L 74 266.625 C 74 269.597 77.44475 272 80.46875 272 L 191.53125 272 C 194.55525 272 198 269.597 198 266.625 L 198 265 L 199.84375 265 C 204.10675 265 209.53125 263.095 209.53125 257 C 209.53125 250.905 204.10675 249 199.84375 249 L 198 249 L 198 248.875 C 198 245.903 195.13225 244 191.53125 244 L 80.46875 244 z';
 		this.overlay.push(
-			this.box.path(path).attr({'fill':'#534741','stroke':0}).transform('t -0.5 -0.5 s1.01'),
+			this.box.path(path).attr({'fill':'#534741','stroke':0}).transform('t -1 -1'),
 			this.box.path(path).attr({'fill':'#f8f7f6','stroke':0})
 		);
 		// Info label
 		path = 'm 200.222,702.863 h -127.69 c -4.264,0 -9.682,-1.512 -9.682,-7.852 0,-6.338 5.418,-8.148 9.682,-8.148 h 127.69 c 4.263,0 9.681,1.904 9.681,8 0,6.096 -5.418,8 -9.681,8 m -1.845,1.619 c 0,2.972 -3.452,5.381 -6.476,5.381 h -111.048 c -3.024,0 -6.476,-2.409 -6.476,-5.381 v -17.738 c 0.125,-3.17 2.5,-4.881 6.476,-4.881 h 111.048 c 3.601,0 6.476,1.909 6.476,4.881 v 17.738 z';
 		this.overlay.push(
-			this.box.path(path).attr({'fill':'#f8f7f6','stroke':0}).attr({'fill':'#534741','stroke':0}).transform('t -0.5 -0.5 s1.005'),
+			this.box.path(path).attr({'fill':'#f8f7f6','stroke':0}).attr({'fill':'#534741','stroke':0}).transform('t -1 -1'),
 			this.box.path(path).attr({'fill':'#f8f7f6','stroke':0}),
 			this.box.circle(135,135,82).attr({'fill':'90-#534741-#5c5048:29-#766a5c:76-#857968','stroke':0}),
 			this.box.circle(135,135,78).attr({'fill':'r#ffffff:0-#bdccd4:42-#bbcbd3:65-#b4c7ce:73-#a8bfc7:79-#98b5bc:84-#82a7ad:88-#66969c:92-#468286:95-#226c6f:98-#005759','stroke':0})
@@ -544,8 +550,8 @@
 
 		// Dial
 		this.dial = this.box.set();
-		var ox = 333;
-		var oy = 100;
+		ox = 333;
+		oy = 100;
 		this.dial.push(
 			this.box.circle(ox,oy+0.5,26).attr({'fill':'#2a2521','stroke':0}),
 			this.box.circle(ox,oy,25).attr({'fill':'270-#ddbc83-#be9c67:66-#ad8a57','stroke':0}),
@@ -563,9 +569,9 @@
 		
 
 		this.nextbutton = this.box.set();
-		var ox = 941;
-		var oy = 640;
-		var r = 50;
+		ox = 941;
+		oy = 640;
+		r = 50;
 
 		this.nextbutton.push(
 			this.box.circle(ox+r*0.01,oy+r*0.02,r).attr({'fill':'#2a2521','stroke':0}),
@@ -581,6 +587,90 @@
 		});
 
 		this.scaleBox();
+	}
+
+	function Pantograph(me,ox,oy,w,h,w2,n,p){
+		this.ox = ox;
+		this.oy = oy;
+		this.n = (typeof n==="number" ? n : 4);
+		this.woff = 0;
+		this.hoff = h;
+		this.panel = p;
+
+		this.wout = w; // The width when extended
+		this.hout = this.hoff*Math.sin((Math.PI/2)-Math.acos(this.wout/(this.n*this.hoff)));
+
+		this.won = w2;	// The width when compact
+		this.hon = this.hoff*(1 - this.won/this.wout);
+
+		var offx = 2;
+		var offy = 3;
+
+		this.pathoff = 'M'+ox+','+oy+' l 0,'+(this.hoff/2)+' ';
+		this.pathout = 'M'+ox+','+oy+' l 0,'+(this.hout/2)+' ';
+		this.pathon = 'M'+ox+','+oy+' l 0,'+(this.hon/2)+' ';
+		this.me = me;
+		this.box = me.box;
+
+		var dxon = this.won/this.n;
+		var dxout = this.wout/this.n;
+		var dxoff = this.woff/this.n;
+		var dir = -1;
+		for(var i = 0 ; i < this.n*2 ; i++){
+			if(i == this.n){
+				dir = -dir;
+				this.pathoff += 'l 0,'+(-this.hoff)+' ';
+				this.pathon += 'l 0,'+(-this.hon)+' ';
+				this.pathout += 'l 0,'+(-this.hout)+' ';
+			}
+			this.pathoff += 'l '+i+','+((i%2==0 ? 1 : -1)*dir*this.hoff)+' ';
+			this.pathon += 'l '+((i < this.n ? -1 : 1)*dxon)+','+((i%2==0 ? 1 : -1)*dir*this.hon)+' ';
+			this.pathout += 'l '+((i < this.n ? -1 : 1)*dxout)+','+((i%2==0 ? 1 : -1)*dir*this.hout)+' ';
+		}
+		this.pathon += 'z';
+		this.pathout += 'z';
+		this.pathoff += 'z';
+		this.group = this.box.set();
+		this.group.push(
+			this.box.path(this.pathoff).attr({'stroke':'#2a2521','stroke-width':3}).transform('t 1.5 2.5'),
+			this.box.path(this.pathoff).attr({'stroke':'#766a5c','stroke-width':4})
+		)
+
+		this.on = false;
+		return this;
+	}
+
+	Pantograph.prototype.attr = function(attr){
+		this.group.attr(attr);
+		return this;
+	}
+	
+	Pantograph.prototype.toggle = function(t){
+		if(typeof t!=="number") t = 300;
+		var _obj = this;
+		if(this.on){
+			_obj.panel.animate({'width':(0)+'px'},t);
+			this.group.animate({'path':this.pathout},t,function(){
+				_obj.group.animate({'path':_obj.pathoff},t);
+				_obj.on = false;
+			});
+			console.log(this.panel)
+		}else{
+			this.group.animate({'path':this.pathout},t,function(){
+				_obj.group.animate({'path':_obj.pathon},t);
+				_obj.panel.animate({'width':(100*_obj.me.getScale()*(_obj.wout-_obj.won)/_obj.me.wide)+'%'},t);
+				_obj.panel.find('.inner').css({'width':_obj.me.getScale()*(_obj.wout-_obj.won)+'px'});
+				_obj.on = true;
+			});
+		}
+		return this;
+	}
+
+	Pantograph.prototype.resize = function(){
+		var s = this.me.getScale();
+		this.panel.find('.inner').css({'width':(s*(this.wout-this.won))+'px'});
+
+		return this;
 	}
 	
 	MessierBingo.prototype.next = function(){
@@ -619,7 +709,7 @@
 			$('#sky img').attr('src',data.observation.image.thumb);
 		}
 		if($('#panel .messier').length == 0){
-			$('#panel').html('<h3 class="messier"></h3><p class="altname"></p><p class="type"></p><p class="distance"></p><p class="telescope"></p><p class="credit"></p><p class="date"></p><p class="download"></p>');
+			$('#panel .inner').html('<div class="padded"><h3 class="messier"></h3><p class="altname"></p><p class="type"></p><p class="distance"></p><p class="telescope"></p><p class="credit"></p><p class="date"></p><p class="download"></p></div>');
 		}
 		$('#panel .messier').html(m.m);
 		$('#panel .altname').html((m.name) ? '('+m.name+')' : '');
@@ -647,6 +737,7 @@
 	
 	MessierBingo.prototype.toggleDial = function(){
 		this.setDial(!this.dialon);
+		this.pantograph.toggle();
 	}
 
 	MessierBingo.prototype.setDial = function(on){
@@ -658,8 +749,8 @@
 			this.updateRotation(this.dialhandle[d],ang,333,100);
 			this.updateRotation(this.dialhandle[d],ang,333,100);
 		}
-		if(this.dialon) $('#panel').show();
-		else $('#panel').hide();
+		//if(this.dialon) $('#panel').show();
+		//else $('#panel').hide();
 	}
 	
 	MessierBingo.prototype.updateRotation = function(el,ang,ox,oy){
