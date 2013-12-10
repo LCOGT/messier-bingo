@@ -902,18 +902,17 @@
 		if(typeof t!=="number") t = 300;
 		var _obj = this;
 		if(this.on){
-			_obj.panel.animate({'width':(0)+'px'},t);
+			this.panel.animate({'width':(0)+'px'},t,function(){ _obj.panel.hide(); });
 			this.group.animate({'path':this.pathout},t,function(){
 				if(typeof fn==="function") fn.call(this.me);
 				_obj.group.animate({'path':_obj.pathoff},t);
 				_obj.on = false;
 			});
-			console.log(this.panel)
 		}else{
 			this.group.animate({'path':this.pathout},t,function(){
 				if(typeof fn==="function") fn.call(this.me);
 				_obj.group.animate({'path':_obj.pathon},t);
-				_obj.panel.animate({'width':(100*_obj.me.getScale()*(_obj.wout-_obj.won)/_obj.me.wide)+'%'},t);
+				_obj.panel.show().animate({'width':(100*_obj.me.getScale()*(_obj.wout-_obj.won)/_obj.me.wide)+'%'},t);
 				_obj.panel.find('.inner').css({'width':_obj.me.getScale()*(_obj.wout-_obj.won)+'px'});
 				_obj.on = true;
 			});
