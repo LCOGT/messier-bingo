@@ -336,6 +336,7 @@
 		var attr = {'left':Math.round(0.425*this.wide)+'px','width':Math.round(0.44*this.wide)+'px','top':Math.round(0.299*this.tall)+'px','height':Math.round(0.582*this.tall)+'px'};
 		$('#sky').css(attr);
 		$('#glass').css(attr);
+		$('#glass-small').css({'left':Math.round(0.053*this.wide)+'px','width':Math.round(0.156*this.wide)+'px','top':Math.round(0.07*this.tall)+'px','height':Math.round(0.208*this.tall)+'px'});
 		if(this.pantograph) this.pantograph.resize();
 		
 		this.drawBox();
@@ -391,7 +392,6 @@
 		var attr = {'transform':'s '+scale+','+scale+',0,0'};
 
 		this.texture.attr(attr);
-		this.texture2.attr(attr);
 		this.pipes.attr(attr);
 		this.clock.attr(attr);
 		this.messier.attr(attr);
@@ -439,11 +439,11 @@
 		// Create a canvas to draw on
 		this.box = Raphael(this.id, this.wide, this.tall);
 
-		this.texture = this.box.image('images/texture2.jpg',0,0,this.width,this.height);
-		this.texture2 = this.box.rect(0,0,this.width,this.height).attr({'fill':'#536814','opacity':0.1});
+//		this.texture = this.box.image('images/texture2.jpg',0,0,this.width,this.height);
+		this.texture = this.box.rect(0,0,this.width,this.height).attr({'fill':'#536814','opacity':0.1});
 
 		// Make the scissor/pantograph mechanism
-		this.pantograph = new Pantograph(this,420,450,400,200,60,4,$('#panel'));
+		this.pantograph = new Pantograph(this,410,450,390,200,60,4,$('#panel'));
 		this.pantograph.toggle();
 
 
@@ -491,7 +491,8 @@
 			this.box.path(path).attr({'fill':'#f8f7f6','stroke':0}).attr({'fill':'#534741','stroke':0}).transform('t -1 -1'),
 			this.box.path(path).attr({'fill':'#f8f7f6','stroke':0}),
 			this.box.circle(135,135,82).attr({'fill':'90-#534741-#5c5048:29-#766a5c:76-#857968','stroke':0}),
-			this.box.circle(135,135,78).attr({'fill':'r#ffffff:0-#bdccd4:42-#bbcbd3:65-#b4c7ce:73-#a8bfc7:79-#98b5bc:84-#82a7ad:88-#66969c:92-#468286:95-#226c6f:98-#005759','stroke':0})
+			this.box.circle(135,135,78).attr({'fill':"r#ffffff:0-#ffffff:30-#404040:100",'stroke':0})
+//			this.box.circle(135,135,78).attr({'fill':'r#ffffff:0-#bdccd4:42-#bbcbd3:65-#b4c7ce:73-#a8bfc7:79-#98b5bc:84-#82a7ad:88-#66969c:92-#468286:95-#226c6f:98-#005759','stroke':0})
 		);
 
 		this.messier = this.box.set();
@@ -592,11 +593,8 @@
 	MessierBingo.prototype.next = function(){
 		if(this.todo.length == 0) return this;
 		var i;
-		if(this.todo.length > 1){
-			i = Math.round((this.todo.length-1)*Math.random());
-		}else if(this.todo.length == 1){
-			i = 0;
-		}
+		if(this.todo.length > 1) i = Math.round((this.todo.length-1)*Math.random());
+		else if(this.todo.length == 1) i = 0;
 		this.loadMessierObject(this.todo[i]);
 		this.todo.splice(i,1);
 	}
