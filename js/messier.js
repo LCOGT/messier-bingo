@@ -24,44 +24,42 @@
      * @param p - can be a rpahael path obejct or string
      */
 
-    var _printOnPath = function(text, paper, p) {
-        if(typeof(p)=="string")
-            p = paper.path(p).attr({stroke: "none"});
-        for ( var i = 0; i < text.length; i++) {       
-            var letter = text[i];
-            var newP = p.getPointAtLength(letter.getBBox().x);
-            var newTransformation = letter.transform()+
-                 "T"+(newP.x-letter.getBBox().x)+","+
-                (newP.y-letter.getBBox().y-letter.getBBox().height);       
-            //also rotate the letter to correspond the path angle of derivative
-            newTransformation+="R"+
-                (newP.alpha<360 ? 180+newP.alpha : newP.alpha);
-            letter.transform(newTransformation);
-        }
+	var _printOnPath = function(text, paper, p) {
+		if(typeof(p)=="string")
+			p = paper.path(p).attr({stroke: "none","text-anchor": "middle"});
+		for ( var i = 0; i < text.length; i++) {       
+			var letter = text[i];
+			var newP = p.getPointAtLength(letter.getBBox().x);
+			var newTransformation = letter.transform()+
+				"T"+(newP.x-letter.getBBox().x)+","+
+				(newP.y-letter.getBBox().y-letter.getBBox().height);       
+			//also rotate the letter to correspond the path angle of derivative
+			newTransformation+="R"+
+				(newP.alpha<360 ? 180+newP.alpha : newP.alpha);
+			letter.transform(newTransformation);
+		}
     };
 
     /** print letter by letter, and return the set of letters (paths), just like the old raphael print() method did. */
-    Raphael.fn.printLetters = function(str, font, size,
-            letter_spacing, line_height, onpath) {
-        letter_spacing=letter_spacing||size/1.5;
-        line_height=line_height||size;
-        this.setStart();
-        var x_=0, y_=0;
-        for ( var i = 0; i < str.length; i++) {
-            if(str.charAt(i)!='\n') {
-                var letter = this.print(x_,y_,str.charAt(i),font,size);
-                x_+=letter_spacing;               
-            }
-            else {
-                x_=0;
-                y_+=line_height;
-            }
-        }
-        var set = this.setFinish();
-        if(onpath) {
-            _printOnPath(set, this, onpath);
-        }
-        return set;
+    Raphael.fn.printLetters = function(str, font, size, letter_spacing, line_height, onpath) {
+		letter_spacing=letter_spacing||size/1.5;
+		line_height=line_height||size;
+		this.setStart();
+		var x_=0, y_=0;
+		for ( var i = 0; i < str.length; i++) {
+			if(str.charAt(i)!='\n') {
+				var letter = this.print(x_,y_,str.charAt(i),font,size);
+				x_+=letter_spacing;               
+			}else{
+				x_=0;
+				y_+=line_height;
+			}
+		}
+		var set = this.setFinish();
+		if(onpath) {
+			_printOnPath(set, this, onpath);
+		}
+		return set;
     };
 })();
 (function ($) {
@@ -134,6 +132,7 @@
 		this.width = 1024;
 		this.height = 768;
 		this.aspect = 1024/768;	// The aspect ratio
+		this.dialang = 25;
 
 
 
@@ -409,6 +408,9 @@
 		for(var h = 0 ; h < this.hands.length ; h++) todo.push(this.hands[h]);
 		for(var h = 0 ; h < this.dialhandle.length ; h++) todo.push(this.dialhandle[h]);
 		for(var h = 0 ; h < this.dialtext.length ; h++) todo.push(this.dialtext[h]);
+		for(var h = 0 ; h < this.dialtexton.length ; h++) todo.push(this.dialtexton[h]);
+		for(var h = 0 ; h < this.dialtextoff.length ; h++) todo.push(this.dialtextoff[h]);
+		for(var h = 0 ; h < this.dialbg.length ; h++) todo.push(this.dialbg[h]);
 		
 		var h, t, m, i;
 		for(var h = 0 ; h < todo.length ; h++){
@@ -451,6 +453,19 @@
 		this.pipes = this.box.set();
 		this.makePipe(860,532,100,100,14);
 		this.makePipe(860,562,75,70,14);
+
+		// Draw background for on/off dial
+		ox = 331;
+		oy = 100;
+		this.dialbg = this.box.set();
+		this.dialbg.push(
+			this.box.path(makeSector(ox+3,oy,270,52,70)).attr({'fill':'#2a2521','stroke':0}).translate('t 1 2'),
+			this.box.path(makeSector(ox+3,oy,270,52,70)).attr({'fill':'#766a5c','stroke':0}),
+			this.box.path(makeSector(ox+3,oy,270,50,67)).attr({'fill':'#ffffff','stroke':0}),
+			this.box.path(makeSector(ox+3,oy,90,47,68)).attr({'fill':'#2a2521','stroke':0}).translate('t 1 2'),
+			this.box.path(makeSector(ox+3,oy,90,47,68)).attr({'fill':'#766a5c','stroke':0}),
+			this.box.path(makeSector(ox+3,oy,90,44,65)).attr({'fill':'#ffffff','stroke':0})
+		)
 
 		this.frame = this.box.set();
 		path = 'M 0 0 m 204,681 -1,0 0,-1 c 0,-2.762 -2.239,-5 -5,-5 l -125,0 c -2.761,0 -5,2.238 -5,5 l 0,1 c -7,0.666 -13,5.82 -13,13 0,7.18 5.82,13 13,13 l 0,3 c 0,2.762 2.239,5 5,5 l 31.922,0 c 5.228,0.793 9.285,4.506 10.078,9.775 l 0,13.805 c -1,5.413 -5.571,9.42 -11,10.42 l -11,0 0,19 84,0 0,-19 -8,0 c -5.429,-1 -10,-5.007 -11,-10.42 l 0,-13.805 c 0.793,-5.27 4.85,-8.982 10.078,-9.775 l 29.922,0 c 2.761,0 5,-2.238 5,-5 l 0,-3 1,0 c 7.833,-0.666 13,-5.82 13,-13 0,-7.18 -5.167,-12.334 -13,-13 m 22.999,-545 c 0,-7.565 -0.929,-14.913 -2.669,-21.94 0.617,-1.217 2.033,-2.06 4.45,-2.06 l 0.386,-16.584 -14.386,-9.416 c -1.664,0 -2.845,-0.55 -3.631,-1.324 -0.279,-0.408 -0.56,-0.816 -0.845,-1.219 -0.142,-0.322 -0.305,-0.424 -0.305,-0.424 -11.422,-15.93 -27.858,-28.021 -47.002,-33.961 -3.055,-1.883 -5.328,-4.87 -5.998,-8.492 l 0,-11.806 c 0.794,-5.269 4.851,-8.981 10.079,-9.774 l 12.921,0 0,-18 -88,0 0,18 11.922,0 c 5.228,0.793 9.285,4.505 10.078,9.774 l 0,11.806 c -0.783,4.242 -3.765,7.613 -7.629,9.357 -0.745,0.257 -1.485,0.523 -2.22,0.798 -0.379,0.102 -0.762,0.193 -1.151,0.265 l 0.455,0 c -24.982,9.571 -44.666,29.833 -53.455,55.191 l 0,-0.347 c 0,0.135 -0.012,0.268 -0.019,0.402 -0.437,1.263 -0.845,2.54 -1.227,3.827 -1.269,1.992 -3.4,3.451 -5.904,3.927 l -14.68,0 c -4.05,-1 -7.421,-4.943 -8.17,-9.005 l 0,-13.995 -19,0 0,81 19,0 0,-7 c 0.749,-4.062 4.12,-7 8.17,-8 l 13.68,0 c 5.234,0.083 7.15,5.756 7.15,5.756 9.068,29.518 32.745,52.639 62.595,60.929 -0.15,-0.012 -0.294,-0.019 -0.428,-0.019 l 0.436,0.022 c 0.861,0.238 1.729,0.463 2.601,0.678 1.928,0.828 3.796,2.425 3.796,4.967 l 0,2.68 c -0.078,3.388 -1.077,4.591 -3.081,4.987 l -41.919,0 c -2.761,0 -5,2.238 -5,5 l 0,1 c -7,0.666 -13,5.82 -13,13 0,7.179 5.821,13 13,13 l 0,3 c 0,2.761 2.239,5 5,5 l 125,0 c 2.762,0 5,-2.239 5,-5 l 0,-3 1,0 c 7.834,-0.667 13,-5.821 13,-13 0,-7.18 -5.166,-12.334 -13,-13 l -1,0 0,-1 c 0,-2.762 -2.238,-5 -5,-5 l -37.833,0 c -3.938,-0.455 -5.533,-1.331 -6.167,-4.738 l 0,-2.262 c 0,-2.616 1.212,-4.579 3.424,-5.543 0.747,-0.181 1.49,-0.37 2.23,-0.569 0.119,-0.014 0.224,-0.044 0.346,-0.055 l -0.158,0.004 c 38.694,-10.477 67.158,-45.83 67.158,-87.837 m 797.001,-136 -1024,0 0,768 1024,0 z m -47,746.667 c 0,0.786 0.041,1.563 0.104,2.333 l -931.64,0 c 0.129,-1.094 0.202,-2.205 0.202,-3.333 0,-14.749 -11.269,-26.859 -25.666,-28.204 l 0,-667.592 c 14.397,-1.345 25.666,-13.456 25.666,-28.204 0,-0.9 -0.047,-1.789 -0.129,-2.667 l 931.592,0 c -0.082,0.878 -0.129,1.767 -0.129,2.667 0,15.201 11.972,27.603 27,28.299 l 0,668.401 c -15.028,0.697 -27,13.099 -27,28.3 m 27,-680.667 0,11.423 c -0.666,5.41 -1.999,7.91 -9.173,8.577 l -780.047,0 c -3.03,0 -4.509,-1.792 -4.78,-3.524 l 0,3.524 -1,0 7.909,26 7.091,0 0,3.048 c 0.271,-1.732 1.75,-3.048 4.78,-3.048 l 765.772,0 c 5.651,-0.154 9.203,1.982 9.447,9.569 l 0,1.969 0,16.462 20,0 0,-74 z m -630,19.895 c -4,-0.464 -5.192,-1.916 -6.761,-4.327 -6.354,-12.443 -19.311,-20.968 -34.24,-20.968 -14.989,0 -27.977,8.592 -34.302,21.115 -1.517,2.323 -2.608,3.725 -6.617,4.18 l -0.006,26.006 c 3.644,0.413 4.869,1.608 6.202,3.566 6.165,12.967 19.381,21.932 34.695,21.932 15.277,0 28.524,-8.921 34.708,-21.838 1.358,-2.013 2.321,-3.24 6.321,-3.66 z m 494.562,0.105 c 0,0 -2.125,0.188 -3.301,-0.31 -0.257,-0.108 -0.453,-0.285 -0.646,-0.438 -4.292,-8.473 -12.305,-14.74 -21.894,-16.645 -0.83,-0.276 -1.949,-0.75 -2.731,-1.471 -0.609,-0.561 -0.876,-1.519 -0.991,-2.343 l 0,-5.928 c 0,-3.044 -1.97,-5.865 -5.013,-5.865 l -351.413,0 c -3.044,0 -5.574,2.821 -5.574,5.865 l 0,5.457 -0.025,-0.87 c 0.01,0.654 -0.041,2.734 -1.059,3.684 -0.799,0.745 -1.949,1.224 -2.777,1.496 -8.881,1.805 -16.395,7.359 -20.835,14.933 -0.4,0.579 -1.092,1.457 -1.887,1.935 -0.736,0.441 -3.104,0.5 -3.104,0.5 l -4.5,13.063 3.354,12.937 c 0,0 2.466,0.035 3.5,0.5 1.667,0.75 2.667,3.167 2.667,3.167 l -0.108,-0.367 c 4.368,7.536 11.772,13.09 20.543,14.985 0.697,0.207 2.079,0.704 2.904,1.588 0.925,0.991 1.228,2.431 1.327,3.169 l 0,4.093 c 0,3.044 2.53,5.865 5.574,5.865 l 351.414,0 c 3.043,0 5.013,-2.821 5.013,-5.865 l 0,-4.017 c 0.088,-0.749 0.384,-2.383 1.358,-3.483 0.544,-0.614 1.455,-0.993 2.264,-1.224 0.421,-0.082 0.837,-0.176 1.253,-0.275 0.254,-0.039 0.414,-0.054 0.414,-0.054 l -0.221,0.01 c 8.744,-2.142 16.051,-7.937 20.208,-15.68 0.313,-0.467 0.907,-1.16 1.947,-1.741 1.651,-0.924 2.714,-0.733 2.714,-0.733 l 3.125,-12.875 z m 68.937,367.794 c 0,-135.604 -97.49,-248.421 -226.202,-272.225 -7.906,-2.557 -13.946,-7.853 -14.283,-17.955 0.404,-12.353 6.729,-18.614 18.672,-18.614 l 11.314,0 -137,0 14.911,0 c 12.94,1.318 19.266,6.882 19.086,18.45 -0.929,9.427 -9.057,16.338 -18.356,18.949 -126.562,25.507 -221.873,137.316 -221.873,271.395 0,135.916 97.941,248.951 227.096,272.396 l -0.072,0.013 c 9.937,1.528 13.026,3.543 13.204,11.343 -0.51,9.476 -3.221,11.497 -12.934,11.362 l 1.099,0.093 -15.161,0 0,17 127,0 0,-17 -16.237,0 c -5.827,-0.297 -10.413,-2.119 -10.735,-10.963 0.203,-5.913 2.163,-9.243 7.586,-10.868 2.064,-0.329 4.122,-0.677 6.17,-1.052 0.191,-0.016 0.366,-0.037 0.562,-0.053 l -0.166,-0.022 c 128.77,-23.759 226.319,-136.606 226.319,-272.249 m -27.499,-300.60654 c -38.016,0 -68.8125,30.82975 -68.8125,68.84375 0,9.58796 1.958,18.70666 5.5,27 5.1309,4.74343 11.1041,10.54055 16.375,16.40625 5.1869,5.77213 10.3052,11.99332 14.5313,17.3125 9.6658,5.17442 20.676,8.125 32.4062,8.125 38.014,0 68.8438,-30.82875 68.8438,-68.84375 0,-38.014 -30.8308,-68.84375 -68.8438,-68.84375 z';
@@ -565,9 +580,12 @@
 		);
 		this.dial.data('mb',this).click(function(e){ this.data('mb').toggleDial(); });
 		this.dialhandle.data('mb',this).click(function(e){ this.data('mb').toggleDial(); });
+		ox = 331;
+		oy = 100;
+		this.dialtext = this.box.printLetters('INFORMATION',this.box.getFont("Birch Std"),22,7.2,18,makeCurvePath(ox,oy,270,50,45)).attr({'fill':'#2a2521','stroke':0});
+		this.dialtexton = this.box.printLetters('ON',this.box.getFont("Birch Std"),22,7.2,18,makeCurvePath(ox,oy,90+this.dialang,8,60)).attr({'fill':'#2a2521','stroke':0});
+		this.dialtextoff = this.box.printLetters('OFF',this.box.getFont("Birch Std"),22,7.2,18,makeCurvePath(ox,oy,90-this.dialang+4,8,60)).attr({'fill':'#2a2521','stroke':0});
 
-		this.dialtext = this.box.printLetters('INFORMATION',this.box.getFont("Birch Std"),22,7.2,18,"m 295.04551,68.317838 c 0,0 10.25304,-14.849242 34.64823,-14.849242 24.39518,0 33.94113,14.495689 33.94113,14.495689").attr({'fill':'#2a2521','stroke':0});
-		
 
 		this.nextbutton = this.box.set();
 		ox = 941;
@@ -589,7 +607,25 @@
 
 		this.scaleBox();
 	}
+	function makeSector(ox,oy,a,da,r){
+		var path = "M "+ox+" "+oy+"";
+		var rad;
+		for(var i = 0; i <= da*2 ; i++){
+			ang = (a-da+i)*Math.PI/180;
+			rad = (i==0 || i==da*2) ? 0.95*r : r;
+			path += "L"+(ox + rad*Math.cos(ang))+" "+(oy + rad*Math.sin(ang))
+		}
+		return path+"z";
+	}
 
+	function makeCurvePath(ox,oy,a,da,r){
+		var path = "";
+		for(var i = 0; i <= da*2 ; i++){
+			ang = ((a > 180 && a <= 360) ? a-da+i : a+da-i)*Math.PI/180;
+			path += ((i==0) ? "M" : "L")+(ox + r*Math.cos(ang))+" "+(oy + r*Math.sin(ang))
+		}
+		return path;
+	}
 	MessierBingo.prototype.next = function(){
 		if(this.todo.length == 0) return this;
 		var i;
@@ -660,7 +696,7 @@
 
 	MessierBingo.prototype.setDial = function(on){
 		this.dialon = on;
-		var ang = (on) ? 30 : -30;
+		var ang = (on) ? this.dialang : -this.dialang;
 		var d,i;
 		// We have to update it twice for some reason - bug
 		for(d = 0 ; d < this.dialhandle.length; d++){
