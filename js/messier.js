@@ -445,7 +445,7 @@
 		this.texture = this.box.rect(0,0,this.width,this.height).attr({'fill':'#536814','opacity':0.1});
 
 		// Make the scissor/pantograph mechanism
-		this.pantograph = new Pantograph(this,410,450,390,200,60,4,$('#panel'));
+		this.pantograph = new Pantograph(this,410,450,420,200,100,4,$('#panel'));
 		this.pantograph.toggle();
 
 

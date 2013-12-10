@@ -142,6 +142,7 @@ h1, h2, h3, h4, #nametoggle, #insttoggle { margin:0px; font-family: "Birch Std",
 }
 #panel a {
 	text-decoration: none;
+	color: #766a5c;
 }
 #panel p {
 	margin-top: 0.5em;
