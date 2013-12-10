@@ -301,7 +301,7 @@
 		this.registerKey('5',function(){ this.loadMessierObject(5); });
 		this.registerKey('6',function(){ this.loadMessierObject(6); });
 		this.registerKey('7',function(){ this.loadMessierObject(7); });
-		this.registerKey('8',function(){ this.loadMessierObject(8); });
+		this.registerKey('8',function(){ this.loadMessierObject(48); });
 		this.registerKey('n',function(){ this.next(); });
 		this.registerKey(39,function(){ this.next(); });
 
@@ -589,90 +589,6 @@
 		this.scaleBox();
 	}
 
-	function Pantograph(me,ox,oy,w,h,w2,n,p){
-		this.ox = ox;
-		this.oy = oy;
-		this.n = (typeof n==="number" ? n : 4);
-		this.woff = 0;
-		this.hoff = h;
-		this.panel = p;
-
-		this.wout = w; // The width when extended
-		this.hout = this.hoff*Math.sin((Math.PI/2)-Math.acos(this.wout/(this.n*this.hoff)));
-
-		this.won = w2;	// The width when compact
-		this.hon = this.hoff*(1 - this.won/this.wout);
-
-		var offx = 2;
-		var offy = 3;
-
-		this.pathoff = 'M'+ox+','+oy+' l 0,'+(this.hoff/2)+' ';
-		this.pathout = 'M'+ox+','+oy+' l 0,'+(this.hout/2)+' ';
-		this.pathon = 'M'+ox+','+oy+' l 0,'+(this.hon/2)+' ';
-		this.me = me;
-		this.box = me.box;
-
-		var dxon = this.won/this.n;
-		var dxout = this.wout/this.n;
-		var dxoff = this.woff/this.n;
-		var dir = -1;
-		for(var i = 0 ; i < this.n*2 ; i++){
-			if(i == this.n){
-				dir = -dir;
-				this.pathoff += 'l 0,'+(-this.hoff)+' ';
-				this.pathon += 'l 0,'+(-this.hon)+' ';
-				this.pathout += 'l 0,'+(-this.hout)+' ';
-			}
-			this.pathoff += 'l '+i+','+((i%2==0 ? 1 : -1)*dir*this.hoff)+' ';
-			this.pathon += 'l '+((i < this.n ? -1 : 1)*dxon)+','+((i%2==0 ? 1 : -1)*dir*this.hon)+' ';
-			this.pathout += 'l '+((i < this.n ? -1 : 1)*dxout)+','+((i%2==0 ? 1 : -1)*dir*this.hout)+' ';
-		}
-		this.pathon += 'z';
-		this.pathout += 'z';
-		this.pathoff += 'z';
-		this.group = this.box.set();
-		this.group.push(
-			this.box.path(this.pathoff).attr({'stroke':'#2a2521','stroke-width':3}).transform('t 1.5 2.5'),
-			this.box.path(this.pathoff).attr({'stroke':'#766a5c','stroke-width':4})
-		)
-
-		this.on = false;
-		return this;
-	}
-
-	Pantograph.prototype.attr = function(attr){
-		this.group.attr(attr);
-		return this;
-	}
-	
-	Pantograph.prototype.toggle = function(t){
-		if(typeof t!=="number") t = 300;
-		var _obj = this;
-		if(this.on){
-			_obj.panel.animate({'width':(0)+'px'},t);
-			this.group.animate({'path':this.pathout},t,function(){
-				_obj.group.animate({'path':_obj.pathoff},t);
-				_obj.on = false;
-			});
-			console.log(this.panel)
-		}else{
-			this.group.animate({'path':this.pathout},t,function(){
-				_obj.group.animate({'path':_obj.pathon},t);
-				_obj.panel.animate({'width':(100*_obj.me.getScale()*(_obj.wout-_obj.won)/_obj.me.wide)+'%'},t);
-				_obj.panel.find('.inner').css({'width':_obj.me.getScale()*(_obj.wout-_obj.won)+'px'});
-				_obj.on = true;
-			});
-		}
-		return this;
-	}
-
-	Pantograph.prototype.resize = function(){
-		var s = this.me.getScale();
-		this.panel.find('.inner').css({'width':(s*(this.wout-this.won))+'px'});
-
-		return this;
-	}
-	
 	MessierBingo.prototype.next = function(){
 		if(this.todo.length == 0) return this;
 		var i;
@@ -686,17 +602,21 @@
 	}
 
 	MessierBingo.prototype.loadMessierObject = function(i){
-		this.updateInfo(i);
 		$.ajax({
 			url: 'db/M'+i+'.json',
 			method: 'GET',
 			dataType: 'json',
 			context: this,
 			error: function(){
-				this.updateInfo(i,{'error':'error'});
+				var _obj = this;
+				var _i = i;
+				this.pantograph.updateInfo(300,function(){ _obj.updateInfo(_i,{'error':'error'}); });
 			},
 			success: function(data){
-				this.updateInfo(i,data);
+				var _obj = this;
+				var _data = data;
+				var _i = i;
+				this.pantograph.updateInfo(300,function(){ _obj.updateInfo(_i,_data); });
 			}
 		});
 		return this;
@@ -888,6 +808,105 @@
 		return this;
 	}
 
+	function Pantograph(me,ox,oy,w,h,w2,n,p){
+		this.ox = ox;
+		this.oy = oy;
+		this.n = (typeof n==="number" ? n : 4);
+		this.woff = 0;
+		this.hoff = h;
+		this.panel = p;
+
+		this.wout = w; // The width when extended
+		this.hout = this.hoff*Math.sin((Math.PI/2)-Math.acos(this.wout/(this.n*this.hoff)));
+
+		this.won = w2;	// The width when compact
+		this.hon = this.hoff*(1 - this.won/this.wout);
+
+		var offx = 2;
+		var offy = 3;
+
+		this.pathoff = 'M'+ox+','+oy+' l 0,'+(this.hoff/2)+' ';
+		this.pathout = 'M'+ox+','+oy+' l 0,'+(this.hout/2)+' ';
+		this.pathon = 'M'+ox+','+oy+' l 0,'+(this.hon/2)+' ';
+		this.me = me;
+		this.box = me.box;
+
+		var dxon = this.won/this.n;
+		var dxout = this.wout/this.n;
+		var dxoff = this.woff/this.n;
+		var dir = -1;
+		for(var i = 0 ; i < this.n*2 ; i++){
+			if(i == this.n){
+				dir = -dir;
+				this.pathoff += 'l 0,'+(-this.hoff)+' ';
+				this.pathon += 'l 0,'+(-this.hon)+' ';
+				this.pathout += 'l 0,'+(-this.hout)+' ';
+			}
+			this.pathoff += 'l '+i+','+((i%2==0 ? 1 : -1)*dir*this.hoff)+' ';
+			this.pathon += 'l '+((i < this.n ? -1 : 1)*dxon)+','+((i%2==0 ? 1 : -1)*dir*this.hon)+' ';
+			this.pathout += 'l '+((i < this.n ? -1 : 1)*dxout)+','+((i%2==0 ? 1 : -1)*dir*this.hout)+' ';
+		}
+		this.pathon += 'z';
+		this.pathout += 'z';
+		this.pathoff += 'z';
+		this.group = this.box.set();
+		this.group.push(
+			this.box.path(this.pathoff).attr({'stroke':'#2a2521','stroke-width':3}).transform('t 1.5 2.5'),
+			this.box.path(this.pathoff).attr({'stroke':'#766a5c','stroke-width':4})
+		)
+
+		this.on = false;
+		return this;
+	}
+
+	Pantograph.prototype.attr = function(attr){
+		this.group.attr(attr);
+		return this;
+	}
+	
+	Pantograph.prototype.toggle = function(t,fn){
+		if(typeof t!=="number") t = 300;
+		var _obj = this;
+		if(this.on){
+			_obj.panel.animate({'width':(0)+'px'},t);
+			this.group.animate({'path':this.pathout},t,function(){
+				if(typeof fn==="function") fn.call(this.me);
+				_obj.group.animate({'path':_obj.pathoff},t);
+				_obj.on = false;
+			});
+			console.log(this.panel)
+		}else{
+			this.group.animate({'path':this.pathout},t,function(){
+				if(typeof fn==="function") fn.call(this.me);
+				_obj.group.animate({'path':_obj.pathon},t);
+				_obj.panel.animate({'width':(100*_obj.me.getScale()*(_obj.wout-_obj.won)/_obj.me.wide)+'%'},t);
+				_obj.panel.find('.inner').css({'width':_obj.me.getScale()*(_obj.wout-_obj.won)+'px'});
+				_obj.on = true;
+			});
+		}
+		return this;
+	}
+
+	Pantograph.prototype.updateInfo = function(t,fn){
+		if(typeof t!=="number") t = 300;
+		var _obj = this;
+		_obj.panel.animate({'width':(0)+'px'},t);
+		_obj.group.animate({'path':_obj.pathout},t,function(){
+			if(typeof fn==="function") fn.call(this.me);
+			_obj.group.animate({'path':_obj.pathon},t);
+			_obj.panel.animate({'width':(100*_obj.me.getScale()*(_obj.wout-_obj.won)/_obj.me.wide)+'%'},t);
+			_obj.panel.find('.inner').css({'width':_obj.me.getScale()*(_obj.wout-_obj.won)+'px'});
+		});
+		return this;
+	}
+
+	Pantograph.prototype.resize = function(){
+		var s = this.me.getScale();
+		this.panel.find('.inner').css({'width':(s*(this.wout-this.won))+'px'});
+
+		return this;
+	}
+	
 	/*!
 	 * The following copyright notice may not be removed under any circumstances.
 	 * 
