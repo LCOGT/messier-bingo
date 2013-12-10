@@ -679,7 +679,7 @@
 				if(cache.complete) fn();
 
 				$('#panel .telescope').html('<strong>Telescope:</strong> '+data.observation.instr.tel);
-				$('#panel .credit').html('<strong>Image by:</strong> '+data.observation.observer.label);
+				$('#panel .credit').html('<strong>Image by:</strong> <a href="'+data.observation.observer.about+'" target="observation">'+data.observation.observer.label+'</a>');
 				$('#panel .download').html('<a href="'+data.observation.about+'" target="observation">&raquo; Original</a>');
 			}else{
 				$('#sky img').attr('src','images/missing.png');
