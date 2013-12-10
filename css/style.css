@@ -106,6 +106,12 @@ h1, h2, h3, h4, #nametoggle, #insttoggle { margin:0px; font-family: "Birch Std",
 	width: 0%;
 	height: 48%;
 	background: rgba(255,255,255,1);
+	background: url('../images/paper.jpg') no-repeat center center;
+	/* Scale image - Safari 3+/Chrome Whatever+/IE 9+/Opera 10+/Firefox 3.6+ */
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 	text-align: left;
 	font-size: 0.8em;
 	overflow: hidden;
