@@ -3,6 +3,9 @@
 	(c) Stuart Lowe/LCOGT
 */
 /*
+	TODO:
+	Add a hand to the pantograph
+
 	USAGE:
 		<script src="js/jquery-1.10.0.min.js" type="text/javascript"></script>
 		<script src="js/messier.js" type="text/javascript"></script>
@@ -336,7 +339,8 @@
 		$('#sky').css(attr);
 		$('#glass').css(attr);
 		$('#glass-small').css({'left':Math.round(0.053*this.wide)+'px','width':Math.round(0.156*this.wide)+'px','top':Math.round(0.07*this.tall)+'px','height':Math.round(0.208*this.tall)+'px'});
-		if(this.pantograph) this.pantograph.resize();
+		if(this.pantograph) this.pantograph[0].resize();
+		if(this.pantograph) this.pantograph[1].resize();
 		
 		this.drawBox();
 
@@ -402,7 +406,9 @@
 
 		// We need to be careful scaling things that have a rotation applied
 		var todo = new Array();
-		for(var h = 0 ; h < this.pantograph.group.length ; h++) todo.push(this.pantograph.group[h]);
+		for(var p = 0; p < this.pantograph.length ; p++){
+			for(var h = 0 ; h < this.pantograph[p].group.length ; h++) todo.push(this.pantograph[p].group[h]);
+		}
 		for(var h = 0 ; h < this.overlay.length ; h++) todo.push(this.overlay[h]);
 		for(var h = 0 ; h < this.frame.length ; h++) todo.push(this.frame[h]);
 		for(var h = 0 ; h < this.hands.length ; h++) todo.push(this.hands[h]);
@@ -436,6 +442,7 @@
 			this.scaleBox();
 			return this;
 		}
+
 		var path,ox,oy,r;
 
 		// Create a canvas to draw on
@@ -445,9 +452,10 @@
 		this.texture = this.box.rect(0,0,this.width,this.height).attr({'fill':'#536814','opacity':0.1});
 
 		// Make the scissor/pantograph mechanism
-		this.pantograph = new Pantograph(this,410,450,420,200,100,4,$('#panel'));
-		this.pantograph.toggle();
-
+		this.pantograph = new Array()
+		this.pantograph.push(new Pantograph(this,410,450,420,200,100,4,$('#panel')));
+		this.pantograph.push(new Pantograph(this,135,260,100,500,70,4,$('#messier'),true));
+		this.pantograph[0].toggle();
 
 		// pipes
 		this.pipes = this.box.set();
@@ -494,12 +502,14 @@
 			this.box.path(path).attr({'fill':'#534741','stroke':0}).transform('t -1 -1.5'),
 			this.box.path(path).attr({'fill':'#f8f7f6','stroke':0})
 		);
+
 		// Messier Name label
 		path = 'M 80.46875 244 C 76.49275 244 74.125 245.705 74 248.875 L 74 249 L 72.15625 249 C 67.892251 249 62.46875 250.81925 62.46875 257.15625 C 62.46875 263.49625 67.892251 265 72.15625 265 L 74 265 L 74 266.625 C 74 269.597 77.44475 272 80.46875 272 L 191.53125 272 C 194.55525 272 198 269.597 198 266.625 L 198 265 L 199.84375 265 C 204.10675 265 209.53125 263.095 209.53125 257 C 209.53125 250.905 204.10675 249 199.84375 249 L 198 249 L 198 248.875 C 198 245.903 195.13225 244 191.53125 244 L 80.46875 244 z';
 		this.overlay.push(
 			this.box.path(path).attr({'fill':'#534741','stroke':0}).transform('t -1 -1'),
 			this.box.path(path).attr({'fill':'#f8f7f6','stroke':0})
 		);
+
 		// Info label
 		path = 'm 200.222,702.863 h -127.69 c -4.264,0 -9.682,-1.512 -9.682,-7.852 0,-6.338 5.418,-8.148 9.682,-8.148 h 127.69 c 4.263,0 9.681,1.904 9.681,8 0,6.096 -5.418,8 -9.681,8 m -1.845,1.619 c 0,2.972 -3.452,5.381 -6.476,5.381 h -111.048 c -3.024,0 -6.476,-2.409 -6.476,-5.381 v -17.738 c 0.125,-3.17 2.5,-4.881 6.476,-4.881 h 111.048 c 3.601,0 6.476,1.909 6.476,4.881 v 17.738 z';
 		this.overlay.push(
@@ -512,8 +522,8 @@
 
 		this.messier = this.box.set();
 		this.messier.push(
-			this.box.image('images/messier_eyes.png',110,121,28,6),
-			this.box.image('images/messier.png',95,80,90,110)
+			this.box.image('images/messier_eyes.png',130,121,28,6),
+			this.box.image('images/messier.png',85,80,90,110)
 		);
 
 		this.portal = this.box.set();
@@ -524,7 +534,6 @@
 			this.box.path('m 661,193 c -144,0 -260.737,116.735 -260.737,260.737 0,144.001 116.737,260.736 260.737,260.736 143.997,0 260.734,-116.735 260.734,-260.736 0,-144.002 -116.737,-260.737 -260.734,-260.737 m 0,490.184 c -126.723,0 -229.449,-102.727 -229.449,-229.447 0,-126.722 102.726,-229.448 229.449,-229.448 126.718,0 229.446,102.726 229.446,229.448 0,126.72 -102.729,229.447 -229.446,229.447').attr({'fill':'#534741','stroke':0,'opacity':0.76})
 		);
 		
-		
 		this.nuts = this.box.set();
 		this.makeNut(21.25,23,15);
 		this.makeNut(1001,25,15);
@@ -533,14 +542,15 @@
 		this.makeNut(660,741,12);
 		this.makeNut(660,164,12);
 
-
 		this.screws = this.box.set();		
 		this.makeScrew(34,136,10);
 		this.makeScrew(136,32,10);
 		this.makeScrew(136,731,10);
+
 		// Title bar
 		this.makeScrew(481,99,10);
 		this.makeScrew(834,99,10);
+
 		// Portal surround
 		this.makeScrew(570,225,8);
 		this.makeScrew(754,225,8);
@@ -578,6 +588,7 @@
 			this.box.path("M "+(ox+0.5)+" "+(oy-6+0.5)+" l 5 10 t -5 30 l 0 0 t -5 -30 z").attr({'fill':'#2a2521','stroke':0,'cursor':'pointer'}).transform('R0,'+ox+','+oy),
 			this.box.path("M "+ox+" "+(oy-6)+" l 5 10 t -5 27 l 0 0 t -5 -27 z").attr({'fill':'0-#2a2521-#ddbc83-#2a2521','stroke':0,'cursor':'pointer'}).transform('R0,'+ox+','+oy)
 		);
+		
 		this.dial.data('mb',this).click(function(e){ this.data('mb').toggleDial(); });
 		this.dialhandle.data('mb',this).click(function(e){ this.data('mb').toggleDial(); });
 		ox = 331;
@@ -586,6 +597,11 @@
 		this.dialtexton = this.box.printLetters('ON',this.box.getFont("Birch Std"),22,7.2,18,makeCurvePath(ox,oy,90+this.dialang,8,60)).attr({'fill':'#2a2521','stroke':0});
 		this.dialtextoff = this.box.printLetters('OFF',this.box.getFont("Birch Std"),22,7.2,18,makeCurvePath(ox,oy,90-this.dialang+4,8,60)).attr({'fill':'#2a2521','stroke':0});
 
+		$('#nametoggle').on('click',{me:this},function(e){
+			if(!e.data.me.pantograph[1].on && e.data.me.pantograph[0].on) e.data.me.toggleDial();
+			e.data.me.pantograph[1].toggle();
+		});
+		
 
 		this.nextbutton = this.box.set();
 		ox = 941;
@@ -644,13 +660,13 @@
 			error: function(){
 				var _obj = this;
 				var _i = i;
-				this.pantograph.updateInfo(300,function(){ _obj.updateInfo(_i,{'error':'error'}); });
+				this.pantograph[0].updateInfo(300,function(){ _obj.updateInfo(_i,{'error':'error'}); });
 			},
 			success: function(data){
 				var _obj = this;
 				var _data = data;
 				var _i = i;
-				this.pantograph.updateInfo(300,function(){ _obj.updateInfo(_i,_data); });
+				this.pantograph[0].updateInfo(300,function(){ _obj.updateInfo(_i,_data); });
 			}
 		});
 		return this;
@@ -691,7 +707,8 @@
 	
 	MessierBingo.prototype.toggleDial = function(){
 		this.setDial(!this.dialon);
-		this.pantograph.toggle();
+		if(!this.pantograph[0].on && this.pantograph[1].on) this.pantograph[1].toggle(); 
+		this.pantograph[0].toggle();
 	}
 
 	MessierBingo.prototype.setDial = function(on){
@@ -703,8 +720,6 @@
 			this.updateRotation(this.dialhandle[d],ang,333,100);
 			this.updateRotation(this.dialhandle[d],ang,333,100);
 		}
-		//if(this.dialon) $('#panel').show();
-		//else $('#panel').hide();
 	}
 	
 	MessierBingo.prototype.updateRotation = function(el,ang,ox,oy){
@@ -733,7 +748,7 @@
 	}
 
 	MessierBingo.prototype.moveEyes = function(x,y){
-		var eye = { x:109.5, y: 121, dx: 2, dy: 2 };
+		var eye = { x:132, y: 121, dx: 2, dy: 2 };
 		var dx = x-eye.x;
 		var dy = y-eye.y;
 		this.messier[0].attr({x:eye.x+eye.dx*((dx < 0) ? dx/eye.x : dx/(this.wide-eye.x)),y:eye.y+eye.dy*((dy < 0) ? dy/eye.y : dy/(this.tall-eye.y))})
@@ -842,52 +857,90 @@
 		return this;
 	}
 
-	function Pantograph(me,ox,oy,w,h,w2,n,p){
+	function Pantograph(me,ox,oy,w,h,w2,n,p,vert){
+
+		if(typeof vert!=="boolean") vert = false;
+		this.vert = vert;
+
 		this.ox = ox;
 		this.oy = oy;
 		this.n = (typeof n==="number" ? n : 4);
-		this.woff = 0;
-		this.hoff = h;
+		this.woff = (this.vert) ? w : 0;
+		this.hoff = (this.vert) ? 0 : h;
+
 		this.panel = p;
 
-		this.wout = w; // The width when extended
-		this.hout = this.hoff*Math.sin((Math.PI/2)-Math.acos(this.wout/(this.n*this.hoff)));
-
-		this.won = w2;	// The width when compact
-		this.hon = this.hoff*(1 - this.won/this.wout);
-
+		if(this.vert){
+			this.hout = h;
+			this.wout = this.woff*Math.sin((Math.PI/2)-Math.acos(Math.min(1,this.hout/(this.n*this.woff)))); // The width when extended
+			this.hon = w2;	// The width when compact
+			this.won = this.woff*(1 - this.hon/this.hout);
+		}else{
+			this.wout = w; // The width when extended
+			this.hout = this.hoff*Math.sin((Math.PI/2)-Math.acos(this.wout/(this.n*this.hoff)));
+			this.won = w2;	// The width when compact
+			this.hon = this.hoff*(1 - this.won/this.wout);
+		}
 		var offx = 2;
 		var offy = 3;
 
-		this.pathoff = 'M'+ox+','+oy+' l 0,'+(this.hoff/2)+' ';
-		this.pathout = 'M'+ox+','+oy+' l 0,'+(this.hout/2)+' ';
-		this.pathon = 'M'+ox+','+oy+' l 0,'+(this.hon/2)+' ';
+		if(this.vert){
+			this.pathoff = 'M'+ox+','+oy+' l '+(this.woff/2)+',0 ';
+			this.pathout = 'M'+ox+','+oy+' l '+(this.wout/2)+',0 ';
+			this.pathon = 'M'+ox+','+oy+' l '+(this.won/2)+',0 ';
+		}else{
+			this.pathoff = 'M'+ox+','+oy+' l 0,'+(this.hoff/2)+' ';
+			this.pathout = 'M'+ox+','+oy+' l 0,'+(this.hout/2)+' ';
+			this.pathon = 'M'+ox+','+oy+' l 0,'+(this.hon/2)+' ';
+		}
 		this.me = me;
 		this.box = me.box;
 
-		var dxon = this.won/this.n;
-		var dxout = this.wout/this.n;
-		var dxoff = this.woff/this.n;
-		var dir = -1;
+		var d,don,dout,doff;
+
+		if(this.vert){
+			don = this.hon/this.n;
+			dout = this.hout/this.n;
+			doff = this.hoff/this.n;
+		}else{
+			don = this.won/this.n;
+			dout = this.wout/this.n;
+			doff = this.woff/this.n;
+		}
+
+		d = -1;
 		for(var i = 0 ; i < this.n*2 ; i++){
 			if(i == this.n){
-				dir = -dir;
-				this.pathoff += 'l 0,'+(-this.hoff)+' ';
-				this.pathon += 'l 0,'+(-this.hon)+' ';
-				this.pathout += 'l 0,'+(-this.hout)+' ';
+				d = -d;
+				if(this.vert){
+					this.pathoff += 'l '+(-this.woff)+',0 ';
+					this.pathon += 'l '+(-this.won)+',0 ';
+					this.pathout += 'l '+(-this.wout)+',0 ';
+				}else{
+					this.pathoff += 'l 0,'+(-this.hoff)+' ';
+					this.pathon += 'l 0,'+(-this.hon)+' ';
+					this.pathout += 'l 0,'+(-this.hout)+' ';
+				}
 			}
-			this.pathoff += 'l '+i+','+((i%2==0 ? 1 : -1)*dir*this.hoff)+' ';
-			this.pathon += 'l '+((i < this.n ? -1 : 1)*dxon)+','+((i%2==0 ? 1 : -1)*dir*this.hon)+' ';
-			this.pathout += 'l '+((i < this.n ? -1 : 1)*dxout)+','+((i%2==0 ? 1 : -1)*dir*this.hout)+' ';
+			if(this.vert){
+				this.pathoff += 'l '+((i%2==0 ? 1 : -1)*d*this.woff)+','+((i < this.n ? 1 : -1)*doff)+' ';
+				this.pathon += 'l '+((i%2==0 ? 1 : -1)*d*this.won)+','+((i < this.n ? 1 : -1)*don)+' ';
+				this.pathout += 'l '+((i%2==0 ? 1 : -1)*d*this.wout)+','+((i < this.n ? 1 : -1)*dout)+' ';
+			}else{
+				this.pathoff += 'l '+((i < this.n ? -1 : 1)*doff)+','+((i%2==0 ? 1 : -1)*d*this.hoff)+' ';
+				this.pathon += 'l '+((i < this.n ? -1 : 1)*don)+','+((i%2==0 ? 1 : -1)*d*this.hon)+' ';
+				this.pathout += 'l '+((i < this.n ? -1 : 1)*dout)+','+((i%2==0 ? 1 : -1)*d*this.hout)+' ';
+			}
 		}
 		this.pathon += 'z';
 		this.pathout += 'z';
 		this.pathoff += 'z';
+
 		this.group = this.box.set();
 		this.group.push(
 			this.box.path(this.pathoff).attr({'stroke':'#2a2521','stroke-width':3}).transform('t 1.5 2.5'),
 			this.box.path(this.pathoff).attr({'stroke':'#766a5c','stroke-width':4})
-		)
+		);
 
 		this.on = false;
 		return this;
@@ -901,8 +954,10 @@
 	Pantograph.prototype.toggle = function(t,fn){
 		if(typeof t!=="number") t = 300;
 		var _obj = this;
+		var attr = {};
 		if(this.on){
-			this.panel.animate({'width':(0)+'px'},t,function(){ _obj.panel.hide(); });
+			attr = (this.vert ? {'height':(0)+'px'} : {'width':(0)+'px'});
+			this.panel.animate(attr,t,function(){ _obj.panel.hide(); });
 			this.group.animate({'path':this.pathout},t,function(){
 				if(typeof fn==="function") fn.call(this.me);
 				_obj.group.animate({'path':_obj.pathoff},t);
@@ -912,8 +967,11 @@
 			this.group.animate({'path':this.pathout},t,function(){
 				if(typeof fn==="function") fn.call(this.me);
 				_obj.group.animate({'path':_obj.pathon},t);
-				_obj.panel.show().animate({'width':(100*_obj.me.getScale()*(_obj.wout-_obj.won)/_obj.me.wide)+'%'},t);
-				_obj.panel.find('.inner').css({'width':_obj.me.getScale()*(_obj.wout-_obj.won)+'px'});
+				var attr;
+				attr = (_obj.vert ? {'height':(100*_obj.me.getScale()*(_obj.hout-_obj.hon)/_obj.me.tall)+'%'} : {'width':(100*_obj.me.getScale()*(_obj.wout-_obj.won)/_obj.me.wide)+'%'});
+				_obj.panel.show().animate(attr,t);
+				attr = (_obj.vert ? {'height':_obj.me.getScale()*(_obj.hout-_obj.hon)+'px'} : {'width':_obj.me.getScale()*(_obj.wout-_obj.won)+'px'});
+				_obj.panel.find('.inner').css(attr);
 				_obj.on = true;
 			});
 		}
@@ -939,7 +997,8 @@
 
 	Pantograph.prototype.resize = function(){
 		var s = this.me.getScale();
-		this.panel.find('.inner').css({'width':(s*(this.wout-this.won))+'px'});
+		var attr = (this.vert ? {'height':(s*(this.hout-this.hon))+'px'} : {'width':(s*(this.wout-this.won))+'px'});
+		this.panel.find('.inner').css(attr);
 
 		return this;
 	}

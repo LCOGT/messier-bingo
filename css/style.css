@@ -90,6 +90,7 @@ h1, h2, h3, h4, #nametoggle, #insttoggle { margin:0px; font-family: "Birch Std",
 	top: 31.95%;
 	left: 7.5%;
 	width: 11.5%;
+	cursor: pointer;
 }
 
 #insttoggle {
@@ -99,12 +100,8 @@ h1, h2, h3, h4, #nametoggle, #insttoggle { margin:0px; font-family: "Birch Std",
 	width: 11.5%;
 }
 
-#panel {
+#messier, #panel {
 	position: absolute;
-	top: 37%;
-	left: 2%;
-	width: 0%;
-	height: 48%;
 	background: rgba(255,255,255,1);
 	background: url('../images/paper.jpg') no-repeat center center;
 	/* Scale image - Safari 3+/Chrome Whatever+/IE 9+/Opera 10+/Firefox 3.6+ */
@@ -116,39 +113,61 @@ h1, h2, h3, h4, #nametoggle, #insttoggle { margin:0px; font-family: "Birch Std",
 	font-size: 0.8em;
 	overflow: hidden;
 	border: 5px solid #766a5c;
-	border-left: 0px;
 	box-shadow: 1px 1px 3px #2a2521;
-	-webkit-border-top-right-radius: 3%;
-	-webkit-border-bottom-right-radius: 3%;
-	-moz-border-radius-topright: 3%;
-	-moz-border-radius-bottomright: 3%;
-	border-top-right-radius: 3%;
-	border-bottom-right-radius: 3%;
 	font-family: "Bodoni MT", "Century Schoolbook", "Niagara Solid", Utopia, Georgia, Times, "Times New Roman", serif;
 }
-#panel .content {
+#panel {
+	top: 37%;
+	left: 2%;
+	width: 0%;
+	height: 48%;
+	-webkit-border-top-right-radius: 10px;
+	-webkit-border-bottom-right-radius: 10px;
+	-moz-border-radius-topright: 10px;
+	-moz-border-radius-bottomright: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-left: 0px;
+}
+#messier {
+	bottom: 2.5%;
+	left: 5%;
+	width: 28%;
+	height: 0%;
+	z-index: 3;
+	-webkit-border-top-right-radius: 10px;
+	-webkit-border-top-left-radius: 10px;
+	-moz-border-radius-topright: 10px;
+	-moz-border-radius-topleft: 10px;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+	border-bottom: 0px;
+	box-shadow: 1px -1px 3px #2a2521;
+	display: none;
+}
+.panel .content {
 	position: relative;
 }
-#panel .inner {
+.panel .inner {
 	position: absolute;
 	right: 0px;
 }
-#panel .padded {
+.panel .padded {
 	margin: 1em;
 }
-#panel h3 {
+.panel h3 {
 	font-size: 1.5em;
 	font-family: "Bodoni MT", "Century Schoolbook", "Niagara Solid", Utopia, Georgia, Times, "Times New Roman", serif;
 }
-#panel a {
+.panel a {
 	text-decoration: none;
 	color: #766a5c;
 }
-#panel p {
+.panel p {
 	margin-top: 0.5em;
 	margin-bottom: 0em;
 }
-#panel .altname {
+.panel .altname {
 	margin-top: 0px;
 	font-weight: bold;
 }
