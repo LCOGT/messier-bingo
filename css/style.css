@@ -110,7 +110,7 @@ h1, h2, h3, h4, #nametoggle, #insttoggle { margin:0px; font-family: "Birch Std",
 	-o-background-size: cover;
 	background-size: cover;
 	text-align: left;
-	font-size: 0.8em;
+	font-size: 0.7em;
 	overflow: hidden;
 	border: 5px solid #766a5c;
 	box-shadow: 1px 1px 3px #2a2521;
@@ -132,7 +132,7 @@ h1, h2, h3, h4, #nametoggle, #insttoggle { margin:0px; font-family: "Birch Std",
 #messier {
 	bottom: 2.5%;
 	left: 5%;
-	width: 28%;
+	width: 30%;
 	height: 0%;
 	z-index: 3;
 	-webkit-border-top-right-radius: 10px;
@@ -156,7 +156,7 @@ h1, h2, h3, h4, #nametoggle, #insttoggle { margin:0px; font-family: "Birch Std",
 	margin: 1em;
 }
 .panel h3 {
-	font-size: 1.5em;
+	font-size: 2em;
 	font-family: "Bodoni MT", "Century Schoolbook", "Niagara Solid", Utopia, Georgia, Times, "Times New Roman", serif;
 }
 .panel a {
