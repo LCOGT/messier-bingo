@@ -454,7 +454,7 @@
 		// Make the scissor/pantograph mechanism
 		this.pantograph = new Array()
 		this.pantograph.push(new Pantograph(this,410,450,420,200,100,4,$('#panel')));
-		this.pantograph.push(new Pantograph(this,135,260,100,500,70,4,$('#messier'),true));
+		this.pantograph.push(new Pantograph(this,135,260,100,500,80,4,$('#messier'),true));
 		this.pantograph[0].toggle();
 
 		// pipes

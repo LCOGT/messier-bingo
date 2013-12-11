@@ -132,7 +132,7 @@ h1, h2, h3, h4, #nametoggle, #insttoggle { margin:0px; font-family: "Birch Std",
 #messier {
 	bottom: 2.5%;
 	left: 5%;
-	width: 30%;
+	width: 29%;
 	height: 0%;
 	z-index: 3;
 	-webkit-border-top-right-radius: 10px;
