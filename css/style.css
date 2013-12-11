@@ -98,6 +98,7 @@ h1, h2, h3, h4, #nametoggle, #insttoggle { margin:0px; font-family: "Birch Std",
 	top: 88.95%;
 	left: 7.5%;
 	width: 11.5%;
+	display: none;
 }
 
 #messier, #panel {
@@ -117,10 +118,10 @@ h1, h2, h3, h4, #nametoggle, #insttoggle { margin:0px; font-family: "Birch Std",
 	font-family: "Bodoni MT", "Century Schoolbook", "Niagara Solid", Utopia, Georgia, Times, "Times New Roman", serif;
 }
 #panel {
-	top: 37%;
-	left: 2%;
+	top: 38%;
+	left: 2.3%;
 	width: 0%;
-	height: 48%;
+	height: 50%;
 	-webkit-border-top-right-radius: 10px;
 	-webkit-border-bottom-right-radius: 10px;
 	-moz-border-radius-topright: 10px;
@@ -130,7 +131,7 @@ h1, h2, h3, h4, #nametoggle, #insttoggle { margin:0px; font-family: "Birch Std",
 	border-left: 0px;
 }
 #messier {
-	bottom: 2.5%;
+	bottom: 2.9%;
 	left: 5%;
 	width: 29%;
 	height: 0%;
