@@ -484,7 +484,8 @@
 		)
 		
 		this.frame[0].attr({'fill':'#2a2521','opacity':0.8,'stroke':0}).transform('t 1.5 2.5');
-		this.frame[1].attr({'fill':"url('images/texture3.jpg')",'stroke':0});
+		//this.frame[1].attr({'fill':"url('images/texture4.jpg')",'stroke':0});
+		this.frame[1].attr({'fill':"#8b796b",'stroke':0});
 
 		this.clock = this.box.set();
 		ox = 911;
@@ -611,7 +612,8 @@
 
 		this.nextbutton.push(
 			this.box.circle(ox+r*0.01,oy+r*0.02,r).attr({'fill':'#2a2521','stroke':0}),
-			this.box.circle(ox,oy,r*0.97).attr({'fill':"url('images/texture3.jpg')",'stroke':0}),
+			//this.box.circle(ox,oy,r*0.97).attr({'fill':"url('images/texture4.jpg')",'stroke':0}),
+			this.box.circle(ox,oy,r*0.97).attr({'fill':"#8b796b",'stroke':0}),
 			this.box.circle(ox,oy,r*0.80).attr({'fill':'270-#534741-#5c5048:25-#766a5c:66-#857968:87-#857968:100','stroke':0}),
 			this.box.circle(ox,oy,r*0.75).attr({'fill':'#f8f7f6','stroke':0,'cursor':'pointer'}),
 			this.box.path('M'+ox+','+oy+'m'+(-r*0.5)+','+(-r*0.2)+' l'+(r*0.5)+',0 l0,'+(-r*0.2)+' l'+(r*0.5)+','+(r*0.4)+' l'+(-r*0.5)+','+(r*0.4)+' l0,'+(-r*0.2)+'l'+(-r*0.5)+',0 z').attr({'fill':'#534741','stroke':0,'cursor':'pointer'})
