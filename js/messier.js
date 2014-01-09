@@ -152,9 +152,6 @@
 
 	MessierBingo.prototype.init = function(){
 
-		this.todo = new Array(110);
-		for(var i = 0; i < this.todo.length; i++){ this.todo[i] = i+1; }
-
 		// Country codes at http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
 		this.language = (navigator.language) ? navigator.language : navigator.userLanguage;			// Set the user language
 		this.langcode = this.language.substring(0,2);
@@ -286,7 +283,6 @@
 		$(document).on('mousemove',{mb:this},function(e){
 			var now = new Date();
 			mb.moveEyes(e.clientX,e.clientY);
-			//console.log('Time '+(new Date()-now)+' ms')
 		});
 
 		$(document).on('keypress',{mb:this},function(e){
@@ -295,6 +291,7 @@
 			e.data.mb.keypress(code,e);
 		});
 
+		this.registerKey('r',function(){ this.reset(); });
 		this.registerKey('i',function(){ this.toggleDial(); });
 		this.registerKey('1',function(){ this.loadMessierObject(1); });
 		this.registerKey('2',function(){ this.loadMessierObject(2); });
@@ -307,7 +304,31 @@
 		this.registerKey('n',function(){ this.next(); });
 		this.registerKey(39,function(){ this.next(); });
 
-		// Set the information toggle to on
+		this.instructions = $('#panel').html();
+		this.dialon = true;
+		this.setDial(this.dialon);
+
+		this.reset();
+		
+		return this;
+	}
+	MessierBingo.prototype.reset = function(){
+
+		// Reset the TODO array
+		this.todo = new Array(110);
+		for(var i = 0; i < this.todo.length; i++){ this.todo[i] = i+1; }
+
+		// Show the information text
+		var _obj = this;
+		var _ins = this.instructions;
+		var _i = -1;
+		
+		if(!this.pantograph[0].on){
+			this.updateInfo(_i,_ins);
+			this.pantograph[0].toggle();
+		}else{
+			this.pantograph[0].updateInfo(300,function(){ _obj.updateInfo(_i,_ins); });
+		}
 		this.dialon = true;
 		this.setDial(this.dialon);
 
@@ -315,6 +336,7 @@
 
 		return this;
 	}
+
 	MessierBingo.prototype.tick = function(){
 		this.setTime();
 		var _obj = this;
@@ -403,6 +425,7 @@
 		this.screws.attr(attr);
 		this.dial.attr(attr);
 		this.nextbutton.attr(attr);
+		this.resetbutton.attr(attr);
 
 		// We need to be careful scaling things that have a rotation applied
 		var todo = new Array();
@@ -609,7 +632,6 @@
 		ox = 941;
 		oy = 640;
 		r = 50;
-
 		this.nextbutton.push(
 			this.box.circle(ox+r*0.01,oy+r*0.02,r).attr({'fill':'#2a2521','stroke':0}),
 			//this.box.circle(ox,oy,r*0.97).attr({'fill':"url('images/texture4.jpg')",'stroke':0}),
@@ -623,6 +645,19 @@
 		}).mouseout(function(){
 			this.data('mb').nextbutton[4].attr({'fill':'#534741'});
 		});
+		this.resetbutton = this.box.set();
+		this.resetbutton.push(
+			this.box.circle(ox+r*0.01,oy+r*0.02,r).attr({'fill':'#2a2521','stroke':0}),
+			this.box.circle(ox,oy,r*0.97).attr({'fill':"#8b796b",'stroke':0}),
+			this.box.circle(ox,oy,r*0.80).attr({'fill':'270-#534741-#5c5048:25-#766a5c:66-#857968:87-#857968:100','stroke':0}),
+			this.box.circle(ox,oy,r*0.75).attr({'fill':'#f8f7f6','stroke':0,'cursor':'pointer'}),
+			this.box.path('M'+ox+','+oy+'m '+(-r*0.2)+','+(r*0.4)+' c '+(r*0.6)+',0 '+(r*0.4)+','+(-r*0.4)+' '+(r*0.1)+','+(-r*0.3)+' l 0,'+(r*0.2)+' '+(-r*0.4)+','+(-r*0.4)+' '+(r*0.4)+','+(-r*0.4)+' 0,'+(r*0.2)+' c '+(r*0.1)+',0 '+(r*0.5)+',0 '+(r*0.5)+','+(r*0.4)+' 0,'+(r*0.4)+' '+(-r*0.5)+','+(r*0.4)+' '+(-r*0.5)+','+(r*0.3)+' z').attr({'fill':'#534741','stroke':0,'cursor':'pointer','opacity':1})
+		);
+		this.resetbutton.data('mb',this).click(function(e){ this.data('mb').reset(); }).mouseover(function(){
+			this.data('mb').resetbutton[4].attr({'fill':'#2a2521'});
+		}).mouseout(function(){
+			this.data('mb').resetbutton[4].attr({'fill':'#534741'});
+		}).hide();
 
 		this.scaleBox();
 	}
@@ -647,11 +682,13 @@
 	}
 	MessierBingo.prototype.next = function(){
 		if(this.todo.length == 0) return this;
+		if(this.todo.length == 1) this.resetbutton.show();
 		var i;
 		if(this.todo.length > 1) i = Math.round((this.todo.length-1)*Math.random());
 		else if(this.todo.length == 1) i = 0;
 		this.loadMessierObject(this.todo[i]);
 		this.todo.splice(i,1);
+		return this;
 	}
 
 	MessierBingo.prototype.loadMessierObject = function(i){
@@ -676,19 +713,19 @@
 	}
 
 	MessierBingo.prototype.updateInfo = function(i,data){
-		var m = this.catalogue[i-1];
 		$('#sky img').attr('src','images/iris.png');
-		if(data && data.observation){
-			$('#sky img').attr('src',data.observation.image.thumb);
+		if(i >= 0){
+			var m = this.catalogue[i-1];
+			if(data && data.observation) $('#sky img').attr('src',data.observation.image.thumb);
+			if($('#panel .messier').length == 0){
+				$('#panel .inner').html('<div class="padded"><h3 class="messier"></h3><p class="altname"></p><p class="type"></p><p class="distance"></p><p class="telescope"></p><p class="credit"></p><p class="date"></p><p class="download"></p></div>');
+			}
+			$('#panel .messier').html(m.m);
+			$('#panel .altname').html((m.name) ? '('+m.name+')' : '');
+			$('#panel .distance').html('<strong>Distance:</strong> '+(m.distance >= 60000 ? '>' : '')+(m.distance*1000)+' lyr');
+			$('#panel .type').html('<strong>Type:</strong> '+m.type);
 		}
-		if($('#panel .messier').length == 0){
-			$('#panel .inner').html('<div class="padded"><h3 class="messier"></h3><p class="altname"></p><p class="type"></p><p class="distance"></p><p class="telescope"></p><p class="credit"></p><p class="date"></p><p class="download"></p></div>');
-		}
-		$('#panel .messier').html(m.m);
-		$('#panel .altname').html((m.name) ? '('+m.name+')' : '');
-		$('#panel .distance').html('<strong>Distance:</strong> '+(m.distance >= 60000 ? '>' : '')+(m.distance*1000)+' lyr');
-		$('#panel .type').html('<strong>Type:</strong> '+m.type);
-		if(data){
+		if(typeof data==="object"){
 			if(data.observation){
 				$('#sky img').attr('src',data.observation.image.thumb);
 				cache = new Image();
@@ -705,6 +742,8 @@
 				$('#panel .credit').html('');
 				$('#panel .download').html('');
 			}
+		}else if(typeof data==="string"){
+			$('#panel').html(data);
 		}
 	}
 	
