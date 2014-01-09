@@ -27,8 +27,8 @@ h1, h2, h3, h4, #nametoggle, #insttoggle { margin:0px; font-family: "Birch Std",
 	clear: both;
 	overflow: visible;
 	position: relative;
-	background: #a78763;
-	background: #a78763 url('../images/texturemap.jpg') no-repeat center center;
+	background: #c5b39f;
+	background: #c5b39f url('../images/texturemap.jpg') no-repeat center center;
 	/* Scale image - Safari 3+/Chrome Whatever+/IE 9+/Opera 10+/Firefox 3.6+ */
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -103,8 +103,8 @@ h1, h2, h3, h4, #nametoggle, #insttoggle { margin:0px; font-family: "Birch Std",
 
 #messier, #panel {
 	position: absolute;
-	background: rgba(255,255,255,1);
-	background: url('../images/paper.jpg') no-repeat center center;
+	background: white;
+	background: white url('../images/paper.jpg') no-repeat center center;
 	/* Scale image - Safari 3+/Chrome Whatever+/IE 9+/Opera 10+/Firefox 3.6+ */
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
