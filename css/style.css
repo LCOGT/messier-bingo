@@ -28,7 +28,7 @@ h1, h2, h3, h4, #nametoggle, #insttoggle { margin:0px; font-family: "Birch Std",
 	overflow: visible;
 	position: relative;
 	background: #a78763;
-	background: #a78763 url('../images/texture2.jpg') no-repeat center center;
+	background: #a78763 url('../images/texturemap.jpg') no-repeat center center;
 	/* Scale image - Safari 3+/Chrome Whatever+/IE 9+/Opera 10+/Firefox 3.6+ */
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
