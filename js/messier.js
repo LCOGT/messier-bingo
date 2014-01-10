@@ -166,7 +166,10 @@
 			'white': '#f8f7f6',
 			'brass': '#ddbc83',
 			'brassmed': '#be9c67',
-			'brassdark': '#ad8a57'
+			'brassdark': '#ad8a57',
+			'screw': '#d1a974',
+			'screwdark': '#bc8550',
+			'nut': '#fff-#EDD089:46-#E0B96D:68-#BF8329'
 		}
 
 		this.catalogue = [
@@ -550,7 +553,7 @@
 			this.box.path(path).attr({'fill':this.colours.white,'stroke':0})
 		);
 
-		// Info label
+		// Messier portrait background
 		this.overlay.push(
 			this.box.circle(137,137,82).attr({'fill':'90-#534741-#5c5048:29-#766a5c:76-#857968','stroke':0}),
 			this.box.circle(137,137,78).attr({'fill':"r#ffffff:0-#ffffff:30-#404040:100",'stroke':0})
@@ -805,10 +808,10 @@
 		var path = 'M '+x1+','+y1+' a'+rad+','+rad+' 0 0,1 '+(x2-x1)+','+(y2-y1)+' M '+x3+','+y3+' a'+rad+','+rad+' 0 0,0 '+(x4-x3)+','+(y4-y3)+' z';
 		var path2 = 'M '+(x1+dx)+','+(y1+dy)+' a'+rad+','+rad+' 0 0,1 '+(x2-x1)+','+(y2-y1)+' M '+(x3+dx)+','+(y3+dy)+' a'+rad+','+rad+' 0 0,0 '+(x4-x3)+','+(y4-y3)+' z';
 		this.screws.push(
-			this.box.circle(ox+dx,oy+dy,r).attr({'fill':'#bc8550','stroke':0,'opacity':0.7}),
+			this.box.circle(ox+dx,oy+dy,r).attr({'fill':this.colours.screwdark,'stroke':0,'opacity':0.7}),
 			this.box.path(path2).attr({'fill':this.colours.shadow,'stroke':0}),
 			this.box.path('M '+x1+' '+y1+' L '+(x1+dx)+' '+(y1+dy)+' L '+(x2+dx)+' '+(y2+dy)+' L '+(x2)+' '+(y2)+' z M '+x3+' '+y3+' L '+(x3+dx)+' '+(y3+dy)+' L '+(x4+dx)+' '+(y4+dy)+' L '+(x4)+' '+(y4)+' z').attr({'fill':this.colours.shadow,'stroke':0	}),
-			this.box.path(path).attr({'fill':'#d1a974','stroke':0})
+			this.box.path(path).attr({'fill':this.colours.screw,'stroke':0})
 		)
 		return this;
 	}
@@ -832,8 +835,8 @@
 		}
 		this.nuts.push(
 			this.box.path(path2+'z').attr({'fill':this.colours.deepshadow,'stroke':0,'opacity':0.7}),
-			this.box.path(path+'z').attr({'fill':'315-#fff-#EDD089:46-#E0B96D:68-#BF8329','stroke':0}),
-			this.box.circle(ox,oy,r*0.7,r*0.7).attr({'fill':'#d1a974','stroke':0})
+			this.box.path(path+'z').attr({'fill':'315-'+this.colours.nut,'stroke':0}),
+			this.box.circle(ox,oy,r*0.7,r*0.7).attr({'fill':this.colours.screw,'stroke':0})
 		)
 		return this;		
 	}
