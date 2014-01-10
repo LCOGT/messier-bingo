@@ -360,7 +360,7 @@
 		var attr = {'left':Math.round(0.425*this.wide)+'px','width':Math.round(0.44*this.wide)+'px','top':Math.round(0.299*this.tall)+'px','height':Math.round(0.582*this.tall)+'px'};
 		$('#sky').css(attr);
 		$('#glass').css(attr);
-		$('#glass-small').css({'left':Math.round(0.053*this.wide)+'px','width':Math.round(0.156*this.wide)+'px','top':Math.round(0.07*this.tall)+'px','height':Math.round(0.208*this.tall)+'px'});
+		$('#glass-small').css({'left':Math.round(0.054*this.wide)+'px','width':Math.round(0.156*this.wide)+'px','top':Math.round(0.074*this.tall)+'px','height':Math.round(0.208*this.tall)+'px'});
 		if(this.pantograph) this.pantograph[0].resize();
 		if(this.pantograph) this.pantograph[1].resize();
 		
@@ -537,8 +537,8 @@
 
 		// Info label
 		this.overlay.push(
-			this.box.circle(135,135,82).attr({'fill':'90-#534741-#5c5048:29-#766a5c:76-#857968','stroke':0}),
-			this.box.circle(135,135,78).attr({'fill':"r#ffffff:0-#ffffff:30-#404040:100",'stroke':0})
+			this.box.circle(137,137,82).attr({'fill':'90-#534741-#5c5048:29-#766a5c:76-#857968','stroke':0}),
+			this.box.circle(137,137,78).attr({'fill':"r#ffffff:0-#ffffff:30-#404040:100",'stroke':0})
 		);
 
 		this.messier = this.box.set();
