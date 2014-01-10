@@ -39,6 +39,8 @@ h1, h2, h3, h4, #nametoggle, #insttoggle { margin:0px; font-family: "Birch Std",
 }
 
 #paper {
+	z-index: 1;
+	position: absolute;
 }
 
 #portal {
@@ -89,8 +91,10 @@ h1, h2, h3, h4, #nametoggle, #insttoggle { margin:0px; font-family: "Birch Std",
 	position: absolute;
 	top: 31.95%;
 	left: 7.5%;
+	height: 3.5%;
 	width: 11.5%;
 	cursor: pointer;
+	z-index:5;
 }
 
 #insttoggle {
@@ -116,6 +120,7 @@ h1, h2, h3, h4, #nametoggle, #insttoggle { margin:0px; font-family: "Birch Std",
 	border: 5px solid #766a5c;
 	box-shadow: 1px 1px 3px #2a2521;
 	font-family: "Bodoni MT", "Century Schoolbook", "Niagara Solid", Utopia, Georgia, Times, "Times New Roman", serif;
+	z-index: 5;
 }
 #panel {
 	top: 38%;
