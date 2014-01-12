@@ -737,7 +737,7 @@
 		this.resetbutton = this.box.set();
 		this.resetbutton.push(
 			this.nextbutton[0].clone(), this.nextbutton[1].clone(), this.nextbutton[2].clone(), 
-			this.resetbutton[4] = this.box.path('M'+this.chrome.button.ox+','+this.chrome.button.oy+'m '+(-r*0.2)+','+(r*0.4)+' c '+(r*0.6)+',0 '+(r*0.4)+','+(-r*0.4)+' '+(r*0.1)+','+(-r*0.3)+' l 0,'+(r*0.2)+' '+(-r*0.4)+','+(-r*0.4)+' '+(r*0.4)+','+(-r*0.4)+' 0,'+(r*0.2)+' c '+(r*0.1)+',0 '+(r*0.5)+',0 '+(r*0.5)+','+(r*0.4)+' 0,'+(r*0.4)+' '+(-r*0.5)+','+(r*0.4)+' '+(-r*0.5)+','+(r*0.3)+' z').attr({'fill':this.colours.shadow,'stroke':0,'cursor':'pointer','opacity':1})
+			this.box.path('M'+this.chrome.button.ox+','+this.chrome.button.oy+'m '+(-r*0.2)+','+(r*0.4)+' c '+(r*0.6)+',0 '+(r*0.4)+','+(-r*0.4)+' '+(r*0.1)+','+(-r*0.3)+' l 0,'+(r*0.2)+' '+(-r*0.4)+','+(-r*0.4)+' '+(r*0.4)+','+(-r*0.4)+' 0,'+(r*0.2)+' c '+(r*0.1)+',0 '+(r*0.5)+',0 '+(r*0.5)+','+(r*0.4)+' 0,'+(r*0.4)+' '+(-r*0.5)+','+(r*0.4)+' '+(-r*0.5)+','+(r*0.3)+' z').attr({'fill':this.colours.shadow,'stroke':0,'cursor':'pointer','opacity':1})
 		);
 		this.resetbutton.data('mb',this).click(function(e){ this.data('mb').reset(); }).mouseover(function(){ this.data('mb').resetbutton[4].attr({'fill':this.data('mb').colours.deepshadow}); }).mouseout(function(){ this.data('mb').resetbutton[4].attr({'fill':this.data('mb').colours.shadow}); }).hide();
 
