@@ -118,9 +118,9 @@ h1, h2, h3, h4, #nametoggle, #insttoggle { margin:0px; font-family: "Birch Std",
 }
 #panel {
 	top: 38%;
-	left: 1.95%;
+	left: 2%;
 	width: 0%;
-	height: 50%;
+	height: 52%;
 	border-top-right-radius: 10px;
 	border-bottom-right-radius: 10px;
 	border-left: 0px;
@@ -128,7 +128,7 @@ h1, h2, h3, h4, #nametoggle, #insttoggle { margin:0px; font-family: "Birch Std",
 #messier {
 	bottom: 2.604%;
 	left: 5%;
-	width: 29%;
+	width: 30%;
 	height: 0%;
 	z-index: 3;
 	border-top-right-radius: 10px;
