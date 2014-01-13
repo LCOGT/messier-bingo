@@ -549,7 +549,8 @@
 
 	MessierBingo.prototype.drawText = function(el,x,y,txt,fs){
 		// Hide the existing content
-		el.wrapInner("<div class='hidden'></div>")
+		//el.wrapInner("<div class='hidden'></div>&nbsp;");
+		el.css({'opacity':0.01});
 		// Replace title text
 		var id = el.attr('id');
 		if(!this.texts) this.texts = this.box.set();
@@ -655,9 +656,10 @@
 			this.box.path(this.path.namelabel).attr({'fill':this.colours.white,'stroke':0})
 		);
 		this.box.transformer(this.overlay[0],['t',-1,-1]);
-		this.drawText($('#nametoggle'),136,258,$('#nametoggle').html(),24);
+		this.drawText($('#nametoggle'),136,258,$('#nametoggle').text(),24);
 		var _obj = this;
-		$('#nametoggle').on('click',{me:this},function(e){
+		$('#nametoggle a').on('click',{me:this},function(e){
+			e.preventDefault();
 			if(!e.data.me.pantograph[1].on && e.data.me.pantograph[0].on) e.data.me.toggleDial();
 			e.data.me.pantograph[1].toggle();
 		});

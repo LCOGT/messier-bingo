@@ -59,8 +59,6 @@ h1, h2, h3, h4, #nametoggle, #insttoggle { margin:0px; font-family: "Birch Std",
 	height: 100%;
 }
 #sky {
-	-webkit-border-radius: 100%;
-	-moz-border-radius: 100%;
 	border-radius: 100%;
 	overflow: hidden;
 	z-index: 3;
@@ -99,13 +97,7 @@ h1, h2, h3, h4, #nametoggle, #insttoggle { margin:0px; font-family: "Birch Std",
 	z-index:5;
 }
 
-#insttoggle {
-	position: absolute;
-	top: 88.95%;
-	left: 7.5%;
-	width: 11.5%;
-	display: none;
-}
+#nametoggle a { display: block; }
 
 #messier, #panel {
 	position: absolute;
