@@ -193,12 +193,14 @@
 		// Country codes at http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
 		this.language = (navigator.language) ? navigator.language : navigator.userLanguage;			// Set the user language
 		this.langcode = this.language.substring(0,2);
+		
+		var el = $('#panel .inner .padded');
 		this.phrasebook = {
 			"code": "en",
 			"name": "English",
 			"messier": "Msr Charles Messier",
 			"title": "Messier Bingo",
-			"instructions": "<h3>Instructions</h3><p>Get your <a href=\"http://lcogt.net/education/messierbingo\">bingo card</a> and mark it each time one of your objects appears.</p><p>When you have marked all the objects on your card shout 'Bingo', 'House' or even 'Messier' to win.</p><p>To select a new Messier object press the arrow in the bottom right.</p>",
+			"instructions": (el.length > 0) ? el.html() : "<h3>Instructions</h3><p>Get your <a href=\"http://lcogt.net/education/messierbingo\">bingo card</a> and mark it each time one of your objects appears.</p><p>When you have marked all the objects on your card shout 'Bingo', 'House' or even 'Messier' to win.</p><p>To select a new Messier object press the arrow in the bottom right.</p>",
 			"power": "Powered by LCOGT"
 		};
 		this.keys = new Array();
