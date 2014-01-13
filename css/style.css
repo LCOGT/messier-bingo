@@ -124,7 +124,7 @@ h1, h2, h3, h4, #nametoggle, #insttoggle { margin:0px; font-family: "Birch Std",
 }
 #panel {
 	top: 38%;
-	left: 2.3%;
+	left: 1.95%;
 	width: 0%;
 	height: 50%;
 	-webkit-border-top-right-radius: 10px;
@@ -177,3 +177,4 @@ h1, h2, h3, h4, #nametoggle, #insttoggle { margin:0px; font-family: "Birch Std",
 	margin-top: 0px;
 	font-weight: bold;
 }
+.hidden { display: none; }

@@ -22,22 +22,6 @@
 
 // plugin
 (function() {
-    /**
-     * do the job of putting all letters in a set returned bu printLetters in a path
-     * @param p - can be a rpahael path obejct or string
-     */
-
-	var _printOnPath = function(text, paper, p) {
-		if(typeof(p)=="string")
-			p = paper.path(p).attr({stroke: "none","text-anchor": "middle"});
-		for ( var i = 0; i < text.length; i++) {       
-			var letter = text[i];
-			var newP = p.getPointAtLength(letter.getBBox().x);
-			//also rotate the letter to correspond the path angle of derivative
-			paper.transformer(letter,["T",(newP.x-letter.getBBox().x),(newP.y-letter.getBBox().y-letter.getBBox().height),"R",(newP.alpha<360 ? 180+newP.alpha : newP.alpha)]);
-		}
-    };
-
 	// For some reason IE 8 has a bug in using .attr('transform') to get the transform.
 	// As a work-around we make a function that stores the transform in .data('transform')
 	Raphael.fn.transformer = function(el,t){
@@ -52,30 +36,66 @@
 		var dx = (x - bb.x) - bb.width / 2;
 		var dy = (y - bb.y) - bb.height / 2;
 		return this.transformer(path,['t',(-bb.width/2),(bb.height/2)]);
-//		return path.transform("t " + (-bb.width/2) + "," + (bb.height/2));
 	}
 
-
     /** print letter by letter, and return the set of letters (paths), just like the old raphael print() method did. */
-    Raphael.fn.printLetters = function(str, font, size, letter_spacing, line_height, onpath) {
-		letter_spacing=letter_spacing||size/1.5;
-		line_height=line_height||size;
-		this.setStart();
-		var x_=0, y_=0;
-		for ( var i = 0; i < str.length; i++) {
-			if(str.charAt(i)!='\n') {
-				var letter = this.print(x_,y_,str.charAt(i),font,size);
-				x_+=letter_spacing;               
-			}else{
-				x_=0;
-				y_+=line_height;
+    Raphael.fn.printArcLabel = function(ctx, str, font, size, letter_spacing, line_height, ox, oy, r, a, makebackground) {
+
+		var upright = true;
+		var text = this.set();
+		var clockwise = (upright) ? ((a > 0 && a < 180) ? false : true) : true;
+
+		var x_=0, y_=0, j, t;
+		var bb = new Array();
+		// Build up a set of paths for each letter
+		for (var i = 0; i < str.length; i++) {
+			x_ = 0;
+			j = i;
+			t = this.print(x_,y_,str.charAt(j),font,size,"middle");
+			bb.push(t.getBBox());
+			t.remove();
+			if(str.charAt(j)!='\n') text.push(this.print(x_-bb[i].width/2,y_-line_height/2,str.charAt(j),font,size,"middle"));
+			else y_ += line_height;
+		}
+
+
+		var toang = 360/(2*Math.PI*r);
+		var d2r = Math.PI/180;
+
+		if(r && a){
+
+			var arclength = (line_height-size)*toang;
+			var angs = new Array();
+			// Find total length
+			var da = 0;
+			for(var i = 0; i < text.length; i++) {
+				da = (text[i].getBBox().width+letter_spacing)*toang;
+				arclength += da;
+				angs.push(da);
+			}
+			arclength += (line_height-size)*toang;
+			if(makebackground){
+				var c = [ctx.makeSector(ox,oy,a,arclength/2,r+line_height),ctx.makeSector(ox,oy,a,(arclength/2 + 2*toang),r+line_height*1.05)];
+				ctx.shadows.push(this.path(c[1]).attr({'fill':ctx.colours.deepshadow,'stroke':0,'cursor':'pointer','opacity':0.8}));
+				ctx.arc.push(this.path(c[1]).attr({'fill':ctx.colours.frame,'stroke':0,'cursor':'pointer'}));
+				ctx.arc.push(this.path(c[0]).attr({'fill':ctx.colours.white,'stroke':0,'cursor':'pointer'}));
+			}
+			var ang = clockwise ? a - arclength/2 + (line_height-size)*toang: a + arclength/2 - (line_height-size)*toang;
+
+			var w2,h2,rr;
+			var f = clockwise;
+			for(var i = 0; i < text.length; i++) {
+				w2 = text[i].getBBox().width/2;
+				h2 = line_height/2;
+				text[i].toFront();
+				rr = r+(clockwise ? -(line_height-size)/2 : line_height);
+				ang += (clockwise ? 1 : -1)*angs[i]/2;
+				this.transformer(text[i],["R",(ang+90+(clockwise ? 0 : -180)),0,0,"T",(ox+rr*Math.cos(ang*d2r)),(oy+rr*Math.sin(ang*d2r))]);
+				ang += (clockwise ? 1 : -1)*angs[i]/2;
 			}
 		}
-		var set = this.setFinish();
-		if(onpath) {
-			_printOnPath(set, this, onpath);
-		}
-		return set;
+
+		return text;
     };
 })();
 (function ($) {
@@ -141,7 +161,8 @@
 		return false;
 	};
 	jQuery.support.borderRadius = checkBorders();
-//jQuery.support.borderRadius = false;
+	//jQuery.support.borderRadius = false;
+	jQuery.support.transparency = true;
 
 	/*! Messier Bingo */
 	function MessierBingo(inp){
@@ -201,19 +222,19 @@
 		this.chrome = {
 			'frame':{x:0,y:0,w:this.wide,h:this.tall},
 			'shadow':{dx:1.8,dy:1.4},
-			'dial': {ox:331,oy:100},
-			'clock':{ox:911,oy:223.5,r:71},
+			'clock':{ox:912,oy:222,r:71},
 			'title':{ox:660,oy:100},
-			'portal':{ox:661,oy:455,r:266},
-			'dial': {ox:333,oy:100},
+			'portal':{ox:660,oy:448,r:[276,276*0.96,276*0.85,276*0.825,276*0.81]},
+			'dial': {ox:333,oy:100,r:41,dr:30,fontsize:22},
 			'button':{ox:935,oy:670,r:50},
 			'pipe':{w:14}
 		}
 		// Move clock if portal is square
 		if(!$.support.borderRadius){
 			this.chrome.frame = {x:-1.5,y:-1.5,w:this.wide+1,h:this.tall+1};
-			this.chrome.clock = {ox:935,oy:102,r:71};
-			this.chrome.button.ox = 945;
+			this.chrome.portal = {ox:660,oy:448,r:[272,272*0.96,272*0.85,272*0.825,272*0.81]},
+			this.chrome.clock = {ox:940,oy:100,r:71};
+			this.chrome.button.ox = 935;
 		}
 
 		this.catalogue = [
@@ -331,10 +352,12 @@
 		
 		this.resize();
 
-		$(document).on('mousemove',{mb:this},function(e){
-			var now = new Date();
-			mb.moveEyes(e.clientX,e.clientY);
-		});
+		if($.support.transparency){
+			$(document).on('mousemove',{mb:this},function(e){
+				var now = new Date();
+				mb.moveEyes(e.clientX,e.clientY);
+			});
+		}
 
 		$(document).on('keypress',{mb:this},function(e){
 			if(!e) e = window.event;
@@ -417,7 +440,7 @@
 		this.outer.css({'width':w+'px','height':h+'px'});
 		$('body').css({'font-size':Math.round(h/30)+'px'});
 
-		var attr = {'left':Math.round(0.425*this.wide)+'px','width':Math.round(0.44*this.wide)+'px','top':Math.round(0.299*this.tall)+'px','height':Math.round(0.582*this.tall)+'px'};
+		var attr = {'left':(100*(this.chrome.portal.ox-this.chrome.portal.r[this.chrome.portal.r.length-1])/this.width)+'%','width':(100*this.chrome.portal.r[this.chrome.portal.r.length-1]*2/this.width)+'%','top':(100*(this.chrome.portal.oy-this.chrome.portal.r[this.chrome.portal.r.length-1])/this.height)+'%','height':(100*this.chrome.portal.r[this.chrome.portal.r.length-1]*2/this.height)+'%'};
 		$('#sky').css(attr);
 		$('#glass').css(attr);
 		$('#glass-small').css({'left':Math.round(0.054*this.wide)+'px','width':Math.round(0.156*this.wide)+'px','top':Math.round(0.074*this.tall)+'px','height':Math.round(0.208*this.tall)+'px'});
@@ -495,11 +518,13 @@
 		for(var h = 0 ; h < this.texts.length ; h++) todo.push(this.texts[h]);
 		for(var h = 0 ; h < this.overlay.length ; h++) todo.push(this.overlay[h]);
 		for(var h = 0 ; h < this.frame.length ; h++) todo.push(this.frame[h]);
+		for(var h = 0 ; h < this.arc.length ; h++) todo.push(this.arc[h]);
 		for(var h = 0 ; h < this.hands.length ; h++) todo.push(this.hands[h]);
 		for(var h = 0 ; h < this.dialhandle.length ; h++) todo.push(this.dialhandle[h]);
 		for(var h = 0 ; h < this.dialtext.length ; h++) todo.push(this.dialtext[h]);
 		for(var h = 0 ; h < this.dialtexton.length ; h++) todo.push(this.dialtexton[h]);
 		for(var h = 0 ; h < this.dialtextoff.length ; h++) todo.push(this.dialtextoff[h]);
+		for(var h = 0 ; h < this.poweredby.length ; h++) todo.push(this.poweredby[h]);
 		for(var h = 0 ; h < this.dialbg.length ; h++) todo.push(this.dialbg[h]);
 		
 		var h, m, i, t;
@@ -524,14 +549,12 @@
 	}
 
 	MessierBingo.prototype.drawText = function(el,x,y,txt,fs){
+		// Hide the existing content
+		el.wrapInner("<div class='hidden'></div>")
 		// Replace title text
 		var id = el.attr('id');
-		// Make text content transparent
-		el.css('color','transparent');
 		if(!this.texts) this.texts = this.box.set();
-		this.texts.push(
-			this.box.print_center(x,y,txt,this.box.getFont("Birch Std"),fs)
-		);
+		this.texts.push(this.box.print_center(x,y,txt,this.box.getFont("Birch Std"),fs));
 	}
 
 	MessierBingo.prototype.drawBox = function(){
@@ -550,8 +573,8 @@
 		this.shadows = this.box.set();
 
 		// Add the portal shadow
-		if($.support.borderRadius) this.shadows.push(this.box.circle(this.chrome.portal.ox,this.chrome.portal.oy,this.chrome.portal.r*1.04).attr({'fill':this.colours.deepshadow,'stroke':0,'opacity':0.8}));
-		else this.shadows.push(this.box.rect(this.chrome.portal.ox-this.chrome.portal.r*1.04,this.chrome.portal.oy-this.chrome.portal.r*1.04,this.chrome.portal.r*1.04*2,this.chrome.portal.r*1.04*2).attr({'fill':this.colours.deepshadow,'stroke':0,'opacity':0.8}));
+		if($.support.borderRadius) this.shadows.push(this.box.circle(this.chrome.portal.ox,this.chrome.portal.oy,this.chrome.portal.r[0]).attr({'fill':this.colours.deepshadow,'stroke':0,'opacity':0.8}));
+		else this.shadows.push(this.box.rect(this.chrome.portal.ox-this.chrome.portal.r[0],this.chrome.portal.oy-this.chrome.portal.r[0],this.chrome.portal.r[0]*2,this.chrome.portal.r[0]*2).attr({'fill':this.colours.deepshadow,'stroke':0,'opacity':0.8}));
 
 		// Add the shadow behind the clock
 		this.shadows.push(this.box.circle(this.chrome.clock.ox,this.chrome.clock.oy,this.chrome.clock.r).attr({'fill':this.colours.deepshadow,'opacity':0.8,'stroke':0}));
@@ -570,28 +593,47 @@
 
 		// pipes
 		this.pipes = this.box.set();
-		this.makePipe(this.chrome.portal.ox,this.chrome.portal.oy+this.chrome.portal.r/2 - this.chrome.pipe.w*2,(this.chrome.button.ox+(this.chrome.pipe.w*1.5)-this.chrome.portal.ox),(this.chrome.button.oy-this.chrome.portal.oy-this.chrome.portal.r/2+this.chrome.pipe.w*2),this.chrome.pipe.w);
-		this.makePipe(this.chrome.portal.ox,this.chrome.portal.oy+this.chrome.portal.r/2,(this.chrome.button.ox-(this.chrome.pipe.w*0.5)-this.chrome.portal.ox),(this.chrome.button.oy-this.chrome.portal.oy-this.chrome.portal.r/2),this.chrome.pipe.w);
+		this.makePipe(this.chrome.portal.ox,this.chrome.portal.oy+this.chrome.portal.r[0]/2 - this.chrome.pipe.w*2,(this.chrome.button.ox+(this.chrome.pipe.w*1.5)-this.chrome.portal.ox),(this.chrome.button.oy-this.chrome.portal.oy-this.chrome.portal.r[0]/2+this.chrome.pipe.w*2),this.chrome.pipe.w);
+		this.makePipe(this.chrome.portal.ox,this.chrome.portal.oy+this.chrome.portal.r[0]/2,(this.chrome.button.ox-(this.chrome.pipe.w*0.5)-this.chrome.portal.ox),(this.chrome.button.oy-this.chrome.portal.oy-this.chrome.portal.r[0]/2),this.chrome.pipe.w);
 
 		this.path = {
-			'frame': 'm 0,0 0,768.00009 1023.75,0 L 1023.625,-5.1499956e-7 z m 48.21875,23 56.96875,0 c 1.32408,0.12356 2.57855,0.428701 4.125,1.1875 1.81907,0.90954 3.19216,2.97945 3.34375,4.34375 0.15159,1.3643 0.15625,10.71685 0.15625,12.6875 0,1.97066 -0.13259,3.46718 -1.5,5.0625 -1.36741,1.59532 -3.34375,1.96875 -3.34375,1.96875 l 0.3125,0 c -28.842923,8.998584 -51.685182,31.523995 -61.0625,60.09375 l 0,-0.21875 c 0,0 -0.373431,1.97634 -1.96875,3.34375 -1.595318,1.36741 -3.123095,1.5 -5.09375,1.5 -1.970656,0 -10.29195,0.0266 -11.65625,-0.125 C 27.1357,112.69216 25.065784,111.31907 24.15625,109.5 23.492015,108.14627 23.160968,107.02215 23,105.875 l 0,-52.4375 c 14.22898,-1.416 25.34375,-13.42602 25.34375,-28 0,-0.826 -0.055,-1.6295 -0.125,-2.4375 z m 119.21875,0 807,0 c -0.07,0.808 -0.125,1.6115 -0.125,2.4375 0,15.02798 11.8255,27.31775 26.6875,28.09375 L 1001,78 c -0.1827,1.295066 -0.5994,2.835159 -1.59375,4.1875 -1.65727,2.253903 -5.20528,2.721349 -6.875,2.8125 L 870.25,85 c -0.58693,-0.06762 -2.77061,-0.395606 -4.125,-1.75 -1.5625,-1.5625 -1.1875,-2.375 -4.875,-6.4375 C 857.5625,72.75 854.32284,70.44435 851.0625,69 847.80216,67.55565 844.20747,67.20903 843,65.625 841.79253,64.04097 842,63 842,63 l -0.0625,-5.1875 c 0,0 0.39894,-2.40853 -1.3125,-4.4375 C 838.91356,51.34603 835.5,51.5 835.5,51.5 l -354.5,0 c 0,0 -0.21574,-0.01727 -0.5625,0 -1.04029,0.0518 -3.27892,0.353273 -4.5625,1.875 -1.71144,2.02897 -1.3125,4.4375 -1.3125,4.4375 L 474.5,63 c 0,0 0.20747,1.04097 -1,2.625 -1.20747,1.58403 -4.80216,1.93065 -8.0625,3.375 -3.26034,1.44435 -6.5,3.75 -10.1875,7.8125 -3.6875,4.0625 -3.3125,4.875 -4.875,6.4375 -1.35439,1.354394 -3.53807,1.682377 -4.125,1.75 l -72.4375,0 c -0.9805,-0.225281 -2.15168,-0.639449 -3.21875,-1.5 -2.42677,-1.957107 -3.34375,-4.75 -3.34375,-4.75 0,0 -10,-19.25 -34.5,-19.25 -24.5,0 -34.1875,19.53125 -34.1875,19.53125 0,0 -1.13665,3.094669 -3.09375,4.625 -0.93778,0.733284 -2.28345,1.129667 -3.4375,1.34375 l -74.8125,0 C 216.29356,84.89116 214.88055,84.689876 214,84.3125 213.62193,84.150469 213.27715,83.878175 212.96875,83.59375 201.23656,67.039584 184.25231,54.441683 164.40625,48.25 l 0.25,0 c 0,0 -1.97634,-0.37343 -3.34375,-1.96875 -1.36741,-1.59532 -1.5,-3.09184 -1.5,-5.0625 0,-1.97065 0.005,-11.3232 0.15625,-12.6875 0.15159,-1.3643 1.52468,-3.43421 3.34375,-4.34375 1.54645,-0.758799 2.80092,-1.06394 4.125,-1.1875 z m 61.625,92 62.15625,0 c 1.27325,0.16978 3.05748,0.53626 4.25,1.46875 1.9571,1.53033 3.09375,3.875 3.09375,3.875 0,0 9.6875,19.5625 34.1875,19.5625 24.5,0 34.5,-19.25 34.5,-19.25 0,0 0.91698,-2.10539 3.34375,-4.0625 1.21339,-0.97855 2.57679,-1.40089 3.625,-1.59375 L 446,115 l 1.28125,0 c 0.94688,0.0817 2.21484,0.37109 3.09375,1.25 1.5625,1.5625 1.1875,2.375 4.875,6.4375 3.6875,4.0625 6.92716,6.36815 10.1875,7.8125 3.26034,1.44435 6.85503,1.79097 8.0625,3.375 1.20747,1.58403 1,2.625 1,2.625 l 0.0625,5.1875 c 0,0 -0.39894,2.40853 1.3125,4.4375 C 477.58644,148.15397 481,148 481,148 l 124.03125,0 c 8.99518,1.02017 15.14287,4.69754 15.96875,12.65625 l 0,3.96875 0,1.375 c -0.85036,6.63819 -6.11024,11.26693 -12.46875,13.78125 -129.39534,24.62339 -227.21875,138.30887 -227.21875,274.875 0,138.38124 100.4478,253.30291 232.40625,275.84375 l 1.78125,0.375 c 0,0 4.67195,1.66607 5.5,4.75 0.82805,3.08393 0.53206,5.65774 -0.375,7.875 -0.90706,2.21726 -3.625,3.5 -6.875,3.5 l -439.71875,0 -73.2812,0 -52.59375,0 c 0.113,-1.021 0.1875,-2.04375 0.1875,-3.09375 0,-14.575 -11.11477,-26.583 -25.34375,-28 l 0,-548.3125 c 0.160968,-1.14715 0.492015,-2.27127 1.15625,-3.625 0.909534,-1.81907 2.97945,-3.19216 4.34375,-3.34375 1.3643,-0.15159 9.685594,-0.15625 11.65625,-0.15625 1.970655,0 3.498432,0.16384 5.09375,1.53125 0.39883,0.34185 0.709399,0.71911 0.96875,1.09375 9.216969,32.0417 35.206662,56.99636 67.90625,64.90625 0.72294,0.21187 1.87811,0.63578 2.375,1.5 0.73614,1.28033 0.5,2 0.5,3 0,1 0.0327,1.95521 -0.6875,2.75 -0.72015,0.79479 -4.0625,0.78125 -4.0625,0.78125 L 73.5,236 c 0,0 -2.775412,-0.27189 -4.65625,1.53125 -1.880837,1.80314 -1.53125,5.125 -1.53125,5.125 0,0 -13.28125,0.39958 -13.28125,13.8125 0,13.41291 12.40625,14.5 12.40625,14.5 0,0 -0.573224,3.98391 1,5.96875 1.573223,1.98483 4.09375,2.03125 4.09375,2.03125 l 129.09375,0 c 0,0 2.52053,-0.0464 4.09375,-2.03125 1.57323,-1.98484 1,-5.96875 1,-5.96875 0,0 13.10448,-0.57636 13.28125,-13.8125 0.17678,-13.23615 -14.1875,-14.5 -14.1875,-14.5 0,0 0.34958,-3.32186 -1.53125,-5.125 -1.88084,-1.80314 -4.625,-1.53125 -4.625,-1.53125 l -36.75,0.0312 c 0,0 -3.3736,0.0135 -4.09375,-0.78125 -0.72018,-0.79479 -0.65625,-1.75 -0.65625,-2.75 0,-1 -0.23614,-1.71967 0.5,-3 0.51793,-0.9008 1.80302,-1.54796 2.53125,-1.875 40.23161,-10.49383 69.90625,-46.93466 69.90625,-90.28125 0,-7.17018 -0.83507,-14.16694 -2.375,-20.875 -0.005,-0.0199 0.005,-0.0426 0,-0.0625 0.0332,-0.24031 0.11742,-0.49778 0.25,-0.71875 0.21428,-0.35714 0.63926,-0.56066 1.09375,-0.6875 z m 640.15625,0 1.28125,0 122.34375,0 c 1.75534,0.18917 4.96333,0.74413 6.46875,2.375 2.1213,2.2981 1.5937,6.96875 1.5937,6.96875 l 0.094,0 0,592.46875 c -14.861,0.775 -26.6875,13.0345 -26.6875,28.0625 0,0.713 0.0408,1.426 0.0937,2.125 L 708.5,747 c -3.25,0 -5.96794,-1.28274 -6.875,-3.5 -0.90706,-2.21726 -1.20305,-4.79107 -0.375,-7.875 0.82805,-3.08393 5.5,-4.75 5.5,-4.75 l 1.53125,-0.3125 C 840.39394,708.15064 941,593.14734 941,454.65625 941,392.99055 921.04023,335.99957 887.25,289.75 c 7.32474,2.55276 15.18036,3.96875 23.375,3.96875 39.236,0 71.03125,-31.8265 71.03125,-71.0625 0,-39.235 -31.79525,-71.03125 -71.03125,-71.03125 -39.236,0 -71.03125,31.79625 -71.03125,71.03125 0,6.38525 0.82681,12.58252 2.40625,18.46875 -36.96772,-31.34114 -82.1679,-53.25199 -131.90625,-62.03125 -4.86404,-2.37026 -8.38174,-6.5756 -9.09375,-11.5625 l 0,-3.6875 c 0,-11.1 6.00163,-15.59874 16.21875,-15.84375 L 835.5,148 c 0,0 3.41356,0.15397 5.125,-1.875 1.71144,-2.02897 1.3125,-4.4375 1.3125,-4.4375 L 842,136.5 c 0,0 -0.20747,-1.04097 1,-2.625 1.20747,-1.58403 4.80216,-1.93065 8.0625,-3.375 3.26034,-1.44435 6.5,-3.75 10.1875,-7.8125 3.6875,-4.0625 3.3125,-4.875 4.875,-6.4375 0.87891,-0.87891 2.14687,-1.16829 3.09375,-1.25 z',
+			'frame': 'm 0,0 0,768 1024,0 0,-768 z m 50,20 56,0 c 10,0 10,6 10,12 0,10 -0.0865,13.880818 -8.03121,16.249997 l 0.3125,0 c -28.8429,8.998584 -51.6852,31.523995 -61.0625,60.093753 -3.218795,5.65626 -3.218795,5.65626 -17.218796,5.65626 -6,0 -10,-2 -10,-10 l 0,-54.000003 c 16,0 30,-14 30.000006,-30.000007 z m 116.04,0 810,0 c 0,16 12,30 28,30 l 0,24 c 0,10 0,10 -10,10 L 870.16498,83.75 c -0.5869,-0.06762 -2.7706,-0.395606 -4.125,-1.75 -1.5625,-1.5625 -0.50054,-5.187503 -4.18804,-9.250003 -3.6875,-4.0625 -6.9271,-6.36815 -10.1875,-7.8125 -3.2603,-1.44435 -6.855,-1.79097 -8.0625,-3.375 -1.2074,-1.58403 -1,-2.625 -1,-2.625 l -0.062,-5.1875 c -0.36651,-3.884268 -1.82185,-6.185705 -6.4375,-6.3125 l -354.563,0.437501 c 0,0 -0.2157,-0.01727 -0.5625,0 -3.68705,0.579275 -6.00516,2.192098 -5.875,6.3125 l -0.062,5.1875 c 0,0 0.2075,1.04097 -1,2.625 -1.2074,1.58403 -4.8021,1.93065 -8.0625,3.375 -3.2603,1.44435 -6.5,3.75 -10.1875,7.8125 -3.6875,4.0625 -3.74956,9.687494 -5.31206,11.249994 -1.3544,1.354394 -3.538,1.682377 -4.125,1.75 L 374.03992,86 c -3.25042,-0.837489 -5.38858,-4.096134 -6.74904,-7.250009 0,0 -10,-19.25 -34.5,-19.25 -24.5,0 -34.1875,19.53125 -34.1875,19.53125 -1.56295,3.160672 -3.06893,6.302591 -6.56347,6.968759 l -74,0 c -0.9252,-0.10884 -2.3382,-0.310124 -3.2188,-0.6875 -0.378,-0.162031 -0.7228,-0.434325 -1.0312,-0.71875 C 202.01783,68.039553 184.2533,54.441643 164.4073,48.24996 l 0.25,0 c -8.65728,-2.249995 -8.65728,-10.249996 -8.65728,-16.249997 0,-6 0,-12 10,-12 z m 64.00051,94 62,0 c 3.54485,0.48929 4.77546,3.20312 6.56247,6.34374 0,0 9.6875,19.5625 34.1875,19.5625 24.5,0 34.5,-19.25 34.5,-19.25 1.88451,-2.76658 3.19132,-5.97772 6.75004,-6.65624 l 72,0 c 1.5785,-0.0626 4,0 4.37495,2.24999 1.5625,1.5625 1.1875,2.375 4.875,6.4375 3.6875,4.0625 6.9272,6.36815 10.1875,7.8125 3.2604,1.44435 6.8551,1.79097 8.0625,3.375 1.2075,1.58403 1,2.625 1,2.625 l 0.062,5.1875 c 0.36654,3.88425 0.82246,6.18572 5.43806,6.31252 l 126,0 c 9.96927,2e-5 14,6 14,16 -0.0405,7.99997 -2.04046,11.99997 -8.04046,11.99997 0,45 2,536.50013 2,544.00007 6,2 6,4 6.04046,11.99996 0,10 -4,16 -14,16 -202.62855,-0.36021 -374.31059,0 -556,0 0,-16 -14,-30 -30,-30 l 0,-550 c 0,-8 4,-10 10,-10 14,0 14,0 16,6 9.217,32.0417 35.424995,56.09009 68.1246,64 0.7229,0.21187 1.8781,0.63578 2.375,1.5 0.7361,1.28033 0.5,2 0.5,3 0,1 0.033,1.95521 -0.6875,2.75 -0.7202,0.79479 -4.0625,0.78125 -4.0625,0.78125 l -38.750105,-0.0312 c 0,0 -2.7754,-0.27189 -4.6562,1.53125 -1.8809,1.80314 -1.5313,5.125 -1.5313,5.125 0,0 -13.2812,0.39958 -13.2812,13.8125 0,13.41291 12.4062,14.5 12.4062,14.5 0,0 -0.5732,3.98391 1,5.96875 1.5733,1.98483 4.0938,2.03125 4.0938,2.03125 l 129.093705,0 c 0,0 2.5206,-0.0464 4.0938,-2.03125 1.5732,-1.98484 1,-5.96875 1,-5.96875 0,0 13.1045,-0.57636 13.2812,-13.8125 0.1768,-13.23615 -14.1875,-14.5 -14.1875,-14.5 0,0 0.3496,-3.32186 -1.5312,-5.125 -1.8809,-1.80314 -4.625,-1.53125 -4.625,-1.53125 l -36.75,0.0312 c 0,0 -3.3736,0.0135 -4.0938,-0.78125 -0.7201,-0.79479 -0.6562,-1.75 -0.6562,-2.75 0,-1 -0.2362,-1.71967 0.5,-3 0.5179,-0.9008 1.803,-1.54796 2.5312,-1.875 40.2316,-10.49383 69.9063,-46.93466 69.9063,-90.28125 0,-7.17018 0.10293,-15.16693 -1.43697,-21.87499 -0.01,-0.0199 0,-0.0426 0,-0.0625 0.033,-0.24031 0.1174,-0.49778 0.25,-0.71875 0.2143,-0.35714 0.6392,-0.56066 1.0937,-0.6875 z m 640,-2 124,0 c 9.99999,0 9.99999,0 9.99999,10 l 0,596 c -15.99999,0 -29.99999,14 -29.99999,30 l -260,0 c -10,0 -14,-6 -14,-16 -0.0404,-7.99995 -0.0404,-9.99995 5.95957,-11.99995 1.71848,-92.56242 1.906,-445.09385 2,-544.00007 -6,0 -8,-4 -7.95957,-11.99998 0,-10 4,-16 14,-16 l 121,0 c 5,0 7.0868,-1.59644 6.93768,-6.31252 l 0.062,-5.1875 c 0,0 -0.2074,-1.04097 1,-2.625 1.2075,-1.58403 4.8022,-1.93065 8.0625,-3.375 3.2604,-1.44435 6.5,-3.75 10.1875,-7.8125 3.6875,-4.0625 3.0626,-6.87499 4.6251,-8.43749 1.46309,-1.04212 2.12522,-2.25 4.12522,-2.24999 z',
 			'title': 'M 858.801,99 c 0,-12.957 -11.542,-22.51 -26.424,-23.836 v -6.494 c 0,-2.465 -3.014,-4.67 -5.935,-4.67 h -335.572 c -2.923,0 -6.494,2.205 -6.494,4.67 v 6.511 c -14.797,1.384 -26.25,10.913 -26.25,23.819 0,12.906 11.453,24.139 26.25,25.785 v 6.986 c 0,2.465 3.571,4.229 6.494,4.229 h 335.572 c 2.921,0 5.935,-1.764 5.935,-4.229 v -6.966 c 14.881,-1.577 26.423,-12.848 26.423,-25.805',
 			'namelabel': 'M 80.46875 244 C 76.49275 244 74.125 245.705 74 248.875 L 74 249 L 72.15625 249 C 67.892251 249 62.46875 250.81925 62.46875 257.15625 C 62.46875 263.49625 67.892251 265 72.15625 265 L 74 265 L 74 266.625 C 74 269.597 77.44475 272 80.46875 272 L 191.53125 272 C 194.55525 272 198 269.597 198 266.625 L 198 265 L 199.84375 265 C 204.10675 265 209.53125 263.095 209.53125 257 C 209.53125 250.905 204.10675 249 199.84375 249 L 198 249 L 198 248.875 C 198 245.903 195.13225 244 191.53125 244 L 80.46875 244 z',
-			'portal':'m 661,193 c -144,0 -260.737,116.735 -260.737,260.737 0,144.001 116.737,260.736 260.737,260.736 143.997,0 260.734,-116.735 260.734,-260.736 0,-144.002 -116.737,-260.737 -260.734,-260.737 m 0,490.184 c -126.723,0 -229.449,-102.727 -229.449,-229.447 0,-126.722 102.726,-229.448 229.449,-229.448 126.718,0 229.446,102.726 229.446,229.448 0,126.72 -102.729,229.447 -229.446,229.447',
 		}
 
 		this.shadows.push(this.box.path(this.path.frame).attr({'fill':this.colours.deepshadow,'opacity':0.8,'stroke':0}));
 
 		// Draw background for on/off dial
 		this.dialbg = this.box.set();
-		this.shadows.push(this.box.path(makeSector(this.chrome.dial.ox,this.chrome.dial.oy,270,52,70)).attr({'fill':this.colours.deepshadow,'stroke':0,'opacity':0.8}));
-		this.shadows.push(this.box.path(makeSector(this.chrome.dial.ox,this.chrome.dial.oy,90,47,68)).attr({'fill':this.colours.deepshadow,'stroke':0,'opacity':0.8}));
+		this.shadows.push(this.box.path(this.makeSector(this.chrome.dial.ox,this.chrome.dial.oy,270,55,70)).attr({'fill':this.colours.deepshadow,'stroke':0,'opacity':0.8}));
+		this.shadows.push(this.box.path(this.makeSector(this.chrome.dial.ox,this.chrome.dial.oy,90,47,68)).attr({'fill':this.colours.deepshadow,'stroke':0,'opacity':0.8}));
 		this.dialbg.push(
-			this.box.path(makeSector(this.chrome.dial.ox,this.chrome.dial.oy,270,52,70)).attr({'fill':this.colours.frame,'stroke':0}),
-			this.box.path(makeSector(this.chrome.dial.ox,this.chrome.dial.oy,270,50,67)).attr({'fill':this.colours.white,'stroke':0}),
-			this.box.path(makeSector(this.chrome.dial.ox,this.chrome.dial.oy,90,47,68)).attr({'fill':this.colours.frame,'stroke':0}),
-			this.box.path(makeSector(this.chrome.dial.ox,this.chrome.dial.oy,90,44,65)).attr({'fill':this.colours.white,'stroke':0})
+			this.box.path(this.makeSector(this.chrome.dial.ox,this.chrome.dial.oy,270,55,70)).attr({'fill':this.colours.frame,'stroke':0}),
+			this.box.path(this.makeSector(this.chrome.dial.ox,this.chrome.dial.oy,270,53,67)).attr({'fill':this.colours.white,'stroke':0}),
+			this.box.path(this.makeSector(this.chrome.dial.ox,this.chrome.dial.oy,90,47,68)).attr({'fill':this.colours.frame,'stroke':0}),
+			this.box.path(this.makeSector(this.chrome.dial.ox,this.chrome.dial.oy,90,44,65)).attr({'fill':this.colours.white,'stroke':0})
 		)
+
+		// LCOGT Branding
+		this.arc = this.box.set();
+		var fs = 16;
+		var lh = 1.2*fs;
+		if($.support.borderRadius){
+			this.poweredby = this.box.printArcLabel(this,this.phrasebook.power,this.box.getFont("Birch Std"),fs,1.2,lh,this.chrome.portal.ox,this.chrome.portal.oy,this.chrome.portal.r[0],125,true);
+		}else{
+			this.poweredby = this.box.set();
+			this.poweredby.push(this.box.print_center(this.chrome.portal.ox-this.chrome.portal.r[0]*0.5,this.chrome.portal.oy+this.chrome.portal.r[0]+lh/2,this.phrasebook.power,this.box.getFont("Birch Std"),fs).attr({'fill':this.colours.deepshadow,'stroke':0,'cursor':'pointer'}));
+			var bb = this.poweredby.getBBox();
+			this.shadows.push(this.box.rect((bb.x-(lh-fs)-1),(this.chrome.portal.oy+this.chrome.portal.r[0]),bb.width+(lh-fs)*2+2,lh+2).attr({'fill':this.colours.deepshadow,'stroke':0,'opacity':0.8}));
+			this.arc.push(this.box.rect((bb.x-(lh-fs)-1),(this.chrome.portal.oy+this.chrome.portal.r[0]),bb.width+(lh-fs)*2+2,lh+2).attr({'fill':this.colours.frame,'stroke':0}));
+			this.arc.push(this.box.rect((bb.x-(lh-fs)),(this.chrome.portal.oy+this.chrome.portal.r[0]),bb.width+(lh-fs)*2,lh).attr({'fill':this.colours.white,'stroke':0,'cursor':'pointer'}));
+			this.poweredby.toFront();
+		}
+		this.poweredby.click(function(e){ window.location.href = "http://lcogt.net/education/messierbingo"; });
+		this.dialtext = this.box.printArcLabel(this,'INFORMATION',this.box.getFont("Birch Std"),this.chrome.dial.fontsize,this.chrome.dial.fontsize*0.01,this.chrome.dial.dr,this.chrome.dial.ox,this.chrome.dial.oy,this.chrome.dial.r,270,false).attr({'fill':this.colours.deepshadow,'stroke':0});
+		this.dialtexton = this.box.printArcLabel(this,'ON',this.box.getFont("Birch Std"),this.chrome.dial.fontsize,this.chrome.dial.fontsize*0.1,this.chrome.dial.dr,this.chrome.dial.ox,this.chrome.dial.oy,this.chrome.dial.r,90+this.dialang,false).attr({'fill':this.colours.deepshadow,'stroke':0});
+		this.dialtextoff = this.box.printArcLabel(this,'OFF',this.box.getFont("Birch Std"),this.chrome.dial.fontsize,this.chrome.dial.fontsize*0.1,this.chrome.dial.dr,this.chrome.dial.ox,this.chrome.dial.oy,this.chrome.dial.r,90-this.dialang+4,false).attr({'fill':this.colours.deepshadow,'stroke':0});
 
 		this.frame = this.box.set();
 		this.frame.push(this.box.path(this.path.frame).attr({'fill':this.colours.frame,'stroke':0}));
@@ -629,37 +671,42 @@
 		);
 
 		this.messier = this.box.set();
-		this.messier.push(
-			this.box.image('images/messier_eyes.png',130,121,28,6),
-			this.box.image('images/messier.png',85,80,90,110)
-		);
+
+		if($.support.transparency){
+			this.messier.push(this.box.image('images/messier_eyes.png',130,121,28,6));
+			this.messier.push(this.box.image('images/messier_noeyes.png',85,80,90,110));
+		}else{
+			this.messier.push(this.box.image('images/messier.png',85,80,90,110));		
+		}
 
 		this.portal = this.box.set();
 		this.nuts = this.box.set();
 		this.screws = this.box.set();
 
-		r = this.chrome.portal.r;
-
+		x = this.chrome.portal.ox;
+		y = this.chrome.portal.oy;
+		r = this.chrome.portal.r[2]+(this.chrome.portal.r[1]-this.chrome.portal.r[2])/2
 		if($.support.borderRadius){
 			this.portal.push(
-				this.box.circle(this.chrome.portal.ox,this.chrome.portal.oy,r).attr({'fill':'270-#d8cda9:0-#cfc4a2:15-#b7ab8f:41-#8f8470:52-#857968:60-#817565:66-#74685b:71-#5f534a:80-'+this.colours.shadow+':82','stroke':0}),
-				this.box.circle(this.chrome.portal.ox,this.chrome.portal.oy,r*0.88).attr({'fill':this.colours.deepshadow,'stroke':0}),
-				this.box.circle(this.chrome.portal.ox,this.chrome.portal.oy,r*0.865).attr({'fill':'90-#d8cda9:0-#cfc4a2:1-#b7ab8f:5-#8f8470:15-#857968:20-#817565:30-#74685b:51-#5f534a:85-'+this.colours.shadow,'stroke':0}),
-				this.box.path(this.path.portal).attr({'fill':this.colours.shadow,'stroke':0,'opacity':0.76})
+				this.box.circle(x,y,this.chrome.portal.r[0]).attr({'fill':this.colours.frame,'stroke':0}),
+				this.box.circle(x,y,this.chrome.portal.r[1]).attr({'fill':'270-#d8cda9:0-#cfc4a2:15-#b7ab8f:41-#8f8470:52-#857968:60-#817565:66-#74685b:71-#5f534a:80-'+this.colours.shadow+':82','stroke':0}),
+				this.box.circle(x,y,this.chrome.portal.r[2]).attr({'fill':this.colours.deepshadow,'stroke':0}),
+				this.box.circle(x,y,this.chrome.portal.r[3]).attr({'fill':'90-#d8cda9:0-#cfc4a2:1-#b7ab8f:5-#8f8470:15-#857968:20-#817565:30-#74685b:51-#5f534a:85-'+this.colours.shadow,'stroke':0}),
+				this.box.circle(x,y,this.chrome.portal.r[1]*1.003).attr({'fill':this.colours.shadow,'stroke':0,'opacity':0.76})
 			);
 			// Portal surround
 			var ang = 2*Math.PI/8;
-			for(var a = 0; a < 8 ; a++) this.makeScrew(this.chrome.portal.ox+this.chrome.portal.r*0.93*Math.cos(ang*(a+0.5)),this.chrome.portal.oy+this.chrome.portal.r*0.93*Math.sin(ang*(a+0.5)),8);
+			for(var a = 0; a < 8 ; a++) this.makeScrew(this.chrome.portal.ox+r*Math.cos(ang*(a+0.5)),this.chrome.portal.oy+r*Math.sin(ang*(a+0.5)),8);
 		}else{
 			this.portal.push(
-				this.box.rect(this.chrome.portal.ox-r*1.04,this.chrome.portal.oy-r*1.04,r*1.04*2,r*1.04*2).attr({'fill':this.colours.frame,'stroke':0}),
-				this.box.rect(this.chrome.portal.ox-r,this.chrome.portal.oy-r,r*2,r*2).attr({'fill':'270-#d8cda9:0-#cfc4a2:15-#b7ab8f:41-#8f8470:52-#857968:60-#817565:66-#74685b:71-#5f534a:80-'+this.colours.shadow+':82','stroke':0}),
-				this.box.rect(this.chrome.portal.ox-r*0.865,this.chrome.portal.oy-r*0.865,r*0.865*2,r*0.865*2).attr({'fill':this.colours.deepshadow,'stroke':0}),
-				this.box.rect(this.chrome.portal.ox-r*0.85,this.chrome.portal.oy-r*0.85,r*0.85*2,r*0.85*2).attr({'fill':'90-#d8cda9:0-#cfc4a2:1-#b7ab8f:5-#8f8470:15-#857968:20-#817565:30-#74685b:51-#5f534a:85-'+this.colours.shadow,'stroke':0}),
-				this.box.rect(this.chrome.portal.ox-r*0.985,this.chrome.portal.oy-r*0.985,r*0.985*2,r*0.985*2).attr({'fill':this.colours.shadow,'stroke':0,'opacity':0.76})
+				this.box.rect(this.chrome.portal.ox-this.chrome.portal.r[0],this.chrome.portal.oy-this.chrome.portal.r[0],this.chrome.portal.r[0]*2,this.chrome.portal.r[0]*2).attr({'fill':this.colours.frame,'stroke':0}),
+				this.box.rect(this.chrome.portal.ox-this.chrome.portal.r[1],this.chrome.portal.oy-this.chrome.portal.r[1],this.chrome.portal.r[1]*2,this.chrome.portal.r[1]*2).attr({'fill':'270-#d8cda9:0-#cfc4a2:15-#b7ab8f:41-#8f8470:52-#857968:60-#817565:66-#74685b:71-#5f534a:80-'+this.colours.shadow+':82','stroke':0}),
+				this.box.rect(this.chrome.portal.ox-this.chrome.portal.r[2],this.chrome.portal.oy-this.chrome.portal.r[2],this.chrome.portal.r[2]*2,this.chrome.portal.r[2]*2).attr({'fill':this.colours.deepshadow,'stroke':0}),
+				this.box.rect(this.chrome.portal.ox-this.chrome.portal.r[3],this.chrome.portal.oy-this.chrome.portal.r[3],this.chrome.portal.r[3]*2,this.chrome.portal.r[3]*2).attr({'fill':'90-#d8cda9:0-#cfc4a2:1-#b7ab8f:5-#8f8470:15-#857968:20-#817565:30-#74685b:51-#5f534a:85-'+this.colours.shadow,'stroke':0}),
+				this.box.rect(this.chrome.portal.ox-this.chrome.portal.r[1]*1.003,this.chrome.portal.oy-this.chrome.portal.r[1]*1.003,this.chrome.portal.r[1]*1.003*2,this.chrome.portal.r[1]*1.003*2).attr({'fill':this.colours.shadow,'stroke':0,'opacity':0.76})
 			);
-			var dx = [r*0.92,r*0.92,r*0.4,r*0.4,-r*0.92,-r*0.92,-r*0.4,-r*0.4];
-			var dy = [-r*0.4,r*0.4,-r*0.92,r*0.92,-r*0.4,r*0.4,-r*0.92,r*0.92];
+			var dx = [r,r,r*0.5,r*0.5,-r,-r,-r*0.5,-r*0.5];
+			var dy = [-r*0.5,r*0.5,-r,r,-r*0.5,r*0.5,-r,r];
 			// Portal surround
 			for(var i = 0; i < dx.length ;i++) this.makeScrew(this.chrome.portal.ox+dx[i],this.chrome.portal.oy+dy[i],8);
 		}
@@ -718,9 +765,6 @@
 		
 		this.dial.data('mb',this).click(function(e){ this.data('mb').toggleDial(); });
 		this.dialhandle.data('mb',this).click(function(e){ this.data('mb').toggleDial(); });
-		this.dialtext = this.box.printLetters('INFORMATION',this.box.getFont("Birch Std"),22,7.2,18,makeCurvePath(this.chrome.dial.ox-3,this.chrome.dial.oy,270,50,45)).attr({'fill':this.colours.deepshadow,'stroke':0});
-		this.dialtexton = this.box.printLetters('ON',this.box.getFont("Birch Std"),22,7.2,18,makeCurvePath(this.chrome.dial.ox-3,this.chrome.dial.oy,90+this.dialang,8,60)).attr({'fill':this.colours.deepshadow,'stroke':0});
-		this.dialtextoff = this.box.printLetters('OFF',this.box.getFont("Birch Std"),22,7.2,18,makeCurvePath(this.chrome.dial.ox-3,this.chrome.dial.oy,90-this.dialang+4,8,60)).attr({'fill':this.colours.deepshadow,'stroke':0});
 
 
 		this.nextbutton = this.box.set();
@@ -732,7 +776,7 @@
 			this.box.circle(this.chrome.button.ox,this.chrome.button.oy,r*0.76).attr({'fill':this.colours.white,'stroke':0,'cursor':'pointer'}),
 			this.box.path('M'+this.chrome.button.ox+','+this.chrome.button.oy+'m'+(-r*0.5)+','+(-r*0.2)+' l'+(r*0.5)+',0 l0,'+(-r*0.2)+' l'+(r*0.5)+','+(r*0.4)+' l'+(-r*0.5)+','+(r*0.4)+' l0,'+(-r*0.2)+'l'+(-r*0.5)+',0 z').attr({'fill':this.colours.shadow,'stroke':0,'cursor':'pointer'})
 		);
-		this.nextbutton.data('mb',this).click(function(e){ this.data('mb').next(); }).mouseover(function(){ this.data('mb').nextbutton[4].attr({'fill':this.data('mb').colours.deepshadow}); }).mouseout(function(){ this.data('mb').nextbutton[4].attr({'fill':this.data('mb').colours.shadow}); });
+		this.nextbutton.data('mb',this).click(function(e){ this.data('mb').next(); }).mouseover(function(){ this.data('mb').nextbutton[3].attr({'fill':this.data('mb').colours.deepshadow}); }).mouseout(function(){ this.data('mb').nextbutton[3].attr({'fill':this.data('mb').colours.shadow}); });
 
 		this.resetbutton = this.box.set();
 		this.resetbutton.push(
@@ -969,25 +1013,17 @@
 		return this;
 	}
 
-	function makeSector(ox,oy,a,da,r){
+	MessierBingo.prototype.makeSector = function(ox,oy,a,da,r){
 		var path = "M "+ox+" "+oy+"";
 		var rad;
-		for(var i = 0; i <= da*2 ; i++){
+		for(var i = 0; i <= da*2 ; i+=0.5){
 			ang = (a-da+i)*Math.PI/180;
-			rad = (i==0 || i==da*2) ? 0.95*r : r;
-			path += "L"+(ox + rad*Math.cos(ang))+" "+(oy + rad*Math.sin(ang))
+			rad = (ang==a-da || ang==a+da) ? 0.95*r : r;
+			path += ((i==0 || i==da*2) ? "L" : "L")+(ox + rad*Math.cos(ang))+" "+(oy + rad*Math.sin(ang))
 		}
 		return path+"z";
 	}
 
-	function makeCurvePath(ox,oy,a,da,r){
-		var path = "";
-		for(var i = 0; i <= da*2 ; i++){
-			ang = ((a > 180 && a <= 360) ? a-da+i : a+da-i)*Math.PI/180;
-			path += ((i==0) ? "M" : "L")+(ox + r*Math.cos(ang))+" "+(oy + r*Math.sin(ang))
-		}
-		return path;
-	}
 
 	function Pantograph(me,ox,oy,w,h,w2,n,p,vert){
 
