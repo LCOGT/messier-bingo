@@ -630,6 +630,7 @@
 			this.arc.push(this.box.rect((bb.x-(lh-fs)),(this.chrome.portal.oy+this.chrome.portal.r[0]),bb.width+(lh-fs)*2,lh).attr({'fill':this.colours.white,'stroke':0,'cursor':'pointer'}));
 			this.poweredby.toFront();
 		}
+		this.arc[this.arc.length-1].click(function(e){ window.location.href = "http://lcogt.net/education/messierbingo"; });
 		this.poweredby.click(function(e){ window.location.href = "http://lcogt.net/education/messierbingo"; });
 		this.dialtext = this.box.printArcLabel(this,'INFORMATION',this.box.getFont("Birch Std"),this.chrome.dial.fontsize,this.chrome.dial.fontsize*0.01,this.chrome.dial.dr,this.chrome.dial.ox,this.chrome.dial.oy,this.chrome.dial.r,270,false).attr({'fill':this.colours.deepshadow,'stroke':0});
 		this.dialtexton = this.box.printArcLabel(this,'ON',this.box.getFont("Birch Std"),this.chrome.dial.fontsize,this.chrome.dial.fontsize*0.1,this.chrome.dial.dr,this.chrome.dial.ox,this.chrome.dial.oy,this.chrome.dial.r,90+this.dialang,false).attr({'fill':this.colours.deepshadow,'stroke':0});
