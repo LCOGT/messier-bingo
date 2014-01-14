@@ -211,6 +211,8 @@
 			'framedark': '#766a5c',
 			'frame': '#8b796b',
 			'frameinlay': '#534741-#5c5048:25-#766a5c:66-#857968:87-#857968:100',
+			'portal': '270-#d8cda9:0-#cfc4a2:15-#b7ab8f:41-#8f8470:52-#857968:60-#817565:66-#74685b:71-#5f534a:80-#534741:82',
+			'portalover':'90-#d8cda9:0-#cfc4a2:1-#b7ab8f:5-#8f8470:15-#857968:20-#817565:30-#74685b:51-#5f534a:85-#534741',
 			'white': '#f8f7f6',
 			'brass': '#ddbc83',
 			'brassmed': '#be9c67',
@@ -220,6 +222,23 @@
 			'nut': '#fff-#EDD089:46-#E0B96D:68-#BF8329'
 		}
 
+		/*this.colours = {
+			'deepshadow': '#4c3328',
+			'shadow': '#534741',
+			'framedark': '#766a5c',
+			'frame': '#aa7b5e',
+			'frameinlay': '#593d2a-#6a3616:25-#785441:66-#8f6252:87-#90694c:100',
+			'portal': '270-#d8cda9:0-#cfc4a2:15-#b7ab8f:41-#8f8470:52-#857968:60-#817565:66-#74685b:71-#5f534a:80-#534741:82',
+			'portalover':'90-#d8cda9:0-#cfc4a2:1-#b7ab8f:5-#8f8470:15-#857968:20-#817565:30-#74685b:51-#5f534a:85-#534741',
+			'white': '#f8f7f6',
+			'brass': '#ddbc83',
+			'brassmed': '#be9c67',
+			'brassdark': '#ad8a57',
+			'screw': '#d1a974',
+			'screwdark': '#bc8550',
+			'nut': '#fff-#EDD089:46-#E0B96D:68-#BF8329'
+		}*/
+
 		this.chrome = {
 			'frame':{x:0,y:0,w:this.wide,h:this.tall},
 			'shadow':{dx:1.8,dy:1.4},
@@ -227,15 +246,20 @@
 			'title':{ox:660,oy:100},
 			'portal':{ox:660,oy:448,r:[276,276*0.96,276*0.85,276*0.825,276*0.81]},
 			'dial': {ox:333,oy:100,r:41,dr:30,fontsize:22},
-			'button':{ox:935,oy:670,r:50},
-			'pipe':{w:14}
+			'button':{ox:925,oy:660,r:50,dr:24,fontsize:18},
+			'pipe':{w:14},
+			'iris':{'src':'images/iris.png'}
 		}
 		// Move clock if portal is square
 		if(!$.support.borderRadius){
+			this.chrome.iris.src = 'images/iris_square.png';
 			this.chrome.frame = {x:-1.5,y:-1.5,w:this.wide+1,h:this.tall+1};
 			this.chrome.portal = {ox:660,oy:448,r:[272,272*0.96,272*0.85,272*0.825,272*0.81]},
 			this.chrome.clock = {ox:940,oy:100,r:71};
 			this.chrome.button.ox = 935;
+			$('#sky img').attr('src',this.chrome.iris.src);
+			$('#sky').css({'border-radius':'0'});
+			$('#glass').hide();
 		}
 
 		this.catalogue = [
@@ -525,6 +549,7 @@
 		for(var h = 0 ; h < this.dialtext.length ; h++) todo.push(this.dialtext[h]);
 		for(var h = 0 ; h < this.dialtexton.length ; h++) todo.push(this.dialtexton[h]);
 		for(var h = 0 ; h < this.dialtextoff.length ; h++) todo.push(this.dialtextoff[h]);
+		for(var h = 0 ; h < this.nexttext.length ; h++) todo.push(this.nexttext[h]);
 		for(var h = 0 ; h < this.poweredby.length ; h++) todo.push(this.poweredby[h]);
 		for(var h = 0 ; h < this.dialbg.length ; h++) todo.push(this.dialbg[h]);
 		
@@ -693,9 +718,9 @@
 		if($.support.borderRadius){
 			this.portal.push(
 				this.box.circle(x,y,this.chrome.portal.r[0]).attr({'fill':this.colours.frame,'stroke':0}),
-				this.box.circle(x,y,this.chrome.portal.r[1]).attr({'fill':'270-#d8cda9:0-#cfc4a2:15-#b7ab8f:41-#8f8470:52-#857968:60-#817565:66-#74685b:71-#5f534a:80-'+this.colours.shadow+':82','stroke':0}),
+				this.box.circle(x,y,this.chrome.portal.r[1]).attr({'fill':this.colours.portal,'stroke':0}),
 				this.box.circle(x,y,this.chrome.portal.r[2]).attr({'fill':this.colours.deepshadow,'stroke':0}),
-				this.box.circle(x,y,this.chrome.portal.r[3]).attr({'fill':'90-#d8cda9:0-#cfc4a2:1-#b7ab8f:5-#8f8470:15-#857968:20-#817565:30-#74685b:51-#5f534a:85-'+this.colours.shadow,'stroke':0}),
+				this.box.circle(x,y,this.chrome.portal.r[3]).attr({'fill':this.colours.portalover,'stroke':0}),
 				this.box.circle(x,y,this.chrome.portal.r[1]*1.003).attr({'fill':this.colours.shadow,'stroke':0,'opacity':0.76})
 			);
 			// Portal surround
@@ -773,7 +798,8 @@
 
 		this.nextbutton = this.box.set();
 		r = this.chrome.button.r;
-		this.shadows.push(this.box.circle(this.chrome.button.ox,this.chrome.button.oy,r).attr({'fill':this.colours.deepshadow,'stroke':0,'opacity':0.8}));
+		this.shadows.push(this.box.circle(this.chrome.button.ox,this.chrome.button.oy,this.chrome.button.r).attr({'fill':this.colours.deepshadow,'stroke':0,'opacity':0.8}));
+		this.nexttext = this.box.printArcLabel(this,'NEXT IMAGE',this.box.getFont("Birch Std"),this.chrome.button.fontsize,this.chrome.button.fontsize*0.1,this.chrome.button.dr,this.chrome.button.ox,this.chrome.button.oy,this.chrome.button.r,90,true).attr({'fill':this.colours.deepshadow,'stroke':0});
 		this.nextbutton.push(
 			this.box.circle(this.chrome.button.ox,this.chrome.button.oy,r).attr({'fill':this.colours.frame,'stroke':0}),
 			this.box.circle(this.chrome.button.ox,this.chrome.button.oy,r*0.81).attr({'fill':'270-'+this.colours.frameinlay,'stroke':0}),
@@ -828,7 +854,7 @@
 	}
 
 	MessierBingo.prototype.updateInfo = function(i,data){
-		$('#sky img').attr('src','images/iris.png');
+		$('#sky img').attr('src',this.chrome.iris.src);
 
 		if(i >= 0){
 			var m = this.catalogue[i-1];
