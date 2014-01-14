@@ -222,22 +222,22 @@
 			'nut': '#fff-#EDD089:46-#E0B96D:68-#BF8329'
 		}
 
-		/*this.colours = {
+		this.colours = {
 			'deepshadow': '#4c3328',
 			'shadow': '#534741',
-			'framedark': '#766a5c',
-			'frame': '#aa7b5e',
+			'framedark': '#906a53',
+			'frame': '#ad8064',
 			'frameinlay': '#593d2a-#6a3616:25-#785441:66-#8f6252:87-#90694c:100',
-			'portal': '270-#d8cda9:0-#cfc4a2:15-#b7ab8f:41-#8f8470:52-#857968:60-#817565:66-#74685b:71-#5f534a:80-#534741:82',
-			'portalover':'90-#d8cda9:0-#cfc4a2:1-#b7ab8f:5-#8f8470:15-#857968:20-#817565:30-#74685b:51-#5f534a:85-#534741',
+			'portal': '270-#fccda9:0-#f9c4a2:15-#ebab8f:41-#cf8470:52-#c77968:60-#c37565:66-#b6685b:71-#9f534a:80-#954741:82',
+			'portalover':'90-#fccda9:0-#f9c4a2:1-#ebab8f:5-#cf8470:15-#c77968:20-#c37565:30-#b6685b:51-#9f534a:85-#954741',
 			'white': '#f8f7f6',
-			'brass': '#ddbc83',
-			'brassmed': '#be9c67',
-			'brassdark': '#ad8a57',
-			'screw': '#d1a974',
-			'screwdark': '#bc8550',
-			'nut': '#fff-#EDD089:46-#E0B96D:68-#BF8329'
-		}*/
+			'brass': '#eeb478',
+			'brassmed': '#c88653',
+			'brassdark': '#9d683f',
+			'screw': '#efa46a',
+			'screwdark': '#cd8147',
+			'nut': '#fff-#e29f67:46-#eb9c5c:68-#b7733f'
+		}
 
 		this.chrome = {
 			'frame':{x:0,y:0,w:this.wide,h:this.tall},
@@ -250,6 +250,7 @@
 			'pipe':{w:14},
 			'iris':{'src':'images/iris.png'}
 		}
+
 		// Move clock if portal is square
 		if(!$.support.borderRadius){
 			this.chrome.iris.src = 'images/iris_square.png';
