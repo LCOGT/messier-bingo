@@ -1,0 +1,100 @@
+<!DOCTYPE document SYSTEM "rml.dtd">
+<document filename="BingoCard.pdf">
+	<template>
+		<!--Here is where images and text are added to the document-->
+		<pageTemplate id="main">
+        <!--This is where the images are added, in order of left to right, then top to bottom -->
+        <pageGraphics>
+            <!-- image file="/Users/zemogle/Dropbox/code/django/messier-bingo/messierbingo/media/objects/process-3551-2.jpg" x="2.7cm" y="20.35cm" width="4.2cm" height="4.2cm" leadingFrame="yes"/>
+            <image file="/Users/zemogle/Dropbox/code/django/messier-bingo/messierbingo/media/objects/process-3551-2.jpg" x="8.55cm" y="20.35cm" width="4.2cm" height="4.2cm" leadingFrame="yes"/>
+            <image file="/Users/zemogle/Dropbox/code/django/messier-bingo/messierbingo/media/objects/process-3551-2.jpg" x="14.3cm" y="20.35cm" width="4.2cm" height="4.2cm" leadingFrame="yes"/>
+            <image file="/Users/zemogle/Dropbox/code/django/messier-bingo/messierbingo/media/objects/process-3551-2.jpg" x="2.7cm" y="13.2cm" width="4.2cm" height="4.2cm" leadingFrame="yes"/>
+            <image file="/Users/zemogle/Dropbox/code/django/messier-bingo/messierbingo/media/objects/process-3551-2.jpg" x="8.55cm" y="13.2cm" width="4.2cm" height="4.2cm" leadingFrame="yes"/>
+            <image file="/Users/zemogle/Dropbox/code/django/messier-bingo/messierbingo/media/objects/process-3551-2.jpg" x="14.3cm" y="13.2cm" width="4.2cm" height="4.2cm" leadingFrame="yes"/>
+            <image file="/Users/zemogle/Dropbox/code/django/messier-bingo/messierbingo/media/objects/process-3551-2.jpg" x="2.7cm" y="6.1cm" width="4.2cm" height="4.2cm" leadingFrame="yes"/>
+            <image file="/Users/zemogle/Dropbox/code/django/messier-bingo/messierbingo/media/objects/process-3551-2.jpg" x="8.55cm" y="6.1cm" width="4.2cm" height="4.2cm" leadingFrame="yes"/-->
+            <image file="/Users/zemogle/Dropbox/code/django/messier-bingo/messierbingo/media/objects/process-3551-2.jpg" x="14.3cm" y="6.1cm" width="4.2cm" height="4.2cm" leadingFrame="yes"/>
+            <!--This is where text is added to the document, like the Messier Bingo Card title to the top of the page, and Object type in the boxes below the image. -->
+            <fill color="saddlebrown"/>
+            <fill color="saddlebrown"/>
+            <fill color="saddlebrown"/>
+            <setFont name="Courier" size="0.63cm"/>
+            <drawCenteredString x="10.55cm" y="26.73cm" leadingFrame="yes">
+                MESSIER BINGO CARD 
+            </drawCenteredString>
+            <setFont name="Courier" size="0.3cm"/>
+            <drawCenteredString x="4.35cm" y="19.02cm" leadingFrame="yes">
+                Object type:
+            </drawCenteredString>
+            <drawCenteredString x="10.15cm" y="19.02cm" leadingFrame="yes">
+                Object type:
+            </drawCenteredString>
+            <drawCenteredString x="16.1cm" y="19.02cm" leadingFrame="yes">
+                Object type:
+            </drawCenteredString>
+            <drawCenteredString x="4.35cm" y="11.86cm" leadingFrame="yes">
+                Object type:
+            </drawCenteredString>
+            <drawCenteredString x="10.15cm" y="11.86cm" leadingFrame="yes">
+                Object type:
+            </drawCenteredString>
+            <drawCenteredString x="16.1cm" y="11.86cm" leadingFrame="yes">
+                Object type:
+            </drawCenteredString>
+            <drawCenteredString x="4.35cm" y="4.72cm" leadingFrame="yes">
+                Object type:
+            </drawCenteredString>
+            <drawCenteredString x="10.15cm" y="4.72cm" leadingFrame="yes">
+                Object type:
+            </drawCenteredString>
+            <drawCenteredString x="16.1cm" y="4.72cm" leadingFrame="yes">
+                Object type:
+            </drawCenteredString>
+            <!--Specifically, below are the codes for the image names found above the image, and the lcogt website at the bottom of the page -->
+            <setFont name="Courier" size="0.4cm"/>
+            <drawCenteredString x="4.75cm" y="24.88cm" leadingFrame="yes">
+                M2
+            </drawCenteredString>
+             <drawCenteredString x="10.6cm" y="24.88cm" leadingFrame="yes">
+                M75
+            </drawCenteredString>
+            <drawCenteredString x="16.5cm" y="24.88cm" leadingFrame="yes">
+                M61 (Swelling Spiral)
+            </drawCenteredString>
+            <drawCenteredString x="4.75cm" y="17.76cm" leadingFrame="yes">
+                M1
+            </drawCenteredString>
+             <drawCenteredString x="10.6cm" y="17.76cm" leadingFrame="yes">
+                M33 (Triangulum Galaxy)
+            </drawCenteredString>
+            <drawCenteredString x="16.5cm" y="17.76cm" leadingFrame="yes">
+                M97 (Owl Nebula)
+            </drawCenteredString>
+            <drawCenteredString x="4.75cm" y="10.65cm" leadingFrame="yes">
+                M32
+            </drawCenteredString>
+             <drawCenteredString x="10.6cm" y="10.65cm" leadingFrame="yes">
+                M60
+            </drawCenteredString>
+            <drawCenteredString x="16.5cm" y="10.65cm" leadingFrame="yes">
+                M71
+            </drawCenteredString>
+            <setFont name="Courier" size="0.4cm"/>
+            <drawCenteredString x="12.35cm" y="2.8cm" leadingFrame="yes">
+                http://lcogt.net/messierbingo
+            </drawCenteredString>
+        </pageGraphics>
+            <frame id="first" x1="1%" y1="1%" width="99%" height="99%"/>
+		</pageTemplate>
+		
+	</template>
+	
+	<stylesheet>
+		<!--/-->
+	</stylesheet>
+	
+	<story>
+		<!--This is where the bingo card game PNG is added to the document overlapping everything laid down before-->
+        <imageAndFlowables imageName="/Users/zemogle/Dropbox/code/django/messier-bingo/messierbingo/static/images/card_background.png" imageWidth="23.3cm" imageHeight="32cm" leadingFrame="no"/>
+	</story>
+</document>

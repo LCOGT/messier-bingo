@@ -15,4 +15,4 @@ How to play
 
 Authors
 -------
-Created by Edward Gomez, interface designed by Charlotte, code developed by Stuart Lowe for [Las Cumbres Observatory Global Telescope](http://lcogt.net/). LCOGT is a private operating foundation, building a global network of telescopes for professional research and citizen investigations.
+Created by [Edward Gomez](http://gomez.me.uk), interface designed by [Charlotte Provot](http://www.charlotteprovot.com/), code developed by [Stuart Lowe](http://strudel.org.uk) for [Las Cumbres Observatory Global Telescope](http://lcogt.net/). LCOGT is a private operating foundation, building a global network of telescopes for professional research and citizen investigations.
