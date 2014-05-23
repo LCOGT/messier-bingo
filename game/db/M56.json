@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 05:49:37 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/ogg/2m0a/59786",
+  "avm": {
+   "code": "3.6.4.2",
+   "name": "Globular Clusters"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope North operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": 30.181899999999999,
+  "exposure": 180.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2011/06/30/process-1685-1.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2011/06/30/process-1685-1_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/ogg/2m0a",
+   "tel": "Faulkes Telescope North"
+  },
+  "label": "M56",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/4849",
+   "label": "Newchurch Community Primary School "
+  },
+  "ra": 289.15050000000002,
+  "time": {
+   "creation": "Thu, 30 Jun 2011 11:37:42 +0000"
+  },
+  "views": 62
+ }
+}

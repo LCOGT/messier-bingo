@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 13:41:27 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/ogg/2m0a/621650",
+  "avm": {
+   "code": "3.6.4.1",
+   "name": "Open Clusters"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope North operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": 32.553100000000001,
+  "exposure": 75.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2011/12/15/process-3540-1.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2011/12/15/process-3540-1_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/ogg/2m0a",
+   "tel": "Faulkes Telescope North"
+  },
+  "label": "M37",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/2694",
+   "label": "Uplands Community College"
+  },
+  "ra": 88.075050000000005,
+  "time": {
+   "creation": "Thu, 15 Dec 2011 11:25:06 +0000"
+  },
+  "views": 62
+ }
+}

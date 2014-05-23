@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 13:59:18 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/ogg/2m0a/633544",
+  "avm": {
+   "code": "4.1.3",
+   "name": "Planetary Nebulae"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope North operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": 51.5685,
+  "exposure": 540.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2013/01/08/process-104-1.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2013/01/08/process-104-1_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/ogg/2m0a",
+   "tel": "Faulkes Telescope North"
+  },
+  "label": "M76 (Little Dumbbell Nebula)",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/537",
+   "label": "Niepolomice"
+  },
+  "ra": 25.589399999999998,
+  "time": {
+   "creation": "Tue, 08 Jan 2013 09:51:54 +0000"
+  },
+  "views": 27
+ }
+}

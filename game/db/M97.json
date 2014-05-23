@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 14:10:29 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/ogg/2m0a/622614",
+  "avm": {
+   "code": "4.1.3",
+   "name": "Planetary Nebulae"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope North operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": 55.016599999999997,
+  "exposure": 180.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2012/02/01/process-4127-1.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2012/02/01/process-4127-1_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/ogg/2m0a",
+   "tel": "Faulkes Telescope North"
+  },
+  "label": "M97 (Owl Nebula)",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/5058",
+   "label": "UoG11 - Steven Ward"
+  },
+  "ra": 168.69300000000001,
+  "time": {
+   "creation": "Wed, 01 Feb 2012 12:43:41 +0000"
+  },
+  "views": 54
+ }
+}

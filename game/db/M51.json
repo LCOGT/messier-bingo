@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 13:47:56 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/ogg/2m0a/637713",
+  "avm": {
+   "code": "5.3.2.2",
+   "name": "Seyfert Galaxies"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope North operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": 47.1967,
+  "exposure": 450.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2013/04/26/process-2408-1.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2013/04/26/process-2408-1_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/ogg/2m0a",
+   "tel": "Faulkes Telescope North"
+  },
+  "label": "M51 (Whirlpool Galaxy)",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/900",
+   "label": "The Burgate School"
+  },
+  "ra": 202.47150000000002,
+  "time": {
+   "creation": "Fri, 26 Apr 2013 11:11:34 +0000"
+  },
+  "views": 40
+ }
+}

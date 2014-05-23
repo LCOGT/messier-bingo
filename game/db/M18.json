@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 13:32:00 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/coj/2m0a/629984",
+  "avm": {
+   "code": "3.6.4.1",
+   "name": "Open Clusters"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope South operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": -17.102,
+  "exposure": 360.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2012/09/25/process-1238-2.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2012/09/25/process-1238-2_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/coj/2m0a",
+   "tel": "Faulkes Telescope South"
+  },
+  "label": "M18",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/2659",
+   "label": "Zespol Szkol Rolniczych CKP"
+  },
+  "ra": 274.99349999999998,
+  "time": {
+   "creation": "Tue, 25 Sep 2012 12:27:44 +0000"
+  },
+  "views": 62
+ }
+}

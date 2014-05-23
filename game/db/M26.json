@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 13:35:55 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/coj/2m0a/618944",
+  "avm": {
+   "code": "3.6.4.1",
+   "name": "Open Clusters"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope South operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": -9.3836099999999991,
+  "exposure": 9.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2011/09/30/process-1245-2.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2011/09/30/process-1245-2_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/coj/2m0a",
+   "tel": "Faulkes Telescope South"
+  },
+  "label": "M26",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/2640",
+   "label": "St Michaels"
+  },
+  "ra": 281.32799999999997,
+  "time": {
+   "creation": "Fri, 30 Sep 2011 10:30:37 +0000"
+  },
+  "views": 46
+ }
+}

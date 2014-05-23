@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 14:02:22 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/ogg/2m0a/637081",
+  "avm": {
+   "code": "5.1.7",
+   "name": "Interacting Galaxies"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope North operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": 69.682500000000005,
+  "exposure": 270.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://lcogt.net/files/bfulton/m82_Lrgb_flat_small.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://lcogt.net/files/styles/fourcol-image/public/bfulton/m82_Lrgb_flat_small.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/ogg/2m0a",
+   "tel": "Sedgwick Observatory"
+  },
+  "label": "M82 (Cigar Galaxy)",
+  "observer": {
+   "about": "http://lcogt.net/user/bfulton",
+   "label": "BJ Fulton"
+  },
+  "ra": 148.97505000000001,
+  "time": {
+   "creation": "Sat, 13 Apr 2013 06:02:20 +0000"
+  },
+  "views": 15
+ }
+}

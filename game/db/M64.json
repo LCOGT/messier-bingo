@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 05:53:38 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/ogg/2m0a/636029",
+  "avm": {
+   "code": "5.1.1",
+   "name": "Spiral Galaxies"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope North operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": 21.684699999999999,
+  "exposure": 120.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2013/04/03/process-1076-1.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2013/04/03/process-1076-1_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/ogg/2m0a",
+   "tel": "Faulkes Telescope North"
+  },
+  "label": "M64 (Blackeye Galaxy)",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/5647",
+   "label": "Robert Smyth Academy"
+  },
+  "ra": 194.184,
+  "time": {
+   "creation": "Wed, 03 Apr 2013 11:26:37 +0000"
+  },
+  "views": 33
+ }
+}

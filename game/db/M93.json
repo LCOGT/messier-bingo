@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 14:07:16 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/coj/2m0a/624126",
+  "avm": {
+   "code": "3.6.4",
+   "name": "Clusters of Stars"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope South operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": -23.853100000000001,
+  "exposure": 135.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2012/03/23/process-3268-2.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2012/03/23/process-3268-2_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/coj/2m0a",
+   "tel": "Faulkes Telescope South"
+  },
+  "label": "M93",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/2070",
+   "label": "Northfleet School for Girls"
+  },
+  "ra": 116.12175000000001,
+  "time": {
+   "creation": "Fri, 23 Mar 2012 12:37:12 +0000"
+  },
+  "views": 1326
+ }
+}

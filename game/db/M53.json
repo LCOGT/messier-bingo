@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 05:48:37 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/coj/2m0a/638074",
+  "avm": {
+   "code": "3.6.4.2",
+   "name": "Globular Clusters"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope South operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": 18.168500000000002,
+  "exposure": 195.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2013/05/29/process-1218-2.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2013/05/29/process-1218-2_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/coj/2m0a",
+   "tel": "Faulkes Telescope South"
+  },
+  "label": "M53",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/1898",
+   "label": "LOCKERBIE ACADEMY"
+  },
+  "ra": 198.22949999999997,
+  "time": {
+   "creation": "Wed, 29 May 2013 10:54:07 +0000"
+  },
+  "views": 35
+ }
+}

@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 13:53:13 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/ogg/2m0a/638135",
+  "avm": {
+   "code": "5.3.2.4",
+   "name": "Liner Galaxies"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope North operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": 42.026899999999998,
+  "exposure": 900.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2013/05/30/process-2691-1.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2013/05/30/process-2691-1_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/ogg/2m0a",
+   "tel": "Faulkes Telescope North"
+  },
+  "label": "M63",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/1305",
+   "label": "Samara4"
+  },
+  "ra": 198.96300000000002,
+  "time": {
+   "creation": "Thu, 30 May 2013 09:19:55 +0000"
+  },
+  "views": 43
+ }
+}

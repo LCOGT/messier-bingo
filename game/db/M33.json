@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 13:39:33 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/ogg/2m0a/644026",
+  "avm": {
+   "code": "5.5.2",
+   "name": "Multiple Galaxies"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope North operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": 30.660299999999999,
+  "exposure": 1200.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2013/11/22/process-5989-1.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2013/11/22/process-5989-1_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/ogg/2m0a",
+   "tel": "Faulkes Telescope North"
+  },
+  "label": "M33 (Triangulum Galaxy)",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/5315",
+   "label": "Kenton Primary School "
+  },
+  "ra": 23.4621,
+  "time": {
+   "creation": "Fri, 22 Nov 2013 10:43:01 +0000"
+  },
+  "views": 7
+ }
+}

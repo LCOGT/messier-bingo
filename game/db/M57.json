@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 13:50:02 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/ogg/2m0a/639143",
+  "avm": {
+   "code": "4.1.3",
+   "name": "Planetary Nebulae"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope North operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": 33.033299999999997,
+  "exposure": 45.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2013/06/18/process-3422-1.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2013/06/18/process-3422-1_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/ogg/2m0a",
+   "tel": "Faulkes Telescope North"
+  },
+  "label": "M57",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/4311",
+   "label": "Newcastle-under-Lyme School"
+  },
+  "ra": 283.39949999999999,
+  "time": {
+   "creation": "Tue, 18 Jun 2013 11:13:47 +0000"
+  },
+  "views": 30
+ }
+}

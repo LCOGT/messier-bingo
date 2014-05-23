@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 13:50:46 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/ogg/2m0a/623765",
+  "avm": {
+   "code": "5.1.1",
+   "name": "Spiral Galaxies"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope North operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": 11.8194,
+  "exposure": 90.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2012/03/15/process-4779-1.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2012/03/15/process-4779-1_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/ogg/2m0a",
+   "tel": "Faulkes Telescope North"
+  },
+  "label": "M58",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/2032",
+   "label": "Castell Alun High School"
+  },
+  "ra": 189.43350000000001,
+  "time": {
+   "creation": "Thu, 15 Mar 2012 12:26:05 +0000"
+  },
+  "views": 26
+ }
+}

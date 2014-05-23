@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 13:55:47 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/coj/2m0a/45921",
+  "avm": {
+   "code": "3.6.4.2",
+   "name": "Globular Clusters"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope South operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": -26.744599999999998,
+  "exposure": 180.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2010/03/25/process-309-2.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2010/03/25/process-309-2_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/coj/2m0a",
+   "tel": "Faulkes Telescope South"
+  },
+  "label": "M68",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/240",
+   "label": "Ysgol Gyfun Y Strade"
+  },
+  "ra": 189.86849999999998,
+  "time": {
+   "creation": "Thu, 25 Mar 2010 12:49:43 +0000"
+  },
+  "views": 144
+ }
+}

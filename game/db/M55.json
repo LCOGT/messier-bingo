@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 13:49:13 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/ogg/2m0a/38108",
+  "avm": {
+   "code": "3.6.4.2",
+   "name": "Globular Clusters"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope North operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": -30.960699999999999,
+  "exposure": 81.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2009/07/16/process-24-1.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2009/07/16/process-24-1_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/ogg/2m0a",
+   "tel": "Faulkes Telescope North"
+  },
+  "label": "M55",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/79",
+   "label": "West Monmouth School"
+  },
+  "ra": 295.00199999999995,
+  "time": {
+   "creation": "Thu, 16 Jul 2009 10:45:48 +0000"
+  },
+  "views": 63
+ }
+}

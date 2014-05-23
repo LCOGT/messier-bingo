@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 05:34:07 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/ogg/2m0a/61311",
+  "avm": {
+   "code": "3.6.4.2",
+   "name": "Globular Clusters"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope North operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": -23.906099999999999,
+  "exposure": 90.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2011/08/05/process-581-1.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2011/08/05/process-581-1_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/ogg/2m0a",
+   "tel": "Faulkes Telescope North"
+  },
+  "label": "M22 (Sagittarius Cluster)",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/4938",
+   "label": "St.Brigid's School"
+  },
+  "ra": 279.10050000000001,
+  "time": {
+   "creation": "Fri, 05 Aug 2011 10:07:09 +0000"
+  },
+  "views": 60
+ }
+}

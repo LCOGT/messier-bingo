@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 05:51:12 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/ogg/2m0a/44997",
+  "avm": {
+   "code": "5.1.4",
+   "name": "Elliptical Galaxies"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope North operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": 11.646699999999999,
+  "exposure": 360.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2010/02/19/process-1048-1.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2010/02/19/process-1048-1_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/ogg/2m0a",
+   "tel": "Faulkes Telescope North"
+  },
+  "label": "M59",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/2987",
+   "label": "Herstmonceux Megacycles"
+  },
+  "ra": 190.51049999999998,
+  "time": {
+   "creation": "Fri, 19 Feb 2010 14:54:38 +0000"
+  },
+  "views": 380
+ }
+}

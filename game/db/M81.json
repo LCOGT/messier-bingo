@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 06:01:51 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/ogg/2m0a/635720",
+  "avm": {
+   "code": "5.3.2",
+   "name": "AGN"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope North operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": 69.066699999999997,
+  "exposure": 180.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2013/03/20/process-904-1.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2013/03/20/process-904-1_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/ogg/2m0a",
+   "tel": "Faulkes Telescope North"
+  },
+  "label": "M81 (Bode's Galaxy)",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/4872",
+   "label": "South Hampstead High School"
+  },
+  "ra": 148.88954999999999,
+  "time": {
+   "creation": "Wed, 20 Mar 2013 12:19:09 +0000"
+  },
+  "views": 25
+ }
+}

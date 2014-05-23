@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 06:16:48 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/ogg/2m0a/637792",
+  "avm": {
+   "code": "3.6.4.2",
+   "name": "Globular Clusters"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope North operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": -13.0503,
+  "exposure": 60.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2013/05/03/process-2490-1.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2013/05/03/process-2490-1_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/ogg/2m0a",
+   "tel": "Faulkes Telescope North"
+  },
+  "label": "M107",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/5556",
+   "label": "UoG12 Simon Shelford"
+  },
+  "ra": 248.13000000000002,
+  "time": {
+   "creation": "Fri, 03 May 2013 11:04:34 +0000"
+  },
+  "views": 36
+ }
+}

@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 13:41:05 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/ogg/2m0a/621420",
+  "avm": {
+   "code": "3.6.4.1",
+   "name": "Open Clusters"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope North operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": 34.140700000000002,
+  "exposure": 60.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2011/12/05/process-3360-1.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2011/12/05/process-3360-1_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/ogg/2m0a",
+   "tel": "Faulkes Telescope North"
+  },
+  "label": "M36",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/5120",
+   "label": "Treorchy Comprehensive School"
+  },
+  "ra": 84.073950000000011,
+  "time": {
+   "creation": "Mon, 05 Dec 2011 15:37:51 +0000"
+  },
+  "views": 81
+ }
+}

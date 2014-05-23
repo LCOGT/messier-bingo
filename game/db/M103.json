@@ -1,0 +1,41 @@
+{
+ "date": "Sat, 30 Nov 2013 14:14:12 +0000",
+ "message": "This is a beta release of LCOGT JSON. The format may change so any applications you build using this may need updating in the future.",
+ "observation": {
+  "about": "http://lcogt.net/observations/ogg/2m0a/621047",
+  "avm": {
+   "code": "3.6.4.1",
+   "name": "Open Clusters"
+  },
+  "credit": {
+   "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
+   "label": "Image taken with Faulkes Telescope North operated by Las Cumbres Observatory Global Telescope Network"
+  },
+  "dec": 60.658000000000001,
+  "exposure": 120.0,
+  "filter": {
+   "about": "http://lcogt.net/",
+   "name": "Unknown"
+  },
+  "image": {
+   "about": "http://rti.lcogt.net/observations/2011/11/30/process-3121-1.jpg",
+   "fits": "",
+   "label": "Image",
+   "thumb": "http://rti.lcogt.net/observations/2011/11/30/process-3121-1_120.jpg"
+  },
+  "instr": {
+   "about": "http://lcogt.net/observations/ogg/2m0a",
+   "tel": "Faulkes Telescope North"
+  },
+  "label": "M103",
+  "observer": {
+   "about": "http://lcogt.net/observations/user/4899",
+   "label": "Escola Basica D. Duarte, Vil de Soito, Viseu"
+  },
+  "ra": 23.340900000000001,
+  "time": {
+   "creation": "Wed, 30 Nov 2011 10:19:00 +0000"
+  },
+  "views": 56
+ }
+}
