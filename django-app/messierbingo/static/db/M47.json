@@ -9,7 +9,7 @@
   },
   "credit": {
    "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
-   "label": "Image taken with Faulkes Telescope South operated by Las Cumbres Observatory Global Telescope Network"
+   "label": "Image taken with Las Cumbres Observatory Global Telescope Network, 1-meter telescope at Sutherland Observatory, South Africa"
   },
   "dec": -14.4826,
   "exposure": 150.0,
@@ -18,23 +18,23 @@
    "name": "Unknown"
   },
   "image": {
-   "about": "http://rti.lcogt.net/observations/2012/03/23/process-3269-2.jpg",
+   "about": "http://lcogt.net/files/messier/M47.jpg",
    "fits": "",
    "label": "Image",
-   "thumb": "http://rti.lcogt.net/observations/2012/03/23/process-3269-2_120.jpg"
+   "thumb": "http://lcogt.net/files/messier/M47_thumbnail.jpg"
   },
   "instr": {
-   "about": "http://lcogt.net/observations/coj/2m0a",
-   "tel": "Faulkes Telescope South"
+   "about": "http://lcogt.net/site/sutherland",
+   "tel": "Sutherland 1-meter A"
   },
   "label": "M47",
   "observer": {
-   "about": "http://lcogt.net/observations/user/2070",
-   "label": "Northfleet School for Girls"
+   "about": "",
+   "label": "Jake Hughes, Cardiff University"
   },
   "ra": 114.14595,
   "time": {
-   "creation": "Fri, 23 Mar 2012 12:43:38 +0000"
+   "creation": "Mon, 02 June 2014 11:29:51 +0000"
   },
   "views": 1386
  }

@@ -18,10 +18,10 @@
    "name": "Unknown"
   },
   "image": {
-   "about": "http://rti.lcogt.net/observations/2007/04/29/process-672-1.jpg",
+   "about": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2007/04/29/process-672-1.jpg",
    "fits": "",
    "label": "Image",
-   "thumb": "http://rti.lcogt.net/observations/2007/04/29/process-672-1_120.jpg"
+   "thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2007/04/29/process-672-1_120.jpg"
   },
   "instr": {
    "about": "http://lcogt.net/observations/ogg/2m0a",
@@ -30,7 +30,7 @@
   "label": "M106",
   "observer": {
    "about": "http://lcogt.net/observations/user/3",
-   "label": "LCOGTOBS_HAWAII"
+   "label": "JD Armstrong, IfA Hawaii"
   },
   "ra": 184.7415,
   "time": {

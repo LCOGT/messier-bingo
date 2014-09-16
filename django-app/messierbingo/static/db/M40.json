@@ -9,7 +9,7 @@
   },
   "credit": {
    "about": "http://creativecommons.org/licenses/by-nc/2.0/deed.en_US",
-   "label": "Image taken with Faulkes Telescope North operated by Las Cumbres Observatory Global Telescope Network"
+   "label": "Image taken with Las Cumbres Observatory Global Telescope Network, 1-meter telescope at McDonald Observatory"
   },
   "dec": 58.083100000000002,
   "exposure": 3.0,
@@ -18,23 +18,23 @@
    "name": "Unknown"
   },
   "image": {
-   "about": "http://rti.lcogt.net/observations/2006/05/01/hawaii-process-15161-1.jpg",
+   "about": "http://lcogt.net/files/messier/M40.jpg",
    "fits": "",
    "label": "Image",
-   "thumb": "http://rti.lcogt.net/observations/2006/05/01/hawaii-process-15161-1_120.jpg"
+   "thumb": "http://lcogt.net/files/messier/M40_thumbnail.jpg"
   },
   "instr": {
-   "about": "http://lcogt.net/observations/ogg/2m0a",
-   "tel": "Faulkes Telescope North"
+   "about": "http://lcogt.net/site/mcdonald",
+   "tel": "McDonald 1-meter"
   },
   "label": "M40 (Winnecke 4)",
   "observer": {
    "about": "http://lcogt.net/observations/user/1721",
-   "label": "maui"
+   "label": "Jake Hughes, Cardiff University"
   },
   "ra": 185.5215,
   "time": {
-   "creation": "Mon, 01 May 2006 07:48:51 +0000"
+   "creation": "Mon, 02 June 2014 11:29:51 +0000"
   },
   "views": 165
  }
