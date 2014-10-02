@@ -692,7 +692,6 @@
 			if(!e.data.me.pantograph[1].on && e.data.me.pantograph[0].on) e.data.me.toggleDial();
 			e.data.me.pantograph[1].toggle();
 		});
-		
 
 		// Messier portrait background
 		this.overlay.push(
@@ -896,6 +895,7 @@
 		this.setDial(!this.dialon);
 		if(!this.pantograph[0].on && this.pantograph[1].on) this.pantograph[1].toggle(); 
 		this.pantograph[0].toggle();
+		return this;
 	}
 
 	MessierBingo.prototype.setDial = function(on){
@@ -907,6 +907,7 @@
 			this.updateRotation(this.dialhandle[d],ang,333,100);
 			this.updateRotation(this.dialhandle[d],ang,333,100);
 		}
+		return this;
 	}
 	
 	MessierBingo.prototype.updateRotation = function(el,ang,ox,oy){
