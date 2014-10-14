@@ -1,5 +1,7 @@
-.gitignore
-
 *.pyc
 
 *.pdf
+
+inspiration/*
+
+.gitignore
