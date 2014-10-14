@@ -5,3 +5,11 @@
 inspiration/*
 
 .gitignore
+
+js/jquery.queryloader2.min.js
+
+js/jquery.queryloader2.js
+
+messiertable.dat
+
+images/*
