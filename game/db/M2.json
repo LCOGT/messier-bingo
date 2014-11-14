@@ -18,10 +18,10 @@
    "name": "Unknown"
   },
   "image": {
-   "about": "http://rti.lcogt.net/observations/2013/10/22/process-3551-2.jpg",
+   "about": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/10/22/process-3551-2.jpg",
    "fits": "",
    "label": "Image",
-   "thumb": "http://rti.lcogt.net/observations/2013/10/22/process-3551-2_120.jpg"
+   "thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/10/22/process-3551-2_120.jpg"
   },
   "instr": {
    "about": "http://lcogt.net/observations/coj/2m0a",
