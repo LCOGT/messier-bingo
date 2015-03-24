@@ -203,7 +203,7 @@
 		// Set the user's language using the browser settings. Over-ride with query string set value
 		this.lang = (typeof this.q.lang==="string") ? this.q.lang : (navigator) ? (navigator.userLanguage||navigator.systemLanguage||navigator.language||browser.language) : "";
 		this.langshort = (this.lang.indexOf('-') > 0 ? this.lang.substring(0,this.lang.indexOf('-')) : this.lang.substring(0,2));
-		this.langs = (inp && inp.langs) ? inp.langs : { 'en': 'English' };
+		this.langs = (inp && inp.langs) ? inp.langs : { 'en': 'English', 'cy':'Cymraeg' };
 		this.langurl = "config/%LANG%.json";
 
 
@@ -225,28 +225,24 @@
 		
 		var el = $('#panel .inner .padded');
 		this.phrasebook = {
-			"language": {
-				"code": "en",
-				"name": "English",
-				"alignment": "left",
-				"translator": "Stuart Lowe"
-			},
+			"language": { "code": "en", "name": "English", "alignment": "left", "translator": "Stuart Lowe" },
 			"title": "The Messier Bingo",
 			"information": {
 				"label": "INFORMATION",
 				"on": "ON",
 				"off": "OFF",
 				"type": { "label": "Type:" },
-				"distance": { "label": "Distance:", "lyr": "lyr" }
+				"distance": { "label": "Distance:", "lyr": "lyr" },
+				"telescope": { "label": "Telescope:" },
+				"image": { "label": "Image by:" },
+				"original": "Original image"
 			},
 			"instructions": "<h3>Instructions</h3><p>Get your <a href=\"http://lcogt.net/education/messierbingo\">bingo card</a> and mark it each time one of your objects appears.</p><p>When you have marked all the objects on your card shout 'Bingo', 'House' or even 'Messier' to win.</p><p>To select a new Messier object press the arrow in the bottom right.</p>",
 			"messier": {
 				"name": "Charles Messier",
 				"bio": "<p><a href=\"https://en.wikipedia.org/wiki/Charles_Messier\" target=\"messier\">Charles Messier</a> was born in 1730 and his interest in astronomy was sparked by a spectacular, six-tailed comet when he was 14.</p><p>He moved to Paris and wanted to become famous by discovering comets. When he looked through his telescope he often re-discovered objects which were already known and were not comets. To make sure he didn't waste time, each time he found an object that did not move in the sky he catalogued it. His famous list contains 110 objects.</p>"
 			},
-			"next": {
-				"label": "NEXT IMG"
-			},
+			"next": { "label": "NEXT IMAGE" },
 			"power": "Powered by LCOGT"
 		};
 
@@ -450,6 +446,8 @@
 		this.registerKey('8',function(){ this.loadMessierObject(48); });
 		this.registerKey('n',function(){ this.next(); });
 		this.registerKey(39,function(){ this.next(); });
+		this.registerKey('e',function(){ this.loadLanguage('en'); });
+		this.registerKey('w',function(){ this.loadLanguage('cy'); });
 
 		this.dialon = true;
 		this.setDial(this.dialon);
@@ -530,6 +528,7 @@
 	MessierBingo.prototype.loadLanguage = function(l,fn){
 		if(!l) l = this.langshort;
 		var url = this.langurl.replace('%LANG%',l);
+		if(!this.langs[l]) return this;
 		$.ajax({
 			url: url,
 			method: 'GET',
@@ -560,7 +559,6 @@
 	}
 
 	MessierBingo.prototype.updateText = function(){
-		this.log(this.chrome.title,this.phrasebook.title.toUpperCase())
 
 		// Replace the SVG elements
 		this.clear();
@@ -571,6 +569,7 @@
 		// Update HTML elements
 		$('#nametoggle a').text(this.phrasebook.messier.name);
 		$('#messier .inner .padded').html(this.phrasebook.messier.bio);
+		$('#panel .inner .padded').html(this.phrasebook.instructions);
 		return this;
 	}
 
@@ -667,7 +666,6 @@
 
 	MessierBingo.prototype.drawBox = function(){
 
-this.log(this.box)
 		if(typeof this.box!=="undefined"){
 			this.box.setSize(this.wide,this.tall)
 			this.scaleBox();
