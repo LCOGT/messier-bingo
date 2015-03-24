@@ -163,11 +163,32 @@
 	jQuery.support.borderRadius = checkBorders();
 	jQuery.support.transparency = true;
 
+
+	// Get the URL query string and parse it
+	$.query = function() {
+		var r = {length:0};
+		var q = location.search;
+		if(q && q != '#'){
+			// remove the leading ? and trailing &
+			q = q.replace(/^\?/,'').replace(/\&$/,'');
+			jQuery.each(q.split('&'), function(){
+				var key = this.split('=')[0];
+				var val = this.split('=')[1];
+				if(/^[0-9\.]+$/.test(val)) val = parseFloat(val);	// convert floats
+				r[key] = val;
+			});
+		}
+		return r;
+	};
+
+	
 	/*! Messier Bingo */
 	function MessierBingo(inp){
 
 		this.version = "0.1";
 	
+		// Set some variables
+		this.q = $.query();    // Query string
 		this.id = 'paper';
 		this.container = $('#'+this.id);
 		this.outer = $('#outer');
@@ -177,11 +198,19 @@
 		this.height = 768;
 		this.aspect = 1024/768;	// The aspect ratio
 		this.dialang = 25;
+		this.el = {};	// Holder for SVG elements
+		// Language support
+		// Set the user's language using the browser settings. Over-ride with query string set value
+		this.lang = (typeof this.q.lang==="string") ? this.q.lang : (navigator) ? (navigator.userLanguage||navigator.systemLanguage||navigator.language||browser.language) : "";
+		this.langshort = (this.lang.indexOf('-') > 0 ? this.lang.substring(0,this.lang.indexOf('-')) : this.lang.substring(0,2));
+		this.langs = (inp && inp.langs) ? inp.langs : { 'en': 'English' };
+		this.langurl = "config/%LANG%.json";
+
 
 		// Process the input parameters/query string
 		this.init(inp);
 
-		//this.loadConfig();
+		this.loadLanguage();
 
 		$(window).resize({me:this},function(e){ e.data.me.resize(); });
 
@@ -196,13 +225,31 @@
 		
 		var el = $('#panel .inner .padded');
 		this.phrasebook = {
-			"code": "en",
-			"name": "English",
-			"messier": "Msr Charles Messier",
-			"title": "Messier Bingo",
-			"instructions": (el.length > 0) ? el.html() : "<h3>Instructions</h3><p>Get your <a href=\"http://lcogt.net/education/messierbingo\">bingo card</a> and mark it each time one of your objects appears.</p><p>When you have marked all the objects on your card shout 'Bingo', 'House' or even 'Messier' to win.</p><p>To select a new Messier object press the arrow in the bottom right.</p>",
+			"language": {
+				"code": "en",
+				"name": "English",
+				"alignment": "left",
+				"translator": "Stuart Lowe"
+			},
+			"title": "The Messier Bingo",
+			"information": {
+				"label": "INFORMATION",
+				"on": "ON",
+				"off": "OFF",
+				"type": { "label": "Type:" },
+				"distance": { "label": "Distance:", "lyr": "lyr" }
+			},
+			"instructions": "<h3>Instructions</h3><p>Get your <a href=\"http://lcogt.net/education/messierbingo\">bingo card</a> and mark it each time one of your objects appears.</p><p>When you have marked all the objects on your card shout 'Bingo', 'House' or even 'Messier' to win.</p><p>To select a new Messier object press the arrow in the bottom right.</p>",
+			"messier": {
+				"name": "Charles Messier",
+				"bio": "<p><a href=\"https://en.wikipedia.org/wiki/Charles_Messier\" target=\"messier\">Charles Messier</a> was born in 1730 and his interest in astronomy was sparked by a spectacular, six-tailed comet when he was 14.</p><p>He moved to Paris and wanted to become famous by discovering comets. When he looked through his telescope he often re-discovered objects which were already known and were not comets. To make sure he didn't waste time, each time he found an object that did not move in the sky he catalogued it. His famous list contains 110 objects.</p>"
+			},
+			"next": {
+				"label": "NEXT IMG"
+			},
 			"power": "Powered by LCOGT"
 		};
+
 		this.keys = new Array();
 
 		this.colours = {
@@ -478,40 +525,52 @@
 		return this;
 	}
 
-	MessierBingo.prototype.loadConfig = function(){
-		var lang;
-		// Loop over to see if the current language shortcode is valid
-		for(var i = 0; i < this.langs.length; i++){
-			if(this.langs[i].code==this.langshort || this.langs[i].code==this.lang){
-				lang = this.langs[i];
-				break;
-			}
-		}
-		lang = this.langs[0];
-		if(!lang) return this;
-
-		var dataurl = "config/"+lang.code+".json";
-
+	// Load the specified language
+	// If it fails and this was the long variation of the language (e.g. "en-gb" or "zh-yue"), try the short version (e.g. "en" or "zh")
+	MessierBingo.prototype.loadLanguage = function(l,fn){
+		if(!l) l = this.langshort;
+		var url = this.langurl.replace('%LANG%',l);
 		$.ajax({
-			url: dataurl,
-			method: 'POST',
+			url: url,
+			method: 'GET',
+			cache: false,
 			dataType: 'json',
 			context: this,
 			error: function(){
-				$('#loader').show().removeClass('done').addClass('loading').html('<div class="error">Error: couldn\'t load the language/mode at '+dataurl+'.</div>').delay(3000).fadeOut();
+				this.log('Error loading '+l+' from '+url);
+				if(this.lang.length == 2){
+					this.log('Attempting to load default (en) instead');
+					this.loadLanguage('en',fn);
+				}else{
+					if(url.indexOf(this.lang) > 0){
+						this.log('Attempting to load '+this.langshort+' instead');
+						this.loadLanguage(this.langshort,fn);
+					}
+				}
 			},
 			success: function(data){
-				this.stages = data.stages;
-				$.extend(this.phrasebook, data.phrasebook);
-				this.setupMode();
+				this.langshort = l;
+				this.lang = l;
+				// Store the data
+				this.phrasebook = data;
+				this.updateText();
 			}
 		});
 		return this;
 	}
 
 	MessierBingo.prototype.updateText = function(){
-		// Update title
-		if(this.phrasebook.title && $('h1').length > 0) $('h1').html(this.phrasebook.title);
+		this.log(this.chrome.title,this.phrasebook.title.toUpperCase())
+
+		// Replace the SVG elements
+		this.clear();
+		this.box.remove();
+		this.box = undefined;
+		this.drawBox();
+
+		// Update HTML elements
+		$('#nametoggle a').text(this.phrasebook.messier.name);
+		$('#messier .inner .padded').html(this.phrasebook.messier.bio);
 		return this;
 	}
 
@@ -582,11 +641,33 @@
 		// Replace title text
 		var id = el.attr('id');
 		if(!this.texts) this.texts = this.box.set();
-		this.texts.push(this.box.print_center(x,y,txt,this.box.getFont("Birch Std"),fs));
+		return this.texts.push(this.box.print_center(x,y,txt,this.box.getFont("Birch Std"),fs));
+	}
+
+	MessierBingo.prototype.clear = function(){
+
+		for(var i = 0; i < this.pantograph.length; i++) this.pantograph[i].remove();
+		for(var h = 0 ; h < this.shadows.length ; h++) this.shadows[h].remove();
+		for(var h = 0 ; h < this.messier.length ; h++) this.messier[h].remove();
+		for(var h = 0 ; h < this.clock.length ; h++) this.clock[h].remove();
+		for(var h = 0 ; h < this.texts.length ; h++) this.texts[h].remove();
+		for(var h = 0 ; h < this.overlay.length ; h++) this.overlay[h].remove();
+		for(var h = 0 ; h < this.frame.length ; h++) this.frame[h].remove();
+		for(var h = 0 ; h < this.arc.length ; h++) this.arc[h].remove();
+		for(var h = 0 ; h < this.hands.length ; h++) this.hands[h].remove();
+		for(var h = 0 ; h < this.dialhandle.length ; h++) this.dialhandle[h].remove();
+		for(var h = 0 ; h < this.dialtext.length ; h++) this.dialtext[h].remove();
+		for(var h = 0 ; h < this.dialtexton.length ; h++) this.dialtexton[h].remove();
+		for(var h = 0 ; h < this.dialtextoff.length ; h++) this.dialtextoff[h].remove();
+		for(var h = 0 ; h < this.nexttext.length ; h++) this.nexttext[h].remove();
+		for(var h = 0 ; h < this.poweredby.length ; h++) this.poweredby[h].remove();
+		for(var h = 0 ; h < this.dialbg.length ; h++) this.dialbg[h].remove();
+		
 	}
 
 	MessierBingo.prototype.drawBox = function(){
 
+this.log(this.box)
 		if(typeof this.box!=="undefined"){
 			this.box.setSize(this.wide,this.tall)
 			this.scaleBox();
@@ -660,9 +741,9 @@
 		}
 		this.arc[this.arc.length-1].click(function(e){ window.location.href = "http://lcogt.net/education/messierbingo"; });
 		this.poweredby.click(function(e){ window.location.href = "http://lcogt.net/education/messierbingo"; });
-		this.dialtext = this.box.printArcLabel(this,'INFORMATION',this.box.getFont("Birch Std"),this.chrome.dial.fontsize,this.chrome.dial.fontsize*0.01,this.chrome.dial.dr,this.chrome.dial.ox,this.chrome.dial.oy,this.chrome.dial.r,270,false).attr({'fill':this.colours.deepshadow,'stroke':0});
-		this.dialtexton = this.box.printArcLabel(this,'ON',this.box.getFont("Birch Std"),this.chrome.dial.fontsize,this.chrome.dial.fontsize*0.1,this.chrome.dial.dr,this.chrome.dial.ox,this.chrome.dial.oy,this.chrome.dial.r,90+this.dialang,false).attr({'fill':this.colours.deepshadow,'stroke':0});
-		this.dialtextoff = this.box.printArcLabel(this,'OFF',this.box.getFont("Birch Std"),this.chrome.dial.fontsize,this.chrome.dial.fontsize*0.1,this.chrome.dial.dr,this.chrome.dial.ox,this.chrome.dial.oy,this.chrome.dial.r,90-this.dialang+4,false).attr({'fill':this.colours.deepshadow,'stroke':0});
+		this.dialtext = this.box.printArcLabel(this,this.phrasebook.information.label,this.box.getFont("Birch Std"),this.chrome.dial.fontsize,this.chrome.dial.fontsize*0.01,this.chrome.dial.dr,this.chrome.dial.ox,this.chrome.dial.oy,this.chrome.dial.r,270,false).attr({'fill':this.colours.deepshadow,'stroke':0});
+		this.dialtexton = this.box.printArcLabel(this,this.phrasebook.information.on,this.box.getFont("Birch Std"),this.chrome.dial.fontsize,this.chrome.dial.fontsize*0.1,this.chrome.dial.dr,this.chrome.dial.ox,this.chrome.dial.oy,this.chrome.dial.r,90+this.dialang,false).attr({'fill':this.colours.deepshadow,'stroke':0});
+		this.dialtextoff = this.box.printArcLabel(this,this.phrasebook.information.off,this.box.getFont("Birch Std"),this.chrome.dial.fontsize,this.chrome.dial.fontsize*0.1,this.chrome.dial.dr,this.chrome.dial.ox,this.chrome.dial.oy,this.chrome.dial.r,90-this.dialang+4,false).attr({'fill':this.colours.deepshadow,'stroke':0});
 
 		this.frame = this.box.set();
 		this.frame.push(this.box.path(this.path.frame).attr({'fill':this.colours.frame,'stroke':0}));
@@ -676,7 +757,8 @@
 			this.box.path(this.path.title).attr({'fill':this.colours.shadow,'stroke':0}),
 			this.box.path(this.path.title).attr({'fill':this.colours.white,'stroke':0})
 		);
-		this.drawText($('h1').parent(),this.chrome.title.ox,this.chrome.title.oy,$('h1').html().toUpperCase(),64);
+		if(!this.phrasebook.title && $('h1').length==1) this.phrasebook.title = $('h1').html();
+		this.el.title = this.drawText($('#title'),this.chrome.title.ox,this.chrome.title.oy,this.phrasebook.title.toUpperCase(),64);
 		this.box.transformer(this.overlay[0],['t',-1,-1.5])
 
 		// Messier Name label
@@ -799,7 +881,7 @@
 		this.nextbutton = this.box.set();
 		r = this.chrome.button.r;
 		this.shadows.push(this.box.circle(this.chrome.button.ox,this.chrome.button.oy,this.chrome.button.r).attr({'fill':this.colours.deepshadow,'stroke':0,'opacity':0.8}));
-		this.nexttext = this.box.printArcLabel(this,'NEXT IMAGE',this.box.getFont("Birch Std"),this.chrome.button.fontsize,this.chrome.button.fontsize*0.1,this.chrome.button.dr,this.chrome.button.ox,this.chrome.button.oy,this.chrome.button.r,90,true).attr({'fill':this.colours.deepshadow,'stroke':0});
+		this.nexttext = this.box.printArcLabel(this,this.phrasebook.next.label,this.box.getFont("Birch Std"),this.chrome.button.fontsize,this.chrome.button.fontsize*0.1,this.chrome.button.dr,this.chrome.button.ox,this.chrome.button.oy,this.chrome.button.r,90,true).attr({'fill':this.colours.deepshadow,'stroke':0});
 		this.nextbutton.push(
 			this.box.circle(this.chrome.button.ox,this.chrome.button.oy,r).attr({'fill':this.colours.frame,'stroke':0}),
 			this.box.circle(this.chrome.button.ox,this.chrome.button.oy,r*0.81).attr({'fill':'270-'+this.colours.frameinlay,'stroke':0}),
@@ -863,9 +945,9 @@
 				$('#panel .inner').html('<div class="padded"><h3 class="messier"></h3><p class="altname"></p><p class="type"></p><p class="distance"></p><p class="telescope"></p><p class="credit"></p><p class="date"></p><p class="download"></p></div>');
 			}
 			$('#panel .messier').html(m.m);
-			$('#panel .altname').html((m.name) ? '('+m.name+')' : '');
-			$('#panel .distance').html('<strong>Distance:</strong> '+(m.distance >= 60000 ? '>' : '')+(m.distance*1000)+' lyr');
-			$('#panel .type').html('<strong>Type:</strong> '+m.type);
+			$('#panel .altname').html((this.phrasebook.catalogue && this.phrasebook.catalogue[m.m].name) ? '('+this.phrasebook.catalogue[m.m].name+')' : (m.name) ? '('+m.name+')' : '');
+			$('#panel .distance').html('<strong>'+this.phrasebook.information.distance.label+'</strong> '+(m.distance >= 60000 ? '>' : '')+(m.distance*1000)+' '+this.phrasebook.information.distance.lyr);
+			$('#panel .type').html('<strong>'+this.phrasebook.information.type.label+'</strong> '+(this.phrasebook.catalogue ? this.phrasebook.catalogue[m.m].type : m.type));
 		}
 		if(typeof data==="object"){
 			if(data.observation){
@@ -878,9 +960,9 @@
 				cache.src = data.observation.image.about;
 				if(cache.complete) fn();
 
-				$('#panel .telescope').html('<strong>Telescope:</strong> '+data.observation.instr.tel);
-				$('#panel .credit').html('<strong>Image by:</strong> <a href="'+data.observation.observer.about+'" target="observation">'+data.observation.observer.label+'</a>');
-				$('#panel .download').html('<a href="'+data.observation.about+'" target="observation">&raquo; Original</a>');
+				$('#panel .telescope').html('<strong>'+this.phrasebook.information.telescope.label+'</strong> '+data.observation.instr.tel);
+				$('#panel .credit').html('<strong>'+this.phrasebook.information.image.label+'</strong> <a href="'+data.observation.observer.about+'" target="observation">'+data.observation.observer.label+'</a>');
+				$('#panel .download').html('<a href="'+data.observation.about+'" target="observation">&raquo; '+this.phrasebook.information.original+'</a>');
 			}else{
 				$('#sky img').attr('src','images/missing.png');
 				$('#panel .credit').html('');
@@ -1055,6 +1137,12 @@
 		}
 		return path+"z";
 	}
+	// Log a message
+	MessierBingo.prototype.log = function(){
+		var args = Array.prototype.slice.call(arguments, 0);
+		if(console && typeof console.log==="function") console.log('LOG',args);
+		return this;
+	}
 
 
 	function Pantograph(me,ox,oy,w,h,w2,n,p,vert){
@@ -1145,6 +1233,10 @@
 		return this;
 	}
 
+	Pantograph.prototype.remove = function(){
+		this.group.remove();
+	}
+	
 	Pantograph.prototype.attr = function(attr){
 		this.group.attr(attr);
 		return this;
