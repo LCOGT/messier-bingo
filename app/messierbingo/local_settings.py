@@ -1,0 +1,1 @@
+STATIC_ROOT = '/Users/egomez/Dropbox (LCOGT)/code/django/messier-bingo/app/'

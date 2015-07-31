@@ -15,13 +15,13 @@ CURRENT_PATH = os.path.dirname(os.path.realpath(__file__))
 HOME = os.environ.get('HOME','/tmp')
 
 MANAGERS = ADMINS
-SQLITE_DB_PATH = HOME
+
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'messierbingo.sqlite',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
+        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'messierbingo',                      # Or path to database file if using sqlite3.
+        'USER': 'root',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
@@ -53,11 +53,12 @@ USE_I18N = True
 USE_L10N = True
 
 # If you set this to False, Django will not use timezone-aware datetimes.
-USE_TZ = True
+USE_TZ = False
 
+ADMIN_TITLE = 'Messier Bingo admin'
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = CURRENT_PATH + '/media/'
+MEDIA_ROOT = os.path.join(CURRENT_PATH ,'media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -69,7 +70,7 @@ MEDIA_URL = ''
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
 STATICFILES_DIRS = ['',]
-STATIC_ROOT = CURRENT_PATH + '/static/'
+STATIC_ROOT = '/var/www/html/static/'
 STATIC_URL = PREFIX + '/static/'
 
 # List of finder classes that know how to find static files in
@@ -105,12 +106,21 @@ ROOT_URLCONF = 'messierbingo.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'messierbingo.wsgi.application'
 
-TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    CURRENT_PATH + "/templates"
-)
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(CURRENT_PATH, 'templates')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
 
 COMPRESS_JS_FILTERS = [
     'compressor.filters.template.TemplateFilter',
@@ -124,7 +134,10 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    'messierbingo'
+    'rest_framework',
+    'messierbingo',
+    'cards',
+    'game'
 )
 
 # A sample logging configuration. The only tangible logging

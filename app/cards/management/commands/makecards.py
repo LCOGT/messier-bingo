@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
-from messierbingo.views import create_pdf
+from cards.views import create_pdf
 import os
 
 class Command(BaseCommand):
