@@ -30,4 +30,15 @@ class MessierObject(models.Model):
     def __unicode__(self):
         return self.name
 
+class Proposal(models.Model):
+    name = models.CharField(max_length=100)
+    code = models.CharField(max_length=20)
+    active = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['code']
+
+    def __unicode__(self):
+        return self.code
+
 

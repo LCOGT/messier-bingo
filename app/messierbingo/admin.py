@@ -3,3 +3,4 @@ from .models import *
 
 admin.site.register(MessierObject)
 admin.site.register(Telescope)
+admin.site.register(Proposal)

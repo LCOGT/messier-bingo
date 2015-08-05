@@ -204,7 +204,7 @@
 		this.lang = (typeof this.q.lang==="string") ? this.q.lang : (navigator) ? (navigator.userLanguage||navigator.systemLanguage||navigator.language||browser.language) : "";
 		this.langshort = (this.lang.indexOf('-') > 0 ? this.lang.substring(0,this.lang.indexOf('-')) : this.lang.substring(0,2));
 		this.langs = (inp && inp.langs) ? inp.langs : { 'en': 'English', 'cy':'Cymraeg' };
-		this.langurl = "config/%LANG%.json";
+		this.langurl = "/static/lang/%LANG%.json";
 
 
 		// Process the input parameters/query string
@@ -291,12 +291,12 @@
 			'dial': {ox:333,oy:100,r:41,dr:30,fontsize:22},
 			'button':{ox:925,oy:660,r:50,dr:24,fontsize:18},
 			'pipe':{w:14},
-			'iris':{'src':'images/iris.png'}
+			'iris':{'src':'/static/images/iris.png'}
 		}
 
 		// Move clock if portal is square
 		if(!$.support.borderRadius){
-			this.chrome.iris.src = 'images/iris_square.png';
+			this.chrome.iris.src = '/static/images/iris_square.png';
 			this.chrome.frame = {x:-1.5,y:-1.5,w:this.wide+1,h:this.tall+1};
 			this.chrome.portal = {ox:660,oy:448,r:[272,272*0.96,272*0.85,272*0.825,272*0.81]},
 			this.chrome.clock = {ox:940,oy:100,r:71};
@@ -782,10 +782,10 @@
 		this.messier = this.box.set();
 
 		if($.support.transparency){
-			this.messier.push(this.box.image('images/messier_eyes.png',130,121,28,6));
-			this.messier.push(this.box.image('images/messier_noeyes.png',85,80,90,110));
+			this.messier.push(this.box.image('/static/images/messier_eyes.png',130,121,28,6));
+			this.messier.push(this.box.image('/static/images/messier_noeyes.png',85,80,90,110));
 		}else{
-			this.messier.push(this.box.image('images/messier.png',85,80,90,110));		
+			this.messier.push(this.box.image('/static/images/messier.png',85,80,90,110));		
 		}
 
 		this.portal = this.box.set();
@@ -914,7 +914,7 @@
 
 	MessierBingo.prototype.loadMessierObject = function(i){
 		$.ajax({
-			url: 'db/M'+i+'.json',
+			url: 'db/M'+i+'/?format=json',
 			method: 'GET',
 			dataType: 'json',
 			context: this,
@@ -938,7 +938,7 @@
 
 		if(i >= 0){
 			var m = this.catalogue[i-1];
-			if(data && data.observation) $('#sky img').attr('src',data.observation.image.thumb);
+			if(data && data.image) $('#sky img').attr('src',data.image_thumb);
 			if($('#panel .messier').length == 0){
 				$('#panel .inner').html('<div class="padded"><h3 class="messier"></h3><p class="altname"></p><p class="type"></p><p class="distance"></p><p class="telescope"></p><p class="credit"></p><p class="date"></p><p class="download"></p></div>');
 			}
@@ -948,19 +948,19 @@
 			$('#panel .type').html('<strong>'+this.phrasebook.information.type.label+'</strong> '+(this.phrasebook.catalogue ? this.phrasebook.catalogue[m.m].type : m.type));
 		}
 		if(typeof data==="object"){
-			if(data.observation){
-				$('#sky img').attr('src',data.observation.image.thumb);
+			if(data){
+				$('#sky img').attr('src',data.image_thumb);
 				cache = new Image();
 				var fn = function(){
 					$('#sky img').attr('src',cache.src);
 				}
 				cache.onload = fn;
-				cache.src = data.observation.image.about;
+				cache.src = data.image;
 				if(cache.complete) fn();
 
-				$('#panel .telescope').html('<strong>'+this.phrasebook.information.telescope.label+'</strong> '+data.observation.instr.tel);
-				$('#panel .credit').html('<strong>'+this.phrasebook.information.image.label+'</strong> <a href="'+data.observation.observer.about+'" target="observation">'+data.observation.observer.label+'</a>');
-				$('#panel .download').html('<a href="'+data.observation.about+'" target="observation">&raquo; '+this.phrasebook.information.original+'</a>');
+				$('#panel .telescope').html('<strong>'+this.phrasebook.information.telescope.label+'</strong> '+data.observer_name);
+				$('#panel .credit').html('<strong>'+this.phrasebook.information.image.label+'</strong> <a href="'+data.observer_name+'" target="observation">'+data.observer_name+'</a>');
+				$('#panel .download').html('<a href="'+data.image+'" target="observation">&raquo; '+this.phrasebook.information.original+'</a>');
 			}else{
 				$('#sky img').attr('src','images/missing.png');
 				$('#panel .credit').html('');

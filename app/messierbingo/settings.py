@@ -19,13 +19,21 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'messierbingo',                      # Or path to database file if using sqlite3.
-        'USER': 'root',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-    }
+        'NAME': os.environ.get('MESSIER_DB_NAME', ''),
+        "USER": os.environ.get('MESSIER_DB_USER', ''),
+        "PASSWORD": os.environ.get('MESSIER_DB_PASSWD', ''),
+        "HOST": os.environ.get('MESSIER_DB_HOST', ''),
+        "OPTIONS": {'init_command': 'SET storage_engine=INNODB'} if PRODUCTION else {},
+        "ENGINE": "django.db.backends.mysql",
+        },
+    'rbauth': {
+        'NAME': os.environ.get('RBAUTH_DB_NAME', ''),
+        "USER": os.environ.get('RBAUTH_DB_USER', ''),
+        "PASSWORD": os.environ.get('RBAUTH_DB_PASSWD', ''),
+        "HOST": os.environ.get('RBAUTH_DB_HOST', ''),
+        "OPTIONS": {'init_command': 'SET storage_engine=INNODB'} if PRODUCTION else {},
+        "ENGINE": "django.db.backends.mysql",
+        }
 }
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
@@ -101,10 +109,19 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+AUTHENTICATION_BACKENDS = (
+    'messierbingo.auth_backend.LCOAuthBackend',
+    'django.contrib.auth.backends.ModelBackend',
+    )
+
 ROOT_URLCONF = 'messierbingo.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'messierbingo.wsgi.application'
+
+LOGIN_REDIRECT_URL = PREFIX + '/'
+
+SESSION_COOKIE_NAME = "messierbingo.sessionid"
 
 TEMPLATES = [
     {
@@ -158,6 +175,10 @@ LOGGING = {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
+        },
+        'console': {
+            'level': 'ERROR',
+            'class': 'logging.StreamHandler',
         }
     },
     'loggers': {
@@ -165,6 +186,10 @@ LOGGING = {
             'handlers': ['mail_admins'],
             'level': 'ERROR',
             'propagate': True,
+        },
+        'messierbingo' : {
+            'handlers' : ['console'],
+            'level'    : 'DEBUG',
         },
     }
 }

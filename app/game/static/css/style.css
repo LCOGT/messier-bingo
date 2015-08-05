@@ -1,4 +1,8 @@
-html { height: 100%; overflow: auto; }
+html, body {
+    margin: 0;
+    min-height: 100%;
+    overflow: auto; 
+}
 
 body {
 	text-align: center;
@@ -7,7 +11,59 @@ body {
 	margin: 0px;
 	padding: 0px;
 	background: #202020;
+	position: relative;
 }
+
+.gray-2-grad, #lcogt-bar {
+    background: #606060 -moz-linear-gradient(center top , #404040, #606060) repeat scroll 0 0;
+    color: white;
+}
+
+#lcogt-bar { margin: 0; height: 32px; clear:both; line-height: 26px; color: #cccccc; font-size: 16px; overflow: hidden; font-family: Helvetica,"Bitstream Vera Sans",Arial,sans-serif;}
+#lcogt-bar a { color: #e6e6e6; text-decoration: none; }
+#lcogt-bar ul { margin: 0; padding: 0; list-style: none; }
+#lcogt-bar li { display: inline-block; padding: 0px 8px; }
+#lcogt-bar li a { border-left: 1px solid #cccccc; padding-left: 8px; }
+#lcogt-bar li:first-child { padding-left: 0px; }
+#lcogt-bar li:first-child a { border-left: 0px; }
+#lcogt-bar li:last-child { padding: 0px; }
+#lcogt-bar li:last-child a { padding-left: 8px; }
+#login { margin: 0; padding: 0 0 0 0; display: inline; float: right; text-align: right; }
+#login, #lcogt-name { padding: 3px 8px; text-align: left; }
+
+#lcogt-bar a {
+    color: white;
+    text-decoration: none;
+    text-align: left;
+}
+
+
+/* overlay styles, all needed */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 10;
+}
+
+/* just some content with arbitrary styles for explanation purposes */
+#message-popup {
+    width: 300px;
+    height: 200px;
+    position: fixed;
+    top: 50%; 
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -150px;
+    background-color: #fff;
+    border-radius: 5px;
+    text-align: center;
+    z-index: 11; /* 1px higher than the overlay layer */
+}
+
 .jsonly { display: none; }
 
 h1, h2, h3, h4, #nametoggle, #insttoggle { margin:0px; font-family: "Birch Std", Didot, "Bodoni MT", "Century Schoolbook", "Niagara Solid", Utopia, Georgia, Times, "Times New Roman", serif; }
