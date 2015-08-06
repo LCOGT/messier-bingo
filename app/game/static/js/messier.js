@@ -223,7 +223,7 @@
 		this.language = (navigator.language) ? navigator.language : navigator.userLanguage;			// Set the user language
 		this.langcode = this.language.substring(0,2);
 		
-		var el = $('#panel .inner .padded');
+		var el = $('#panel-info');
 		this.phrasebook = {
 			"language": { "code": "en", "name": "English", "alignment": "left", "translator": "Stuart Lowe" },
 			"title": "The Messier Bingo",
@@ -428,11 +428,12 @@
 			});
 		}
 
-		$(document).on('keypress',{mb:this},function(e){
-			if(!e) e = window.event;
-			var code = e.keyCode || e.charCode || e.which || 0;
-			e.data.mb.keypress(code,e);
-		});
+		// Temporarily stopping this because it is messing up at login
+		// $(document).on('keypress',{mb:this},function(e){
+		// 	if(!e) e = window.event;
+		// 	var code = e.keyCode || e.charCode || e.which || 0;
+		// 	e.data.mb.keypress(code,e);
+		// });
 
 		this.registerKey('r',function(){ this.reset(); });
 		this.registerKey('i',function(){ this.toggleDial(); });
@@ -569,7 +570,7 @@
 		// Update HTML elements
 		$('#nametoggle a').text(this.phrasebook.messier.name);
 		$('#messier .inner .padded').html(this.phrasebook.messier.bio);
-		$('#panel .inner .padded').html(this.phrasebook.instructions);
+		$('#panel-info').html(this.phrasebook.instructions);
 		return this;
 	}
 
@@ -939,13 +940,13 @@
 		if(i >= 0){
 			var m = this.catalogue[i-1];
 			if(data && data.image) $('#sky img').attr('src',data.image_thumb);
-			if($('#panel .messier').length == 0){
-				$('#panel .inner').html('<div class="padded"><h3 class="messier"></h3><p class="altname"></p><p class="type"></p><p class="distance"></p><p class="telescope"></p><p class="credit"></p><p class="date"></p><p class="download"></p></div>');
+			if($('#panel-info .messier').length == 0){
+				$('#panel-info').html('<div class="padded"><h3 class="messier"></h3><p class="altname"></p><p class="type"></p><p class="distance"></p><p class="telescope"></p><p class="credit"></p><p class="date"></p><p class="download"></p></div>');
 			}
-			$('#panel .messier').html(m.m);
-			$('#panel .altname').html((this.phrasebook.catalogue && this.phrasebook.catalogue[m.m].name) ? '('+this.phrasebook.catalogue[m.m].name+')' : (m.name) ? '('+m.name+')' : '');
-			$('#panel .distance').html('<strong>'+this.phrasebook.information.distance.label+'</strong> '+(m.distance >= 60000 ? '>' : '')+(m.distance*1000)+' '+this.phrasebook.information.distance.lyr);
-			$('#panel .type').html('<strong>'+this.phrasebook.information.type.label+'</strong> '+(this.phrasebook.catalogue ? this.phrasebook.catalogue[m.m].type : m.type));
+			$('#panel-info .messier').html(m.m);
+			$('#panel-info .altname').html((this.phrasebook.catalogue && this.phrasebook.catalogue[m.m].name) ? '('+this.phrasebook.catalogue[m.m].name+')' : (m.name) ? '('+m.name+')' : '');
+			$('#panel-info .distance').html('<strong>'+this.phrasebook.information.distance.label+'</strong> '+(m.distance >= 60000 ? '>' : '')+(m.distance*1000)+' '+this.phrasebook.information.distance.lyr);
+			$('#panel-info .type').html('<strong>'+this.phrasebook.information.type.label+'</strong> '+(this.phrasebook.catalogue ? this.phrasebook.catalogue[m.m].type : m.type));
 		}
 		if(typeof data==="object"){
 			if(data){
@@ -958,16 +959,16 @@
 				cache.src = data.image;
 				if(cache.complete) fn();
 
-				$('#panel .telescope').html('<strong>'+this.phrasebook.information.telescope.label+'</strong> '+data.observer_name);
-				$('#panel .credit').html('<strong>'+this.phrasebook.information.image.label+'</strong> <a href="'+data.observer_name+'" target="observation">'+data.observer_name+'</a>');
-				$('#panel .download').html('<a href="'+data.image+'" target="observation">&raquo; '+this.phrasebook.information.original+'</a>');
+				$('#panel-info .telescope').html('<strong>'+this.phrasebook.information.telescope.label+'</strong> '+data.observer_name);
+				$('#panel-info .credit').html('<strong>'+this.phrasebook.information.image.label+'</strong> <a href="'+data.observer_name+'" target="observation">'+data.observer_name+'</a>');
+				$('#panel-info .download').html('<a href="'+data.image+'" target="observation">&raquo; '+this.phrasebook.information.original+'</a>');
 			}else{
 				$('#sky img').attr('src','images/missing.png');
-				$('#panel .credit').html('');
-				$('#panel .download').html('');
+				$('#panel-info .credit').html('');
+				$('#panel-info .download').html('');
 			}
 		}else if(typeof data==="string"){
-			$('#panel').html(data);
+			$('#panel-info').html(data);
 		}
 	}
 	

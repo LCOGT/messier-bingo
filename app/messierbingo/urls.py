@@ -22,7 +22,7 @@ urlpatterns = patterns('',
     url(r'^db/$', ImageViewSet.as_view({'get': 'list'}), name='db'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login', login, {'template_name': 'login.html'}, name='auth_login'),
-    url(r'^logout', logout, name='auth_logout'),
+    url(r'^logout', logout, {'template_name': 'logout.html'}, name='auth_logout'),
 )
 
 if not settings.PRODUCTION:

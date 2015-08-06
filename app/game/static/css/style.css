@@ -14,12 +14,17 @@ body {
 	position: relative;
 }
 
+body.full-page {
+	background-color: #fff;
+	font-size: 2em;
+}
+
 .gray-2-grad, #lcogt-bar {
     background: #606060 -moz-linear-gradient(center top , #404040, #606060) repeat scroll 0 0;
     color: white;
 }
 
-#lcogt-bar { margin: 0; height: 32px; clear:both; line-height: 26px; color: #cccccc; font-size: 16px; overflow: hidden; font-family: Helvetica,"Bitstream Vera Sans",Arial,sans-serif;}
+#lcogt-bar { margin: 0; height: 32px; clear:both; line-height: 26px; color: #cccccc; font-size: 14px; overflow: hidden; font-family: Helvetica,"Bitstream Vera Sans",Arial,sans-serif;}
 #lcogt-bar a { color: #e6e6e6; text-decoration: none; }
 #lcogt-bar ul { margin: 0; padding: 0; list-style: none; }
 #lcogt-bar li { display: inline-block; padding: 0px 8px; }
@@ -35,6 +40,10 @@ body {
     color: white;
     text-decoration: none;
     text-align: left;
+}
+
+.bigpadded {
+	padding-top: 30px;
 }
 
 
@@ -67,6 +76,11 @@ body {
 .jsonly { display: none; }
 
 h1, h2, h3, h4, #nametoggle, #insttoggle { margin:0px; font-family: "Birch Std", Didot, "Bodoni MT", "Century Schoolbook", "Niagara Solid", Utopia, Georgia, Times, "Times New Roman", serif; }
+
+label {display:block; font-family: "Birch Std", Didot, "Bodoni MT", "Century Schoolbook", "Niagara Solid", Utopia, Georgia, Times, "Times New Roman", serif; }
+#loginForm input {font-size: 1em;}
+
+.tos, .account_options, .menuholder {font-size: 0.5em}
 
 #outer {
 	width: 1016px;
