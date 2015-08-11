@@ -939,6 +939,8 @@
 
 		if(i >= 0){
 			var m = this.catalogue[i-1];
+			$('#make-request').attr('data-objectid', m.m);//('objectid',m.m);
+			$('#observe_button').show();
 			if(data && data.image) $('#sky img').attr('src',data.image_thumb);
 			if($('#panel-info .messier').length == 0){
 				$('#panel-info').html('<div class="padded"><h3 class="messier"></h3><p class="altname"></p><p class="type"></p><p class="distance"></p><p class="telescope"></p><p class="credit"></p><p class="date"></p><p class="download"></p></div>');

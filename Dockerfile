@@ -2,7 +2,11 @@
 #
 # Runs the LCOGT Messier Bingo app using nginx + uwsgi
 #
-
+# Build with
+# docker build -t docker.lcogt.net/messierbingo:latest .
+#
+# Push to docker registry with
+# docker push docker.lcogt.net/messierbingo:latest
 #
 ################################################################################
 

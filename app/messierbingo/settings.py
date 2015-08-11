@@ -157,6 +157,10 @@ INSTALLED_APPS = (
     'game'
 )
 
+DEFAULT_CAMERAS = { '1m0' : '1m0-SciCam-SBIG',
+                    '2m0' : '2m0-SciCam-Spectral'
+                    }
+
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.

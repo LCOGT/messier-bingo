@@ -17,15 +17,24 @@
 	{% block scripts-extra %}
 	<script type="text/javascript">
 			$(document).ready(function(){
+				
+				{% if request.user.is_authenticated %}
+				$(document).on('click','#observe_button',function(event){
+					console.log('observe-confirm');
+					var content = $('#observe-confirm').html()
+					$('#message-content').html(content);
+					showPopup();
+				});	
+				{% endif %}
 
 				$(document).on('click','#togglepopup',function(event){
+					var content = $('#login-form').html()
+					$('#message-content').html(content);
 					showPopup();
 
 				});
 
-				$(document).on('click','#make_request',function(event){
-					showPopup();
-				});
+
 
 				function showPopup(){ 
 					if ($('#message-popup').is(':visible')) $('#message-popup').fadeOut("fast");
@@ -124,7 +133,7 @@
 	<div id="observe-confirm"  style="display:none;">
 		<h3>Observe <span id="object-name"></span></h3>
 		<p>Do you want an image of <strong><span id="object-name"></span></strong> to be taken in the next week by LCOGT?</p>
-		<p><a href="" data-object="" id="make-request" class="btn">Yes Please!</a> or <a href="#">No Thanks</a></p>
+		<p><a href="#" data-objectid="" id="make-request" class="btn">Yes Please!</a> or <a href="#">No Thanks</a></p>
 	</div>
 	{% endblock %}
 </body>
