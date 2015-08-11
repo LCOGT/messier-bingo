@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+{% load staticfiles %}
+
+{% block scripts %}{% endblock %}
+{% block scripts-extra %}{% endblock %}
+
+{%block body-class%}full-page{% endblock%}
+
+{% block main-content %}
+
+{% if form.errors %}
+			<div class="menuholder">
+				{% for e in form.non_field_errors %}
+				<div id="msg" class="error" style="display:block;">{{e}}</div>
+				{% endfor %}
+			</div>
+{% endif %}
+			<div id="main">
+
+				<div class="bigpadded">
+					<div class="row">					
+						<h1>Messier Bingo</h1>
+						<h3>You have been logged out!</h3>
+						<a href="{% url 'auth_login' %}">Log in again?</a>
+					</div>
+			</div>
+		</div>
+{% endblock %}

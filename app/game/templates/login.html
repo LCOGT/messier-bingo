@@ -1,0 +1,50 @@
+{% extends 'index.html' %}
+{% load staticfiles %}
+
+{% block scripts %}{% endblock %}
+{% block scripts-extra %}{% endblock %}
+
+{%block body-class%}full-page{% endblock%}
+
+{% block main-content %}
+
+{% if form.errors %}
+			<div class="menuholder">
+				{% for e in form.non_field_errors %}
+				<div id="msg" class="error" style="display:block;">{{e}}</div>
+				{% endfor %}
+			</div>
+{% endif %}
+			<div id="main">
+
+				<div class="bigpadded">
+					<div class="row">
+					<h1>Messier Bingo</h1>
+					<h3>Log into your On Sky account</h3>
+					<form action="" method="post"  id="loginForm" >
+						{% csrf_token %}
+						<div class="row">
+							<label for="username">Email Address:</label>
+							<input type="text" name="username" value="{% if form.username.value %}{{ form.username.value }}{% endif %}" id="username">
+							<div class="red">{{form.username.errors.as_text}}</div>
+						</div>
+						<div class="row">
+							<label for="password">Password:</label>
+							<input type="password" name="password" value="" id="password">
+							<div class="red">{{form.password.errors.as_text}}</div>
+						</div>
+						<input type="hidden" name="next" value="{{ next }}">
+						<div class="row">
+							<input type="submit" value="login" class="button" />
+                            <div class="tos">By logging in, you agree to <a href="http://lcogt.net/observatory/termsofuse" target="_blank">the LCOGT terms of use</a>.</div>
+						</div>
+						<div class="row account_options">
+							<a href="https://lcogt.net/observe/auth/accounts/register/">Need an account?</a>
+							&nbsp;
+							<a href="https://lcogt.net/observe/auth/accounts/password/reset/">Forgot your password?</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+{% endblock %}
