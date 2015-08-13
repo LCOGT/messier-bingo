@@ -8,18 +8,16 @@ from django.contrib import admin
 admin.autodiscover()
 
 from rest_framework import routers
-from game.views import ImageViewSet
-
-#router = routers.DefaultRouter()
-#router.register(r'db', ImageViewSet)
+from game.views import ImageViewSet, ScheduleView
 
 urlpatterns = patterns('',
     # Examples:
     url(r'^randompdf/$','messierbingo.views.output_card'),
     url(r'^$', 'game.views.home', name='home'),
     #url(r'^', include(router.urls)),
-    url(r'^db/(?P<slug>[a-zA-Z0-9-]+)/$', ImageViewSet.as_view({'get': 'retrieve'}), name='db'),
-    url(r'^db/$', ImageViewSet.as_view({'get': 'list'}), name='db'),
+    url(r'^db/(?P<slug>[a-zA-Z0-9-]+)/$', ImageViewSet.as_view({'get': 'retrieve'}), name='db_detail'),
+    url(r'^db/$', ImageViewSet.as_view({'get': 'list'}), name='db_list'),
+    url(r'schedule/$', ScheduleView.as_view(), name='form_test'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login', login, {'template_name': 'login.html'}, name='auth_login'),
     url(r'^logout', logout, {'template_name': 'logout.html'}, name='auth_logout'),

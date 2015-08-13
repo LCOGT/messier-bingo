@@ -418,7 +418,9 @@
 			{ 'm': 'M109', 'ngc': 'NGC 3992', 'name': '', 'type':'Barred spiral galaxy', 'distance': 55000, 'constellation': 'Ursa Major', 'mag': 11.0 },
 			{ 'm': 'M110', 'ngc': 'NGC 205', 'name': '', 'type':'Dwarf elliptical galaxy', 'distance': 2200, 'constellation': 'Andromeda', 'mag': 10.0 }
 		]
-		
+
+		this.observable_objects();
+
 		this.resize();
 
 		if($.support.transparency){
@@ -487,6 +489,63 @@
 		this.setDial(this.dialon);
 
 		return this;
+	}
+
+	MessierBingo.prototype.observable_objects = function(){
+	// Get list of currently visible Messier Objects from WhatsUP
+	// Provides default observing parameters which are used to modify this.catalogue
+		var url = 'http://lcogt.net/whatsup/search/?start=2015-08-07T09:28:10&aperture=1m0&end=2015-08-21T09:28:10&full=messier&format=jsonp';
+		$.ajax({
+			url: url,
+			method: 'GET',
+			cache: false,
+			dataType: 'jsonp',
+			context: this,
+			error: function(){
+				this.log('Error loading data from '+url);
+			},
+			success: function(data){
+				this.update_catalogue(data);
+			}
+		});
+	}
+
+	MessierBingo.prototype.submit_schedule = function(){
+	// Get list of currently visible Messier Objects from WhatsUP
+	// Provides default observing parameters which are used to modify this.catalogue
+		var url = '/schedule/';
+		var mobject = $('#make-request').attr('data-objectid')
+		var obs_vals = $.grep(this.catalogue, function(e){ return e.m == mobject; });
+		$.ajax({
+			url: url,
+			method: 'POST',
+			cache: false,
+			dataType: 'jsonp',
+			context: this,
+			error: function(){
+				this.log('Error loading data from '+url);
+			},
+			success: function(data){
+				this.update_catalogue(data);
+			}
+		});
+	}
+
+	MessierBingo.prototype.update_catalogue = function(data){
+		// console.log(data['targets']);
+		var m;
+		var current;
+		for (i=0;i < this.catalogue.length;i++){
+			m = this.catalogue[i]
+			current = $.grep(data['targets'], function(e){ return e.name == m['m']; });
+			if (current[0]) {
+				m['exp'] = current[0].exp
+				m['aperture'] = current[0].aperture
+			} else {
+				m['exp'] = 0
+				m['aperture'] = 'none'
+			}
+		}
 	}
 
 	// Update the clock every n seconds

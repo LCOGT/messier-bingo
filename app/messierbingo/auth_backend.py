@@ -5,10 +5,12 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.models import User, check_password
 from django.contrib.sessions.backends.db import SessionStore
 from django.core.exceptions import ImproperlyConfigured
+from django_tools.middlewares import ThreadLocal
 from django.db import connections
 from .models import Proposal
 import hashlib
 import logging
+import requests
 
 logger = logging.getLogger(__name__)
 
@@ -22,6 +24,7 @@ def matchRBauthPass(email,password):
         user = c.fetchone()
     if user:
         if check_password(password,user[1]):
+            get_odin_cookie(email, password)
             return user[0], user[1], user[2], user[3], user[4]
         else:
             ###### If the user does not have an email address return false
@@ -58,18 +61,20 @@ def checkUserObject(email,username,password,first_name,last_name, user_id):
     return user   
 
 def get_odin_cookie(email, password):
+    '''
+    Use login credentials to login to ODIN as well and add sessionid to Messier Bingo session
+    '''
     client = requests.session()
     url = 'https://lcogt.net/observe/auth/accounts/login/'
-    r = requests.get(url_auth)
-    cookie = 
-    r = client.post(url, cookies=cookie, data={'username':email,'password':password, csrfmiddlewaretoken : r.cookies['csrftoken']})
-    if r.status_code == '200':
-        s = SessionStore()
-        s['odin.sessionid'] = client.cookies['odin.sessionid']
-        s.save()
+    r = requests.get(url)
+    token = r.cookies['csrftoken']
+    r = client.post(url, data={'username':email,'password':password, 'csrfmiddlewaretoken' : token}, cookies={'csrftoken':token})
+    try:
+        request = ThreadLocal.get_current_request()
+        request.session['odin.sessionid'] = client.cookies['odin.sessionid']
         return True
-    else:
-        logger.error(r.content)
+    except Exception, e:
+        logger.error(client.cookies)
         return False
 
 def epo_proposals(user_id):
@@ -93,9 +98,8 @@ def add_proposal_to_session(user_id):
         value = list(usable_proposals)[0]
     else:
         return False
-    s = SessionStore()
-    s['proposal_code'] = value
-    s.save()
+    request = ThreadLocal.get_current_request()
+    request.session['proposal_code'] = value
     return True
 
          

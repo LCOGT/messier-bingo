@@ -1,10 +1,13 @@
 from django.db import models
 from django.utils.timezone import now
 
+APERTURES = (('1m0', '1-meter'), ('2m0', '2-meter'), ('04m', '0.4-meter'), ('any', 'Any'))
+
 class Telescope(models.Model):
     name = models.CharField(max_length=30, unique=True)
     code = models.CharField(max_length=4, blank=True, null=True)
     site = models.CharField(max_length=3, blank=True, null=True)
+    aperture = models.CharField(max_length=3, blank=True, null=True, choices=APERTURES)
 
     class Meta:
         ordering = ['site','name']

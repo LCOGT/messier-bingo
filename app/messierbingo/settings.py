@@ -104,6 +104,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django_tools.middlewares.ThreadLocal.ThreadLocalMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -126,7 +127,7 @@ SESSION_COOKIE_NAME = "messierbingo.sessionid"
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(CURRENT_PATH, 'templates')],
+        'DIRS': '',
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -161,39 +162,43 @@ DEFAULT_CAMERAS = { '1m0' : '1m0-SciCam-SBIG',
                     '2m0' : '2m0-SciCam-Spectral'
                     }
 
-# A sample logging configuration. The only tangible logging
-# performed by this configuration is to send an email to
-# the site admins on every HTTP 500 error when DEBUG=False.
-# See http://docs.djangoproject.com/en/dev/topics/logging for
-# more details on how to customize your logging configuration.
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'filters': {
-        'require_debug_false': {
-            '()': 'django.utils.log.RequireDebugFalse'
-        }
-    },
-    'handlers': {
-        'mail_admins': {
-            'level': 'ERROR',
-            'filters': ['require_debug_false'],
-            'class': 'django.utils.log.AdminEmailHandler'
-        },
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-        }
-    },
-    'loggers': {
-        'django.request': {
-            'handlers': ['mail_admins'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
-        'messierbingo' : {
-            'handlers' : ['console'],
-            'level'    : 'DEBUG',
-        },
-    }
-}
+# # A sample logging configuration. The only tangible logging
+# # performed by this configuration is to send an email to
+# # the site admins on every HTTP 500 error when DEBUG=False.
+# # See http://docs.djangoproject.com/en/dev/topics/logging for
+# # more details on how to customize your logging configuration.
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'filters': {
+#         'require_debug_false': {
+#             '()': 'django.utils.log.RequireDebugFalse'
+#         }
+#     },
+#     'handlers': {
+#         'mail_admins': {
+#             'level': 'ERROR',
+#             'filters': ['require_debug_false'],
+#             'class': 'django.utils.log.AdminEmailHandler'
+#         },
+#         'console': {
+#             'level': 'DEBUG',
+#             'class': 'logging.StreamHandler',
+#         }
+#     },
+#     'loggers': {
+#         'django.request': {
+#             'handlers': ['mail_admins'],
+#             'level': 'ERROR',
+#             'propagate': True,
+#         },
+#         'messierbingo' : {
+#             'handlers' : ['console'],
+#             'level'    : 'DEBUG',
+#         },
+#         'game' : {
+#             'handlers' : ['console'],
+#             'level'    : 'DEBUG',
+#         },
+#     }
+# }
