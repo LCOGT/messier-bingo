@@ -4,6 +4,7 @@
 <head>
 	<title>Messier Bingo</title>
 	<meta http-equiv="X-UA-Compatible" content="chrome=IE9">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="{% static 'css/mb-style.css' %}" type="text/css">
 	<!--[if lt IE 9]><link rel="stylesheet" href="{% static 'css/mb-style-ie.css'%}" type="text/css" /><![endif]-->
 	{% block scripts %}
@@ -35,7 +36,9 @@
 				});
 
 				$(document).on('click','#make-request',function(event){
-					mb.submit_schedule();
+					var content = '<div style="margin:1em;"><i class="fa fa-spinner fa-spin fa-3x fa-fw margin-bottom"></i><br />Sending your request to Serol...<\/div>'
+					$('#message-content').html(content);
+					mb.submit_schedule('{{ csrf_token }}');
 				});
 
 
@@ -43,10 +46,7 @@
 				function showPopup(){ 
 					if ($('#message-popup').is(':visible')) $('#message-popup').fadeOut("fast");
 					else $('#message-popup').fadeIn("fast");
-					$('#message-popup-close').bind("click",function(){
-						$('#message-popup').fadeOut("fast");
-						$('.overlay').hide();
-					});
+					$('#message-popup-close').bind("click",function(){ closePopup();});
 					$('.overlay').show();
 					return false;
 				}
@@ -56,6 +56,10 @@
 					$(el).css({left:(wide-$(el).outerWidth())/2,top:($(window).scrollTop()+(tall-$(el).outerHeight())/2)});
 				}
 			});
+			function closePopup(){
+				$('#message-popup').fadeOut("fast");
+				$('.overlay').hide();
+			}
 	</script>
 	{% endblock %}
 </head>
@@ -137,7 +141,7 @@
 	<div id="observe-confirm"  style="display:none;">
 		<h3>Observe <span id="object-name"></span></h3>
 		<p>Do you want an image of <strong><span id="object-name"></span></strong> to be taken in the next week by LCOGT?</p>
-		<p><a href="#" data-objectid="" id="make-request" class="btn">Yes Please!</a> or <a href="#" onclick="$('#message-popup').fadeOut("fast");$('.overlay').hide();">No Thanks</a></p>
+		<p><a href="#" data-objectid="" id="make-request" class="btn">Yes Please!</a> or <a href="#" onclick="closePopup();">No Thanks</a></p>
 	</div>
 	{% endblock %}
 </body>

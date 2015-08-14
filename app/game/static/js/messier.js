@@ -512,35 +512,36 @@
 		});
 	}
 
-	MessierBingo.prototype.submit_schedule = function(){
+	MessierBingo.prototype.submit_schedule = function(token){
 	// Get list of currently visible Messier Objects from WhatsUP
 	// Provides default observing parameters which are used to modify this.catalogue
+		var html = ''
 		var url = '/schedule/';
 		var mobject = $('#make-request').attr('data-objectid')
 		var obs_vals = $.grep(this.catalogue, function(e){ return e.m == mobject; });
 		var data = {start:this.startstamp, 
 					end:this.endstamp,
 					aperture:obs_vals[0]['aperture'],
-					object_name:obs_vals[0]['name'],
+					object_name:obs_vals[0]['m'],
 					object_ra:obs_vals[0]['ra'],
 					object_dec:obs_vals[0]['dec'],
 					exp_time:obs_vals[0]['exp'],
-					filters:obs_vals[0]['filters'],
+					obs_filter:obs_vals[0]['filters'],
+					csrfmiddlewaretoken: token,
 				};
 		console.log(data);
-		// $.ajax({
-		// 	url: url,
-		// 	method: 'POST',
-		// 	cache: false,
-		// 	data: data,
-		// 	context: this,
-		// 	error: function(){
-		// 		this.log('Error loading data from '+url);
-		// 	},
-		// 	success: function(data){
-		// 		this.update_catalogue(data);
-		// 	}
-		// });
+		$.ajax({
+			url: url,
+			method: 'POST',
+			cache: false,
+			data: data,
+			error: function(e){
+				console.log('Error: '+e);
+			},
+			success: function(data){
+				closePopup();
+			}
+		});
 	}
 
 	MessierBingo.prototype.update_catalogue = function(data){
@@ -555,7 +556,7 @@
 				m['aperture'] = current[0].aperture
 				m['ra'] = current[0].ra
 				m['dec'] = current[0].dec
-				m['filters'] = current[0].filters
+				m['filters'] = 'rp'
 			} else {
 				m['exp'] = 0
 				m['aperture'] = 'none'
@@ -1017,7 +1018,7 @@
 		if(i >= 0){
 			var m = this.catalogue[i-1];
 			$('#make-request').attr('data-objectid', m.m);//('objectid',m.m);
-			$('#observe_button').show();
+			if (m.m['ra'] != 0){ $('#observe_button').show(); }
 			if(data && data.image) $('#sky img').attr('src',data.image_thumb);
 			if($('#panel-info .messier').length == 0){
 				$('#panel-info').html('<div class="padded"><h3 class="messier"></h3><p class="altname"></p><p class="type"></p><p class="distance"></p><p class="telescope"></p><p class="credit"></p><p class="date"></p><p class="download"></p></div>');
