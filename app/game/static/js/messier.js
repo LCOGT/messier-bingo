@@ -421,6 +421,8 @@
 
 		this.observable_objects();
 
+		this.setWindows();
+
 		this.resize();
 
 		if($.support.transparency){
@@ -516,19 +518,29 @@
 		var url = '/schedule/';
 		var mobject = $('#make-request').attr('data-objectid')
 		var obs_vals = $.grep(this.catalogue, function(e){ return e.m == mobject; });
-		$.ajax({
-			url: url,
-			method: 'POST',
-			cache: false,
-			dataType: 'jsonp',
-			context: this,
-			error: function(){
-				this.log('Error loading data from '+url);
-			},
-			success: function(data){
-				this.update_catalogue(data);
-			}
-		});
+		var data = {start:this.startstamp, 
+					end:this.endstamp,
+					aperture:obs_vals[0]['aperture'],
+					object_name:obs_vals[0]['name'],
+					object_ra:obs_vals[0]['ra'],
+					object_dec:obs_vals[0]['dec'],
+					exp_time:obs_vals[0]['exp'],
+					filters:obs_vals[0]['filters'],
+				};
+		console.log(data);
+		// $.ajax({
+		// 	url: url,
+		// 	method: 'POST',
+		// 	cache: false,
+		// 	data: data,
+		// 	context: this,
+		// 	error: function(){
+		// 		this.log('Error loading data from '+url);
+		// 	},
+		// 	success: function(data){
+		// 		this.update_catalogue(data);
+		// 	}
+		// });
 	}
 
 	MessierBingo.prototype.update_catalogue = function(data){
@@ -541,9 +553,15 @@
 			if (current[0]) {
 				m['exp'] = current[0].exp
 				m['aperture'] = current[0].aperture
+				m['ra'] = current[0].ra
+				m['dec'] = current[0].dec
+				m['filters'] = current[0].filters
 			} else {
 				m['exp'] = 0
 				m['aperture'] = 'none'
+				m['ra'] = 0
+				m['dec'] = 0
+				m['filters'] = 'rp'
 			}
 		}
 	}
@@ -1075,6 +1093,14 @@
 		var angs = [h,m,s];
 		for(var h = 0 ; h < this.hands.length ; h++) this.updateRotation(this.hands[h],angs[h],(this.chrome.clock.ox),(this.chrome.clock.oy));
 		return this;
+	}
+
+	MessierBingo.prototype.setWindows = function(){
+		var start = new Date();
+		var end = new Date();
+		this.startstamp = start.toISOString();
+		end.setDate( end.getDate() + 7 );
+		this.endstamp = end.toISOString();
 	}
 
 	MessierBingo.prototype.moveEyes = function(x,y){

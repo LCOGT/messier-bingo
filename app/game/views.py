@@ -39,7 +39,9 @@ class ScheduleView(APIView):
         else:
             cookie_id=request.session.get('odin.sessionid', False)
             if not cookie_id:
-                return Response("Not authenticated with ODIN", status=status.HTTP_400_BAD_REQUEST)
+                return Response("Not authenticated with ODIN.", status=status.HTTP_400_BAD_REQUEST)
             proposal = request.session.get('proposal_code', False)
+            if not proposal:
+                return Response("No proposal have been registered.", status=status.HTTP_400_BAD_REQUEST)
             resp = ser.save(cookie_id=cookie_id, proposal=proposal)
             return resp

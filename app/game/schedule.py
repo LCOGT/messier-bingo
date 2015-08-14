@@ -8,10 +8,12 @@ import json
 logger = logging.getLogger('django')
 
 def process_observation_request(params, cookie_id):
+    '''
+    Send the observation parameters and the authentication cookie to the Scheduler API
+    '''
     client = requests.session()
     logger.error(cookie_id)
     cookies = {'odin.sessionid':cookie_id}
-    #cookies = {'odin.sessionid': 'eac43425066196611b6c2e87e43a338a'}
     url = 'https://lcogt.net/observe/service/request/submit'
     r = client.post(url, data=params, cookies=cookies)
     if r.status_code == '200':
@@ -20,7 +22,10 @@ def process_observation_request(params, cookie_id):
         logger.error(r.content)
         return False, r.content
 
-def request_format(proposal, object_name, object_ra, object_dec, exp_time, start,end, obs_filter ='r', aperture='1m0'):
+def request_format(object_name, object_ra, object_dec, exp_time, start,end, obs_filter ='r', aperture='1m0'):
+    '''
+    Format a simple request using the schema the Scheduler understands
+    '''
     default_camera = settings.DEFAULT_CAMERAS[aperture]
 
 # this selects any telescope on the 1 meter network
@@ -73,5 +78,5 @@ def request_format(proposal, object_name, object_ra, object_dec, exp_time, start
         "requests" : [request],
         "type" : "compound_request"
         }
-    final_request = {'proposal':proposal, 'request_data': json.dumps(user_request)}
+    final_request = json.dumps(user_request)
     return final_request

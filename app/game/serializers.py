@@ -13,9 +13,6 @@ class RequestSerializer(serializers.Serializer):
     """
     This serializer POSTing parameters to the scheduler the api.
     """
-    proposal_list = Proposal.objects.filter(active=True).values_list('code', flat=True)
-
-    proposal = serializers.ChoiceField(choices=proposal_list)
     start = serializers.DateTimeField()
     end = serializers.DateTimeField()
     aperture = serializers.ChoiceField(choices=APERTURES)
@@ -27,8 +24,8 @@ class RequestSerializer(serializers.Serializer):
 
     def save(self, *args, **kwargs):
         params = self.data
-        sub_params = request_format(kwargs['proposal'], params['object_name'], params['object_ra'], params['object_dec'], params['exp_time'], params['start'], params['end'], params['obs_filter'], params['aperture'])
-        #super(RequestSerializer, self).save(*args, **kwargs)
+        obs_params = request_format(params['object_name'], params['object_ra'], params['object_dec'], params['exp_time'], params['start'], params['end'], params['obs_filter'], params['aperture'])
+        sub_params = {'proposal': kwargs['proposal'], 'request_data':obs_params}
         resp_status, resp_msg = process_observation_request(params=sub_params, cookie_id=kwargs['cookie_id'])
         if resp_status:
             return Response('Success', status=status.HTTP_201_CREATED)
