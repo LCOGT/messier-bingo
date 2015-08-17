@@ -16,7 +16,7 @@ def process_observation_request(params, cookie_id):
     cookies = {'odin.sessionid':cookie_id}
     url = 'https://lcogt.net/observe/service/request/submit'
     r = client.post(url, data=params, cookies=cookies)
-    if r.status_code == '200':
+    if r.status_code == 200:
         return True, False
     else:
         logger.error(r.content)

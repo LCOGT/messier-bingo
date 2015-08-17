@@ -56,8 +56,8 @@
 					$(el).css({left:(wide-$(el).outerWidth())/2,top:($(window).scrollTop()+(tall-$(el).outerHeight())/2)});
 				}
 			});
-			function closePopup(){
-				$('#message-popup').fadeOut("fast");
+			function closePopup(delay){
+				$('#message-popup').delay(delay).fadeOut("fast");
 				$('.overlay').hide();
 			}
 	</script>

@@ -529,7 +529,6 @@
 					obs_filter:obs_vals[0]['filters'],
 					csrfmiddlewaretoken: token,
 				};
-		console.log(data);
 		$.ajax({
 			url: url,
 			method: 'POST',
@@ -539,7 +538,12 @@
 				console.log('Error: '+e);
 			},
 			success: function(data){
-				closePopup();
+				var content = "<h3>Success!</h3><p>Your image will be ready in the next week.</p><img src='http://lcogt.net/files/edu/serol.jpg'>"
+				$('#message-content').html(content);
+				closePopup(delay='2000');
+				// Stop them from accidentally submitting a second time
+				$('#observe_button').hide();
+
 			}
 		});
 	}
@@ -552,17 +556,19 @@
 			m = this.catalogue[i]
 			current = $.grep(data['targets'], function(e){ return e.name == m['m']; });
 			if (current[0]) {
-				m['exp'] = current[0].exp
-				m['aperture'] = current[0].aperture
-				m['ra'] = current[0].ra
-				m['dec'] = current[0].dec
-				m['filters'] = 'rp'
+				if (current[0].aperture == 'any'){ m['aperture'] = '1m0'; }
+				else if (current[0].aperture == 'sml'){ m['aperture'] = '1m0'; }
+				else { m['aperture'] = current[0].aperture; }
+				m['exp'] = current[0].exp ;
+				m['ra'] = current[0].ra ;
+				m['dec'] = current[0].dec ;
+				m['filters'] = 'rp' ;
 			} else {
-				m['exp'] = 0
-				m['aperture'] = 'none'
-				m['ra'] = 0
-				m['dec'] = 0
-				m['filters'] = 'rp'
+				m['exp'] = 0 ;
+				m['aperture'] = 'none' ;
+				m['ra'] = 0 ;
+				m['dec'] = 0 ;
+				m['filters'] = 'rp' ;
 			}
 		}
 	}
@@ -1017,8 +1023,12 @@
 
 		if(i >= 0){
 			var m = this.catalogue[i-1];
-			$('#make-request').attr('data-objectid', m.m);//('objectid',m.m);
-			if (m.m['ra'] != 0){ $('#observe_button').show(); }
+			$('#make-request').attr('data-objectid', m.m);
+			if (m['aperture'] == 'none'){
+				$('#observe_button').hide();
+			}else{
+				$('#observe_button').show();
+			}
 			if(data && data.image) $('#sky img').attr('src',data.image_thumb);
 			if($('#panel-info .messier').length == 0){
 				$('#panel-info').html('<div class="padded"><h3 class="messier"></h3><p class="altname"></p><p class="type"></p><p class="distance"></p><p class="telescope"></p><p class="credit"></p><p class="date"></p><p class="download"></p></div>');
