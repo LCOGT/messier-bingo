@@ -61,7 +61,7 @@ body.full-page {
 /* just some content with arbitrary styles for explanation purposes */
 #message-popup {
     width: 300px;
-    height: 200px;
+    min-height: 200px;
     position: fixed;
     top: 50%; 
     left: 50%;
@@ -235,4 +235,58 @@ label {display:block; font-family: "Birch Std", Didot, "Bodoni MT", "Century Sch
 	margin-top: 0px;
 	font-weight: bold;
 }
+
+.info-header .info-header-item {display:inline-block;}
+
+.info-header{width:100%;}
+
+
 .hidden { display: none; }
+
+#message-popup-close { cursor: pointer!important; }
+
+.flatbtngreen {
+    background: #009d00 none repeat scroll 0 0;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    -moz-border-radius: 15px;
+	border-radius: 15px;
+    box-shadow: -1px 1px 4px rgba(0, 0, 0, 0.2);
+    color: #fff !important;
+    display: inline-block;
+    font-family: inherit;
+    font-feature-settings: inherit;
+    font-language-override: inherit;
+    font-size: 1em;
+    font-size-adjust: inherit;
+    font-stretch: inherit;
+    font-style: inherit;
+    font-variant: inherit;
+    font-weight: inherit;
+    height: inherit;
+    line-height: inherit;
+    min-width: 1em;
+    padding: 7px 16px;
+    text-align: center;
+    text-decoration: none !important;
+    vertical-align: middle;
+}
+
+.flatbtngreen:hover, .flatbtngreen:active, .flatbtngreen:focus {
+	cursor: pointer!important;
+	background: #3366AA;
+	color:#FFFFFF;
+	border: 1px solid rgba(0,0,0,0.2);
+	text-shadow: 0px 0px 0px rgba(0,0,0,0.5);
+	box-shadow: 0px 1px 4px rgba(0,0,0,0.1);
+	-moz-box-shadow: 0px 1px 4px rgba(0,0,0,0.1);
+	-webkit-box-shadow: 0px 1px 4px rgba(0,0,0,0.1);
+}
+
+/* Responsive styles for the AVM icons */
+@media (min-width: 1024px), (min-device-width: 1024px) {
+	.info-header-item img {width:100%;}
+}
+@media (max-width: 800px), (max-device-width: 800px) {
+	.info-header-item img {width:50%;}
+	.flatbtngreen {border-radius: 0;}
+}

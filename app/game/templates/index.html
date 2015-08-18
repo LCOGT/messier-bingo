@@ -17,7 +17,11 @@
 	{% endblock%}
 	{% block scripts-extra %}
 	<script type="text/javascript">
+			var mb;
 			$(document).ready(function(){
+				var user_auth = {% if request.user.is_authenticated %} true{% else %} false{%endif%};
+				// Initialise the MessierBingo class
+				mb = $.messierbingo({'user_auth':user_auth});
 				
 				{% if request.user.is_authenticated %}
 				$(document).on('click','#observe_button',function(event){
@@ -36,7 +40,7 @@
 				});
 
 				$(document).on('click','#make-request',function(event){
-					var content = '<div style="margin:1em;"><i class="fa fa-spinner fa-spin fa-3x fa-fw margin-bottom"></i><br />Sending your request to Serol...<\/div>'
+					var content = '<div style="margin:1em;"><i class="fa fa-spinner fa-spin fa-3x fa-fw margin-bottom"></i><br />Sending your request to Serol...<br/><img src="http://lcogt.net/files/edu/serol/serol_telescope_sm.png"><\/div>'
 					$('#message-content').html(content);
 					mb.submit_schedule('{{ csrf_token }}');
 				});
@@ -112,7 +116,8 @@
 							<p>To select a new Messier object press the arrow in the bottom right. If you need to restart press the 'R' key.</p>
 						</div>
 						<div class="padded" id="observe_button" style="display:none;">
-							<a href="#" class="btn" id="request-popup">Take your own picture! ></a>
+							<a href="#" class="flatbtngreen" id="request-popup">Take your own picture! <i class="fa fa-arrow-right"></i>
+</a>
 						</div>
 					</div>
 				</div>
@@ -125,7 +130,7 @@
 	</div>
 	<div id="message-popup" style="display:none;">
 		<div id="show-messages-inner">
-			<div id="message-popup-close">×</div>
+			<div id="message-popup-close"><i class="fa fa-remove"></i></div>
 			<div id="message-content"></div>
 		</div>
 	</div>
@@ -141,7 +146,7 @@
 	<div id="observe-confirm"  style="display:none;">
 		<h3>Observe <span id="object-name"></span></h3>
 		<p>Do you want an image of <strong><span id="object-name"></span></strong> to be taken in the next week by LCOGT?</p>
-		<p><a href="#" data-objectid="" id="make-request" class="btn">Yes Please!</a> or <a href="#" onclick="closePopup();">No Thanks</a></p>
+		<p><a href="#" data-objectid="" id="make-request" class="flatbtngreen">Yes Please!</a> or <a href="#" onclick="closePopup();">No Thanks</a></p>
 	</div>
 	{% endblock %}
 </body>

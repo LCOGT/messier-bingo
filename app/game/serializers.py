@@ -1,13 +1,19 @@
 from rest_framework import serializers, status
 from rest_framework.response import Response
-from messierbingo.models import MessierObject, Proposal, APERTURES
+from messierbingo.models import MessierObject, Proposal, Telescope, APERTURES
 from game.schedule import process_observation_request, request_format
 from django.conf import settings
 
-class ImageSerializer(serializers.HyperlinkedModelSerializer):
+class ScopeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Telescope
+        fields = ('name','aperture')
+
+class ImageSerializer(serializers.ModelSerializer):
+    telescope = ScopeSerializer()
     class Meta:
         model = MessierObject
-        fields = ('name','ra', 'dec', 'image','image_thumb','observer_name','avm_code')
+        fields = ('name','ra', 'dec', 'image','image_thumb','observer_name','avm_code','telescope')
 
 class RequestSerializer(serializers.Serializer):
     """

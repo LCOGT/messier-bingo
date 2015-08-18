@@ -206,7 +206,9 @@
 		this.langs = (inp && inp.langs) ? inp.langs : { 'en': 'English', 'cy':'Cymraeg' };
 		this.langurl = "/static/lang/%LANG%.json";
 
-
+		// Log whether user is authenticated
+		this.authenticated = typeof inp.user_auth == "undefined" ? false : inp.user_auth;
+		
 		// Process the input parameters/query string
 		this.init(inp);
 
@@ -307,116 +309,128 @@
 		}
 
 		this.catalogue = [
-			{ 'm': 'M1', 'ngc': 'NGC 1952', 'name': 'Crab Nebula', 'type':'Supernova remnant', 'distance': 6.3, 'constellation': 'Taurus', 'mag': 8.2 },
-			{ 'm': 'M2', 'ngc': 'NGC 7089', 'name': '', 'type':'Globular cluster', 'distance': 36, 'constellation': 'Aquarius', 'mag': 6.5 },
-			{ 'm': 'M3', 'ngc': 'NGC 5272', 'name': '', 'type':'Globular cluster', 'distance': 31, 'constellation': 'Canes Venatici', 'mag': 6.4 },
-			{ 'm': 'M4', 'ngc': 'NGC 6121', 'name': '', 'type':'Globular cluster', 'distance': 7, 'constellation': 'Scorpius', 'mag': 5.9 },
-			{ 'm': 'M5', 'ngc': 'NGC 5904', 'name': '', 'type':'Globular cluster', 'distance': 23, 'constellation': 'Serpens', 'mag': 7.0 },
-			{ 'm': 'M6', 'ngc': 'NGC 6405', 'name': 'Butterfly Cluster', 'type':'Open cluster', 'distance': 2, 'constellation': 'Scorpius', 'mag': 4.5 },
-			{ 'm': 'M7', 'ngc': 'NGC 6475', 'name': 'Ptolemy Cluster', 'type':'Open cluster', 'distance': 1, 'constellation': 'Scorpius', 'mag': 3.5 },
-			{ 'm': 'M8', 'ngc': 'NGC 6523', 'name': 'Lagoon Nebula', 'type':'Nebula with cluster', 'distance': 6.5, 'constellation': 'Sagittarius', 'mag': 6.0 },
-			{ 'm': 'M9', 'ngc': 'NGC 6333', 'name': '', 'type':'Globular cluster', 'distance': 26, 'constellation': 'Ophiuchus', 'mag': 9.0 },
-			{ 'm': 'M10', 'ngc': 'NGC 6254', 'name': '', 'type':'Globular cluster', 'distance': 13, 'constellation': 'Ophiuchus', 'mag': 7.5 },
-			{ 'm': 'M11', 'ngc': 'NGC 6705', 'name': 'Wild Duck Cluster', 'type':'Open cluster', 'distance': 6, 'constellation': 'Scutum', 'mag': 7.0 },
-			{ 'm': 'M12', 'ngc': 'NGC 6218', 'name': '', 'type':'Globular cluster', 'distance': 18, 'constellation': 'Ophiuchus', 'mag': 8.0 },
-			{ 'm': 'M13', 'ngc': 'NGC 6205', 'name': 'Great Globular Cluster in Hercules', 'type':'Globular cluster', 'distance': 22, 'constellation': 'Hercules', 'mag': 5.8 },
-			{ 'm': 'M14', 'ngc': 'NGC 6402', 'name': '', 'type':'Globular cluster', 'distance': 27, 'constellation': 'Ophiuchus', 'mag': 9.5 },
-			{ 'm': 'M15', 'ngc': 'NGC 7078', 'name': '', 'type':'Globular cluster', 'distance': 33, 'constellation': 'Pegasus', 'mag': 6.2 },
-			{ 'm': 'M16', 'ngc': 'NGC 6611', 'name': 'Eagle Nebula', 'type':'Nebula/H II region with cluster', 'distance': 7, 'constellation': 'Serpens', 'mag': 6.5 },
-			{ 'm': 'M17', 'ngc': 'NGC 6618', 'name': 'Swan Nebula', 'type':'Nebula/H II region with cluster', 'distance': 5, 'constellation': 'Sagittarius', 'mag': 6.0 },
-			{ 'm': 'M18', 'ngc': 'NGC 6613', 'name': '', 'type':'Open cluster', 'distance': 6, 'constellation': 'Sagittarius', 'mag': 8.0 },
-			{ 'm': 'M19', 'ngc': 'NGC 6273', 'name': '', 'type':'Globular cluster', 'distance': 27, 'constellation': 'Ophiuchus', 'mag': 8.5 },
-			{ 'm': 'M20', 'ngc': 'NGC 6514', 'name': 'Trifid Nebula', 'type':'Nebula/H II region with cluster', 'distance': 5.2, 'constellation': 'Sagittarius', 'mag': 6.3 },
-			{ 'm': 'M21', 'ngc': 'NGC 6531', 'name': '', 'type':'Open cluster', 'distance': 3, 'constellation': 'Sagittarius', 'mag': 7.0 },
-			{ 'm': 'M22', 'ngc': 'NGC 6656', 'name': 'Sagittarius Cluster', 'type':'Globular cluster', 'distance': 10, 'constellation': 'Sagittarius', 'mag': 5.1 },
-			{ 'm': 'M23', 'ngc': 'NGC 6494', 'name': '', 'type':'Open cluster', 'distance': 4.5, 'constellation': 'Sagittarius', 'mag': 6.0 },
-			{ 'm': 'M24', 'ngc': 'IC 4715', 'name': 'Sagittarius Star Cloud', 'type':'Milky Way star cloud', 'distance': 10.0, 'constellation': 'Sagittarius', 'mag': 4.6 },
-			{ 'm': 'M25', 'ngc': 'IC 4725', 'name': '', 'type':'Open cluster', 'distance': 2, 'constellation': 'Sagittarius', 'mag': 4.9 },
-			{ 'm': 'M26', 'ngc': 'NGC 6694', 'name': '', 'type':'Open cluster', 'distance': 5, 'constellation': 'Scutum', 'mag': 9.5 },
-			{ 'm': 'M27', 'ngc': 'NGC 6853', 'name': 'Dumbbell Nebula', 'type':'Planetary nebula', 'distance': 1.25, 'constellation': 'Vulpecula', 'mag': 7.5 },
-			{ 'm': 'M28', 'ngc': 'NGC 6626', 'name': '', 'type':'Globular cluster', 'distance': 18, 'constellation': 'Sagittarius', 'mag': 8.5 },
-			{ 'm': 'M29', 'ngc': 'NGC 6913', 'name': '', 'type':'Open cluster', 'distance': 7.2, 'constellation': 'Cygnus', 'mag': 9.0 },
-			{ 'm': 'M30', 'ngc': 'NGC 7099', 'name': '', 'type':'Globular cluster', 'distance': 25, 'constellation': 'Capricornus', 'mag': 8.5 },
-			{ 'm': 'M31', 'ngc': 'NGC 224', 'name': 'Andromeda Galaxy', 'type':'Spiral galaxy', 'distance': 2500, 'constellation': 'Andromeda', 'mag': 3.4 },
-			{ 'm': 'M32', 'ngc': 'NGC 221', 'name': '', 'type':'Dwarf elliptical galaxy', 'distance': 2900, 'constellation': 'Andromeda', 'mag': 8.1 },
-			{ 'm': 'M33', 'ngc': 'NGC 598', 'name': 'Triangulum Galaxy', 'type':'Spiral galaxy', 'distance': 2810, 'constellation': 'Triangulum', 'mag': 5.7 },
-			{ 'm': 'M34', 'ngc': 'NGC 1039', 'name': '', 'type':'Open cluster', 'distance': 1.4, 'constellation': 'Perseus', 'mag': 6.0 },
-			{ 'm': 'M35', 'ngc': 'NGC 2168', 'name': '', 'type':'Open cluster', 'distance': 2.8, 'constellation': 'Gemini', 'mag': 5.5 },
-			{ 'm': 'M36', 'ngc': 'NGC 1960', 'name': '', 'type':'Open cluster', 'distance': 4.1, 'constellation': 'Auriga', 'mag': 6.5 },
-			{ 'm': 'M37', 'ngc': 'NGC 2099', 'name': '', 'type':'Open cluster', 'distance': 4.6, 'constellation': 'Auriga', 'mag': 6.0 },
-			{ 'm': 'M38', 'ngc': 'NGC 1912', 'name': '', 'type':'Open cluster', 'distance': 4.2, 'constellation': 'Auriga', 'mag': 7.0 },
-			{ 'm': 'M39', 'ngc': 'NGC 7092', 'name': '', 'type':'Open cluster', 'distance': 0.8, 'constellation': 'Cygnus', 'mag': 5.5 },
-			{ 'm': 'M40', 'ngc': '', 'name': 'Winnecke 4', 'type':'Double star', 'distance': 0.5, 'constellation': 'Ursa Major', 'mag': 9.0 },
-			{ 'm': 'M41', 'ngc': 'NGC 2287', 'name': '', 'type':'Open cluster', 'distance': 2.3, 'constellation': 'Canis Major', 'mag': 4.5 },
-			{ 'm': 'M42', 'ngc': 'NGC 1976', 'name': 'Orion Nebula', 'type':'Nebula/H II region', 'distance': 1.6, 'constellation': 'Orion', 'mag': 4.0 },
-			{ 'm': 'M43', 'ngc': 'NGC 1982', 'name': 'De Mairan\'s Nebula', 'type':'Nebula (part of the Orion Nebula)', 'distance': 1.6, 'constellation': 'Orion', 'mag': 7.0 },
-			{ 'm': 'M44', 'ngc': 'NGC 2632', 'name': 'Beehive Cluster', 'type':'Open cluster', 'distance': 0.6, 'constellation': 'Cancer', 'mag': 3.7 },
-			{ 'm': 'M45', 'ngc': '', 'name': 'Pleiades', 'type':'Open cluster', 'distance': 0.4, 'constellation': 'Taurus', 'mag': 1.6 },
-			{ 'm': 'M46', 'ngc': 'NGC 2437', 'name': '', 'type':'Open cluster', 'distance': 5.4, 'constellation': 'Puppis', 'mag': 6.5 },
-			{ 'm': 'M47', 'ngc': 'NGC 2422', 'name': '', 'type':'Open cluster', 'distance': 1.6, 'constellation': 'Puppis', 'mag': 4.5 },
-			{ 'm': 'M48', 'ngc': 'NGC 2548', 'name': '', 'type':'Open cluster', 'distance': 1.5, 'constellation': 'Hydra', 'mag': 5.5 },
-			{ 'm': 'M49', 'ngc': 'NGC 4472', 'name': '', 'type':'Elliptical galaxy', 'distance': 60000, 'constellation': 'Virgo', 'mag': 10.0 },
-			{ 'm': 'M50', 'ngc': 'NGC 2323', 'name': '', 'type':'Open cluster', 'distance': 3, 'constellation': 'Monoceros', 'mag': 7.0 },
-			{ 'm': 'M51', 'ngc': 'NGC 5194, NGC 5195', 'name': 'Whirlpool Galaxy', 'type':'Spiral galaxy', 'distance': 37000, 'constellation': 'Canes Venatici', 'mag': 8.4 },
-			{ 'm': 'M52', 'ngc': 'NGC 7654', 'name': '', 'type':'Open cluster', 'distance': 7, 'constellation': 'Cassiopeia', 'mag': 8.0 },
-			{ 'm': 'M53', 'ngc': 'NGC 5024', 'name': '', 'type':'Globular cluster', 'distance': 56, 'constellation': 'Coma Berenices', 'mag': 8.5 },
-			{ 'm': 'M54', 'ngc': 'NGC 6715', 'name': '', 'type':'Globular cluster', 'distance': 83, 'constellation': 'Sagittarius', 'mag': 8.5 },
-			{ 'm': 'M55', 'ngc': 'NGC 6809', 'name': '', 'type':'Globular cluster', 'distance': 17, 'constellation': 'Sagittarius', 'mag': 7.0 },
-			{ 'm': 'M56', 'ngc': 'NGC 6779', 'name': '', 'type':'Globular cluster', 'distance': 32, 'constellation': 'Lyra', 'mag': 9.5 },
-			{ 'm': 'M57', 'ngc': 'NGC 6720', 'name': 'Ring Nebula', 'type':'Planetary nebula', 'distance': 2.3, 'constellation': 'Lyra', 'mag': 8.8 },
-			{ 'm': 'M58', 'ngc': 'NGC 4579', 'name': '', 'type':'Barred spiral galaxy', 'distance': 60000, 'constellation': 'Virgo', 'mag': 11.0 },
-			{ 'm': 'M59', 'ngc': 'NGC 4621', 'name': '', 'type':'Elliptical galaxy', 'distance': 60000, 'constellation': 'Virgo', 'mag': 11.5 },
-			{ 'm': 'M60', 'ngc': 'NGC 4649', 'name': '', 'type':'Elliptical galaxy', 'distance': 60000, 'constellation': 'Virgo', 'mag': 10.5 },
-			{ 'm': 'M61', 'ngc': 'NGC 4303', 'name': '', 'type':'Spiral galaxy', 'distance': 60000, 'constellation': 'Virgo', 'mag': 10.5 },
-			{ 'm': 'M62', 'ngc': 'NGC 6266', 'name': '', 'type':'Globular cluster', 'distance': 22, 'constellation': 'Ophiuchus', 'mag': 8.0 },
-			{ 'm': 'M63', 'ngc': 'NGC 5055', 'name': 'Sunflower Galaxy', 'type':'Spiral galaxy', 'distance': 37000, 'constellation': 'Canes Venatici', 'mag': 8.5 },
-			{ 'm': 'M64', 'ngc': 'NGC 4826', 'name': 'Black Eye Galaxy', 'type':'Spiral galaxy', 'distance': 12000, 'constellation': 'Coma Berenices', 'mag': 9.0 },
-			{ 'm': 'M65', 'ngc': 'NGC 3623', 'name': 'Leo Triplet', 'type':'Barred spiral galaxy', 'distance': 35000, 'constellation': 'Leo', 'mag': 10.5 },
-			{ 'm': 'M66', 'ngc': 'NGC 3627', 'name': 'Leo Triplet', 'type':'Barred spiral galaxy', 'distance': 35000, 'constellation': 'Leo', 'mag': 10.0 },
-			{ 'm': 'M67', 'ngc': 'NGC 2682', 'name': '', 'type':'Open cluster', 'distance': 2.25, 'constellation': 'Cancer', 'mag': 7.5 },
-			{ 'm': 'M68', 'ngc': 'NGC 4590', 'name': '', 'type':'Globular cluster', 'distance': 32, 'constellation': 'Hydra', 'mag': 9.0 },
-			{ 'm': 'M69', 'ngc': 'NGC 6637', 'name': '', 'type':'Globular cluster', 'distance': 25, 'constellation': 'Sagittarius', 'mag': 9.0 },
-			{ 'm': 'M70', 'ngc': 'NGC 6681', 'name': '', 'type':'Globular cluster', 'distance': 28, 'constellation': 'Sagittarius', 'mag': 9.0 },
-			{ 'm': 'M71', 'ngc': 'NGC 6838', 'name': '', 'type':'Globular cluster', 'distance': 12, 'constellation': 'Sagitta', 'mag': 8.5 },
-			{ 'm': 'M72', 'ngc': 'NGC 6981', 'name': '', 'type':'Globular cluster', 'distance': 53, 'constellation': 'Aquarius', 'mag': 10.0 },
-			{ 'm': 'M73', 'ngc': 'NGC 6994', 'name': '', 'type':'Asterism', 'distance': -1, 'constellation': 'Aquarius', 'mag': 9.0 },
-			{ 'm': 'M74', 'ngc': 'NGC 628', 'name': '', 'type':'Spiral galaxy', 'distance': 35000, 'constellation': 'Pisces', 'mag': 10.5 },
-			{ 'm': 'M75', 'ngc': 'NGC 6864', 'name': '', 'type':'Globular cluster', 'distance': 58, 'constellation': 'Sagittarius', 'mag': 9.5 },
-			{ 'm': 'M76', 'ngc': 'NGC 650, NGC 651', 'name': 'Little Dumbbell Nebula', 'type':'Planetary nebula', 'distance': 3.4, 'constellation': 'Perseus', 'mag': 10.1 },
-			{ 'm': 'M77', 'ngc': 'NGC 1068', 'name': 'Cetus A', 'type':'Spiral galaxy', 'distance': 60000, 'constellation': 'Cetus', 'mag': 10.5 },
-			{ 'm': 'M78', 'ngc': 'NGC 2068', 'name': '', 'type':'Nebula, diffuse', 'distance': 1.6, 'constellation': 'Orion', 'mag': 8.0 },
-			{ 'm': 'M79', 'ngc': 'NGC 1904', 'name': '', 'type':'Globular cluster', 'distance': 40, 'constellation': 'Lepus', 'mag': 8.5 },
-			{ 'm': 'M80', 'ngc': 'NGC 6093', 'name': '', 'type':'Globular cluster', 'distance': 27, 'constellation': 'Scorpius', 'mag': 8.5 },
-			{ 'm': 'M81', 'ngc': 'NGC 3031', 'name': 'Bode\'s Galaxy', 'type':'Spiral galaxy', 'distance': 12000, 'constellation': 'Ursa Major', 'mag': 6.9 },
-			{ 'm': 'M82', 'ngc': 'NGC 3034', 'name': 'Cigar Galaxy', 'type':'Starburst galaxy', 'distance': 11000, 'constellation': 'Ursa Major', 'mag': 9.5 },
-			{ 'm': 'M83', 'ngc': 'NGC 5236', 'name': 'Southern Pinwheel Galaxy', 'type':'Barred spiral galaxy', 'distance': 10000, 'constellation': 'Hydra', 'mag': 8.5 },
-			{ 'm': 'M84', 'ngc': 'NGC 4374', 'name': '', 'type':'Lenticular galaxy', 'distance': 60000, 'constellation': 'Virgo', 'mag': 11.0 },
-			{ 'm': 'M85', 'ngc': 'NGC 4382', 'name': '', 'type':'Lenticular galaxy', 'distance': 60000, 'constellation': 'Coma Berenices', 'mag': 10.5 },
-			{ 'm': 'M86', 'ngc': 'NGC 4406', 'name': '', 'type':'Lenticular galaxy', 'distance': 60000, 'constellation': 'Virgo', 'mag': 11.0 },
-			{ 'm': 'M87', 'ngc': 'NGC 4486', 'name': 'Virgo A', 'type':'Elliptical galaxy', 'distance': 60000, 'constellation': 'Virgo', 'mag': 11.0 },
-			{ 'm': 'M88', 'ngc': 'NGC 4501', 'name': '', 'type':'Spiral galaxy', 'distance': 60000, 'constellation': 'Coma Berenices', 'mag': 11.0 },
-			{ 'm': 'M89', 'ngc': 'NGC 4552', 'name': '', 'type':'Elliptical galaxy', 'distance': 60000, 'constellation': 'Virgo', 'mag': 11.5 },
-			{ 'm': 'M90', 'ngc': 'NGC 4569', 'name': '', 'type':'Spiral galaxy', 'distance': 60000, 'constellation': 'Virgo', 'mag': 11.0 },
-			{ 'm': 'M91', 'ngc': 'NGC 4548', 'name': '', 'type':'Barred spiral galaxy', 'distance': 60000, 'constellation': 'Coma Berenices', 'mag': 11.0 },
-			{ 'm': 'M92', 'ngc': 'NGC 6341', 'name': '', 'type':'Globular cluster', 'distance': 26, 'constellation': 'Hercules', 'mag': 7.5 },
-			{ 'm': 'M93', 'ngc': 'NGC 2447', 'name': '', 'type':'Open cluster', 'distance': 4.5, 'constellation': 'Puppis', 'mag': 6.5 },
-			{ 'm': 'M94', 'ngc': 'NGC 4736', 'name': '', 'type':'Spiral galaxy', 'distance': 14500, 'constellation': 'Canes Venatici', 'mag': 9.5 },
-			{ 'm': 'M95', 'ngc': 'NGC 3351', 'name': '', 'type':'Barred spiral galaxy', 'distance': 38000, 'constellation': 'Leo', 'mag': 11.0 },
-			{ 'm': 'M96', 'ngc': 'NGC 3368', 'name': '', 'type':'Spiral galaxy', 'distance': 38000, 'constellation': 'Leo', 'mag': 10.5 },
-			{ 'm': 'M97', 'ngc': 'NGC 3587', 'name': 'Owl Nebula', 'type':'Planetary nebula', 'distance': 2.6, 'constellation': 'Ursa Major', 'mag': 9.9 },
-			{ 'm': 'M98', 'ngc': 'NGC 4192', 'name': '', 'type':'Spiral galaxy', 'distance': 60000, 'constellation': 'Coma Berenices', 'mag': 11.0 },
-			{ 'm': 'M99', 'ngc': 'NGC 4254', 'name': '', 'type':'Spiral galaxy', 'distance': 60000, 'constellation': 'Coma Berenices', 'mag': 10.5 },
-			{ 'm': 'M100', 'ngc': 'NGC 4321', 'name': '', 'type':'Spiral galaxy', 'distance': 60000, 'constellation': 'Coma Berenices', 'mag': 10.5 },
-			{ 'm': 'M101', 'ngc': 'NGC 5457', 'name': 'Pinwheel Galaxy', 'type':'Spiral galaxy', 'distance': 27000, 'constellation': 'Ursa Major', 'mag': 7.9 },
-			{ 'm': 'M102', 'ngc': '(Not conclusively identified)', 'name': '', 'type':' ', 'distance': -1, 'constellation': '', 'mag': -30 },
-			{ 'm': 'M103', 'ngc': 'NGC 581', 'name': '', 'type':'Open cluster', 'distance': 8, 'constellation': 'Cassiopeia', 'mag': 7.0 },
-			{ 'm': 'M104', 'ngc': 'NGC 4594', 'name': 'Sombrero Galaxy', 'type':'Spiral galaxy', 'distance': 50000, 'constellation': 'Virgo', 'mag': 9.5 },
-			{ 'm': 'M105', 'ngc': 'NGC 3379', 'name': '', 'type':'Elliptical galaxy', 'distance': 38000, 'constellation': 'Leo', 'mag': 11.0 },
-			{ 'm': 'M106', 'ngc': 'NGC 4258', 'name': '', 'type':'Spiral galaxy', 'distance': 25000, 'constellation': 'Canes Venatici', 'mag': 9.5 },
-			{ 'm': 'M107', 'ngc': 'NGC 6171', 'name': '', 'type':'Globular cluster', 'distance': 20, 'constellation': 'Ophiuchus', 'mag': 10.0 },
-			{ 'm': 'M108', 'ngc': 'NGC 3556', 'name': '', 'type':'Barred spiral galaxy', 'distance': 45000, 'constellation': 'Ursa Major', 'mag': 11.0 },
-			{ 'm': 'M109', 'ngc': 'NGC 3992', 'name': '', 'type':'Barred spiral galaxy', 'distance': 55000, 'constellation': 'Ursa Major', 'mag': 11.0 },
-			{ 'm': 'M110', 'ngc': 'NGC 205', 'name': '', 'type':'Dwarf elliptical galaxy', 'distance': 2200, 'constellation': 'Andromeda', 'mag': 10.0 }
+			{ 'm': 'M1', 'ngc': 'NGC 1952', 'name': 'Crab Nebula', 'type':'Supernova remnant', 'distance': 6.3, 'constellation': 'Taurus', 'mag': 8.2 , 'avm_icon':'4.1.4-supernova_remnant.png'},
+			{ 'm': 'M2', 'ngc': 'NGC 7089', 'name': '', 'type':'Globular cluster', 'distance': 36, 'constellation': 'Aquarius', 'mag': 6.5 , 'avm_icon':'3.6.4.2-globular_cluster.png'},
+			{ 'm': 'M3', 'ngc': 'NGC 5272', 'name': '', 'type':'Globular cluster', 'distance': 31, 'constellation': 'Canes Venatici', 'mag': 6.4 , 'avm_icon':'3.6.4.2-globular_cluster.png'},
+			{ 'm': 'M4', 'ngc': 'NGC 6121', 'name': '', 'type':'Globular cluster', 'distance': 7, 'constellation': 'Scorpius', 'mag': 5.9 , 'avm_icon':'3.6.4.2-globular_cluster.png'},
+			{ 'm': 'M5', 'ngc': 'NGC 5904', 'name': '', 'type':'Globular cluster', 'distance': 23, 'constellation': 'Serpens', 'mag': 7.0 , 'avm_icon':'3.6.4.2-globular_cluster.png'},
+			{ 'm': 'M6', 'ngc': 'NGC 6405', 'name': 'Butterfly Cluster', 'type':'Open cluster', 'distance': 2, 'constellation': 'Scorpius', 'mag': 4.5 , 'avm_icon':'3.6.4.1-open_cluster.png'},
+			{ 'm': 'M7', 'ngc': 'NGC 6475', 'name': 'Ptolemy Cluster', 'type':'Open cluster', 'distance': 1, 'constellation': 'Scorpius', 'mag': 3.5 , 'avm_icon':'3.6.4.1-open_cluster.png'},
+			{ 'm': 'M8', 'ngc': 'NGC 6523', 'name': 'Lagoon Nebula', 'type':'Nebula with cluster', 'distance': 6.5, 'constellation': 'Sagittarius', 'mag': 6.0 , 'avm_icon':'4-nebula.png'},
+			{ 'm': 'M9', 'ngc': 'NGC 6333', 'name': '', 'type':'Globular cluster', 'distance': 26, 'constellation': 'Ophiuchus', 'mag': 9.0 , 'avm_icon':'3.6.4.2-globular_cluster.png'},
+			{ 'm': 'M10', 'ngc': 'NGC 6254', 'name': '', 'type':'Globular cluster', 'distance': 13, 'constellation': 'Ophiuchus', 'mag': 7.5 , 'avm_icon':'3.6.4.2-globular_cluster.png'},
+			{ 'm': 'M11', 'ngc': 'NGC 6705', 'name': 'Wild Duck Cluster', 'type':'Open cluster', 'distance': 6, 'constellation': 'Scutum', 'mag': 7.0 , 'avm_icon':'3.6.4.1-open_cluster.png'},
+			{ 'm': 'M12', 'ngc': 'NGC 6218', 'name': '', 'type':'Globular cluster', 'distance': 18, 'constellation': 'Ophiuchus', 'mag': 8.0 , 'avm_icon':'3.6.4.2-globular_cluster.png'},
+			{ 'm': 'M13', 'ngc': 'NGC 6205', 'name': 'Great Globular Cluster in Hercules', 'type':'Globular cluster', 'distance': 22, 'constellation': 'Hercules', 'mag': 5.8 , 'avm_icon':'3.6.4.2-globular_cluster.png'},
+			{ 'm': 'M14', 'ngc': 'NGC 6402', 'name': '', 'type':'Globular cluster', 'distance': 27, 'constellation': 'Ophiuchus', 'mag': 9.5 , 'avm_icon':'3.6.4.2-globular_cluster.png'},
+			{ 'm': 'M15', 'ngc': 'NGC 7078', 'name': '', 'type':'Globular cluster', 'distance': 33, 'constellation': 'Pegasus', 'mag': 6.2 , 'avm_icon':'3.6.4.2-globular_cluster.png'},
+			{ 'm': 'M16', 'ngc': 'NGC 6611', 'name': 'Eagle Nebula', 'type':'Nebula/H II region with cluster', 'distance': 7, 'constellation': 'Serpens', 'mag': 6.5 , 'avm_icon':'4-nebula.png'},
+			{ 'm': 'M17', 'ngc': 'NGC 6618', 'name': 'Swan Nebula', 'type':'Nebula/H II region with cluster', 'distance': 5, 'constellation': 'Sagittarius', 'mag': 6.0 , 'avm_icon':'4-nebula.png'},
+			{ 'm': 'M18', 'ngc': 'NGC 6613', 'name': '', 'type':'Open cluster', 'distance': 6, 'constellation': 'Sagittarius', 'mag': 8.0 , 'avm_icon':'3.6.4.1-open_cluster.png'},
+			{ 'm': 'M19', 'ngc': 'NGC 6273', 'name': '', 'type':'Globular cluster', 'distance': 27, 'constellation': 'Ophiuchus', 'mag': 8.5 , 'avm_icon':'3.6.4.2-globular_cluster.png'},
+			{ 'm': 'M20', 'ngc': 'NGC 6514', 'name': 'Trifid Nebula', 'type':'Nebula/H II region with cluster', 'distance': 5.2, 'constellation': 'Sagittarius', 'mag': 6.3 , 'avm_icon':'4-nebula.png'},
+			{ 'm': 'M21', 'ngc': 'NGC 6531', 'name': '', 'type':'Open cluster', 'distance': 3, 'constellation': 'Sagittarius', 'mag': 7.0 , 'avm_icon':'3.6.4.1-open_cluster.png'},
+			{ 'm': 'M22', 'ngc': 'NGC 6656', 'name': 'Sagittarius Cluster', 'type':'Globular cluster', 'distance': 10, 'constellation': 'Sagittarius', 'mag': 5.1 , 'avm_icon':'3.6.4.2-globular_cluster.png'},
+			{ 'm': 'M23', 'ngc': 'NGC 6494', 'name': '', 'type':'Open cluster', 'distance': 4.5, 'constellation': 'Sagittarius', 'mag': 6.0 , 'avm_icon':'3.6.4.1-open_cluster.png'},
+			{ 'm': 'M24', 'ngc': 'IC 4715', 'name': 'Sagittarius Star Cloud', 'type':'Milky Way star cloud', 'distance': 10.0, 'constellation': 'Sagittarius', 'mag': 4.6 , 'avm_icon':'4-nebula.png'},
+			{ 'm': 'M25', 'ngc': 'IC 4725', 'name': '', 'type':'Open cluster', 'distance': 2, 'constellation': 'Sagittarius', 'mag': 4.9 , 'avm_icon':'3.6.4.1-open_cluster.png'},
+			{ 'm': 'M26', 'ngc': 'NGC 6694', 'name': '', 'type':'Open cluster', 'distance': 5, 'constellation': 'Scutum', 'mag': 9.5 , 'avm_icon':'3.6.4.1-open_cluster.png'},
+			{ 'm': 'M27', 'ngc': 'NGC 6853', 'name': 'Dumbbell Nebula', 'type':'Planetary nebula', 'distance': 1.25, 'constellation': 'Vulpecula', 'mag': 7.5 , 'avm_icon':'4.1.3-planetary_nebula.png'},
+			{ 'm': 'M28', 'ngc': 'NGC 6626', 'name': '', 'type':'Globular cluster', 'distance': 18, 'constellation': 'Sagittarius', 'mag': 8.5 , 'avm_icon':'3.6.4.2-globular_cluster.png'},
+			{ 'm': 'M29', 'ngc': 'NGC 6913', 'name': '', 'type':'Open cluster', 'distance': 7.2, 'constellation': 'Cygnus', 'mag': 9.0 , 'avm_icon':'3.6.4.1-open_cluster.png'},
+			{ 'm': 'M30', 'ngc': 'NGC 7099', 'name': '', 'type':'Globular cluster', 'distance': 25, 'constellation': 'Capricornus', 'mag': 8.5 , 'avm_icon':'3.6.4.2-globular_cluster.png'},
+			{ 'm': 'M31', 'ngc': 'NGC 224', 'name': 'Andromeda Galaxy', 'type':'Spiral galaxy', 'distance': 2500, 'constellation': 'Andromeda', 'mag': 3.4 , 'avm_icon':'5.1.1-spiral_galaxy.png'},
+			{ 'm': 'M32', 'ngc': 'NGC 221', 'name': '', 'type':'Elliptical galaxy', 'distance': 2900, 'constellation': 'Andromeda', 'mag': 8.1 , 'avm_icon':'5.1.4-elliptical_galaxy.png'},
+			{ 'm': 'M33', 'ngc': 'NGC 598', 'name': 'Triangulum Galaxy', 'type':'Spiral galaxy', 'distance': 2810, 'constellation': 'Triangulum', 'mag': 5.7 , 'avm_icon':'5.1.1-spiral_galaxy.png'},
+			{ 'm': 'M34', 'ngc': 'NGC 1039', 'name': '', 'type':'Open cluster', 'distance': 1.4, 'constellation': 'Perseus', 'mag': 6.0 , 'avm_icon':'3.6.4.1-open_cluster.png'},
+			{ 'm': 'M35', 'ngc': 'NGC 2168', 'name': '', 'type':'Open cluster', 'distance': 2.8, 'constellation': 'Gemini', 'mag': 5.5 , 'avm_icon':'3.6.4.1-open_cluster.png'},
+			{ 'm': 'M36', 'ngc': 'NGC 1960', 'name': '', 'type':'Open cluster', 'distance': 4.1, 'constellation': 'Auriga', 'mag': 6.5 , 'avm_icon':'3.6.4.1-open_cluster.png'},
+			{ 'm': 'M37', 'ngc': 'NGC 2099', 'name': '', 'type':'Open cluster', 'distance': 4.6, 'constellation': 'Auriga', 'mag': 6.0 , 'avm_icon':'3.6.4.1-open_cluster.png'},
+			{ 'm': 'M38', 'ngc': 'NGC 1912', 'name': '', 'type':'Open cluster', 'distance': 4.2, 'constellation': 'Auriga', 'mag': 7.0 , 'avm_icon':'3.6.4.1-open_cluster.png'},
+			{ 'm': 'M39', 'ngc': 'NGC 7092', 'name': '', 'type':'Open cluster', 'distance': 0.8, 'constellation': 'Cygnus', 'mag': 5.5 , 'avm_icon':'3.6.4.1-open_cluster.png'},
+			{ 'm': 'M40', 'ngc': '', 'name': 'Winnecke 4', 'type':'Double star', 'distance': 0.5, 'constellation': 'Ursa Major', 'mag': 9.0 , 'avm_icon':'3-star.png'},
+			{ 'm': 'M41', 'ngc': 'NGC 2287', 'name': '', 'type':'Open cluster', 'distance': 2.3, 'constellation': 'Canis Major', 'mag': 4.5 , 'avm_icon':'3.6.4.1-open_cluster.png'},
+			{ 'm': 'M42', 'ngc': 'NGC 1976', 'name': 'Orion Nebula', 'type':'Nebula/H II region', 'distance': 1.6, 'constellation': 'Orion', 'mag': 4.0 , 'avm_icon':'4-nebula.png'},
+			{ 'm': 'M43', 'ngc': 'NGC 1982', 'name': 'De Mairan\'s Nebula', 'type':'Nebula (part of the Orion Nebula)', 'distance': 1.6, 'constellation': 'Orion', 'mag': 7.0 , 'avm_icon':'4-nebula.png'},
+			{ 'm': 'M44', 'ngc': 'NGC 2632', 'name': 'Beehive Cluster', 'type':'Open cluster', 'distance': 0.6, 'constellation': 'Cancer', 'mag': 3.7 , 'avm_icon':'3.6.4.1-open_cluster.png'},
+			{ 'm': 'M45', 'ngc': '', 'name': 'Pleiades', 'type':'Open cluster', 'distance': 0.4, 'constellation': 'Taurus', 'mag': 1.6 , 'avm_icon':'3.6.4.1-open_cluster.png'},
+			{ 'm': 'M46', 'ngc': 'NGC 2437', 'name': '', 'type':'Open cluster', 'distance': 5.4, 'constellation': 'Puppis', 'mag': 6.5 , 'avm_icon':'3.6.4.1-open_cluster.png'},
+			{ 'm': 'M47', 'ngc': 'NGC 2422', 'name': '', 'type':'Open cluster', 'distance': 1.6, 'constellation': 'Puppis', 'mag': 4.5 , 'avm_icon':'3.6.4.1-open_cluster.png'},
+			{ 'm': 'M48', 'ngc': 'NGC 2548', 'name': '', 'type':'Open cluster', 'distance': 1.5, 'constellation': 'Hydra', 'mag': 5.5 , 'avm_icon':'3.6.4.1-open_cluster.png'},
+			{ 'm': 'M49', 'ngc': 'NGC 4472', 'name': '', 'type':'Elliptical galaxy', 'distance': 60000, 'constellation': 'Virgo', 'mag': 10.0 , 'avm_icon':'5.1.4-elliptical_galaxy.png'},
+			{ 'm': 'M50', 'ngc': 'NGC 2323', 'name': '', 'type':'Open cluster', 'distance': 3, 'constellation': 'Monoceros', 'mag': 7.0 , 'avm_icon':'3.6.4.1-open_cluster.png'},
+			{ 'm': 'M51', 'ngc': 'NGC 5194, NGC 5195', 'name': 'Whirlpool Galaxy', 'type':'Spiral galaxy', 'distance': 37000, 'constellation': 'Canes Venatici', 'mag': 8.4 , 'avm_icon':'5.1.1-spiral_galaxy.png'},
+			{ 'm': 'M52', 'ngc': 'NGC 7654', 'name': '', 'type':'Open cluster', 'distance': 7, 'constellation': 'Cassiopeia', 'mag': 8.0 , 'avm_icon':'3.6.4.1-open_cluster.png'},
+			{ 'm': 'M53', 'ngc': 'NGC 5024', 'name': '', 'type':'Globular cluster', 'distance': 56, 'constellation': 'Coma Berenices', 'mag': 8.5 , 'avm_icon':'3.6.4.2-globular_cluster.png'},
+			{ 'm': 'M54', 'ngc': 'NGC 6715', 'name': '', 'type':'Globular cluster', 'distance': 83, 'constellation': 'Sagittarius', 'mag': 8.5 , 'avm_icon':'3.6.4.2-globular_cluster.png'},
+			{ 'm': 'M55', 'ngc': 'NGC 6809', 'name': '', 'type':'Globular cluster', 'distance': 17, 'constellation': 'Sagittarius', 'mag': 7.0 , 'avm_icon':'3.6.4.2-globular_cluster.png'},
+			{ 'm': 'M56', 'ngc': 'NGC 6779', 'name': '', 'type':'Globular cluster', 'distance': 32, 'constellation': 'Lyra', 'mag': 9.5 , 'avm_icon':'3.6.4.2-globular_cluster.png'},
+			{ 'm': 'M57', 'ngc': 'NGC 6720', 'name': 'Ring Nebula', 'type':'Planetary nebula', 'distance': 2.3, 'constellation': 'Lyra', 'mag': 8.8 , 'avm_icon':'4.1.3-planetary_nebula.png'},
+			{ 'm': 'M58', 'ngc': 'NGC 4579', 'name': '', 'type':'Barred spiral galaxy', 'distance': 60000, 'constellation': 'Virgo', 'mag': 11.0 , 'avm_icon':'5.1.1-spiral_galaxy.png'},
+			{ 'm': 'M59', 'ngc': 'NGC 4621', 'name': '', 'type':'Elliptical galaxy', 'distance': 60000, 'constellation': 'Virgo', 'mag': 11.5 , 'avm_icon':'5.1.4-elliptical_galaxy.png'},
+			{ 'm': 'M60', 'ngc': 'NGC 4649', 'name': '', 'type':'Elliptical galaxy', 'distance': 60000, 'constellation': 'Virgo', 'mag': 10.5 , 'avm_icon':'5.1.4-elliptical_galaxy.png'},
+			{ 'm': 'M61', 'ngc': 'NGC 4303', 'name': '', 'type':'Spiral galaxy', 'distance': 60000, 'constellation': 'Virgo', 'mag': 10.5 , 'avm_icon':'5.1.1-spiral_galaxy.png'},
+			{ 'm': 'M62', 'ngc': 'NGC 6266', 'name': '', 'type':'Globular cluster', 'distance': 22, 'constellation': 'Ophiuchus', 'mag': 8.0 , 'avm_icon':'3.6.4.2-globular_cluster.png'},
+			{ 'm': 'M63', 'ngc': 'NGC 5055', 'name': 'Sunflower Galaxy', 'type':'Spiral galaxy', 'distance': 37000, 'constellation': 'Canes Venatici', 'mag': 8.5 , 'avm_icon':'5.1.1-spiral_galaxy.png'},
+			{ 'm': 'M64', 'ngc': 'NGC 4826', 'name': 'Black Eye Galaxy', 'type':'Spiral galaxy', 'distance': 12000, 'constellation': 'Coma Berenices', 'mag': 9.0 , 'avm_icon':'5.1.1-spiral_galaxy.png'},
+			{ 'm': 'M65', 'ngc': 'NGC 3623', 'name': 'Leo Triplet', 'type':'Barred spiral galaxy', 'distance': 35000, 'constellation': 'Leo', 'mag': 10.5 , 'avm_icon':'5.1.1-spiral_galaxy.png'},
+			{ 'm': 'M66', 'ngc': 'NGC 3627', 'name': 'Leo Triplet', 'type':'Barred spiral galaxy', 'distance': 35000, 'constellation': 'Leo', 'mag': 10.0 , 'avm_icon':'5.1.1-spiral_galaxy.png'},
+			{ 'm': 'M67', 'ngc': 'NGC 2682', 'name': '', 'type':'Open cluster', 'distance': 2.25, 'constellation': 'Cancer', 'mag': 7.5 , 'avm_icon':'3.6.4.1-open_cluster.png'},
+			{ 'm': 'M68', 'ngc': 'NGC 4590', 'name': '', 'type':'Globular cluster', 'distance': 32, 'constellation': 'Hydra', 'mag': 9.0 , 'avm_icon':'3.6.4.2-globular_cluster.png'},
+			{ 'm': 'M69', 'ngc': 'NGC 6637', 'name': '', 'type':'Globular cluster', 'distance': 25, 'constellation': 'Sagittarius', 'mag': 9.0 , 'avm_icon':'3.6.4.2-globular_cluster.png'},
+			{ 'm': 'M70', 'ngc': 'NGC 6681', 'name': '', 'type':'Globular cluster', 'distance': 28, 'constellation': 'Sagittarius', 'mag': 9.0 , 'avm_icon':'3.6.4.2-globular_cluster.png'},
+			{ 'm': 'M71', 'ngc': 'NGC 6838', 'name': '', 'type':'Globular cluster', 'distance': 12, 'constellation': 'Sagitta', 'mag': 8.5 , 'avm_icon':'3.6.4.2-globular_cluster.png'},
+			{ 'm': 'M72', 'ngc': 'NGC 6981', 'name': '', 'type':'Globular cluster', 'distance': 53, 'constellation': 'Aquarius', 'mag': 10.0 , 'avm_icon':'3.6.4.2-globular_cluster.png'},
+			{ 'm': 'M73', 'ngc': 'NGC 6994', 'name': '', 'type':'Asterism', 'distance': -1, 'constellation': 'Aquarius', 'mag': 9.0 , 'avm_icon':'3-star.png'},
+			{ 'm': 'M74', 'ngc': 'NGC 628', 'name': '', 'type':'Spiral galaxy', 'distance': 35000, 'constellation': 'Pisces', 'mag': 10.5 , 'avm_icon':'5.1.1-spiral_galaxy.png'},
+			{ 'm': 'M75', 'ngc': 'NGC 6864', 'name': '', 'type':'Globular cluster', 'distance': 58, 'constellation': 'Sagittarius', 'mag': 9.5 , 'avm_icon':'3.6.4.2-globular_cluster.png'},
+			{ 'm': 'M76', 'ngc': 'NGC 650, NGC 651', 'name': 'Little Dumbbell Nebula', 'type':'Planetary nebula', 'distance': 3.4, 'constellation': 'Perseus', 'mag': 10.1 , 'avm_icon':'4.1.3-planetary_nebula.png'},
+			{ 'm': 'M77', 'ngc': 'NGC 1068', 'name': 'Cetus A', 'type':'Spiral galaxy', 'distance': 60000, 'constellation': 'Cetus', 'mag': 10.5 , 'avm_icon':'5.1.1-spiral_galaxy.png'},
+			{ 'm': 'M78', 'ngc': 'NGC 2068', 'name': '', 'type':'Nebula, diffuse', 'distance': 1.6, 'constellation': 'Orion', 'mag': 8.0 , 'avm_icon':'4-nebula.png'},
+			{ 'm': 'M79', 'ngc': 'NGC 1904', 'name': '', 'type':'Globular cluster', 'distance': 40, 'constellation': 'Lepus', 'mag': 8.5 , 'avm_icon':'3.6.4.2-globular_cluster.png'},
+			{ 'm': 'M80', 'ngc': 'NGC 6093', 'name': '', 'type':'Globular cluster', 'distance': 27, 'constellation': 'Scorpius', 'mag': 8.5 , 'avm_icon':'3.6.4.2-globular_cluster.png'},
+			{ 'm': 'M81', 'ngc': 'NGC 3031', 'name': 'Bode\'s Galaxy', 'type':'Spiral galaxy', 'distance': 12000, 'constellation': 'Ursa Major', 'mag': 6.9 , 'avm_icon':'5.1.1-spiral_galaxy.png'},
+			{ 'm': 'M82', 'ngc': 'NGC 3034', 'name': 'Cigar Galaxy', 'type':'Starburst galaxy', 'distance': 11000, 'constellation': 'Ursa Major', 'mag': 9.5 , 'avm_icon':'5.1.1-spiral_galaxy.png'},
+			{ 'm': 'M83', 'ngc': 'NGC 5236', 'name': 'Southern Pinwheel Galaxy', 'type':'Barred spiral galaxy', 'distance': 10000, 'constellation': 'Hydra', 'mag': 8.5 , 'avm_icon':'5.1.1-spiral_galaxy.png'},
+			{ 'm': 'M84', 'ngc': 'NGC 4374', 'name': '', 'type':'Lenticular galaxy', 'distance': 60000, 'constellation': 'Virgo', 'mag': 11.0 , 'avm_icon':'5.1.4-elliptical_galaxy.png'},
+			{ 'm': 'M85', 'ngc': 'NGC 4382', 'name': '', 'type':'Lenticular galaxy', 'distance': 60000, 'constellation': 'Coma Berenices', 'mag': 10.5 , 'avm_icon':'5.1.4-elliptical_galaxy.png'},
+			{ 'm': 'M86', 'ngc': 'NGC 4406', 'name': '', 'type':'Lenticular galaxy', 'distance': 60000, 'constellation': 'Virgo', 'mag': 11.0 , 'avm_icon':'5.1.4-elliptical_galaxy.png'},
+			{ 'm': 'M87', 'ngc': 'NGC 4486', 'name': 'Virgo A', 'type':'Elliptical galaxy', 'distance': 60000, 'constellation': 'Virgo', 'mag': 11.0 , 'avm_icon':'5.1.4-elliptical_galaxy.png'},
+			{ 'm': 'M88', 'ngc': 'NGC 4501', 'name': '', 'type':'Spiral galaxy', 'distance': 60000, 'constellation': 'Coma Berenices', 'mag': 11.0 , 'avm_icon':'5.1.1-spiral_galaxy.png'},
+			{ 'm': 'M89', 'ngc': 'NGC 4552', 'name': '', 'type':'Elliptical galaxy', 'distance': 60000, 'constellation': 'Virgo', 'mag': 11.5 , 'avm_icon':'5.1.4-elliptical_galaxy.png'},
+			{ 'm': 'M90', 'ngc': 'NGC 4569', 'name': '', 'type':'Spiral galaxy', 'distance': 60000, 'constellation': 'Virgo', 'mag': 11.0 , 'avm_icon':'5.1.1-spiral_galaxy.png'},
+			{ 'm': 'M91', 'ngc': 'NGC 4548', 'name': '', 'type':'Barred spiral galaxy', 'distance': 60000, 'constellation': 'Coma Berenices', 'mag': 11.0 , 'avm_icon':'5.1.1-spiral_galaxy.png'},
+			{ 'm': 'M92', 'ngc': 'NGC 6341', 'name': '', 'type':'Globular cluster', 'distance': 26, 'constellation': 'Hercules', 'mag': 7.5 , 'avm_icon':'3.6.4.2-globular_cluster.png'},
+			{ 'm': 'M93', 'ngc': 'NGC 2447', 'name': '', 'type':'Open cluster', 'distance': 4.5, 'constellation': 'Puppis', 'mag': 6.5 , 'avm_icon':'3.6.4.1-open_cluster.png'},
+			{ 'm': 'M94', 'ngc': 'NGC 4736', 'name': '', 'type':'Spiral galaxy', 'distance': 14500, 'constellation': 'Canes Venatici', 'mag': 9.5 , 'avm_icon':'5.1.1-spiral_galaxy.png'},
+			{ 'm': 'M95', 'ngc': 'NGC 3351', 'name': '', 'type':'Barred spiral galaxy', 'distance': 38000, 'constellation': 'Leo', 'mag': 11.0 , 'avm_icon':'5.1.1-spiral_galaxy.png'},
+			{ 'm': 'M96', 'ngc': 'NGC 3368', 'name': '', 'type':'Spiral galaxy', 'distance': 38000, 'constellation': 'Leo', 'mag': 10.5 , 'avm_icon':'5.1.1-spiral_galaxy.png'},
+			{ 'm': 'M97', 'ngc': 'NGC 3587', 'name': 'Owl Nebula', 'type':'Planetary nebula', 'distance': 2.6, 'constellation': 'Ursa Major', 'mag': 9.9 , 'avm_icon':'4.1.3-planetary_nebula.png'},
+			{ 'm': 'M98', 'ngc': 'NGC 4192', 'name': '', 'type':'Spiral galaxy', 'distance': 60000, 'constellation': 'Coma Berenices', 'mag': 11.0 , 'avm_icon':'5.1.1-spiral_galaxy.png'},
+			{ 'm': 'M99', 'ngc': 'NGC 4254', 'name': '', 'type':'Spiral galaxy', 'distance': 60000, 'constellation': 'Coma Berenices', 'mag': 10.5 , 'avm_icon':'5.1.1-spiral_galaxy.png'},
+			{ 'm': 'M100', 'ngc': 'NGC 4321', 'name': '', 'type':'Spiral galaxy', 'distance': 60000, 'constellation': 'Coma Berenices', 'mag': 10.5 , 'avm_icon':'5.1.1-spiral_galaxy.png'},
+			{ 'm': 'M101', 'ngc': 'NGC 5457', 'name': 'Pinwheel Galaxy', 'type':'Spiral galaxy', 'distance': 27000, 'constellation': 'Ursa Major', 'mag': 7.9 , 'avm_icon':'5.1.1-spiral_galaxy.png'},
+			{ 'm': 'M102', 'ngc': '(Not conclusively identified)', 'name': '', 'type':' ', 'distance': -1, 'constellation': '', 'mag': -30 , 'avm_icon':''},
+			{ 'm': 'M103', 'ngc': 'NGC 581', 'name': '', 'type':'Open cluster', 'distance': 8, 'constellation': 'Cassiopeia', 'mag': 7.0 , 'avm_icon':'3.6.4.1-open_cluster.png'},
+			{ 'm': 'M104', 'ngc': 'NGC 4594', 'name': 'Sombrero Galaxy', 'type':'Spiral galaxy', 'distance': 50000, 'constellation': 'Virgo', 'mag': 9.5 , 'avm_icon':'5.1.1-spiral_galaxy.png'},
+			{ 'm': 'M105', 'ngc': 'NGC 3379', 'name': '', 'type':'Elliptical galaxy', 'distance': 38000, 'constellation': 'Leo', 'mag': 11.0 , 'avm_icon':'5.1.4-elliptical_galaxy.png'},
+			{ 'm': 'M106', 'ngc': 'NGC 4258', 'name': '', 'type':'Spiral galaxy', 'distance': 25000, 'constellation': 'Canes Venatici', 'mag': 9.5 , 'avm_icon':'5.1.1-spiral_galaxy.png'},
+			{ 'm': 'M107', 'ngc': 'NGC 6171', 'name': '', 'type':'Globular cluster', 'distance': 20, 'constellation': 'Ophiuchus', 'mag': 10.0 , 'avm_icon':'3.6.4.2-globular_cluster.png'},
+			{ 'm': 'M108', 'ngc': 'NGC 3556', 'name': '', 'type':'Barred spiral galaxy', 'distance': 45000, 'constellation': 'Ursa Major', 'mag': 11.0 , 'avm_icon':'5.1.1-spiral_galaxy.png'},
+			{ 'm': 'M109', 'ngc': 'NGC 3992', 'name': '', 'type':'Barred spiral galaxy', 'distance': 55000, 'constellation': 'Ursa Major', 'mag': 11.0 , 'avm_icon':'5.1.1-spiral_galaxy.png'},
+			{ 'm': 'M110', 'ngc': 'NGC 205', 'name': '', 'type':'Dwarf elliptical galaxy', 'distance': 2200, 'constellation': 'Andromeda', 'mag': 10.0, 'avm_icon':'5.1.4-elliptical_galaxy.png' }
+		]
+
+		this.avm_logos = [
+			{'code':'3', 'image' : '3-star.png'},
+			{'code':'3.6.4.1', 'image' : '3.6.4.1-open_cluster.png'},
+			{'code':'3.6.4.2', 'image' : '3.6.4.2-globular_cluster.png'},
+			{'code':'4', 'image' : 'objects/4-nebula.png'},
+			{'code':'4.1.3', 'image' : '4.1.3-planetary_nebula.png'},
+			{'code':'4.1.4', 'image' : '4.1.4-supernova_remnant.png'},
+			{'code':'5.1.1', 'image' : '5.1.1-spiral_galaxy.png'},
+			{'code':'5.1.4', 'image' : '5.1.4-elliptical_galaxy.png'},
+			{'code':'5.1.6', 'image' : '5.1.6-interacting_galaxy.png'}
 		]
 
 		this.observable_objects();
@@ -538,7 +552,7 @@
 				console.log('Error: '+e);
 			},
 			success: function(data){
-				var content = "<h3>Success!</h3><p>Your image will be ready in the next week.</p><img src='http://lcogt.net/files/edu/serol.jpg'>"
+				var content = "<h3>Success!</h3><p>Your image will be ready in the next week.</p><img src='http://lcogt.net/files/edu/serol/serol_sm.png'>"
 				$('#message-content').html(content);
 				closePopup(delay='2000');
 				// Stop them from accidentally submitting a second time
@@ -548,8 +562,8 @@
 		});
 	}
 
+	// Update the hardwired catalogue with latest observing info from WhatsUP API call
 	MessierBingo.prototype.update_catalogue = function(data){
-		// console.log(data['targets']);
 		var m;
 		var current;
 		for (i=0;i < this.catalogue.length;i++){
@@ -572,6 +586,7 @@
 			}
 		}
 	}
+
 
 	// Update the clock every n seconds
 	MessierBingo.prototype.tick = function(n){
@@ -1023,20 +1038,24 @@
 
 		if(i >= 0){
 			var m = this.catalogue[i-1];
+			var avm_name = (this.phrasebook.catalogue ? this.phrasebook.catalogue[m.m].type : m.type)
+			var object_type_text = '<strong>'+this.phrasebook.information.type.label+'</strong><br/> '+avm_name;
 			$('#make-request').attr('data-objectid', m.m);
-			if (m['aperture'] == 'none'){
+			if (m['aperture'] == 'none' || this.authenticated == false){
 				$('#observe_button').hide();
 			}else{
 				$('#observe_button').show();
 			}
 			if(data && data.image) $('#sky img').attr('src',data.image_thumb);
 			if($('#panel-info .messier').length == 0){
-				$('#panel-info').html('<div class="padded"><h3 class="messier"></h3><p class="altname"></p><p class="type"></p><p class="distance"></p><p class="telescope"></p><p class="credit"></p><p class="date"></p><p class="download"></p></div>');
+				$('#panel-info').html('<div class="padded"><div class="info-header"><div class="info-header-item"><h3 class="messier"></h3></div><div class="info-header-item" style="float:right;"><img src="" alt=""></div></div><p class="altname"></p><p class="type"></p><p class="distance"></p><p class="telescope"></p><p class="credit"></p><p class="date"></p><p class="download"></p></div>');
 			}
 			$('#panel-info .messier').html(m.m);
+			$('#panel-info .info-header-item img').attr('src', "/static/images/"+m.avm_icon);
+			$('#panel-info .info-header img').attr('alt', avm_name);
 			$('#panel-info .altname').html((this.phrasebook.catalogue && this.phrasebook.catalogue[m.m].name) ? '('+this.phrasebook.catalogue[m.m].name+')' : (m.name) ? '('+m.name+')' : '');
-			$('#panel-info .distance').html('<strong>'+this.phrasebook.information.distance.label+'</strong> '+(m.distance >= 60000 ? '>' : '')+(m.distance*1000)+' '+this.phrasebook.information.distance.lyr);
-			$('#panel-info .type').html('<strong>'+this.phrasebook.information.type.label+'</strong> '+(this.phrasebook.catalogue ? this.phrasebook.catalogue[m.m].type : m.type));
+			//$('#panel-info .distance').html('<strong>'+this.phrasebook.information.distance.label+'</strong> '+(m.distance >= 60000 ? '>' : '')+(m.distance*1000)+' '+this.phrasebook.information.distance.lyr);
+			$('#panel-info .type').html(object_type_text);
 		}
 		if(typeof data==="object"){
 			if(data){
@@ -1049,8 +1068,8 @@
 				cache.src = data.image;
 				if(cache.complete) fn();
 
-				$('#panel-info .telescope').html('<strong>'+this.phrasebook.information.telescope.label+'</strong> '+data.observer_name);
-				$('#panel-info .credit').html('<strong>'+this.phrasebook.information.image.label+'</strong> <a href="'+data.observer_name+'" target="observation">'+data.observer_name+'</a>');
+				$('#panel-info .telescope').html('<strong>'+this.phrasebook.information.telescope.label+'</strong><br/>'+data.telescope.name);
+				$('#panel-info .credit').html('<strong>'+this.phrasebook.information.image.label+'</strong><br/>'+data.observer_name);
 				$('#panel-info .download').html('<a href="'+data.image+'" target="observation">&raquo; '+this.phrasebook.information.original+'</a>');
 			}else{
 				$('#sky img').attr('src','images/missing.png');
@@ -1433,8 +1452,3 @@
 	$.messierbingo.plugins = [];
 
 })(jQuery);
-
-var mb;
-$(document).ready(function(){
-	mb = $.messierbingo();
-});
