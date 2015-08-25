@@ -20,23 +20,31 @@
 			var mb;
 			$(document).ready(function(){
 				var user_auth = {% if request.user.is_authenticated %} true{% else %} false{%endif%};
+			{% if not request.user.is_authenticated %}
+				var content = $('#controlpane').html()
+				$('#message-popup').removeClass('small-popup');
+				$('#message-popup').addClass('wide-popup');
+				$('#message-content').html(content);
+				showPopup();
+			{% endif %}
+
 				// Initialise the MessierBingo class
 				mb = $.messierbingo({'user_auth':user_auth});
-				
+
 				{% if request.user.is_authenticated %}
 				$(document).on('click','#observe_button',function(event){
 					console.log('observe-confirm');
 					var content = $('#observe-confirm').html()
 					$('#message-content').html(content);
 					showPopup();
-				});	
+				});
 				{% endif %}
+
 
 				$(document).on('click','#togglepopup',function(event){
 					var content = $('#login-form').html()
 					$('#message-content').html(content);
 					showPopup();
-
 				});
 
 				$(document).on('click','#make-request',function(event){
@@ -47,19 +55,22 @@
 
 
 
-				function showPopup(){ 
+			});
+				function showPopup(){
+					centreDiv('#message-popup');
 					if ($('#message-popup').is(':visible')) $('#message-popup').fadeOut("fast");
 					else $('#message-popup').fadeIn("fast");
 					$('#message-popup-close').bind("click",function(){ closePopup();});
 					$('.overlay').show();
 					return false;
 				}
-				centreDiv = function(el){
-					var wide = $(window).width();
-					var tall = $(window).height();
-					$(el).css({left:(wide-$(el).outerWidth())/2,top:($(window).scrollTop()+(tall-$(el).outerHeight())/2)});
+				function centreDiv(el){
+					var container = $(window);
+			    var top = -$(el).height() / 2;
+			    var left = -$(el).width() / 2;
+			    return $(el).css('position', 'absolute').css({ 'margin-left': left + 'px', 'margin-top': top + 'px', 'left': '50%', 'top': '50%' });
 				}
-			});
+
 			function closePopup(delay){
 				$('#message-popup').delay(delay).fadeOut("fast");
 				$('.overlay').hide();
@@ -126,9 +137,9 @@
 			<div id="glass"><img src="{% static 'images/glass2.png' %}" /></div>
 			<div id="glass-small"><img src="{% static 'images/glass2.png' %}" /></div>
 				<!--<div id="portalinner"></div>-->
-		</div>	
+		</div>
 	</div>
-	<div id="message-popup" style="display:none;">
+	<div id="message-popup" style="display:none;" class="small-popup">
 		<div id="show-messages-inner">
 			<div id="message-popup-close"><i class="fa fa-remove"></i></div>
 			<div id="message-content"></div>
@@ -147,6 +158,23 @@
 		<h3>Observe <span id="object-name"></span></h3>
 		<p>Do you want an image of <strong><span id="object-name"></span></strong> to be taken in the next week by LCOGT?</p>
 		<p><a href="#" data-objectid="" id="make-request" class="flatbtngreen">Yes Please!</a> or <a href="#" onclick="closePopup();">No Thanks</a></p>
+	</div>
+	<div id="controlpane" style="display:none;">
+		<div class="pane-wrapper">
+			<div class="twocol">
+				<h3>Just Play</h3>
+				<p>If you don't have an account with LCOGT On Sky or just want to play Messier Bingo.</p>
+				<a href="#" class="flatbtngreen" id="request-popup">Play!</a>
+			</div>
+			<div class="onecol">
+				<i class="fa fa-arrow-left"></i>&nbsp;or&nbsp;<i class="fa fa-arrow-right"></i>
+			</div>
+			<div class="twocol">
+				<h3>Sign in</h3>
+				<p>If you have an account with LCOGT On Sky, you can use Messier Bingo to ask Serol to take pictures for you during the game.</p>
+				<a href="#" class="flatbtngreen" id="request-popup">Sign in!</a>
+			</div>
+		</div>
 	</div>
 	{% endblock %}
 </body>

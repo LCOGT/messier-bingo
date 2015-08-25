@@ -185,7 +185,7 @@
 	/*! Messier Bingo */
 	function MessierBingo(inp){
 
-		this.version = "0.1";
+		this.version = "0.2";
 	
 		// Set some variables
 		this.q = $.query();    // Query string
@@ -208,7 +208,7 @@
 
 		// Log whether user is authenticated
 		this.authenticated = typeof inp.user_auth == "undefined" ? false : inp.user_auth;
-		
+
 		// Process the input parameters/query string
 		this.init(inp);
 
