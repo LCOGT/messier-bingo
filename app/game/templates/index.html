@@ -86,10 +86,7 @@
 				<ul>
 					{% if user.is_authenticated %}
 					<li>
-						<a href="#" id="messages-inbox" class="fa fa-inbox{% if messages %} highlight{% endif %}"></a>
-					</li>
-					<li>
-						{% if user.first_name %}{{ user.first_name }}{% else %}{{user.username}}{% endif %}
+						<a target="_blank" href="https://lcogt.net/observe/request/">Your Images</a>
 					</li>
 					<li>
 						<a target="_parent" href="{% url 'auth_logout' as logouturl %}{{ logouturl }}"> Logout</a>
@@ -103,7 +100,7 @@
 			</div>
 			{% endblock %}
 			<div id="lcogt-name">
-				<a target="_parent" href="http://lcogt.net/" title="LCOGT Homepage"><span class="l">L</span><span class="wide">as </span><span class="c">C</span><span class="wide">umbres </span><span class="o">O</span><span class="wide">bservatory </span><span class="g">G</span><span class="wide">lobal </span><span class="t">T</span><span class="wide">elescope Network</span></a>
+				<a target="_blank" href="http://lcogt.net/" title="LCOGT Homepage"><span class="l">L</span><span class="wide">as </span><span class="c">C</span><span class="wide">umbres </span><span class="o">O</span><span class="wide">bservatory </span><span class="g">G</span><span class="wide">lobal </span><span class="t">T</span><span class="wide">elescope Network</span></a>
 			</div>
 		</div>
 	</div>
@@ -121,7 +118,7 @@
 					<div class="inner">
 						<div class="padded" id="panel-info">
 							<h3>Instructions</h3>
-							<p>Get your <a href="http://lcogt.net/education/messierbingo">bingo card</a> and mark it each time one of your objects appears.</p>
+							<p>Get your <a target="_blank" href="http://lcogt.net/education/messierbingo">bingo card</a> and mark it each time one of your objects appears.</p>
 							<p>When you have marked all the objects on your card shout 'Bingo', 'House' or even 'Messier' to win.</p>
 							<p>To select a new Messier object press the arrow in the bottom right. If you need to restart press the 'R' key.</p>
 						</div>

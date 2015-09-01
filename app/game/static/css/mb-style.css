@@ -246,6 +246,23 @@ label {display:block; font-family: "Birch Std", Didot, "Bodoni MT", "Century Sch
 	font-weight: bold;
 }
 
+#panel-info a {
+  color: #3366dd;
+  text-decoration: none;
+}
+
+#panel-info a:visited {
+    color: #3366dd;
+}
+#panel-info a:hover, a:focus {
+    color: #f46262;
+    text-decoration: underline;
+}
+#panel-info a:active {
+    color: #a2c0dd;
+    text-decoration: underline;
+}
+
 .info-header .info-header-item {display:inline-block;}
 
 .info-header{width:100%;}

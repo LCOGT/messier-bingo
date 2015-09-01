@@ -1,5 +1,6 @@
 Django>1.8,<1.9
 djangorestframework
+django-tools
 ipython
 lxml
 MySQL-python
@@ -7,9 +8,7 @@ Pillow==2.9.0
 Pygments==2.0.2
 PyPDF2==1.25.1
 reportlab==3.2.0
-reqdbclient
 requests==2.7.0
-schedutils==0.1.7
 svg2rlg==0.3
 z3c.rml==2.9.2
 zope.event==4.0.3
