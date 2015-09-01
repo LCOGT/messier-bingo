@@ -19,6 +19,10 @@ body.full-page {
 	font-size: 2em;
 }
 
+.pane-wrapper {display:table-row;}
+.pane-wrapper .twocol { width:40%; display: table-cell;}
+.pane-wrapper .onecol { width:20%; display: table-cell; vertical-align: middle;}
+
 .gray-2-grad, #lcogt-bar {
     background: #606060 -moz-linear-gradient(center top , #404040, #606060) repeat scroll 0 0;
     color: white;
@@ -71,12 +75,15 @@ body.full-page {
     text-align: center;
     z-index: 11; /* 1px higher than the overlay layer */
 }
-#message-popup.wide-popup { width: auto; }
+#message-popup.wide-popup { width: 500px; }
 #message-popup.small-popup { width: 300px;}
 #message-popup p { font-size: 16px; }
 #message-popup h3 { font-size: 24px; }
-#message-popup-close { text-align: right;}
-#message-content { height:100%;}
+#message-popup a { font-size: 16px; }
+#message-content { padding:0.5rem; height:100%;}
+.message-popup-close i {padding:0.25rem;}
+.message-popup-close { text-align: right; cursor: pointer!important; }
+
 
 .jsonly { display: none; }
 
@@ -245,8 +252,6 @@ label {display:block; font-family: "Birch Std", Didot, "Bodoni MT", "Century Sch
 
 
 .hidden { display: none; }
-
-#message-popup-close { cursor: pointer!important; }
 
 .flatbtngreen {
     background: #009d00 none repeat scroll 0 0;

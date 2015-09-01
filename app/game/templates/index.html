@@ -41,7 +41,7 @@
 				{% endif %}
 
 
-				$(document).on('click','#togglepopup',function(event){
+				$(document).on('click','.login-popup',function(event){
 					var content = $('#login-form').html()
 					$('#message-content').html(content);
 					showPopup();
@@ -53,14 +53,13 @@
 					mb.submit_schedule('{{ csrf_token }}');
 				});
 
+				$('.message-popup-close').bind("click",function(){ closePopup();});
 
 
 			});
 				function showPopup(){
+					$('#message-popup').fadeIn("fast");
 					centreDiv('#message-popup');
-					if ($('#message-popup').is(':visible')) $('#message-popup').fadeOut("fast");
-					else $('#message-popup').fadeIn("fast");
-					$('#message-popup-close').bind("click",function(){ closePopup();});
 					$('.overlay').show();
 					return false;
 				}
@@ -97,7 +96,7 @@
 					</li>
 					{% else %}
 					<li>
-						<a href="#" id="togglepopup">Login</a>
+						<a href="#" class="login-popup">Login</a>
 					</li>
 					{% endif %}
 				</ul>
@@ -141,7 +140,7 @@
 	</div>
 	<div id="message-popup" style="display:none;" class="small-popup">
 		<div id="show-messages-inner">
-			<div id="message-popup-close"><i class="fa fa-remove"></i></div>
+			<div class="message-popup-close"><i class="fa fa-remove"></i></div>
 			<div id="message-content"></div>
 		</div>
 	</div>
@@ -164,15 +163,15 @@
 			<div class="twocol">
 				<h3>Just Play</h3>
 				<p>If you don't have an account with LCOGT On Sky or just want to play Messier Bingo.</p>
-				<a href="#" class="flatbtngreen" id="request-popup">Play!</a>
+				<a href="#" class="flatbtngreen message-popup-close">Play!</a>
 			</div>
 			<div class="onecol">
 				<i class="fa fa-arrow-left"></i>&nbsp;or&nbsp;<i class="fa fa-arrow-right"></i>
 			</div>
 			<div class="twocol">
 				<h3>Sign in</h3>
-				<p>If you have an account with LCOGT On Sky, you can use Messier Bingo to ask Serol to take pictures for you during the game.</p>
-				<a href="#" class="flatbtngreen" id="request-popup">Sign in!</a>
+				<p>If you have an account with LCOGT On Sky, you can ask Serol to take pictures as you play.</p>
+				<a href="#" class="flatbtngreen login-popup">Sign in!</a>
 			</div>
 		</div>
 	</div>
