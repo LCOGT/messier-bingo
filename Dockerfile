@@ -9,13 +9,21 @@
 # docker push docker.lcogt.net/messierbingo:latest
 #
 ################################################################################
-
 FROM centos:centos7
-MAINTAINER Edward Gomez <egomez@lcogt.net>
+MAINTAINER LCOGT <webmaster@lcogt.net>
+
+# nginx (http protocol) runs on port 80
+EXPOSE 80
+ENTRYPOINT [ "/init" ]
+
+# Setup the Python Django environment
+ENV PYTHONPATH /var/www/apps
+ENV DJANGO_SETTINGS_MODULE messierbingo.settings
 
 # Install package repositories
 RUN yum -y install epel-release \
 	&& yum -y install nginx libjpeg-devel python-pip mysql-devel python-devel supervisor \
+	&& yum -y install libxslt-devel libxml2-devel \
 	&& yum -y groupinstall "Development Tools"\
 	&& yum -y update
 
@@ -23,7 +31,7 @@ RUN yum -y install epel-release \
 COPY app/requirements.txt /var/www/apps/messierbingo/requirements.txt
 
 RUN pip install pip==1.3 && pip install uwsgi==2.0.8 \
-		&& pip install -r /var/www/apps/messierbingo/requirements.txt \
+		&& pip install -r /var/www/apps/messierbingo/requirements.txt
 
 # Setup the Python Django environment
 ENV PYTHONPATH /var/www/apps
@@ -36,12 +44,6 @@ ENV PREFIX /messierbingo
 COPY config/uwsgi.ini /etc/uwsgi.ini
 COPY config/nginx/* /etc/nginx/
 COPY config/processes.ini /etc/supervisord.d/processes.ini
-
-# Listen to port 80
-EXPOSE 80
-
-# Entry point is the supervisord daemon
-ENTRYPOINT [ "/init"]
 
 # Copy configuration files
 COPY config/init /init

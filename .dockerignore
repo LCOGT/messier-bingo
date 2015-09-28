@@ -1,0 +1,5 @@
+app/messierbingo/media/*
+.git
+.svn
+*.pyc
+*.pyo

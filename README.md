@@ -9,10 +9,10 @@ How to play
 -----------
  1. Download as many [bingo cards](http://lcogt.net/education/messierbingo) as you have players. There are 10 cards in total but more than one person could have the same card in a large group.
  1. Launch the Messier Bingo random image tombola (this).
- 1. When you want to start click the arrow button in the bottom right 
+ 1. When you want to start click the arrow button in the bottom right
  1. Mark your card each time one of your objects appears
  1. When you have marked all the objects on your card shout 'Bingo', 'House' or even 'Messier' to win.
 
 Authors
 -------
-Created by [Edward Gomez](http://gomez.me.uk), interface designed by [Charlotte Provot](http://www.charlotteprovot.com/), code developed by [Stuart Lowe](http://strudel.org.uk) for [Las Cumbres Observatory Global Telescope](http://lcogt.net/). LCOGT is a private operating foundation, building a global network of telescopes for professional research and citizen investigations.
+Created and maintained by [Edward Gomez](http://lcogt.net/user/egomez), interface designed by [Charlotte Provot](http://www.charlotteprovot.com/), initial code developed by [Stuart Lowe](http://strudel.org.uk) for [Las Cumbres Observatory Global Telescope](http://lcogt.net/). LCOGT is a private operating foundation, building a global network of telescopes for professional research and citizen investigations.
