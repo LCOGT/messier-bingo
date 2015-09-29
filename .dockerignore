@@ -1,4 +1,5 @@
 app/messierbingo/media/*
+app/cards/static/*
 .git
 .svn
 *.pyc

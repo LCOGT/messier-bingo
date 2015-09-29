@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+{% load staticfiles %}
+
+{% block scripts %}{% endblock %}
+{% block scripts-extra %}{% endblock %}
+
+{%block body-class%}full-page{% endblock%}
+
+{% block header %}404 Error: We can't find that page{% endblock %}
+{% block title %}We can't find that page{% endblock %}
+
+{% block main-content %}
+<div id="main">
+
+  <div class="bigpadded">
+    <div class="row">
+      <h1>We can't find that page</h1>
+      <p>If you typed this address into your webbrowser, try going to the <a href="{% url 'home' %}">Messier Bingo home</a> and trying again.</p>
+      <p>If you got here by clicking a link <a href="http://lcogt.net/observe/feedback/">please let us know</a> how you found your way to this page.</p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -23,7 +23,7 @@ class ImageViewSet(viewsets.ModelViewSet):
 
 def home(request):
     form = AuthenticationForm()
-    return render(request,'index.html',{'login_form':form})
+    return render(request,'index.html',{'login_form':form,'prefix':settings.PREFIX})
 
 
 class ScheduleView(APIView):

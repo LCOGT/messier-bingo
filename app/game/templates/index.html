@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Messier Bingo</title>
+	<title>{% block header %}Messier Bingo{% endblock %}</title>
 	<meta http-equiv="X-UA-Compatible" content="chrome=IE9">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="{% static 'css/mb-style.css' %}" type="text/css">
@@ -29,7 +29,7 @@
 			{% endif %}
 
 				// Initialise the MessierBingo class
-				mb = $.messierbingo({'user_auth':user_auth});
+				mb = $.messierbingo({'user_auth':user_auth,'urlprefix':'{{prefix}}'});
 
 				{% if request.user.is_authenticated %}
 				$(document).on('click','#observe_button',function(event){

@@ -189,6 +189,7 @@
 
 		// Set some variables
 		this.q = $.query();    // Query string
+		this.urlprefix = inp['urlprefix'];
 		this.id = 'paper';
 		this.container = $('#'+this.id);
 		this.outer = $('#outer');
@@ -204,7 +205,7 @@
 		this.lang = (typeof this.q.lang==="string") ? this.q.lang : (navigator) ? (navigator.userLanguage||navigator.systemLanguage||navigator.language||browser.language) : "";
 		this.langshort = (this.lang.indexOf('-') > 0 ? this.lang.substring(0,this.lang.indexOf('-')) : this.lang.substring(0,2));
 		this.langs = (inp && inp.langs) ? inp.langs : { 'en': 'English', 'cy':'Cymraeg' };
-		this.langurl = "/static/lang/%LANG%.json";
+		this.langurl = this.urlprefix +"/static/lang/%LANG%.json";
 
 		// Log whether user is authenticated
 		this.authenticated = typeof inp.user_auth == "undefined" ? false : inp.user_auth;
@@ -293,12 +294,12 @@
 			'dial': {ox:333,oy:100,r:41,dr:30,fontsize:22},
 			'button':{ox:925,oy:660,r:50,dr:24,fontsize:18},
 			'pipe':{w:14},
-			'iris':{'src':'/static/images/iris.png'}
+			'iris':{'src':this.urlprefix+'/static/images/iris.png'}
 		}
 
 		// Move clock if portal is square
 		if(!$.support.borderRadius){
-			this.chrome.iris.src = '/static/images/iris_square.png';
+			this.chrome.iris.src = this.urlprefix+'/static/images/iris_square.png';
 			this.chrome.frame = {x:-1.5,y:-1.5,w:this.wide+1,h:this.tall+1};
 			this.chrome.portal = {ox:660,oy:448,r:[272,272*0.96,272*0.85,272*0.825,272*0.81]},
 			this.chrome.clock = {ox:940,oy:100,r:71};
@@ -881,10 +882,10 @@
 		this.messier = this.box.set();
 
 		if($.support.transparency){
-			this.messier.push(this.box.image('/static/images/messier_eyes.png',130,121,28,6));
-			this.messier.push(this.box.image('/static/images/messier_noeyes.png',85,80,90,110));
+			this.messier.push(this.box.image(this.urlprefix+'/static/images/messier_eyes.png',130,121,28,6));
+			this.messier.push(this.box.image(this.urlprefix+'/static/images/messier_noeyes.png',85,80,90,110));
 		}else{
-			this.messier.push(this.box.image('/static/images/messier.png',85,80,90,110));
+			this.messier.push(this.box.image(this.urlprefix+'/static/images/messier.png',85,80,90,110));
 		}
 
 		this.portal = this.box.set();
@@ -1050,7 +1051,7 @@
 				$('#panel-info').html('<div class="padded"><div class="info-header"><div class="info-header-item"><h3 class="messier"></h3></div><div class="info-header-item" style="float:right;"><img src="" alt=""></div></div><p class="altname"></p><p class="type"></p><p class="distance"></p><p class="telescope"></p><p class="credit"></p><p class="date"></p><p class="download"></p></div>');
 			}
 			$('#panel-info .messier').html(m.m);
-			$('#panel-info .info-header-item img').attr('src', "/static/images/"+m.avm_icon);
+			$('#panel-info .info-header-item img').attr('src', this.urlprefix+"/static/images/"+m.avm_icon);
 			$('#panel-info .info-header img').attr('alt', avm_name);
 			$('#panel-info .altname').html((this.phrasebook.catalogue && this.phrasebook.catalogue[m.m].name) ? '('+this.phrasebook.catalogue[m.m].name+')' : (m.name) ? '('+m.name+')' : '');
 			//$('#panel-info .distance').html('<strong>'+this.phrasebook.information.distance.label+'</strong> '+(m.distance >= 60000 ? '>' : '')+(m.distance*1000)+' '+this.phrasebook.information.distance.lyr);

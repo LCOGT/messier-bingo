@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+{% load staticfiles %}
+
+{% block scripts %}{% endblock %}
+{% block scripts-extra %}{% endblock %}
+
+{%block body-class%}full-page{% endblock%}
+
+{% block header %}500 Error: Something went wrong{% endblock %}
+{% block title %}500 Error: Something went wrong{% endblock %}
+
+{% block main-content %}
+<div id="main">
+
+  <div class="bigpadded">
+    <div class="row">
+    <h1>500 Error: Something went wrong</h1>
+    <p>If you see this page a lot, it looks like we broke something. <a href="http://lcogt.net/observe/feedback/">Please let us know</a>, giving as much detail about how it happened.</p>
+  </div>
+</div>
+
+{% endblock %}

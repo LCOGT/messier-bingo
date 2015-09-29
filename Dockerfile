@@ -38,7 +38,7 @@ ENV PYTHONPATH /var/www/apps
 ENV DJANGO_SETTINGS_MODULE messierbingo.settings
 
 # Set the PREFIX env variable
-ENV PREFIX /messierbingo
+ENV PREFIX /messierbingo/beta
 
 # Copy configuration files
 COPY config/uwsgi.ini /etc/uwsgi.ini

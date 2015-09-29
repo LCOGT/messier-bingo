@@ -14,7 +14,7 @@ import requests
 
 logger = logging.getLogger(__name__)
 
-        
+
 def matchRBauthPass(email,password):
     # Retreive the database user information from the settings
     # Match supplied user name to one in Drupal database
@@ -33,7 +33,7 @@ def matchRBauthPass(email,password):
     else:
         logger.debug("User %s not found" % email)
         return False
-        
+
 def checkUserObject(email,username,password,first_name,last_name, user_id):
     # Logging in can only be done using email address if using RBauth
     user, created = User.objects.get_or_create(username=username)
@@ -58,7 +58,7 @@ def checkUserObject(email,username,password,first_name,last_name, user_id):
     resp = add_proposal_to_session(user_id)
     if not resp:
         logger.debug("Looking up proposal failed")
-    return user   
+    return user
 
 def get_odin_cookie(email, password):
     '''
@@ -79,12 +79,12 @@ def get_odin_cookie(email, password):
 
 def epo_proposals(user_id):
     sql = """
-        SELECT scheduler_requests.proposaldb_proposal.proposal_id 
+        SELECT scheduler_requests.proposaldb_proposal.proposal_id
             FROM scheduler_requests.proposaldb_proposal, rbauth.rbauth_userrole
             WHERE scheduler_requests.proposaldb_proposal.id = rbauth.rbauth_userrole.object_id
             AND content_type_id=12 AND user_id=%s AND scheduler_requests.proposaldb_proposal.public=1
         """
-    with connections['rbauth'].cursor() as c:
+    with connections['proposaldb'].cursor() as c:
         c.execute(sql, [user_id])
         ps = c.fetchall()
     proposals = set([p[0] for p in ps])
@@ -102,8 +102,8 @@ def add_proposal_to_session(user_id):
     request.session['proposal_code'] = value
     return True
 
-         
-class LCOAuthBackend(ModelBackend):         
+
+class LCOAuthBackend(ModelBackend):
     def authenticate(self, username=None, password=None):
         # This is only to authenticate with RBauth
         # If user cannot log in this way, the normal Django Auth is used
@@ -116,6 +116,4 @@ class LCOAuthBackend(ModelBackend):
         try:
             return User.objects.get(pk=user_id)
         except User.DoesNotExist:
-            return None  
-
-            
+            return None
