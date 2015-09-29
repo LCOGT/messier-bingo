@@ -151,8 +151,6 @@ COMPRESS_JS_FILTERS = [
     'compressor.filters.template.TemplateFilter',
 ]
 
-FIXTURE_DIRS = (os.path.join(CURRENT_PATH ,'fixtures'),)
-
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
