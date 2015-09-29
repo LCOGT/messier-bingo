@@ -1,0 +1,62 @@
+[
+{
+  "fields": {
+    "aperture": null,
+    "code": "2m0a",
+    "name": "Faulkes Telescope South",
+    "site": "coj"
+  },
+  "model": "messierbingo.telescope",
+  "pk": 1
+},
+{
+  "fields": {
+    "aperture": null,
+    "code": "2m0a",
+    "name": "Faulkes Telescope North",
+    "site": "ogg"
+  },
+  "model": "messierbingo.telescope",
+  "pk": 2
+},
+{
+  "fields": {
+    "aperture": null,
+    "code": "1m0a",
+    "name": "McDonald 1-meter",
+    "site": "elp"
+  },
+  "model": "messierbingo.telescope",
+  "pk": 3
+},
+{
+  "fields": {
+    "aperture": null,
+    "code": "1m0a",
+    "name": "Sutherland 1-meter A",
+    "site": "cpt"
+  },
+  "model": "messierbingo.telescope",
+  "pk": 4
+},
+{
+  "fields": {
+    "aperture": null,
+    "code": null,
+    "name": "Siding Spring 1-meter B",
+    "site": null
+  },
+  "model": "messierbingo.telescope",
+  "pk": 5
+},
+{
+  "fields": {
+    "aperture": null,
+    "code": "0m8a",
+    "name": "Sedgwick Observatory",
+    "site": "sqa"
+  },
+  "model": "messierbingo.telescope",
+  "pk": 6
+}
+]

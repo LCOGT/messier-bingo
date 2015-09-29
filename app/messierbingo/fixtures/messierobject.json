@@ -1,0 +1,1762 @@
+[
+{
+  "fields": {
+    "name": "M1",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/11/27/process-3925-2.jpg",
+    "othernames": null,
+    "obs_date": "2013-11-27T14:19:51",
+    "ra": 83.6292,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/11/27/process-3925-2_120.jpg",
+    "observer_name": "Wellington School",
+    "dec": 22.0167,
+    "avm_code": "4.1.4",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 1
+},
+{
+  "fields": {
+    "name": "M10",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/07/16/process-357-2.jpg",
+    "othernames": null,
+    "obs_date": "2012-07-16T14:48:27",
+    "ra": 254.289,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/07/16/process-357-2_120.jpg",
+    "observer_name": "The William Allitt School",
+    "dec": -4.10026,
+    "avm_code": "3.6.4.2",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 2
+},
+{
+  "fields": {
+    "name": "M100",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/03/15/process-3226-2.jpg",
+    "othernames": null,
+    "obs_date": "2012-03-15T13:44:50",
+    "ra": 185.73,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/03/15/process-3226-2_120.jpg",
+    "observer_name": "BBC Stargazing",
+    "dec": 15.8228,
+    "avm_code": "5.1.1",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 3
+},
+{
+  "fields": {
+    "name": "M101",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/04/27/process-5922-1.jpg",
+    "othernames": null,
+    "obs_date": "2012-04-27T10:42:10",
+    "ra": 210.8025,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/04/27/process-5922-1_120.jpg",
+    "observer_name": "Stroud High School",
+    "dec": 54.3506,
+    "avm_code": "5.1.1",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 4
+},
+{
+  "fields": {
+    "name": "M102",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/02/25/process-3820-1.jpg",
+    "othernames": null,
+    "obs_date": "2011-02-25T15:15:18",
+    "ra": 226.626,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/02/25/process-3820-1_120.jpg",
+    "observer_name": "UoG10 Emma Quinlan",
+    "dec": 55.7625,
+    "avm_code": "5.1.3",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 5
+},
+{
+  "fields": {
+    "name": "M103",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/11/30/process-3121-1.jpg",
+    "othernames": null,
+    "obs_date": "2011-11-30T10:19:00",
+    "ra": 23.3409,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/11/30/process-3121-1_120.jpg",
+    "observer_name": "Escola Basica D. Duarte, Vil de Soito, V",
+    "dec": 60.658,
+    "avm_code": "3.6.4.1",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 6
+},
+{
+  "fields": {
+    "name": "M104",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/07/20/process-381-2.jpg",
+    "othernames": null,
+    "obs_date": "2012-07-20T10:38:52",
+    "ra": 189.9975,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/07/20/process-381-2_120.jpg",
+    "observer_name": "Cardiff Astronomical Society",
+    "dec": -11.6231,
+    "avm_code": "5.1.1",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 7
+},
+{
+  "fields": {
+    "name": "M105",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2010/01/21/process-32-1.jpg",
+    "othernames": null,
+    "obs_date": "2010-01-21T11:38:47",
+    "ra": 161.958,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2010/01/21/process-32-1_120.jpg",
+    "observer_name": "West Monmouth School",
+    "dec": 12.5825,
+    "avm_code": "5.1.4",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 8
+},
+{
+  "fields": {
+    "name": "M106",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2007/04/29/process-672-1.jpg",
+    "othernames": null,
+    "obs_date": "2007-04-29T07:26:15",
+    "ra": 184.7415,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2007/04/29/process-672-1_120.jpg",
+    "observer_name": "JD Armstrong, IfA Hawaii",
+    "dec": 47.3044,
+    "avm_code": "5.1.1",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 9
+},
+{
+  "fields": {
+    "name": "M107",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/05/03/process-2490-1.jpg",
+    "othernames": null,
+    "obs_date": "2013-05-03T11:04:34",
+    "ra": 248.13,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/05/03/process-2490-1_120.jpg",
+    "observer_name": "UoG12 Simon Shelford",
+    "dec": -13.0503,
+    "avm_code": "3.6.4.2",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 10
+},
+{
+  "fields": {
+    "name": "M108",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/11/05/process-8560-1.jpg",
+    "othernames": null,
+    "obs_date": "2012-11-05T15:18:21",
+    "ra": 167.883,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/11/05/process-8560-1_120.jpg",
+    "observer_name": "Haberdashers' Aske's School for Girls",
+    "dec": 55.6706,
+    "avm_code": "5.1.1",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 11
+},
+{
+  "fields": {
+    "name": "M109",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2007/06/21/process-1577-1.jpg",
+    "othernames": null,
+    "obs_date": "2007-06-21T06:36:13",
+    "ra": 179.4015,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2007/06/21/process-1577-1_120.jpg",
+    "observer_name": "IDEAS Workshop",
+    "dec": 53.3753,
+    "avm_code": "5.1.2",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 12
+},
+{
+  "fields": {
+    "name": "M11",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/06/28/process-3798-1.jpg",
+    "othernames": null,
+    "obs_date": "2013-06-28T10:15:42",
+    "ra": 282.7755,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/06/28/process-3798-1_120.jpg",
+    "observer_name": "Simon Langton Grammar School for Boys",
+    "dec": -6.27002,
+    "avm_code": "3.6.4.1",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 13
+},
+{
+  "fields": {
+    "name": "M110",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2007/07/18/process-2160-1.jpg",
+    "othernames": null,
+    "obs_date": "2007-07-18T14:56:37",
+    "ra": 10.09167,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2007/07/18/process-2160-1_120.jpg",
+    "observer_name": "Daniel Duggan",
+    "dec": 41.6869,
+    "avm_code": "5.2.2",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 14
+},
+{
+  "fields": {
+    "name": "M12",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/07/20/process-1097-2.jpg",
+    "othernames": null,
+    "obs_date": "2011-07-20T10:10:51",
+    "ra": 251.811,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/07/20/process-1097-2_120.jpg",
+    "observer_name": "Park Community School",
+    "dec": -1.94782,
+    "avm_code": "3.6.4.2",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 15
+},
+{
+  "fields": {
+    "name": "M13",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/06/18/process-3409-1.jpg",
+    "othernames": null,
+    "obs_date": "2013-06-18T10:05:58",
+    "ra": 250.4235,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/06/18/process-3409-1_120.jpg",
+    "observer_name": "St Michael's School ",
+    "dec": 36.4613,
+    "avm_code": "3.6.4.2",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 16
+},
+{
+  "fields": {
+    "name": "M14",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/07/06/process-243-2.jpg",
+    "othernames": null,
+    "obs_date": "2012-07-06T13:22:01",
+    "ra": 264.4005,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/07/06/process-243-2_120.jpg",
+    "observer_name": "NUCLIO - Nucleo Interactivo de Astronomi",
+    "dec": -3.24592,
+    "avm_code": "3.6.4.2",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 17
+},
+{
+  "fields": {
+    "name": "M15",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/09/30/process-2904-2.jpg",
+    "othernames": null,
+    "obs_date": "2013-09-30T11:34:17",
+    "ra": 322.4925,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/09/30/process-2904-2_120.jpg",
+    "observer_name": "Stafford Grammar School",
+    "dec": 12.1666,
+    "avm_code": "3.6.4.2",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 18
+},
+{
+  "fields": {
+    "name": "M16",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/10/04/process-3036-2.jpg",
+    "othernames": null,
+    "obs_date": "2013-10-04T11:24:07",
+    "ra": 274.716,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/10/04/process-3036-2_120.jpg",
+    "observer_name": "Shooters Hill Post 16 Campus",
+    "dec": -13.8283,
+    "avm_code": "3.6.4.1",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 19
+},
+{
+  "fields": {
+    "name": "M17",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/10/15/process-3471-2.jpg",
+    "othernames": null,
+    "obs_date": "2013-10-15T11:14:50",
+    "ra": 275.196,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/10/15/process-3471-2_120.jpg",
+    "observer_name": "Kenton Primary School ",
+    "dec": -16.1715,
+    "avm_code": "3.6.4.1",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 20
+},
+{
+  "fields": {
+    "name": "M18",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/09/25/process-1238-2.jpg",
+    "othernames": null,
+    "obs_date": "2012-09-25T12:27:44",
+    "ra": 274.9935,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/09/25/process-1238-2_120.jpg",
+    "observer_name": "Zespol Szkol Rolniczych CKP",
+    "dec": -17.102,
+    "avm_code": "3.6.4.1",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 21
+},
+{
+  "fields": {
+    "name": "M19",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/02/01/process-151-1.jpg",
+    "othernames": null,
+    "obs_date": "2013-02-01T15:50:37",
+    "ra": 255.657,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/02/01/process-151-1_120.jpg",
+    "observer_name": "UoG11 - Katharine Vine",
+    "dec": -26.2675,
+    "avm_code": "3.6.4.2",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 22
+},
+{
+  "fields": {
+    "name": "M2",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/10/22/process-3551-2.jpg",
+    "othernames": null,
+    "obs_date": "2013-10-22T10:42:34",
+    "ra": 323.364,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/10/22/process-3551-2_120.jpg",
+    "observer_name": "Moreton Hall School",
+    "dec": -0.82419,
+    "avm_code": "3.6.4.2",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 23
+},
+{
+  "fields": {
+    "name": "M20",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/09/30/process-2906-2.jpg",
+    "othernames": null,
+    "obs_date": "2013-09-30T11:47:17",
+    "ra": 270.675,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/09/30/process-2906-2_120.jpg",
+    "observer_name": "Stafford Grammar School",
+    "dec": -22.9719,
+    "avm_code": "4.2.1.1",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 24
+},
+{
+  "fields": {
+    "name": "M21",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/04/14/process-350-1.jpg",
+    "othernames": null,
+    "obs_date": "2011-04-14T13:18:52",
+    "ra": 271.056,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/04/14/process-350-1_120.jpg",
+    "observer_name": "colaiste chriost ri",
+    "dec": -22.49,
+    "avm_code": "3.6.4.1",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 25
+},
+{
+  "fields": {
+    "name": "M22",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/08/05/process-581-1.jpg",
+    "othernames": null,
+    "obs_date": "2011-08-05T10:07:09",
+    "ra": 279.1005,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/08/05/process-581-1_120.jpg",
+    "observer_name": "St.Brigid's School",
+    "dec": -23.9061,
+    "avm_code": "3.6.4.2",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 26
+},
+{
+  "fields": {
+    "name": "M23",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/04/03/process-5299-1.jpg",
+    "othernames": null,
+    "obs_date": "2012-04-03T15:06:36",
+    "ra": 269.2695,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/04/03/process-5299-1_120.jpg",
+    "observer_name": "Longfield School",
+    "dec": -18.9853,
+    "avm_code": "3.6.4",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 27
+},
+{
+  "fields": {
+    "name": "M24",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2009/06/15/process-849-1.jpg",
+    "othernames": null,
+    "obs_date": "2009-06-15T11:26:26",
+    "ra": 274.737,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2009/06/15/process-849-1_120.jpg",
+    "observer_name": "Abingdon School",
+    "dec": -18.4158,
+    "avm_code": "3.6.4",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 28
+},
+{
+  "fields": {
+    "name": "M25",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/08/29/process-311-2.jpg",
+    "othernames": null,
+    "obs_date": "2011-08-29T12:06:33",
+    "ra": 277.95,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/08/29/process-311-2_120.jpg",
+    "observer_name": "Bexhill High School",
+    "dec": -19.1133,
+    "avm_code": "3.6.4",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 29
+},
+{
+  "fields": {
+    "name": "M26",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/09/30/process-1245-2.jpg",
+    "othernames": null,
+    "obs_date": "2011-09-30T10:30:37",
+    "ra": 281.328,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/09/30/process-1245-2_120.jpg",
+    "observer_name": "St Michaels",
+    "dec": -9.38361,
+    "avm_code": "3.6.4.1",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 30
+},
+{
+  "fields": {
+    "name": "M27",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/10/04/process-3031-2.jpg",
+    "othernames": null,
+    "obs_date": "2013-10-04T10:57:01",
+    "ra": 299.901,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/10/04/process-3031-2_120.jpg",
+    "observer_name": "Towers School",
+    "dec": 22.7168,
+    "avm_code": "4.1.3",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 31
+},
+{
+  "fields": {
+    "name": "M28",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/10/10/process-1637-2.jpg",
+    "othernames": null,
+    "obs_date": "2012-10-10T12:07:30",
+    "ra": 276.1365,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/10/10/process-1637-2_120.jpg",
+    "observer_name": "University of Kent Space Society",
+    "dec": -24.8688,
+    "avm_code": "3.6.4.2",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 32
+},
+{
+  "fields": {
+    "name": "M29",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/09/23/process-7731-1.jpg",
+    "othernames": null,
+    "obs_date": "2012-09-23T06:56:45",
+    "ra": 305.991,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/09/23/process-7731-1_120.jpg",
+    "observer_name": "Alex Quinonez (Reedley College)",
+    "dec": 38.5077,
+    "avm_code": "3.6.4.1",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 33
+},
+{
+  "fields": {
+    "name": "M3",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/06/19/process-3473-1.jpg",
+    "othernames": null,
+    "obs_date": "2013-06-19T10:45:08",
+    "ra": 205.5465,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/06/19/process-3473-1_120.jpg",
+    "observer_name": "St. Francis of Assisi Technology College",
+    "dec": 28.3783,
+    "avm_code": "3.6.4.2",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 34
+},
+{
+  "fields": {
+    "name": "M30",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/10/24/process-3593-2.jpg",
+    "othernames": null,
+    "obs_date": "2013-10-24T11:31:14",
+    "ra": 325.0935,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/10/24/process-3593-2_120.jpg",
+    "observer_name": "Castell Alun High School",
+    "dec": -23.1793,
+    "avm_code": "3.6.4.2",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 35
+},
+{
+  "fields": {
+    "name": "M31",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/11/22/process-5990-1.jpg",
+    "othernames": null,
+    "obs_date": "2013-11-22T10:54:33",
+    "ra": 10.68459,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/11/22/process-5990-1_120.jpg",
+    "observer_name": "Kenton Primary School ",
+    "dec": 41.2692,
+    "avm_code": "5",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 36
+},
+{
+  "fields": {
+    "name": "M32",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/09/21/process-1530-1.jpg",
+    "othernames": null,
+    "obs_date": "2011-09-21T14:27:22",
+    "ra": 10.674165,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/09/21/process-1530-1_120.jpg",
+    "observer_name": "Glebe School",
+    "dec": 40.8653,
+    "avm_code": "5.2.2",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 37
+},
+{
+  "fields": {
+    "name": "M33",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/11/22/process-5989-1.jpg",
+    "othernames": null,
+    "obs_date": "2013-11-22T10:43:01",
+    "ra": 23.4621,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/11/22/process-5989-1_120.jpg",
+    "observer_name": "Kenton Primary School ",
+    "dec": 30.6603,
+    "avm_code": "5.5.2",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 38
+},
+{
+  "fields": {
+    "name": "M34",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/10/03/process-1939-1.jpg",
+    "othernames": null,
+    "obs_date": "2011-10-03T12:40:37",
+    "ra": 40.53075,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/10/03/process-1939-1_120.jpg",
+    "observer_name": "Westminster School",
+    "dec": 42.7462,
+    "avm_code": "3.6.4.1",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 39
+},
+{
+  "fields": {
+    "name": "M35",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/11/20/process-8998-1.jpg",
+    "othernames": null,
+    "obs_date": "2012-11-20T12:57:20",
+    "ra": 92.27115,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/11/20/process-8998-1_120.jpg",
+    "observer_name": "Richmond Fellowship",
+    "dec": 24.3386,
+    "avm_code": "3.6.4",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 40
+},
+{
+  "fields": {
+    "name": "M36",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/12/05/process-3360-1.jpg",
+    "othernames": null,
+    "obs_date": "2011-12-05T15:37:51",
+    "ra": 84.07395,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/12/05/process-3360-1_120.jpg",
+    "observer_name": "Treorchy Comprehensive School",
+    "dec": 34.1407,
+    "avm_code": "3.6.4.1",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 41
+},
+{
+  "fields": {
+    "name": "M37",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/12/15/process-3540-1.jpg",
+    "othernames": null,
+    "obs_date": "2011-12-15T11:25:06",
+    "ra": 88.07505,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/12/15/process-3540-1_120.jpg",
+    "observer_name": "Uplands Community College",
+    "dec": 32.5531,
+    "avm_code": "3.6.4.1",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 42
+},
+{
+  "fields": {
+    "name": "M38",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/10/15/process-5500-1.jpg",
+    "othernames": null,
+    "obs_date": "2013-10-15T11:47:35",
+    "ra": 82.17705,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/10/15/process-5500-1_120.jpg",
+    "observer_name": "Shrewsbury Sixth Form College",
+    "dec": 35.8549,
+    "avm_code": "3.6.4",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 43
+},
+{
+  "fields": {
+    "name": "M39",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2008/10/01/process-256-1.jpg",
+    "othernames": null,
+    "obs_date": "2008-10-01T11:13:33",
+    "ra": 323.1375,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2008/10/01/process-256-1_120.jpg",
+    "observer_name": "Amstel Instituut - Universiteit van Amst",
+    "dec": 48.4778,
+    "avm_code": "3.6.4",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 44
+},
+{
+  "fields": {
+    "name": "M4",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/04/02/process-5252-1.jpg",
+    "othernames": null,
+    "obs_date": "2012-04-02T14:00:46",
+    "ra": 245.898,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/04/02/process-5252-1_120.jpg",
+    "observer_name": "NUCLIO - Nucleo Interactivo de Astronomi",
+    "dec": -26.5255,
+    "avm_code": "3.6.4.2",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 45
+},
+{
+  "fields": {
+    "name": "M40",
+    "image": "http://lcogt.net/files/messier/M40.jpg",
+    "othernames": null,
+    "obs_date": "2014-06-02T11:29:51",
+    "ra": 185.5215,
+    "image_thumb": "http://lcogt.net/files/messier/M40_thumbnail.jpg",
+    "observer_name": "Jake Hughes, Cardiff University",
+    "dec": 58.0831,
+    "avm_code": "3.6.3",
+    "telescope": 3
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 46
+},
+{
+  "fields": {
+    "name": "M41",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/03/14/process-3185-2.jpg",
+    "othernames": null,
+    "obs_date": "2012-03-14T10:12:30",
+    "ra": 101.49975,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/03/14/process-3185-2_120.jpg",
+    "observer_name": "King Edward VI High School For Girls",
+    "dec": -20.7542,
+    "avm_code": "3.6.4.1",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 47
+},
+{
+  "fields": {
+    "name": "M42",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/11/22/process-6000-1.jpg",
+    "othernames": null,
+    "obs_date": "2013-11-22T13:19:09",
+    "ra": 83.81865,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/11/22/process-6000-1_120.jpg",
+    "observer_name": "Westminster School",
+    "dec": -5.38968,
+    "avm_code": "4.2.1.1",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 48
+},
+{
+  "fields": {
+    "name": "M43",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/11/12/process-3827-2.jpg",
+    "othernames": null,
+    "obs_date": "2013-11-12T13:27:45",
+    "ra": 83.88075,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/11/12/process-3827-2_120.jpg",
+    "observer_name": "Highgate School",
+    "dec": -5.26748,
+    "avm_code": "4.2.1.1",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 49
+},
+{
+  "fields": {
+    "name": "M44",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/01/22/process-529-1.jpg",
+    "othernames": null,
+    "obs_date": "2013-01-22T11:28:23",
+    "ra": 130.09245,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/01/22/process-529-1_120.jpg",
+    "observer_name": "King's School, Canterbury, Kent, UK",
+    "dec": 19.6721,
+    "avm_code": "3.6.4.1",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 50
+},
+{
+  "fields": {
+    "name": "M45",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/11/28/process-3019-1.jpg",
+    "othernames": null,
+    "obs_date": "2011-11-28T10:09:31",
+    "ra": 56.86905,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/11/28/process-3019-1_120.jpg",
+    "observer_name": "Victoria College Belfast",
+    "dec": 24.1053,
+    "avm_code": "3.6.4.1",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 51
+},
+{
+  "fields": {
+    "name": "M46",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2005/11/26/process-12320-1.jpg",
+    "othernames": null,
+    "obs_date": "2005-11-26T11:38:13",
+    "ra": 115.4625,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2005/11/26/process-12320-1_120.jpg",
+    "observer_name": "Oundle School",
+    "dec": -14.75,
+    "avm_code": "3.6.4",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 52
+},
+{
+  "fields": {
+    "name": "M47",
+    "image": "http://lcogt.net/files/messier/M47.jpg",
+    "othernames": null,
+    "obs_date": "2014-06-02T11:29:51",
+    "ra": 114.14595,
+    "image_thumb": "http://lcogt.net/files/messier/M47_thumbnail.jpg",
+    "observer_name": "Jake Hughes, Cardiff University",
+    "dec": -14.4826,
+    "avm_code": "3.6.4.1",
+    "telescope": 4
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 53
+},
+{
+  "fields": {
+    "name": "M48",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/02/17/process-2891-2.jpg",
+    "othernames": null,
+    "obs_date": "2012-02-17T11:21:24",
+    "ra": 123.42495,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/02/17/process-2891-2_120.jpg",
+    "observer_name": "University of Glamorgan Leonie Chevalier",
+    "dec": -5.78333,
+    "avm_code": "3.6.4",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 54
+},
+{
+  "fields": {
+    "name": "M49",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/03/05/process-305-2.jpg",
+    "othernames": null,
+    "obs_date": "2013-03-05T14:20:57",
+    "ra": 187.443,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/03/05/process-305-2_120.jpg",
+    "observer_name": "Latymer Upper School",
+    "dec": 7.99944,
+    "avm_code": "5.3.2.2",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 55
+},
+{
+  "fields": {
+    "name": "M5",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/03/25/process-909-1.jpg",
+    "othernames": null,
+    "obs_date": "2013-03-25T10:44:10",
+    "ra": 229.6365,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/03/25/process-909-1_120.jpg",
+    "observer_name": "Glenlola Collegiate",
+    "dec": 2.08187,
+    "avm_code": "3.6.4.2",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 56
+},
+{
+  "fields": {
+    "name": "M50",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/11/05/process-3758-2.jpg",
+    "othernames": null,
+    "obs_date": "2013-11-05T16:57:16",
+    "ra": 105.6687,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/11/05/process-3758-2_120.jpg",
+    "observer_name": "Castell Alun High School",
+    "dec": -8.36403,
+    "avm_code": "3.6.4.1",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 57
+},
+{
+  "fields": {
+    "name": "M51",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/04/26/process-2408-1.jpg",
+    "othernames": null,
+    "obs_date": "2013-04-26T11:11:34",
+    "ra": 202.4715,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/04/26/process-2408-1_120.jpg",
+    "observer_name": "The Burgate School",
+    "dec": 47.1967,
+    "avm_code": "5.3.2.2",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 58
+},
+{
+  "fields": {
+    "name": "M52",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/09/23/process-7733-1.jpg",
+    "othernames": null,
+    "obs_date": "2012-09-23T07:14:34",
+    "ra": 351.201,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/09/23/process-7733-1_120.jpg",
+    "observer_name": "Alex Quinonez (Reedley College)",
+    "dec": 61.5932,
+    "avm_code": "3.6.4.1",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 59
+},
+{
+  "fields": {
+    "name": "M53",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/05/29/process-1218-2.jpg",
+    "othernames": null,
+    "obs_date": "2013-05-29T10:54:07",
+    "ra": 198.2295,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/05/29/process-1218-2_120.jpg",
+    "observer_name": "LOCKERBIE ACADEMY",
+    "dec": 18.1685,
+    "avm_code": "3.6.4.2",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 60
+},
+{
+  "fields": {
+    "name": "M54",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/05/03/process-2505-1.jpg",
+    "othernames": null,
+    "obs_date": "2013-05-03T13:13:04",
+    "ra": 283.7625,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/05/03/process-2505-1_120.jpg",
+    "observer_name": "The Kingsley School",
+    "dec": -30.479,
+    "avm_code": "3.6.4.2",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 61
+},
+{
+  "fields": {
+    "name": "M55",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2009/07/16/process-24-1.jpg",
+    "othernames": null,
+    "obs_date": "2009-07-16T10:45:48",
+    "ra": 295.002,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2009/07/16/process-24-1_120.jpg",
+    "observer_name": "West Monmouth School",
+    "dec": -30.9607,
+    "avm_code": "3.6.4.2",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 62
+},
+{
+  "fields": {
+    "name": "M56",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/06/30/process-1685-1.jpg",
+    "othernames": null,
+    "obs_date": "2011-06-30T11:37:42",
+    "ra": 289.1505,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/06/30/process-1685-1_120.jpg",
+    "observer_name": "Newchurch Community Primary School ",
+    "dec": 30.1819,
+    "avm_code": "3.6.4.2",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 63
+},
+{
+  "fields": {
+    "name": "M57",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/06/18/process-3422-1.jpg",
+    "othernames": null,
+    "obs_date": "2013-06-18T11:13:47",
+    "ra": 283.3995,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/06/18/process-3422-1_120.jpg",
+    "observer_name": "Newcastle-under-Lyme School",
+    "dec": 33.0333,
+    "avm_code": "4.1.3",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 64
+},
+{
+  "fields": {
+    "name": "M58",
+    "image": "http://lcogt.net/files/messier/M58.jpg",
+    "othernames": null,
+    "obs_date": "2014-06-02T11:29:51",
+    "ra": 189.4335,
+    "image_thumb": "http://lcogt.net/files/messier/M58_thumbnail.jpg",
+    "observer_name": "Jake Hughes, Cardiff University",
+    "dec": 11.8194,
+    "avm_code": "5.1.1",
+    "telescope": 5
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 65
+},
+{
+  "fields": {
+    "name": "M59",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2010/02/19/process-1048-1.jpg",
+    "othernames": null,
+    "obs_date": "2010-02-19T14:54:38",
+    "ra": 190.5105,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2010/02/19/process-1048-1_120.jpg",
+    "observer_name": "Herstmonceux Megacycles",
+    "dec": 11.6467,
+    "avm_code": "5.1.4",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 66
+},
+{
+  "fields": {
+    "name": "M6",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/09/26/process-1266-2.jpg",
+    "othernames": null,
+    "obs_date": "2012-09-26T10:51:35",
+    "ra": 265.086,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/09/26/process-1266-2_120.jpg",
+    "observer_name": "Kenton Primary School ",
+    "dec": -32.2542,
+    "avm_code": "3.6.4",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 67
+},
+{
+  "fields": {
+    "name": "M60",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/02/13/process-2781-2.jpg",
+    "othernames": null,
+    "obs_date": "2012-02-13T16:16:18",
+    "ra": 190.917,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/02/13/process-2781-2_120.jpg",
+    "observer_name": "Hawthorn Comprehensive",
+    "dec": 11.5494,
+    "avm_code": "5.1.3",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 68
+},
+{
+  "fields": {
+    "name": "M61",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/03/07/process-627-1.jpg",
+    "othernames": null,
+    "obs_date": "2013-03-07T11:48:39",
+    "ra": 185.478,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/03/07/process-627-1_120.jpg",
+    "observer_name": "Bury College",
+    "dec": 4.47222,
+    "avm_code": "5.3.2.2",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 69
+},
+{
+  "fields": {
+    "name": "M62",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2010/06/15/process-18-2.jpg",
+    "othernames": null,
+    "obs_date": "2010-06-15T13:46:16",
+    "ra": 255.3045,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2010/06/15/process-18-2_120.jpg",
+    "observer_name": "Swakeleys School",
+    "dec": -30.1142,
+    "avm_code": "3.6.4.2",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 70
+},
+{
+  "fields": {
+    "name": "M63",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/05/30/process-2691-1.jpg",
+    "othernames": null,
+    "obs_date": "2013-05-30T09:19:55",
+    "ra": 198.963,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/05/30/process-2691-1_120.jpg",
+    "observer_name": "Samara4",
+    "dec": 42.0269,
+    "avm_code": "5.3.2.4",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 71
+},
+{
+  "fields": {
+    "name": "M64",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/04/03/process-1076-1.jpg",
+    "othernames": null,
+    "obs_date": "2013-04-03T11:26:37",
+    "ra": 194.184,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/04/03/process-1076-1_120.jpg",
+    "observer_name": "Robert Smyth Academy",
+    "dec": 21.6847,
+    "avm_code": "5.1.1",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 72
+},
+{
+  "fields": {
+    "name": "M65",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/04/08/process-882-2.jpg",
+    "othernames": null,
+    "obs_date": "2013-04-08T13:49:44",
+    "ra": 169.7295,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/04/08/process-882-2_120.jpg",
+    "observer_name": "Glebe School",
+    "dec": 13.0931,
+    "avm_code": "5.3.2.4",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 73
+},
+{
+  "fields": {
+    "name": "M66",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/02/05/process-210-1.jpg",
+    "othernames": null,
+    "obs_date": "2013-02-05T14:25:35",
+    "ra": 170.0595,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/02/05/process-210-1_120.jpg",
+    "observer_name": "Latymer Upper School",
+    "dec": 12.995,
+    "avm_code": "5.3.2.4",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 74
+},
+{
+  "fields": {
+    "name": "M67",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/03/25/process-921-1.jpg",
+    "othernames": null,
+    "obs_date": "2013-03-25T11:37:28",
+    "ra": 132.83385,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/03/25/process-921-1_120.jpg",
+    "observer_name": "Glenlola Collegiate",
+    "dec": 11.812,
+    "avm_code": "3.6.4.1",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 75
+},
+{
+  "fields": {
+    "name": "M68",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2010/03/25/process-309-2.jpg",
+    "othernames": null,
+    "obs_date": "2010-03-25T12:49:43",
+    "ra": 189.8685,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2010/03/25/process-309-2_120.jpg",
+    "observer_name": "Ysgol Gyfun Y Strade",
+    "dec": -26.7446,
+    "avm_code": "3.6.4.2",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 76
+},
+{
+  "fields": {
+    "name": "M69",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2009/05/15/process-15-1.jpg",
+    "othernames": null,
+    "obs_date": "2009-05-15T12:39:18",
+    "ra": 277.845,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2009/05/15/process-15-1_120.jpg",
+    "observer_name": "Jerudong International School",
+    "dec": -32.349,
+    "avm_code": "3.6.4.2",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 77
+},
+{
+  "fields": {
+    "name": "M7",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/08/07/process-1835-2.jpg",
+    "othernames": null,
+    "obs_date": "2013-08-07T11:07:57",
+    "ra": 268.464,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/08/07/process-1835-2_120.jpg",
+    "observer_name": "Burton Borough School",
+    "dec": -34.7928,
+    "avm_code": "3.6.4",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 78
+},
+{
+  "fields": {
+    "name": "M70",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/06/08/process-1310-1.jpg",
+    "othernames": null,
+    "obs_date": "2011-06-08T12:51:12",
+    "ra": 280.8015,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/06/08/process-1310-1_120.jpg",
+    "observer_name": "Lycee de l'Arc - Academie d'Aix-Marseill",
+    "dec": -32.2914,
+    "avm_code": "3.6.4.2",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 79
+},
+{
+  "fields": {
+    "name": "M71",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/06/15/process-6849-1.jpg",
+    "othernames": null,
+    "obs_date": "2012-06-15T12:56:37",
+    "ra": 298.4415,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/06/15/process-6849-1_120.jpg",
+    "observer_name": "Tolworth Girls' School",
+    "dec": 18.7764,
+    "avm_code": "3.6.4.2",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 80
+},
+{
+  "fields": {
+    "name": "M72",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/06/06/process-3072-1.jpg",
+    "othernames": null,
+    "obs_date": "2013-06-06T14:14:58",
+    "ra": 313.365,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/06/06/process-3072-1_120.jpg",
+    "observer_name": "Perton Library",
+    "dec": -12.5367,
+    "avm_code": "3.6.4.2",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 81
+},
+{
+  "fields": {
+    "name": "M73",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2010/06/19/process-270-1.jpg",
+    "othernames": null,
+    "obs_date": "2010-06-19T10:56:34",
+    "ra": 314.733,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2010/06/19/process-270-1_120.jpg",
+    "observer_name": "The Kingsley School",
+    "dec": -12.6355,
+    "avm_code": "3.6.4",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 82
+},
+{
+  "fields": {
+    "name": "M74",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/09/30/process-1858-1.jpg",
+    "othernames": null,
+    "obs_date": "2011-09-30T12:11:10",
+    "ra": 24.17505,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/09/30/process-1858-1_120.jpg",
+    "observer_name": "Ashford Senior School",
+    "dec": 15.7867,
+    "avm_code": "5.1.1",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 83
+},
+{
+  "fields": {
+    "name": "M75",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/10/09/process-3227-2.jpg",
+    "othernames": null,
+    "obs_date": "2013-10-09T12:25:03",
+    "ra": 301.521,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/10/09/process-3227-2_120.jpg",
+    "observer_name": "JFS School",
+    "dec": -21.921,
+    "avm_code": "3.6.4.2",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 84
+},
+{
+  "fields": {
+    "name": "M76",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/01/08/process-104-1.jpg",
+    "othernames": null,
+    "obs_date": "2013-01-08T09:51:54",
+    "ra": 25.5894,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/01/08/process-104-1_120.jpg",
+    "observer_name": "Niepolomice",
+    "dec": 51.5685,
+    "avm_code": "4.1.3",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 85
+},
+{
+  "fields": {
+    "name": "M77",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/09/20/process-1456-1.jpg",
+    "othernames": null,
+    "obs_date": "2011-09-20T12:58:05",
+    "ra": 40.66995,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/09/20/process-1456-1_120.jpg",
+    "observer_name": "South Downs Planetarium",
+    "dec": -0.0133333,
+    "avm_code": "5.3.2.2",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 86
+},
+{
+  "fields": {
+    "name": "M78",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/11/12/process-3824-2.jpg",
+    "othernames": null,
+    "obs_date": "2013-11-12T13:09:48",
+    "ra": 86.6745,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/11/12/process-3824-2_120.jpg",
+    "observer_name": "Highgate School",
+    "dec": 0.0519444,
+    "avm_code": "4.2.2",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 87
+},
+{
+  "fields": {
+    "name": "M79",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/02/15/process-2805-2.jpg",
+    "othernames": null,
+    "obs_date": "2012-02-15T11:43:51",
+    "ra": 81.04845,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/02/15/process-2805-2_120.jpg",
+    "observer_name": "NUCLIO - Nucleo Interactivo de Astronomi",
+    "dec": -24.5254,
+    "avm_code": "3.6.4.2",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 88
+},
+{
+  "fields": {
+    "name": "M8",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/07/13/process-1792-2.jpg",
+    "othernames": null,
+    "obs_date": "2013-07-13T14:46:40",
+    "ra": 270.9225,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/07/13/process-1792-2_120.jpg",
+    "observer_name": "Burton Borough School",
+    "dec": -24.3802,
+    "avm_code": "4.2.1.1",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 89
+},
+{
+  "fields": {
+    "name": "M80",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2009/06/11/process-543-1.jpg",
+    "othernames": null,
+    "obs_date": "2009-06-11T10:22:47",
+    "ra": 244.2585,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2009/06/11/process-543-1_120.jpg",
+    "observer_name": "Simon Langton Grammar School for Boys",
+    "dec": -22.9759,
+    "avm_code": "3.6.4.2",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 90
+},
+{
+  "fields": {
+    "name": "M81",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/03/20/process-904-1.jpg",
+    "othernames": null,
+    "obs_date": "2013-03-20T12:19:09",
+    "ra": 148.88955,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/03/20/process-904-1_120.jpg",
+    "observer_name": "South Hampstead High School",
+    "dec": 69.0667,
+    "avm_code": "5.3.2",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 91
+},
+{
+  "fields": {
+    "name": "M82",
+    "image": "http://lcogt.net/files/bfulton/m82_Lrgb_flat_small.jpg",
+    "othernames": null,
+    "obs_date": "2013-04-13T06:02:20",
+    "ra": 148.97505,
+    "image_thumb": "http://lcogt.net/files/styles/fourcol-image/public/bfulton/m82_Lrgb_flat_small.jpg",
+    "observer_name": "BJ Fulton",
+    "dec": 69.6825,
+    "avm_code": "5.1.7",
+    "telescope": 6
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 92
+},
+{
+  "fields": {
+    "name": "M83",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/06/05/process-1465-2.jpg",
+    "othernames": null,
+    "obs_date": "2013-06-05T11:43:14",
+    "ra": 204.2505,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/06/05/process-1465-2_120.jpg",
+    "observer_name": "Lancaster Girls' Grammar School",
+    "dec": -29.8678,
+    "avm_code": "5.1.2",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 93
+},
+{
+  "fields": {
+    "name": "M84",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2010/02/05/process-439-1.jpg",
+    "othernames": null,
+    "obs_date": "2010-02-05T10:20:19",
+    "ra": 186.2655,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2010/02/05/process-439-1_120.jpg",
+    "observer_name": "Norton Knatchbull School",
+    "dec": 12.8872,
+    "avm_code": "5.1.4",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 94
+},
+{
+  "fields": {
+    "name": "M85",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2010/01/20/process-966-1.jpg",
+    "othernames": null,
+    "obs_date": "2010-01-20T14:49:13",
+    "ra": 186.3525,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2010/01/20/process-966-1_120.jpg",
+    "observer_name": "Olsztyn",
+    "dec": 18.1906,
+    "avm_code": "5.1.3",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 95
+},
+{
+  "fields": {
+    "name": "M86",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/05/18/process-4567-2.jpg",
+    "othernames": null,
+    "obs_date": "2012-05-18T11:41:48",
+    "ra": 186.549,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/05/18/process-4567-2_120.jpg",
+    "observer_name": "Warrington Collegiate",
+    "dec": 12.9462,
+    "avm_code": "5.1.3",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 96
+},
+{
+  "fields": {
+    "name": "M87",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/04/04/process-753-2.jpg",
+    "othernames": null,
+    "obs_date": "2013-04-04T11:19:06",
+    "ra": 187.707,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/04/04/process-753-2_120.jpg",
+    "observer_name": "Shooters Hill Post 16 Campus",
+    "dec": 12.39,
+    "avm_code": "5.1.4",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 97
+},
+{
+  "fields": {
+    "name": "M88",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2010/03/03/process-1315-1.jpg",
+    "othernames": null,
+    "obs_date": "2010-03-03T14:24:47",
+    "ra": 187.998,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2010/03/03/process-1315-1_120.jpg",
+    "observer_name": "University of Kent Space Society",
+    "dec": 14.4214,
+    "avm_code": "5.1.1",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 98
+},
+{
+  "fields": {
+    "name": "M89",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/04/26/process-549-1.jpg",
+    "othernames": null,
+    "obs_date": "2011-04-26T12:10:12",
+    "ra": 188.916,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/04/26/process-549-1_120.jpg",
+    "observer_name": "St Bernard's High School and Arts Colleg",
+    "dec": 12.5569,
+    "avm_code": "5.1.4",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 99
+},
+{
+  "fields": {
+    "name": "M9",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/06/20/process-3574-1.jpg",
+    "othernames": null,
+    "obs_date": "2013-06-20T12:05:16",
+    "ra": 259.7985,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2013/06/20/process-3574-1_120.jpg",
+    "observer_name": "Albert Schweitzer Gymnasium Crailsheim",
+    "dec": -18.5163,
+    "avm_code": "3.6.4.2",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 100
+},
+{
+  "fields": {
+    "name": "M90",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2010/02/25/process-1224-1.jpg",
+    "othernames": null,
+    "obs_date": "2010-02-25T14:27:01",
+    "ra": 189.2085,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2010/02/25/process-1224-1_120.jpg",
+    "observer_name": "Wiltshire Astronomical Society",
+    "dec": 13.1633,
+    "avm_code": "5.1.1",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 101
+},
+{
+  "fields": {
+    "name": "M91",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/05/16/process-4454-2.jpg",
+    "othernames": null,
+    "obs_date": "2012-05-16T13:40:55",
+    "ra": 188.859,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/05/16/process-4454-2_120.jpg",
+    "observer_name": "Colleyville Heritage High School",
+    "dec": 14.4969,
+    "avm_code": "5.1.2",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 102
+},
+{
+  "fields": {
+    "name": "M92",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/03/16/process-4846-1.jpg",
+    "othernames": null,
+    "obs_date": "2012-03-16T14:55:38",
+    "ra": 259.2795,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/03/16/process-4846-1_120.jpg",
+    "observer_name": "Ysgol Glan Clwyd",
+    "dec": 43.1373,
+    "avm_code": "3.6.4.2",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 103
+},
+{
+  "fields": {
+    "name": "M93",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/03/23/process-3268-2.jpg",
+    "othernames": null,
+    "obs_date": "2012-03-23T12:37:12",
+    "ra": 116.12175,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/03/23/process-3268-2_120.jpg",
+    "observer_name": "Northfleet School for Girls",
+    "dec": -23.8531,
+    "avm_code": "3.6.4",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 104
+},
+{
+  "fields": {
+    "name": "M94",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/01/28/process-3199-1.jpg",
+    "othernames": null,
+    "obs_date": "2011-01-28T12:18:03",
+    "ra": 192.723,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2011/01/28/process-3199-1_120.jpg",
+    "observer_name": "Victoria College",
+    "dec": 41.1192,
+    "avm_code": "5.1.1",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 105
+},
+{
+  "fields": {
+    "name": "M95",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/05/17/process-4496-2.jpg",
+    "othernames": null,
+    "obs_date": "2012-05-17T10:17:55",
+    "ra": 160.9905,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/05/17/process-4496-2_120.jpg",
+    "observer_name": "Escola Secund\u00e1ria Augusto Gomes",
+    "dec": 11.7038,
+    "avm_code": "5.1.2",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 106
+},
+{
+  "fields": {
+    "name": "M96",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2009/12/16/process-845-1.jpg",
+    "othernames": null,
+    "obs_date": "2009-12-16T13:26:46",
+    "ra": 161.688,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2009/12/16/process-845-1_120.jpg",
+    "observer_name": "ISYA North",
+    "dec": 11.8208,
+    "avm_code": "5.1.1",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 107
+},
+{
+  "fields": {
+    "name": "M97",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/02/01/process-4127-1.jpg",
+    "othernames": null,
+    "obs_date": "2012-02-01T12:43:41",
+    "ra": 168.693,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/02/01/process-4127-1_120.jpg",
+    "observer_name": "UoG11 - Steven Ward",
+    "dec": 55.0166,
+    "avm_code": "4.1.3",
+    "telescope": 2
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 108
+},
+{
+  "fields": {
+    "name": "M98",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/05/17/process-4493-2.jpg",
+    "othernames": null,
+    "obs_date": "2012-05-17T09:50:48",
+    "ra": 183.4515,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/05/17/process-4493-2_120.jpg",
+    "observer_name": "Escola Secund\u00e1ria Augusto Gomes",
+    "dec": 14.9003,
+    "avm_code": "5.3.2.4",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 109
+},
+{
+  "fields": {
+    "name": "M99",
+    "image": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/05/16/process-4426-2.jpg",
+    "othernames": null,
+    "obs_date": "2012-05-16T08:38:48",
+    "ra": 184.7055,
+    "image_thumb": "http://lcogt.net/files/rtisba/faulkes-rti/imagearchive/2012/05/16/process-4426-2_120.jpg",
+    "observer_name": "St Davids College",
+    "dec": 14.4186,
+    "avm_code": "5.1.1",
+    "telescope": 1
+  },
+  "model": "messierbingo.messierobject",
+  "pk": 110
+}
+]

@@ -1,0 +1,11 @@
+[
+{
+  "fields": {
+    "active": true,
+    "code": "LCOEPO2014B-010",
+    "name": "LCOGT Education"
+  },
+  "model": "messierbingo.proposal",
+  "pk": 1
+}
+]
