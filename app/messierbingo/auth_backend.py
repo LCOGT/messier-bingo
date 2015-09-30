@@ -11,6 +11,7 @@ from .models import Proposal
 import hashlib
 import logging
 import requests
+from bs4 import BeautifulSoup
 
 logger = logging.getLogger(__name__)
 
@@ -24,8 +25,8 @@ def matchRBauthPass(email,password):
         user = c.fetchone()
     if user:
         if check_password(password,user[1]):
-            get_odin_cookie(email, password)
-            return user[0], user[1], user[2], user[3], user[4]
+            proposals = get_odin_cookie_proposals(email, password)
+            return user[0], user[1], user[2], user[3], user[4], proposals
         else:
             ###### If the user does not have an email address return false
             logger.debug("password failed for %s" % email)
@@ -34,7 +35,7 @@ def matchRBauthPass(email,password):
         logger.debug("User %s not found" % email)
         return False
 
-def checkUserObject(email,username,password,first_name,last_name, user_id):
+def checkUserObject(email,username,password,first_name,last_name, user_id, proposals):
     # Logging in can only be done using email address if using RBauth
     user, created = User.objects.get_or_create(username=username)
     if not created:
@@ -55,43 +56,43 @@ def checkUserObject(email,username,password,first_name,last_name, user_id):
         user.save()
         logger.debug("User created")
         # LookUP proposals they are a member of
-    resp = add_proposal_to_session(user_id)
+    resp = add_proposal_to_session(proposals)
     if not resp:
         logger.debug("Looking up proposal failed")
     return user
 
-def get_odin_cookie(email, password):
+def get_odin_cookie_proposals(email, password):
     '''
     Use login credentials to login to ODIN as well and add sessionid to Messier Bingo session
+    while the session is open get the user's proposal list
     '''
     client = requests.session()
     url = 'https://lcogt.net/observe/auth/accounts/login/'
     r = requests.get(url)
     token = r.cookies['csrftoken']
     r = client.post(url, data={'username':email,'password':password, 'csrfmiddlewaretoken' : token}, cookies={'csrftoken':token})
+    page = client.get('http://lcogt.net/observe/proposal/')
     try:
+        proposals = get_epo_proposals(page)
         request = ThreadLocal.get_current_request()
         request.session['odin.sessionid'] = client.cookies['odin.sessionid']
-        return True
+        return proposals
     except Exception, e:
         logger.error(client.cookies)
         return False
 
-def epo_proposals(user_id):
-    sql = """
-        SELECT scheduler_requests.proposaldb_proposal.proposal_id
-            FROM scheduler_requests.proposaldb_proposal, rbauth.rbauth_userrole
-            WHERE scheduler_requests.proposaldb_proposal.id = rbauth.rbauth_userrole.object_id
-            AND content_type_id=12 AND user_id=%s AND scheduler_requests.proposaldb_proposal.public=1
-        """
-    with connections['proposaldb'].cursor() as c:
-        c.execute(sql, [user_id])
-        ps = c.fetchall()
-    proposals = set([p[0] for p in ps])
-    return proposals
+def get_epo_proposals(page):
+    '''
+    Parse the Propsals listing page for all the proposal ids the logged in user is a member of
+    '''
+    proposals = []
+    soup = BeautifulSoup(page.content, 'html.parser')
+    for line in soup.find_all("div", class_="projecttitle"):
+        proposals.append(line.find('a').get('href').split('/')[-2])
+    logger.debug("Found approved proposals: %s" ", ".join(proposals))
+    return set(proposals)
 
-def add_proposal_to_session(user_id):
-    proposals = epo_proposals(user_id)
+def add_proposal_to_session(proposals):
     approved_p = Proposal.objects.filter(active=True).values_list('code', flat=True)
     usable_proposals = proposals.intersection(list(approved_p))
     if usable_proposals:
@@ -109,7 +110,7 @@ class LCOAuthBackend(ModelBackend):
         # If user cannot log in this way, the normal Django Auth is used
         response =  matchRBauthPass(username, password)
         if (response):
-            return checkUserObject(username,response[0],password,response[2],response[3], response[4])
+            return checkUserObject(username,response[0],password,response[2],response[3], response[4], response[5])
         return None
 
     def get_user(self, user_id):

@@ -35,14 +35,6 @@ DATABASES = {
         "OPTIONS": {'init_command': 'SET storage_engine=INNODB'} if PRODUCTION else {},
         "ENGINE": "django.db.backends.mysql",
         },
-    'proposaldb': {
-        'NAME': os.environ.get('REQ_DB_NAME', ''),
-        "USER": os.environ.get('REQ_DB_USER', ''),
-        "PASSWORD": os.environ.get('REQ_DB_PASSWD', ''),
-        "HOST": os.environ.get('ODIN_DB_HOST', ''),
-        "OPTIONS": {'init_command': 'SET storage_engine=INNODB'} if PRODUCTION else {},
-        "ENGINE": "django.db.backends.mysql",
-        }
 }
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
