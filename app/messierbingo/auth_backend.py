@@ -35,7 +35,7 @@ def matchRBauthPass(email,password):
         logger.debug("User %s not found" % email)
         return False
 
-def checkUserObject(email,username,password,first_name,last_name, user_id, proposals):
+def checkUserObject(email,username,password,first_name,last_name, user_id):
     # Logging in can only be done using email address if using RBauth
     user, created = User.objects.get_or_create(username=username)
     if not created:
@@ -55,10 +55,6 @@ def checkUserObject(email,username,password,first_name,last_name, user_id, propo
         user.email == email
         user.save()
         logger.debug("User created")
-        # LookUP proposals they are a member of
-    resp = add_proposal_to_session(proposals)
-    if not resp:
-        logger.debug("Looking up proposal failed")
     return user
 
 def get_odin_cookie_proposals(email, password):
@@ -71,9 +67,12 @@ def get_odin_cookie_proposals(email, password):
     r = requests.get(url)
     token = r.cookies['csrftoken']
     r = client.post(url, data={'username':email,'password':password, 'csrfmiddlewaretoken' : token}, cookies={'csrftoken':token})
-    page = client.get('http://lcogt.net/observe/proposal/')
     try:
+        page = client.get('http://lcogt.net/observe/proposal/', timeout=20.0)
         proposals = get_epo_proposals(page)
+    except requests.exceptions.ReadTimeout:
+        logger.error('Could not obtain proposals. Timed out.')
+    try:
         request = ThreadLocal.get_current_request()
         request.session['odin.sessionid'] = client.cookies['odin.sessionid']
         return proposals
@@ -97,11 +96,13 @@ def add_proposal_to_session(proposals):
     usable_proposals = proposals.intersection(list(approved_p))
     if usable_proposals:
         value = list(usable_proposals)[0]
+        logger.debug("Proposal %s added to session" % value)
     else:
-        return False
+        value = None
+        logger.debug("No proposals added to session")
     request = ThreadLocal.get_current_request()
     request.session['proposal_code'] = value
-    return True
+    return
 
 
 class LCOAuthBackend(ModelBackend):
@@ -109,8 +110,15 @@ class LCOAuthBackend(ModelBackend):
         # This is only to authenticate with RBauth
         # If user cannot log in this way, the normal Django Auth is used
         response =  matchRBauthPass(username, password)
+        proposals = response[5]
         if (response):
-            return checkUserObject(username,response[0],password,response[2],response[3], response[4], response[5])
+            user = checkUserObject(username,response[0],password,response[2],response[3], response[4])
+            # Check for EPO proposals and add the first found to the session
+            if not proposals:
+                logger.debug('No proposals found')
+            else:
+                add_proposal_to_session(proposals)
+            return user
         return None
 
     def get_user(self, user_id):

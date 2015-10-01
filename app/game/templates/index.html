@@ -31,10 +31,15 @@
 				// Initialise the MessierBingo class
 				mb = $.messierbingo({'user_auth':user_auth,'urlprefix':'{{prefix}}'});
 
-				{% if request.user.is_authenticated %}
+				{% if request.user.is_authenticated and proposal %}
 				$(document).on('click','#observe_button',function(event){
-					console.log('observe-confirm');
 					var content = $('#observe-confirm').html()
+					$('#message-content').html(content);
+					showPopup();
+				});
+				{% else %}
+				$(document).on('click','#observe_button',function(event){
+					var content = $('#observe-denied').html()
 					$('#message-content').html(content);
 					showPopup();
 				});
@@ -154,6 +159,11 @@
 		<h3>Observe <span id="object-name"></span></h3>
 		<p>Do you want an image of <strong><span id="object-name"></span></strong> to be taken in the next week by LCOGT?</p>
 		<p><a href="#" data-objectid="" id="make-request" class="flatbtngreen">Yes Please!</a> or <a href="#" onclick="closePopup();">No Thanks</a></p>
+	</div>
+	<div id="observe-denied"  style="display:none;">
+		<h3>Not able to observe</h3>
+		<p>Sorry, you're either not logged in or do not have observing credit.</p>
+		<p><a href="#" onclick="closePopup();">Close</a></p>
 	</div>
 	<div id="controlpane" style="display:none;">
 		<div class="pane-wrapper">

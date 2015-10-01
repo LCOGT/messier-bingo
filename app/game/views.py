@@ -23,7 +23,8 @@ class ImageViewSet(viewsets.ModelViewSet):
 
 def home(request):
     form = AuthenticationForm()
-    return render(request,'index.html',{'login_form':form,'prefix':settings.PREFIX})
+    proposal = request.session.get('proposal_code', False)
+    return render(request,'index.html',{'login_form':form,'prefix':settings.PREFIX,'proposal':proposal})
 
 
 class ScheduleView(APIView):
@@ -42,6 +43,6 @@ class ScheduleView(APIView):
                 return Response("Not authenticated with ODIN.", status=status.HTTP_400_BAD_REQUEST)
             proposal = request.session.get('proposal_code', False)
             if not proposal:
-                return Response("No proposal have been registered.", status=status.HTTP_400_BAD_REQUEST)
+                return Response("No proposals have been registered.", status=status.HTTP_400_BAD_REQUEST)
             resp = ser.save(cookie_id=cookie_id, proposal=proposal)
             return resp
