@@ -1,5 +1,6 @@
 Django>1.8,<1.9
 djangorestframework
+beautifulsoup4
 django-tools
 ipython
 lxml

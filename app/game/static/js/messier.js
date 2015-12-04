@@ -510,7 +510,7 @@
 	MessierBingo.prototype.observable_objects = function(startstamp, endstamp){
 	// Get list of currently visible Messier Objects from WhatsUP
 	// Provides default observing parameters which are used to modify this.catalogue
-		var url = 'http://lcogt.net/whatsup/search/?start='+startstamp+'&aperture=1m0&end='+endstamp+'&full=messier&format=jsonp';
+		var url = 'http://lcogt.net/whatsup/search/v2/?start='+startstamp+'&aperture=1m0&end='+endstamp+'&full=messier&format=jsonp';
 		$.ajax({
 			url: url,
 			method: 'GET',
@@ -530,17 +530,16 @@
 	// Get list of currently visible Messier Objects from WhatsUP
 	// Provides default observing parameters which are used to modify this.catalogue
 		var html = ''
-		var url = '/schedule/';
+		var url = this.urlprefix+'/schedule/';
 		var mobject = $('#make-request').attr('data-objectid')
 		var obs_vals = $.grep(this.catalogue, function(e){ return e.m == mobject; });
 		var data = {start:this.startstamp,
 					end:this.endstamp,
-					aperture:obs_vals[0]['aperture'],
+					aperture:'1m0', //obs_vals[0]['aperture'],
 					object_name:obs_vals[0]['m'],
 					object_ra:obs_vals[0]['ra'],
 					object_dec:obs_vals[0]['dec'],
-					exp_time:obs_vals[0]['exp'],
-					obs_filter:obs_vals[0]['filters'],
+					obs_filter:JSON.stringify(obs_vals[0]['filters']),
 					csrfmiddlewaretoken: token,
 				};
 		$.ajax({
@@ -573,10 +572,9 @@
 				if (current[0].aperture == 'any'){ m['aperture'] = '1m0'; }
 				else if (current[0].aperture == 'sml'){ m['aperture'] = '1m0'; }
 				else { m['aperture'] = current[0].aperture; }
-				m['exp'] = current[0].exp ;
 				m['ra'] = current[0].ra ;
 				m['dec'] = current[0].dec ;
-				m['filters'] = 'rp' ;
+				m['filters'] = current[0].filters ;
 			} else {
 				m['exp'] = 0 ;
 				m['aperture'] = 'none' ;

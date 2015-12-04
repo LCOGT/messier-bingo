@@ -25,18 +25,14 @@ class RequestSerializer(serializers.Serializer):
     object_name = serializers.CharField()
     object_ra = serializers.FloatField()
     object_dec = serializers.FloatField()
-    exp_time = serializers.FloatField()
-    obs_filter = serializers.CharField(max_length=2)
+    obs_filter = serializers.JSONField()
 
     def save(self, *args, **kwargs):
         params = self.data
-        obs_params = request_format(params['object_name'], params['object_ra'], params['object_dec'], params['exp_time'], params['start'], params['end'], params['obs_filter'], params['aperture'])
+        obs_params = request_format(params['object_name'], params['object_ra'], params['object_dec'], params['start'], params['end'], params['obs_filter'], params['aperture'])
         sub_params = {'proposal': kwargs['proposal'], 'request_data':obs_params}
         resp_status, resp_msg = process_observation_request(params=sub_params, cookie_id=kwargs['cookie_id'])
         if resp_status:
             return Response('Success', status=status.HTTP_201_CREATED)
         else:
             return Response(resp_msg, status=status.HTTP_400_BAD_REQUEST)
-
-
-
