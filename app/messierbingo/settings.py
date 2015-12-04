@@ -186,6 +186,13 @@ LOGGING = {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
         }
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'messier.log',
+            'formatter': 'verbose',
+            'filters': ['require_debug_false']
+        },
     },
     'loggers': {
         'django.request': {
@@ -194,11 +201,11 @@ LOGGING = {
             'propagate': True,
         },
         'messierbingo' : {
-            'handlers' : ['console'],
+            'handlers' : ['file','console'],
             'level'    : 'DEBUG',
         },
         'game' : {
-            'handlers' : ['console'],
+            'handlers' : ['file','console'],
             'level'    : 'DEBUG',
         },
     }
