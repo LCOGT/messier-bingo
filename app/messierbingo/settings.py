@@ -154,8 +154,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'rest_framework',
-    'messierbingo',
-    'cards',
+    #'messierbingo',
+    #'cards',
     'game'
 )
 
