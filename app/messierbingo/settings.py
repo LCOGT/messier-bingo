@@ -10,7 +10,7 @@ ADMINS = (
 CURRENT_PATH = os.path.dirname(os.path.realpath(__file__))
 
 PRODUCTION = True if CURRENT_PATH.startswith('/var/www') else False
-DEBUG = os.environ.get('DEBUG', False)
+DEBUG = os.environ.get('DEBUG', True)
 
 PREFIX = os.environ.get('PREFIX', '')
 FORCE_SCRIPT_NAME = PREFIX
