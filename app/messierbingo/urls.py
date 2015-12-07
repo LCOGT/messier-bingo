@@ -12,7 +12,7 @@ from game.views import ImageViewSet, ScheduleView
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^randompdf/$','messierbingo.views.output_card'),
+    #url(r'^randompdf/$','cards.views.output_card'),
     url(r'^$', 'game.views.home', name='home'),
     #url(r'^', include(router.urls)),
     url(r'^db/(?P<slug>[a-zA-Z0-9-]+)/$', ImageViewSet.as_view({'get': 'retrieve'}), name='db_detail'),
