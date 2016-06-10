@@ -160,7 +160,8 @@ INSTALLED_APPS = (
 )
 
 DEFAULT_CAMERAS = { '1m0' : '1m0-SciCam-SBIG',
-                    '2m0' : '2m0-SciCam-Spectral'
+                    '2m0' : '2m0-SciCam-Spectral',
+                    '0m4' : '0m4-SciCam-SBIG'
                     }
 
 # # A sample logging configuration. The only tangible logging

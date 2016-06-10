@@ -510,7 +510,7 @@
 	MessierBingo.prototype.observable_objects = function(startstamp, endstamp){
 	// Get list of currently visible Messier Objects from WhatsUP
 	// Provides default observing parameters which are used to modify this.catalogue
-		var url = 'http://lcogt.net/whatsup/search/v2/?start='+startstamp+'&aperture=1m0&end='+endstamp+'&full=messier&format=jsonp';
+		var url = 'http://lcogt.net/whatsup/search/v2/?start='+startstamp+'&aperture=0m4&end='+endstamp+'&full=messier&format=jsonp';
 		$.ajax({
 			url: url,
 			method: 'GET',
@@ -535,7 +535,7 @@
 		var obs_vals = $.grep(this.catalogue, function(e){ return e.m == mobject; });
 		var data = {start:this.startstamp,
 					end:this.endstamp,
-					aperture:'1m0', //obs_vals[0]['aperture'],
+					aperture:'0m4', //obs_vals[0]['aperture'],
 					object_name:obs_vals[0]['m'],
 					object_ra:obs_vals[0]['ra'],
 					object_dec:obs_vals[0]['dec'],
@@ -569,8 +569,8 @@
 			m = this.catalogue[i]
 			current = $.grep(data['targets'], function(e){ return e.name == m['m']; });
 			if (current[0]) {
-				if (current[0].aperture == 'any'){ m['aperture'] = '1m0'; }
-				else if (current[0].aperture == 'sml'){ m['aperture'] = '1m0'; }
+				if (current[0].aperture == 'any'){ m['aperture'] = '0m4'; }
+				else if (current[0].aperture == 'sml'){ m['aperture'] = '0m4'; }
 				else { m['aperture'] = current[0].aperture; }
 				m['ra'] = current[0].ra ;
 				m['dec'] = current[0].dec ;

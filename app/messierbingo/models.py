@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.timezone import now
 
-APERTURES = (('1m0', '1-meter'), ('2m0', '2-meter'), ('04m', '0.4-meter'), ('any', 'Any'))
+APERTURES = (('1m0', '1-meter'), ('2m0', '2-meter'), ('0m4', '0.4-meter'), ('any', 'Any'))
 
 class Telescope(models.Model):
     name = models.CharField(max_length=30, unique=True)
@@ -43,5 +43,3 @@ class Proposal(models.Model):
 
     def __unicode__(self):
         return self.code
-
-

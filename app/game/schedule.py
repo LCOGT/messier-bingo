@@ -22,7 +22,7 @@ def process_observation_request(params, cookie_id):
         logger.error(r.content)
         return False, r.content
 
-def request_format(object_name, object_ra, object_dec, start,end, obs_filter, aperture='1m0'):
+def request_format(object_name, object_ra, object_dec, start,end, obs_filter, aperture='0m4'):
     '''
     Format a simple request using the schema the Scheduler understands
     '''
