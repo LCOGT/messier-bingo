@@ -549,6 +549,9 @@
 			data: data,
 			error: function(e){
 				console.log('Error: '+e);
+				var content = "<h3>Error!</h3><p>Sorry, there was a problem submitting your request. Please try later.</p>"
+				$('#message-content').html(content);
+				closePopup(delay='2000');
 			},
 			success: function(data){
 				var content = "<h3>Success!</h3><p>Your image will be ready in the next week.</p><img src='http://lcogt.net/files/edu/serol/serol_sm.png'>"
