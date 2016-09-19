@@ -24,14 +24,7 @@ DATABASES = {
         "USER": os.environ.get('MESSIER_DB_USER', ''),
         "PASSWORD": os.environ.get('MESSIER_DB_PASSWD', ''),
         "HOST": os.environ.get('MESSIER_DB_HOST', ''),
-        "OPTIONS": {'init_command': 'SET storage_engine=INNODB'} if PRODUCTION else {},
-        "ENGINE": "django.db.backends.mysql",
-        },
-    'rbauth': {
-        'NAME': os.environ.get('RBAUTH_DB_NAME', ''),
-        "USER": os.environ.get('RBAUTH_DB_USER', ''),
-        "PASSWORD": os.environ.get('RBAUTH_DB_PASSWD', ''),
-        "HOST": os.environ.get('ODIN_DB_HOST', ''),
+        "PORT": os.environ.get('MESSIER_DB_PORT', ''),
         "OPTIONS": {'init_command': 'SET storage_engine=INNODB'} if PRODUCTION else {},
         "ENGINE": "django.db.backends.mysql",
         },
@@ -105,7 +98,7 @@ MIDDLEWARE_CLASSES = (
 )
 
 AUTHENTICATION_BACKENDS = (
-    'messierbingo.auth_backend.LCOAuthBackend',
+    'messierbingo.auth_backend.OAuth2Backend',
     'django.contrib.auth.backends.ModelBackend',
     )
 
@@ -208,4 +201,11 @@ LOGGING = {
             'level'    : 'DEBUG',
         },
     }
+}
+ODIN_OAUTH_CLIENT = {
+    'CLIENT_ID': os.environ.get('OAUTH_CLIENT_ID'),
+    'CLIENT_SECRET': os.environ.get('OAUTH_CLIENT_SECRET'),
+    'TOKEN_URL': 'http://lcogt.net/observe/o/token/',
+    'PROPOSALS_URL': 'http://lcogt.net/observe/api/proposals/',
+    'PROFILE_URL': 'http://lcogt.net/observe/api/profile/',
 }
