@@ -7,15 +7,14 @@ import json
 
 logger = logging.getLogger('django')
 
-def process_observation_request(params, cookie_id):
+def process_observation_request(params, bearer_token):
     '''
     Send the observation parameters and the authentication cookie to the Scheduler API
     '''
-    client = requests.session()
-    logger.error(cookie_id)
-    cookies = {'odin.sessionid':cookie_id}
+    logger.error(bearer_token)
+    headers = {'Authorization': 'Bearer {}'.format(bearer_token)}
     url = 'https://lcogt.net/observe/service/request/submit'
-    r = client.post(url, data=params, cookies=cookies)
+    r = requests.post(url, data=params, headers=headers)
     if r.status_code == 200:
         return True, False
     else:

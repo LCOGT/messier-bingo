@@ -51,7 +51,7 @@ class OAuth2Backend(object):
                     set([p['code'] for p in proposal_response.json()])
                 )
                 request = ThreadLocal.get_current_request()
-                request.session['odin.sessionid'] = access_token
+                request.session['bearer_token'] = access_token
             else:
                 logger.warn(
                     'User auth token was invalid!',

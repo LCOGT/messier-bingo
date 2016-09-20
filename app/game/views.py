@@ -12,6 +12,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 class ImageViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows images of Messier catalogue objects to be shared with the Messier Bingo game.
@@ -41,11 +42,11 @@ class ScheduleView(APIView):
             logger.error('Request was not valid')
             return Response(ser.errors, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         else:
-            cookie_id=request.session.get('odin.sessionid', False)
-            if not cookie_id:
+            bearer_token = request.session.get('bearer_token', False)
+            if not bearer_token:
                 return Response("Not authenticated with ODIN.", status=status.HTTP_401_UNAUTHORIZED)
             proposal = request.session.get('proposal_code', False)
             if not proposal:
                 return Response("No proposals have been registered.", status=status.HTTP_403_FORBIDDEN)
-            resp = ser.save(cookie_id=cookie_id, proposal=proposal)
+            resp = ser.save(proposal=proposal, bearer_token=bearer_token)
             return resp
