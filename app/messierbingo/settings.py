@@ -26,15 +26,7 @@ DATABASES = {
         "HOST": os.environ.get('MESSIER_DB_HOST', ''),
         "OPTIONS": {'init_command': 'SET storage_engine=INNODB'} if PRODUCTION else {},
         "ENGINE": "django.db.backends.mysql",
-        },
-    'rbauth': {
-        'NAME': os.environ.get('RBAUTH_DB_NAME', ''),
-        "USER": os.environ.get('RBAUTH_DB_USER', ''),
-        "PASSWORD": os.environ.get('RBAUTH_DB_PASSWD', ''),
-        "HOST": os.environ.get('ODIN_DB_HOST', ''),
-        "OPTIONS": {'init_command': 'SET storage_engine=INNODB'} if PRODUCTION else {},
-        "ENGINE": "django.db.backends.mysql",
-        },
+        }
 }
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False

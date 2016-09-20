@@ -530,18 +530,72 @@
 	// Get list of currently visible Messier Objects from WhatsUP
 	// Provides default observing parameters which are used to modify this.catalogue
 		var html = ''
-		var url = this.urlprefix+'/schedule/';
+		var url = 'https://lcogt.net/observe/service/request/submit';
 		var mobject = $('#make-request').attr('data-objectid')
 		var obs_vals = $.grep(this.catalogue, function(e){ return e.m == mobject; });
 		var data = {start:this.startstamp,
 					end:this.endstamp,
 					aperture:'0m4', //obs_vals[0]['aperture'],
 					object_name:obs_vals[0]['m'],
-					object_ra:obs_vals[0]['ra'],
+					object_ra:,
 					object_dec:obs_vals[0]['dec'],
 					obs_filter:JSON.stringify(obs_vals[0]['filters']),
 					csrfmiddlewaretoken: token,
 				};
+				{
+		    "operator": "single",
+		    "type": "compound_request"
+		    "ipp_value":1.0,
+		    "requests": [
+		        {
+		              "constraints": {
+		                  "max_airmass": 2.0
+		              },
+		              "location": {
+		                  "telescope_class": "0m4"
+		              },
+		              "molecules": [
+		                  {
+		                      "ag_mode": "OPTIONAL",
+		                      "ag_name": "0M4-SCICAM-SBIG",
+		                      "bin_x": 2,
+		                      "bin_y": 2,
+		                      "defocus": 2.0,
+		                      "exposure_count": 1,
+		                      "exposure_time": 39.0,
+
+		                      "fill_window": false,
+		                      "filter": "ip",
+		                      "instrument_name": "SCICAM",
+		                      "priority": 1,
+		                      "type": "EXPOSE"
+		                  }
+		              ],
+		              "observation_note": "Messier Bingo observation",
+
+		              "observation_type": "NORMAL",
+		              "target": {
+		                  "coordinate_system": "ICRS",
+		                  "dec": obs_vals[0]['dec'],
+		                  "epoch": 2000.0,
+		                  "equinox": "J2000",
+		                  "name": obs_vals[0]['m'],
+		                  "parallax": 0.0,
+		                  "proper_motion_dec": 0.0,
+		                  "proper_motion_ra": 0.0,
+		                  "ra": obs_vals[0]['ra'],
+		                  "type": "SIDEREAL"
+		              },
+		              "type": "request",
+		              "windows": [
+		                  {
+		                      "end": :this.endstamp,
+		                      "start": :this.startstamp
+		                  }
+		              ]
+		          },
+		    ]
+		}
 		$.ajax({
 			url: url,
 			method: 'POST',

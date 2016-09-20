@@ -14,6 +14,8 @@
 	<script language="javascript" type="text/javascript" src="{% static 'js/raphael-min.js' %}"></script>
 	<!--<script language="javascript" type="text/javascript" src="js/jquery.queryloader2.js"></script>-->
 	<script language="javascript" type="text/javascript" src="{% static 'js/messier.js' %}"></script>
+	<script language="javascript" type="text/javascript" src="{% static 'js/auth.js' %}"></script>
+
 	{% endblock%}
 	{% block scripts-extra %}
 	<script type="text/javascript">
@@ -46,6 +48,12 @@
 				{% endif %}
 
 
+				// $(document).on('click','.login-popup',function(event){
+				// 	closePopup();
+				// 	centreDiv('#login-form');
+				// 	$('#login-form').show();
+				// });
+
 				$(document).on('click','.login-popup',function(event){
 					var content = $('#login-form').html()
 					$('#message-content').html(content);
@@ -61,6 +69,18 @@
 				$('.message-popup-close').bind("click",function(){ closePopup();});
 
 
+				$(document).on('click','#login-btn',function(event){
+					login($('#email').val(), $('#password').val(), function(result){
+						if(result){
+							$('#login-form').hide();
+							$('#alert-error').hide();
+							$('#logout').show();
+							closePopup(0);
+						}else{
+							$('#alert-error').show().find('strong').text('Login Failed');
+						}
+					});
+				});
 			});
 				function showPopup(){
 					$('#message-popup').fadeIn("fast");
@@ -146,14 +166,12 @@
 			<div id="message-content"></div>
 		</div>
 	</div>
-	<div id="login-form"  style="display:none;">
-		<form action="{% url 'auth_login' %}" method="post">
-			{% csrf_token %}
-		 	{{login_form}}
+	<div id="login-form"  style="z-index:10;display:none;" class="small-popup">
+		<label>Email addres</label><input type="text" name="email" id="email" />
+		<label>Password</label><input type="password" name="password" id="password" />
 			<div class="submit-row">
-		    	<label>&nbsp;</label><input type="submit" value="Log in">
+		    	<label>&nbsp;</label><button id="login-btn">Sign In</button>
 		  	</div>
-		</form>
 	</div>
 	<div id="observe-confirm"  style="display:none;">
 		<h3>Observe <span id="object-name"></span></h3>
