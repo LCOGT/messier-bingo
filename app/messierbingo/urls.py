@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 from django.conf import settings
 from django.contrib.staticfiles import views
 from django.contrib.auth.views import login, logout
@@ -10,7 +10,7 @@ admin.autodiscover()
 from rest_framework import routers
 from game.views import ImageViewSet, ScheduleView
 
-urlpatterns = patterns('',
+urlpatterns = [
     # Examples:
     #url(r'^randompdf/$','cards.views.output_card'),
     url(r'^$', 'game.views.home', name='home'),
@@ -21,7 +21,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login/$', login, {'template_name': 'login.html'}, name='auth_login'),
     url(r'^logout/$', logout, {'template_name': 'logout.html'}, name='auth_logout'),
-)
+]
 
 if not settings.PRODUCTION:
     urlpatterns += [

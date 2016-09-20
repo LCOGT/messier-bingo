@@ -1,6 +1,6 @@
 from django.conf import settings
 from django_tools.middlewares import ThreadLocal
-from .models import Proposal
+from messierbingo.models import Proposal
 from django.contrib.auth.models import User
 import logging
 import requests
@@ -50,6 +50,8 @@ class OAuth2Backend(object):
                 add_proposal_to_session(
                     set([p['code'] for p in proposal_response.json()])
                 )
+                request = ThreadLocal.get_current_request()
+                request.session['odin.sessionid'] = access_token
             else:
                 logger.warn(
                     'User auth token was invalid!',

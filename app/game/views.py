@@ -8,7 +8,9 @@ from django.conf import settings
 from .serializers import ImageSerializer, RequestSerializer
 import requests
 from django.contrib.auth.forms import AuthenticationForm
+import logging
 
+logger = logging.getLogger(__name__)
 
 class ImageViewSet(viewsets.ModelViewSet):
     """
@@ -36,13 +38,14 @@ class ScheduleView(APIView):
     def post(self, request, format=None):
         ser = RequestSerializer(data=request.data)
         if not ser.is_valid(raise_exception=True):
-            return Response(ser.errors, status=status.HTTP_400_BAD_REQUEST)
+            logger.error('Request was not valid')
+            return Response(ser.errors, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         else:
             cookie_id=request.session.get('odin.sessionid', False)
             if not cookie_id:
-                return Response("Not authenticated with ODIN.", status=status.HTTP_400_BAD_REQUEST)
+                return Response("Not authenticated with ODIN.", status=status.HTTP_401_UNAUTHORIZED)
             proposal = request.session.get('proposal_code', False)
             if not proposal:
-                return Response("No proposals have been registered.", status=status.HTTP_400_BAD_REQUEST)
+                return Response("No proposals have been registered.", status=status.HTTP_403_FORBIDDEN)
             resp = ser.save(cookie_id=cookie_id, proposal=proposal)
             return resp
