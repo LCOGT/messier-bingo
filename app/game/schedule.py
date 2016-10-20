@@ -13,7 +13,7 @@ def process_observation_request(params, bearer_token):
     '''
     logger.error(bearer_token)
     headers = {'Authorization': 'Bearer {}'.format(bearer_token)}
-    url = 'https://lcogt.net/observe/service/request/submit'
+    url = settings.SCHEDULE_API_URL
     r = requests.post(url, data=params, headers=headers)
     if r.status_code == 200:
         return True, False

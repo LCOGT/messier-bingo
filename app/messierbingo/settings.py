@@ -205,7 +205,9 @@ LOGGING = {
 ODIN_OAUTH_CLIENT = {
     'CLIENT_ID': os.environ.get('OAUTH_CLIENT_ID'),
     'CLIENT_SECRET': os.environ.get('OAUTH_CLIENT_SECRET'),
-    'TOKEN_URL': 'http://lcogt.net/observe/o/token/',
-    'PROPOSALS_URL': 'http://lcogt.net/observe/api/proposals/',
-    'PROFILE_URL': 'http://lcogt.net/observe/api/profile/',
+    'TOKEN_URL': 'https://lco.global/observe/o/token/',
+    'PROPOSALS_URL': 'https://lco.global/observe/api/proposals/',
+    'PROFILE_URL': 'https://lco.global/observe/api/profile/',
 }
+
+SCHEDULE_API_URL = 'https://lco.global/observe/service/request/submit'
