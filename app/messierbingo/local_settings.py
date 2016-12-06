@@ -1,2 +1,2 @@
-STATIC_ROOT = '/Users/egomez/Code/django/messier-bingo/app/game/static/'
+STATIC_ROOT = '/Users/egomez/Code/django/messier-bingo/app/cards/static/'
 DEBUG = True

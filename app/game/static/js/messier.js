@@ -510,7 +510,7 @@
 	MessierBingo.prototype.observable_objects = function(startstamp, endstamp){
 	// Get list of currently visible Messier Objects from WhatsUP
 	// Provides default observing parameters which are used to modify this.catalogue
-		var url = 'http://lcogt.net/whatsup/search/v2/?start='+startstamp+'&aperture=0m4&end='+endstamp+'&full=messier&format=jsonp';
+		var url = 'https://lco.global/whatsup/search/v2/?start='+startstamp+'&aperture=0m4&end='+endstamp+'&full=messier&format=jsonp';
 		$.ajax({
 			url: url,
 			method: 'GET',

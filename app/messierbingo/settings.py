@@ -148,7 +148,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'rest_framework',
     #'messierbingo',
-    #'cards',
+    'cards',
     'game'
 )
 
@@ -211,3 +211,10 @@ ODIN_OAUTH_CLIENT = {
 }
 
 SCHEDULE_API_URL = 'https://lco.global/observe/service/request/submit'
+
+if not CURRENT_PATH.startswith('/var/www'):
+    try:
+        from local_settings import *
+    except ImportError as e:
+        if "local_settings" not in str(e):
+            raise e
