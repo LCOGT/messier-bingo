@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# Substitute the prefix into the nginx configuration
-echo "Running with PREFIX=${PREFIX}"
-sed -i -e "s:@PREFIX@:${PREFIX}:g" /etc/nginx/nginx.conf
-
 # Django static files
 python /var/www/apps/messierbingo/manage.py collectstatic --noinput
 python /var/www/apps/messierbingo/manage.py migrate --noinput

@@ -37,9 +37,6 @@ RUN pip install pip==1.3 && pip install uwsgi==2.0.8 \
 ENV PYTHONPATH /var/www/apps
 ENV DJANGO_SETTINGS_MODULE messierbingo.settings
 
-# Set the PREFIX env variable
-ENV PREFIX /messierbingo
-
 # Copy configuration files
 COPY config/uwsgi.ini /etc/uwsgi.ini
 COPY config/nginx/* /etc/nginx/

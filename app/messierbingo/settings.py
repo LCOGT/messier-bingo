@@ -12,8 +12,6 @@ CURRENT_PATH = os.path.dirname(os.path.realpath(__file__))
 PRODUCTION = True if CURRENT_PATH.startswith('/var/www') else False
 DEBUG = os.environ.get('DEBUG', True)
 
-PREFIX = os.environ.get('PREFIX', '')
-FORCE_SCRIPT_NAME = PREFIX
 HOME = os.environ.get('HOME','/tmp')
 
 MANAGERS = ADMINS
@@ -73,7 +71,7 @@ MEDIA_URL = ''
 # Example: "/home/media/media.lawrence.com/static/"
 STATICFILES_DIRS = ['/var/www/apps/messierbingo/game/static/', ]
 STATIC_ROOT = '/var/www/html/static/'
-STATIC_URL = PREFIX + '/static/'
+STATIC_URL = '/static/'
 
 # List of finder classes that know how to find static files in
 # various locations.
@@ -107,7 +105,7 @@ ROOT_URLCONF = 'messierbingo.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'messierbingo.wsgi.application'
 
-LOGIN_REDIRECT_URL = PREFIX + '/'
+LOGIN_REDIRECT_URL = '/'
 
 SESSION_COOKIE_NAME = "messierbingo.sessionid"
 
@@ -147,7 +145,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'rest_framework',
-    #'messierbingo',
     'cards',
     'game'
 )

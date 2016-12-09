@@ -1,6 +1,6 @@
 from rest_framework import serializers, status
 from rest_framework.response import Response
-from messierbingo.models import MessierObject, Proposal, Telescope, APERTURES
+from game.models import MessierObject, Proposal, Telescope, APERTURES
 from game.schedule import process_observation_request, request_format
 from django.conf import settings
 

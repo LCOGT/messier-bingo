@@ -1,4 +1,4 @@
-from messierbingo.models import MessierObject, Telescope
+from game.models import MessierObject, Telescope
 from rest_framework import viewsets, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -17,7 +17,7 @@ class ImageViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows images of Messier catalogue objects to be shared with the Messier Bingo game.
     """
-    queryset = MessierObject.objects.all()
+    queryset = MessierObject.objects.filter(enabled=True)
     serializer_class = ImageSerializer
 
     def get_object(self):
@@ -27,7 +27,7 @@ class ImageViewSet(viewsets.ModelViewSet):
 def home(request):
     form = AuthenticationForm()
     proposal = request.session.get('proposal_code', False)
-    return render(request,'index.html',{'login_form':form,'prefix':settings.PREFIX,'proposal':proposal})
+    return render(request,'index.html',{'login_form':form,'prefix':'','proposal':proposal})
 
 
 class ScheduleView(APIView):

@@ -5,51 +5,60 @@
 		<pageTemplate id="main">
         <!--This is where the images are added, in order of left to right, then top to bottom -->
         <pageGraphics>
-            <image file="{{MEDIA_ROOT}}{{data.0.file}}" x="2.7cm" y="20.35cm" width="4.8cm" height="4.8cm" leadingFrame="yes"/>
-            <image file="{{MEDIA_ROOT}}{{data.1.file}}" x="8.55cm" y="20.35cm" width="4.8cm" height="4.8cm" leadingFrame="yes"/>
-            <image file="{{MEDIA_ROOT}}{{data.2.file}}" x="14.3cm" y="20.35cm" width="4.8cm" height="4.8cm" leadingFrame="yes"/>
-            <image file="{{MEDIA_ROOT}}{{data.3.file}}" x="2.7cm" y="13.2cm" width="4.8cm" height="4.8cm" leadingFrame="yes"/>
-            <image file="{{MEDIA_ROOT}}{{data.4.file}}" x="8.55cm" y="13.2cm" width="4.8cm" height="4.8cm" leadingFrame="yes"/>
-            <image file="{{MEDIA_ROOT}}{{data.5.file}}" x="14.3cm" y="13.2cm" width="4.8cm" height="4.8cm" leadingFrame="yes"/>
-            <image file="{{MEDIA_ROOT}}{{data.6.file}}" x="2.7cm" y="6.1cm" width="4.8cm" height="4.8cm" leadingFrame="yes"/>
-            <image file="{{MEDIA_ROOT}}{{data.7.file}}" x="8.55cm" y="6.1cm" width="4.8cm" height="4.8cm" leadingFrame="yes"/>
-            <image file="{{MEDIA_ROOT}}{{data.8.file}}" x="14.3cm" y="6.1cm" width="4.8cm" height="4.8cm" leadingFrame="yes"/>
-            <!--This is where text is added to the document, like the Messier Bingo Card title to the top of the page, and Object type in the boxes below the image. -->
+            <image file="{{MEDIA_ROOT}}{{data.3.file}}" x="1.5cm" y="15.6cm" width="4.8cm" height="4.8cm" leadingFrame="yes"/>
+            <image file="{{MEDIA_ROOT}}{{data.4.file}}" x="8.3cm" y="15.65cm" width="4.8cm" height="4.8cm" leadingFrame="yes"/>
+            <image file="{{MEDIA_ROOT}}{{data.5.file}}" x="15.0cm" y="15.7cm" width="4.8cm" height="4.8cm" leadingFrame="yes"/>
+            <image file="{{MEDIA_ROOT}}{{data.6.file}}" x="1.5cm" y="9.6cm" width="4.8cm" height="4.8cm" leadingFrame="yes"/>
+            <image file="{{MEDIA_ROOT}}{{data.7.file}}" x="8.3cm" y="9.6cm" width="4.8cm" height="4.8cm" leadingFrame="yes"/>
+            <image file="{{MEDIA_ROOT}}{{data.8.file}}" x="15.0cm" y="9.7cm" width="4.8cm" height="4.8cm" leadingFrame="yes"/>
+            <image file="{{MEDIA_ROOT}}{{data.9.file}}" x="1.5cm" y="3.5cm" width="4.8cm" height="4.8cm" leadingFrame="yes"/>
+            <image file="{{MEDIA_ROOT}}{{data.10.file}}" x="8.3cm" y="3.5cm" width="4.8cm" height="4.8cm" leadingFrame="yes"/>
+            <image file="{{MEDIA_ROOT}}{{data.11.file}}" x="15.0cm" y="3.55cm" width="4.8cm" height="4.8cm" leadingFrame="yes"/>
+						<image file="{{MEDIA_ROOT}}{{data.0.file}}" x="1.5cm" y="21.7cm" width="4.8cm" height="4.8cm" leadingFrame="yes"/>
+            <image file="{{MEDIA_ROOT}}{{data.1.file}}" x="8.3cm" y="21.7cm" width="4.8cm" height="4.8cm" leadingFrame="yes"/>
+            <image file="{{MEDIA_ROOT}}{{data.2.file}}" x="15.0cm" y="21.85cm" width="4.8cm" height="4.8cm" leadingFrame="yes"/>
+
+            <!--This is where the object names are added to the document -->
             <fill color="saddlebrown"/>
             <fill color="saddlebrown"/>
             <fill color="saddlebrown"/>
-            <setFont name="Courier" size="0.63cm"/>
-            <drawCenteredString x="10.55cm" y="26.73cm" leadingFrame="yes">
-                MESSIER BINGO CARD
-            </drawCenteredString>
             <!--Specifically, below are the codes for the image names found above the image, and the lcogt website at the bottom of the page -->
             <setFont name="Courier" size="0.4cm"/>
-            <drawCenteredString x="4.75cm" y="24.88cm" leadingFrame="yes">
+            <drawCenteredString x="4.0cm" y="26.63cm" leadingFrame="yes">
                 {{data.0.name}}
             </drawCenteredString>
-             <drawCenteredString x="10.6cm" y="24.88cm" leadingFrame="yes">
+             <drawCenteredString x="10.6cm" y="26.63cm" leadingFrame="yes">
                 {{data.1.name}}
             </drawCenteredString>
-            <drawCenteredString x="16.5cm" y="24.88cm" leadingFrame="yes">
+            <drawCenteredString x="17.3cm" y="26.8cm" leadingFrame="yes">
                 {{data.2.name}}
             </drawCenteredString>
-            <drawCenteredString x="4.75cm" y="17.76cm" leadingFrame="yes">
+            <drawCenteredString x="4.0cm" y="20.55cm" leadingFrame="yes">
                 {{data.3.name}}
             </drawCenteredString>
-             <drawCenteredString x="10.6cm" y="17.76cm" leadingFrame="yes">
+             <drawCenteredString x="10.6cm" y="20.53cm" leadingFrame="yes">
                 {{data.4.name}}
             </drawCenteredString>
-            <drawCenteredString x="16.5cm" y="17.76cm" leadingFrame="yes">
+            <drawCenteredString x="17.3cm" y="20.63cm" leadingFrame="yes">
                 {{data.5.name}}
             </drawCenteredString>
-            <drawCenteredString x="4.75cm" y="10.65cm" leadingFrame="yes">
+            <drawCenteredString x="4.0cm" y="14.49cm" leadingFrame="yes">
                 {{data.6.name}}
             </drawCenteredString>
-             <drawCenteredString x="10.6cm" y="10.65cm" leadingFrame="yes">
+             <drawCenteredString x="10.6cm" y="14.49cm" leadingFrame="yes">
                 {{data.7.name}}
             </drawCenteredString>
-            <drawCenteredString x="16.5cm" y="10.65cm" leadingFrame="yes">
+            <drawCenteredString x="17.3cm" y="14.59cm" leadingFrame="yes">
                 {{data.8.name}}
+            </drawCenteredString>
+						<drawCenteredString x="4.0cm" y="8.43cm" leadingFrame="yes">
+                {{data.9.name}}
+            </drawCenteredString>
+             <drawCenteredString x="10.6cm" y="8.43cm" leadingFrame="yes">
+                {{data.10.name}}
+            </drawCenteredString>
+            <drawCenteredString x="17.3cm" y="8.56cm" leadingFrame="yes">
+                {{data.11.name}}
             </drawCenteredString>
             <setFont name="Courier" size="0.4cm"/>
             <drawCenteredString x="12.35cm" y="2.8cm" leadingFrame="yes">
