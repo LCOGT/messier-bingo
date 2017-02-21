@@ -10,7 +10,7 @@
 #
 ################################################################################
 FROM centos:centos7
-MAINTAINER LCOGT <webmaster@lcogt.net>
+MAINTAINER Las Cumbres Observatory <webmaster@lco.global>
 
 # nginx (http protocol) runs on port 80
 EXPOSE 80
