@@ -1,18 +1,6 @@
-################################################################################
-#
-# Runs the LCOGT Messier Bingo app using nginx + uwsgi
-#
-# Build with
-# docker build -t docker.lcogt.net/messierbingo:latest .
-#
-# Push to docker registry with
-# docker push docker.lcogt.net/messierbingo:latest
-#
-################################################################################
-FROM centos:centos7
+FROM centos:7
 MAINTAINER Las Cumbres Observatory <webmaster@lco.global>
 
-# nginx (http protocol) runs on port 80
 EXPOSE 80
 ENTRYPOINT [ "/init" ]
 
@@ -32,10 +20,6 @@ COPY app/requirements.txt /var/www/apps/messierbingo/requirements.txt
 
 RUN pip install pip==1.3 && pip install uwsgi==2.0.8 \
 		&& pip install -r /var/www/apps/messierbingo/requirements.txt
-
-# Setup the Python Django environment
-ENV PYTHONPATH /var/www/apps
-ENV DJANGO_SETTINGS_MODULE messierbingo.settings
 
 # Copy operating system configuration files
 COPY docker/ /

@@ -16,3 +16,14 @@ How to play
 Authors
 -------
 Created and maintained by [Edward Gomez](http://lcogt.net/user/egomez), interface designed by [Charlotte Provot](http://www.charlotteprovot.com/), initial code developed by [Stuart Lowe](http://strudel.org.uk) for [Las Cumbres Observatory Global Telescope](http://lcogt.net/). LCOGT is a private operating foundation, building a global network of telescopes for professional research and citizen investigations.
+
+Docker Instructions
+===================
+
+Build the image:
+
+    $ docker build --pull -t docker.lco.global/messierbingo:latest
+
+Push to the LCO internal Docker registry:
+
+    $ docker push docker.lco.global/messierbingo:latest
