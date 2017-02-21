@@ -37,13 +37,8 @@ RUN pip install pip==1.3 && pip install uwsgi==2.0.8 \
 ENV PYTHONPATH /var/www/apps
 ENV DJANGO_SETTINGS_MODULE messierbingo.settings
 
-# Copy configuration files
-COPY config/uwsgi.ini /etc/uwsgi.ini
-COPY config/nginx/* /etc/nginx/
-COPY config/processes.ini /etc/supervisord.d/processes.ini
-
-# Copy configuration files
-COPY config/init /init
+# Copy operating system configuration files
+COPY docker/ /
 
 # Copy the LCOGT Messier Bingo files
 COPY app /var/www/apps/messierbingo
