@@ -4,5 +4,9 @@
 python /var/www/apps/messierbingo/manage.py collectstatic --noinput
 python /var/www/apps/messierbingo/manage.py migrate --noinput
 
+# create empty log file with correct permissions
+touch /var/www/apps/messierbingo/messier.log
+chown uwsgi:uwsgi /var/www/apps/messierbingo/messier.log
+
 # Run under supervisord
 exec /usr/bin/supervisord -n -c /etc/supervisord.conf
