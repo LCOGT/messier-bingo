@@ -177,11 +177,7 @@ LOGGING = {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
         },
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': 'messier.log',
-        }
+
     },
     'loggers': {
         'django.request': {
