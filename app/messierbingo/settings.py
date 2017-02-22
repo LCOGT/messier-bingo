@@ -190,11 +190,11 @@ LOGGING = {
             'propagate': True,
         },
         'messierbingo' : {
-            'handlers' : ['file','console'],
+            'handlers' : ['console'],
             'level'    : 'DEBUG',
         },
         'game' : {
-            'handlers' : ['file','console'],
+            'handlers' : ['console'],
             'level'    : 'DEBUG',
         },
     }

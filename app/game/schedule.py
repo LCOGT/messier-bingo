@@ -5,13 +5,12 @@ import logging
 import json
 
 
-logger = logging.getLogger('django')
+logger = logging.getLogger(__name__)
 
 def process_observation_request(params, bearer_token):
     '''
     Send the observation parameters and the authentication cookie to the Scheduler API
     '''
-    logger.error(bearer_token)
     headers = {'Authorization': 'Bearer {}'.format(bearer_token)}
     url = settings.SCHEDULE_API_URL
     r = requests.post(url, data=params, headers=headers)
