@@ -78,7 +78,8 @@ def request_format(object_name, object_ra, object_dec, start,end, obs_filter, ap
     user_request = {
         "operator" : "single",
         "requests" : [request],
-        "type" : "compound_request"
+        "type" : "compound_request",
+        "ipp_value" : 1.0
         }
     final_request = json.dumps(user_request)
     return final_request
