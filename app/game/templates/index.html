@@ -53,7 +53,7 @@
 				});
 
 				$(document).on('click','#make-request',function(event){
-					var content = '<div style="margin:1em;"><i class="fa fa-spinner fa-spin fa-3x fa-fw margin-bottom"></i><br />Sending your request to Serol...<br/><img src="http://lcogt.net/files/edu/serol/serol_telescope_sm.png"><\/div>'
+					var content = '<div style="margin:1em;"><i class="fa fa-spinner fa-spin fa-3x fa-fw margin-bottom"></i><br />Sending your request to Serol...<br/><img src="https://lco.global/files/edu/serol/serol_telescope_sm.png"><\/div>'
 					$('#message-content').html(content);
 					mb.submit_schedule('{{ csrf_token }}');
 				});
@@ -91,7 +91,7 @@
 				<ul>
 					{% if user.is_authenticated %}
 					<li>
-						<a target="_blank" href="https://lcogt.net/observe/request/">Your Images</a>
+						<a target="_blank" href="https://observe.lco.global/">Your Images</a>
 					</li>
 					<li>
 						<a target="_parent" href="{% url 'auth_logout' as logouturl %}{{ logouturl }}"> Logout</a>
@@ -105,7 +105,7 @@
 			</div>
 			{% endblock %}
 			<div id="lcogt-name">
-				<a target="_blank" href="http://lcogt.net/" title="LCOGT Homepage"><span class="l">L</span><span class="wide">as </span><span class="c">C</span><span class="wide">umbres </span><span class="o">O</span><span class="wide">bservatory </span><span class="g">G</span><span class="wide">lobal </span><span class="t">T</span><span class="wide">elescope Network</span></a>
+				<a target="_blank" href="https://lco.global/" title="LCO Homepage"><span class="l">L</span><span class="wide">as </span><span class="c">C</span><span class="wide">umbres </span><span class="o">O</span><span class="wide">bservatory </span></a>
 			</div>
 		</div>
 	</div>
@@ -123,7 +123,7 @@
 					<div class="inner">
 						<div class="padded" id="panel-info">
 							<h3>Instructions</h3>
-							<p>Get your <a target="_blank" href="http://lcogt.net/education/messierbingo">bingo card</a> and mark it each time one of your objects appears.</p>
+							<p>Get your <a target="_blank" href="https://lco.global/education/messierbingo">bingo card</a> and mark it each time one of your objects appears.</p>
 							<p>When you have marked all the objects on your card shout 'Bingo', 'House' or even 'Messier' to win.</p>
 							<p>To select a new Messier object press the arrow in the bottom right. If you need to restart press the 'R' key.</p>
 						</div>
@@ -157,7 +157,7 @@
 	</div>
 	<div id="observe-confirm"  style="display:none;">
 		<h3>Observe <span id="object-name"></span></h3>
-		<p>Do you want an image of <strong><span id="object-name"></span></strong> to be taken in the next week by LCOGT?</p>
+		<p>Do you want an image of <strong><span id="object-name"></span></strong> to be taken in the next week by Las Cumbres Observatory?</p>
 		<p><a href="#" data-objectid="" id="make-request" class="flatbtngreen">Yes Please!</a> or <a href="#" onclick="closePopup();">No Thanks</a></p>
 	</div>
 	<div id="observe-denied"  style="display:none;">
@@ -169,7 +169,7 @@
 		<div class="pane-wrapper">
 			<div class="twocol">
 				<h3>Just Play</h3>
-				<p>If you don't have an account with LCOGT On Sky or just want to play Messier Bingo.</p>
+				<p>If you don't have an account with LCO or just want to play Messier Bingo.</p>
 				<a href="#" class="flatbtngreen message-popup-close">Play!</a>
 			</div>
 			<div class="onecol">
@@ -177,7 +177,7 @@
 			</div>
 			<div class="twocol">
 				<h3>Sign in</h3>
-				<p>If you have an account with LCOGT On Sky, you can ask Serol to take pictures as you play.</p>
+				<p>If you have an account with LCO, you can ask Serol to take pictures as you play.</p>
 				<a href="#" class="flatbtngreen login-popup">Sign in!</a>
 			</div>
 		</div>

@@ -42,11 +42,11 @@ class ScheduleView(APIView):
             logger.error('Request was not valid')
             return Response(ser.errors, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         else:
-            bearer_token = request.session.get('bearer_token', False)
-            if not bearer_token:
+            token = request.session.get('token', False)
+            if not token:
                 return Response("Not authenticated with ODIN.", status=status.HTTP_401_UNAUTHORIZED)
             proposal = request.session.get('proposal_code', False)
             if not proposal:
                 return Response("No proposals have been registered.", status=status.HTTP_403_FORBIDDEN)
-            resp = ser.save(proposal=proposal, bearer_token=bearer_token)
+            resp = ser.save(proposal=proposal, token=token)
             return resp

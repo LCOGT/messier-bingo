@@ -30,28 +30,25 @@ class OAuth2Backend(object):
 
     def authenticate(self, username=None, password=None):
         response = requests.post(
-            settings.ODIN_OAUTH_CLIENT['TOKEN_URL'],
+            settings.PORTAL_TOKEN_URL,
             data={
-                'grant_type': 'password',
                 'username': username,
                 'password': password,
-                'client_id': settings.ODIN_OAUTH_CLIENT['CLIENT_ID'],
-                'client_secret': settings.ODIN_OAUTH_CLIENT['CLIENT_SECRET']
             }
         )
         if response.status_code == 200:
             user, created = User.objects.get_or_create(username=username)
-            access_token = response.json()['access_token']
-            proposal_response = requests.get(
-                settings.ODIN_OAUTH_CLIENT['PROPOSALS_URL'],
-                headers={'Authorization': 'Bearer {}'.format(access_token)}
+            access_token = response.json()['token']
+            profile = requests.get(
+                settings.PORTAL_PROFILE_API,
+                headers={'Authorization': 'Token {}'.format(access_token)}
             )
-            if proposal_response.status_code == 200:
+            if profile.status_code == 200:
                 add_proposal_to_session(
-                    set([p['code'] for p in proposal_response.json()])
+                    set([p['id'] for p in profile.json()['proposals']])
                 )
                 request = ThreadLocal.get_current_request()
-                request.session['bearer_token'] = access_token
+                request.session['token'] = access_token
             else:
                 logger.warn(
                     'User auth token was invalid!',

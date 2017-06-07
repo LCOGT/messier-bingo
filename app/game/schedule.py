@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.conf import settings
 from django.contrib.sessions.backends.db import SessionStore
 import requests
@@ -7,20 +9,20 @@ import json
 
 logger = logging.getLogger(__name__)
 
-def process_observation_request(params, bearer_token):
+def process_observation_request(params, token):
     '''
     Send the observation parameters and the authentication cookie to the Scheduler API
     '''
-    headers = {'Authorization': 'Bearer {}'.format(bearer_token)}
-    url = settings.SCHEDULE_API_URL
-    r = requests.post(url, data=params, headers=headers)
-    if r.status_code == 200:
+    headers = {'Authorization': 'Token {}'.format(token)}
+    url = settings.PORTAL_REQUEST_API
+    r = requests.post(url, json=params, headers=headers)
+    if r.status_code in [200,201]:
         return True, False
     else:
         logger.error("Could not send request: {}".format(r.content))
         return False, r.content
 
-def request_format(object_name, object_ra, object_dec, start,end, obs_filter, aperture='0m4'):
+def request_format(object_name, object_ra, object_dec, start,end, obs_filter, proposal, aperture='0m4'):
     '''
     Format a simple request using the schema the Scheduler understands
     '''
@@ -41,8 +43,6 @@ def request_format(object_name, object_ra, object_dec, start,end, obs_filter, ap
             'filter'          : f['name'],            # The generic filter name
              # Optional fields. Defaults are as below.
             'type'            : 'EXPOSE',  # The type of the molecule
-            'ag_name'         : '',           # '' to let it resolve; same as instrument_name for self-guiding
-            'ag_mode'         : 'Optional',
             'instrument_name' : default_camera, # This resolves to the main science camera on the scheduled resource
             'bin_x'           : 2,                 # Your binning choice. Right now these need to be the same.
             'bin_y'           : 2,
@@ -56,6 +56,7 @@ def request_format(object_name, object_ra, object_dec, start,end, obs_filter, ap
            'ra'                : object_ra, # RA (degrees)
            'dec'               : object_dec, # Dec (Degrees)
            'epoch'             : 2000,
+           'type'              : 'SIDEREAL'
         }
 
     # Do the observation between these dates
@@ -69,17 +70,20 @@ def request_format(object_name, object_ra, object_dec, start,end, obs_filter, ap
         "location" : location,
         "molecules" : molecules,
         "observation_note" : "Messier Bingo Request",
-        "observation_type" : "NORMAL",
         "target" : target,
         "type" : "request",
         "windows" : [window],
         }
 
     user_request = {
-        "operator" : "single",
+        "operator" : "SINGLE",
         "requests" : [request],
         "type" : "compound_request",
-        "ipp_value" : 1.0
+        "ipp_value" : 1.0,
+        "group_id": "mb_{}_{}".format(object_name, datetime.utcnow().strftime("%Y%m%d")),
+        "observation_type": "NORMAL",
+        "proposal": proposal
         }
-    final_request = json.dumps(user_request)
-    return final_request
+
+    #final_request = json.dumps(user_request)
+    return user_request

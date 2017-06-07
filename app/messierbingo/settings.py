@@ -149,9 +149,9 @@ INSTALLED_APPS = (
     'game'
 )
 
-DEFAULT_CAMERAS = { '1m0' : '1m0-SciCam-SBIG',
-                    '2m0' : '2m0-SciCam-Spectral',
-                    '0m4' : '0m4-SciCam-SBIG'
+DEFAULT_CAMERAS = { '1m0' : '1M0-SCICAM-SBIG',
+                    '2m0' : '2M0-SCICAM-SPECTRAL',
+                    '0m4' : '0M4-SCICAM-SBIG'
                     }
 
 # # A sample logging configuration. The only tangible logging
@@ -203,7 +203,10 @@ ODIN_OAUTH_CLIENT = {
     'PROFILE_URL': 'https://lco.global/observe/api/profile/',
 }
 
-SCHEDULE_API_URL = 'https://lco.global/observe/service/request/submit'
+PORTAL_API_URL = 'https://observe.lco.global/api/'
+PORTAL_REQUEST_API = PORTAL_API_URL + 'userrequests/'
+PORTAL_TOKEN_URL = PORTAL_API_URL + 'api-token-auth/'
+PORTAL_PROFILE_API = PORTAL_API_URL + 'profile/'
 
 if not CURRENT_PATH.startswith('/var/www'):
     try:
