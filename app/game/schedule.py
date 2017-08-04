@@ -15,8 +15,16 @@ def process_observation_request(params, token):
     '''
     headers = {'Authorization': 'Token {}'.format(token)}
     url = settings.PORTAL_REQUEST_API
-    r = requests.post(url, json=params, headers=headers)
+    try:
+        r = requests.post(url, json=params, headers=headers, timeout=20.0)
+    except requests.exceptions.Timeout:
+        msg = "Observing portal API timed out"
+        logger.error(msg)
+        params['error_msg'] = msg
+        return False, msg
+
     if r.status_code in [200,201]:
+        logger.debug('Submitted request')
         return True, False
     else:
         logger.error("Could not send request: {}".format(r.content))
@@ -66,7 +74,7 @@ def request_format(object_name, object_ra, object_dec, start,end, obs_filter, pr
         }
 
     request = {
-        "constraints" : {'max_airmass' : 2.0},
+        "constraints" : {'max_airmass' : 1.6},
         "location" : location,
         "molecules" : molecules,
         "observation_note" : "Messier Bingo Request",
