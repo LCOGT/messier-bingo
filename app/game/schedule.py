@@ -52,8 +52,8 @@ def request_format(object_name, object_ra, object_dec, start,end, obs_filter, pr
              # Optional fields. Defaults are as below.
             'type'            : 'EXPOSE',  # The type of the molecule
             'instrument_name' : default_camera, # This resolves to the main science camera on the scheduled resource
-            'bin_x'           : 2,                 # Your binning choice. Right now these need to be the same.
-            'bin_y'           : 2,
+            'bin_x'           : 1,                 # Your binning choice. Right now these need to be the same.
+            'bin_y'           : 1,
             'defocus'       : 0.0             # Mechanism movement of M2, or how much focal plane has moved (mm)
             }
         molecules.append(molecule)
