@@ -19,31 +19,38 @@
 	<script type="text/javascript">
 			var mb;
 			$(document).ready(function(){
-				var user_auth = {% if request.user.is_authenticated %} true{% else %} false{%endif%};
-			{% if not request.user.is_authenticated %}
+			var user_auth;
+			if (localStorage.getItem('token') == null ){
 				var content = $('#controlpane').html()
 				$('#message-popup').removeClass('small-popup');
 				$('#message-popup').addClass('wide-popup');
 				$('#message-content').html(content);
 				showPopup();
-			{% endif %}
+        user_auth = false;
+        $('.loggedin').hide();
+        $('.not_loggedin').show();
+			} else {
+        user_auth = true;
+        $('.loggedin').show();
+        $('.not_loggedin').hide();
+      }
 
 				// Initialise the MessierBingo class
 				mb = $.messierbingo({'user_auth':user_auth,'urlprefix':'{{prefix}}'});
 
-				{% if request.user.is_authenticated and proposal %}
+				if (user_auth) {
 				$(document).on('click','#observe_button',function(event){
 					var content = $('#observe-confirm').html()
 					$('#message-content').html(content);
 					showPopup();
 				});
-				{% else %}
+      } else {
 				$(document).on('click','#observe_button',function(event){
 					var content = $('#observe-denied').html()
 					$('#message-content').html(content);
 					showPopup();
 				});
-				{% endif %}
+			}
 
 
 				$(document).on('click','.login-popup',function(event){
@@ -89,18 +96,15 @@
 			{% block login %}
 			<div id="login" class="block">
 				<ul>
-					{% if user.is_authenticated %}
-					<li>
+					<li class="loggedin">
 						<a target="_blank" href="https://observe.lco.global/">Your Images</a>
 					</li>
-					<li>
+					<li class="loggedin">
 						<a target="_parent" href="{% url 'auth_logout' as logouturl %}{{ logouturl }}"> Logout</a>
 					</li>
-					{% else %}
-					<li>
+					<li class="not_loggedin">
 						<a href="#" class="login-popup">Login</a>
 					</li>
-					{% endif %}
 				</ul>
 			</div>
 			{% endblock %}

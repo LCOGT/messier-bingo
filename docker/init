@@ -1,8 +1,6 @@
 #!/bin/bash
 
-# Django static files
-python /var/www/apps/messierbingo/manage.py collectstatic --noinput
-python /var/www/apps/messierbingo/manage.py migrate --noinput
-
-# Run under supervisord
-exec /usr/bin/supervisord -n -c /etc/supervisord.conf
+cd /var/www/apps/messierbingo/
+python manage.py migrate --no-input
+python manage.py collectstatic --no-input
+exec gunicorn -w 4 -k gevent -b 0.0.0.0:80 messierbingo.wsgi

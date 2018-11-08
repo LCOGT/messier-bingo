@@ -1,28 +1,25 @@
-FROM centos:7
-MAINTAINER Las Cumbres Observatory <webmaster@lco.global>
+FROM python:3.6-alpine
+MAINTAINER LCOGT <webmaster@lcogt.net>
 
 EXPOSE 80
-ENTRYPOINT [ "/init" ]
 
-# Setup the Python Django environment
-ENV PYTHONPATH /var/www/apps
-ENV DJANGO_SETTINGS_MODULE messierbingo.settings
+ENV PYTHONUNBUFFERED 1
+ENV C_FORCE_ROOT true
 
-# Install package repositories
-RUN yum -y install epel-release \
-    && yum -y install MySQL-python gcc nginx python-devel python-pip \
-            supervisor uwsgi-plugin-python \
-    && yum -y update \
-    && yum -y clean all
+# install depedencies
+COPY app/requirements.txt /var/www/apps/messierbingo/
+RUN apk --no-cache add mariadb-connector-c \
+        && apk --no-cache add --virtual .build-deps gcc git mariadb-dev musl-dev libxml2 \
+        && pip --no-cache-dir --trusted-host=buildsba.lco.gtn install -r /var/www/apps/messierbingo/requirements.txt \
+        && apk --no-cache del .build-deps
 
-# Install python requirements
-COPY app/requirements.txt /var/www/apps/messierbingo/requirements.txt
-RUN pip install --upgrade 'pip>=9.0.1' \
-        && pip install -r /var/www/apps/messierbingo/requirements.txt \
-        && rm -rf ~/.cache/pip
-
-# Copy operating system configuration files
+# install entrypoint
 COPY docker/ /
 
-# Copy the LCOGT Messier Bingo files
-COPY app /var/www/apps/messierbingo
+# Ensure crond will run on all host operating systems
+RUN crontab /crontab.root \
+    && rm -rf /crontab.root
+
+# install web application
+COPY app /var/www/apps/messierbingo/
+ENTRYPOINT [ "/init" ]

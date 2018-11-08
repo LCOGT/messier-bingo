@@ -18,11 +18,11 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'NAME': os.environ.get('MESSIER_DB_NAME', ''),
-        "USER": os.environ.get('MESSIER_DB_USER', ''),
-        "PASSWORD": os.environ.get('MESSIER_DB_PASSWD', ''),
-        "HOST": os.environ.get('MESSIER_DB_HOST', ''),
-        "PORT": os.environ.get('MESSIER_DB_PORT', ''),
+        'NAME': os.environ.get('DB_NAME', ''),
+        "USER": os.environ.get('DB_USER', ''),
+        "PASSWORD": os.environ.get('DB_PASSWD', ''),
+        "HOST": os.environ.get('DB_HOST', ''),
+        "PORT": "3306",
         "OPTIONS": {'init_command': 'SET storage_engine=INNODB'} if PRODUCTION else {},
         "ENGINE": "django.db.backends.mysql",
         },
@@ -85,6 +85,8 @@ STATICFILES_FINDERS = (
 SECRET_KEY = 'bhdpj&amp;+k0@8@h1z417f$#%&amp;1i1m_8-41bvv)7t*j@n-4ww^0=%'
 
 MIDDLEWARE_CLASSES = (
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -96,7 +98,7 @@ MIDDLEWARE_CLASSES = (
 )
 
 AUTHENTICATION_BACKENDS = (
-    'messierbingo.auth_backend.OAuth2Backend',
+    'messierbingo.auth_backend.ValhallaBackend',
     'django.contrib.auth.backends.ModelBackend',
     )
 
