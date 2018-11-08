@@ -526,11 +526,11 @@
 		});
 	}
 
-	MessierBingo.prototype.submit_schedule = function(token){
+	MessierBingo.prototype.submit_schedule = function(token, portal_token, proposal){
 	// Get list of currently visible Messier Objects from WhatsUP
 	// Provides default observing parameters which are used to modify this.catalogue
 		var html = ''
-		var url = this.urlprefix+'/schedule/';
+		var url = '/schedule/';
 		var mobject = $('#make-request').attr('data-objectid')
 		var obs_vals = $.grep(this.catalogue, function(e){ return e.m == mobject; });
 		var data = {start:this.startstamp,
@@ -541,6 +541,8 @@
 					object_dec:obs_vals[0]['dec'],
 					obs_filter:JSON.stringify(obs_vals[0]['filters']),
 					csrfmiddlewaretoken: token,
+          token : portal_token,
+          proposal : proposal
 				};
 		$.ajax({
 			url: url,

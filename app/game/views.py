@@ -1,4 +1,4 @@
-from game.models import MessierObject, Telescope
+from game.models import MessierObject, Telescope, Proposal
 from rest_framework import viewsets, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -9,6 +9,7 @@ from .serializers import ImageSerializer, RequestSerializer
 import requests
 from django.contrib.auth.forms import AuthenticationForm
 import logging
+import json
 
 logger = logging.getLogger(__name__)
 
@@ -25,27 +26,26 @@ class ImageViewSet(viewsets.ModelViewSet):
         return mobj
 
 def home(request):
-    form = AuthenticationForm()
-    proposal = request.session.get('proposal_code', False)
-    return render(request,'index.html',{'login_form':form,'prefix':'','proposal':proposal})
+    proposals = json.dumps([str(p['code']) for p in Proposal.objects.all().values('code')])
+    return render(request,'index.html',{'proposals':proposals})
 
 
 class ScheduleView(APIView):
     """
-    Schedule observations on LCOGT given a full set of observing parameters
+    Schedule observations on LCO given a full set of observing parameters
     """
     renderer_classes = (JSONRenderer, BrowsableAPIRenderer)
 
     def post(self, request, format=None):
         ser = RequestSerializer(data=request.data)
+        token = ser['token']
+        proposal = ser['proposal']
         if not ser.is_valid(raise_exception=True):
             logger.error('Request was not valid')
             return Response(ser.errors, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         else:
-            token = request.session.get('token', False)
             if not token:
-                return Response("Not authenticated with ODIN.", status=status.HTTP_401_UNAUTHORIZED)
-            proposal = request.session.get('proposal_code', False)
+                return Response("Not authenticated with LCO.", status=status.HTTP_401_UNAUTHORIZED)
             if not proposal:
                 return Response("No proposals have been registered.", status=status.HTTP_403_FORBIDDEN)
             resp = ser.save(proposal=proposal, token=token)

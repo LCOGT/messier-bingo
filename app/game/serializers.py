@@ -26,11 +26,13 @@ class RequestSerializer(serializers.Serializer):
     object_ra = serializers.FloatField()
     object_dec = serializers.FloatField()
     obs_filter = serializers.JSONField()
+    token = serializers.CharField()
+    proposal = serializers.CharField()
 
     def save(self, *args, **kwargs):
         params = self.data
-        obs_params = request_format(params['object_name'], params['object_ra'], params['object_dec'], params['start'], params['end'], params['obs_filter'], kwargs['proposal'], params['aperture'])
-        resp_status, resp_msg = process_observation_request(params=obs_params, token=kwargs['token'])
+        obs_params = request_format(params['object_name'], params['object_ra'], params['object_dec'], params['start'], params['end'], params['obs_filter'], params['proposal'], params['aperture'])
+        resp_status, resp_msg = process_observation_request(params=obs_params, token=params['token'])
         if resp_status:
             return Response('Success', status=status.HTTP_201_CREATED)
         else:

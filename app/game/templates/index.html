@@ -14,9 +14,11 @@
 	<script language="javascript" type="text/javascript" src="{% static 'js/raphael-min.js' %}"></script>
 	<!--<script language="javascript" type="text/javascript" src="js/jquery.queryloader2.js"></script>-->
 	<script language="javascript" type="text/javascript" src="{% static 'js/messier.js' %}"></script>
+  	<script language="javascript" type="text/javascript" src="{% static 'js/auth.js' %}"></script>
 	{% endblock%}
 	{% block scripts-extra %}
 	<script type="text/javascript">
+      var proposal_list = {{proposals|safe}};
 			var mb;
 			$(document).ready(function(){
 			var user_auth;
@@ -62,11 +64,25 @@
 				$(document).on('click','#make-request',function(event){
 					var content = '<div style="margin:1em;"><i class="fa fa-spinner fa-spin fa-3x fa-fw margin-bottom"></i><br />Sending your request to Serol...<br/><img src="https://lco.global/files/edu/serol/serol_telescope_sm.png"><\/div>'
 					$('#message-content').html(content);
-					mb.submit_schedule('{{ csrf_token }}');
+          var token = localStorage.getItem('token');
+          var proposal_code = localStorage.getItem('proposal_code');
+					mb.submit_schedule(token, proposal_code);
 				});
 
 				$('.message-popup-close').bind("click",function(){ closePopup();});
 
+        $(document).on('click','#login-btn',function(){
+      	  login($('#email').val(), $('#password').val(), function(result){
+            console.log(result)
+      	    if(result){
+      	      $('#loginForm').hide();
+      	      $('#msg').hide();
+              closePopup();
+      	    }else{
+      	      $('#msg').html('Login Failed').show();
+      	    }
+      	  });
+      	});
 
 			});
 				function showPopup(){
@@ -100,7 +116,7 @@
 						<a target="_blank" href="https://observe.lco.global/">Your Images</a>
 					</li>
 					<li class="loggedin">
-						<a target="_parent" href="{% url 'auth_logout' as logouturl %}{{ logouturl }}"> Logout</a>
+						<a href="#" onclick="logout();"> Logout</a>
 					</li>
 					<li class="not_loggedin">
 						<a href="#" class="login-popup">Login</a>
@@ -151,13 +167,29 @@
 		</div>
 	</div>
 	<div id="login-form"  style="display:none;">
-		<form action="{% url 'auth_login' %}" method="post">
-			{% csrf_token %}
-		 	{{login_form}}
-			<div class="submit-row">
-		    	<label>&nbsp;</label><input type="submit" value="Log in">
-		  	</div>
-		</form>
+    <h3>Log into your On Sky account</h3>
+    <form id="loginForm" >
+      <div class="row">
+        <div id="msg" class="error" style="display:none;"></div>
+        <label for="username">Email Address:</label>
+        <input type="text" name="email" placeholder="Email" id="email">
+      </div>
+      <div class="row">
+        <label for="password">Password:</label>
+        <input type="password" name="password" placeholder="Password" id="password">
+      </div>
+      <div class="row">
+        <button class="button" id="login-btn" onClick="return false;">
+          Sign in
+        </button>
+      <div class="tos">By logging in, you agree to <a href="https://lco.global/observatory/termsofuse/" target="_blank">the LCO terms of use</a>.</div>
+      </div>
+      <div class="row account_options">
+        <a href="https://observe.lco.global/accounts/register/">Need an account?</a>
+        &nbsp;
+        <a href="https://observe.lco.global/accounts/password/reset/">Forgot your password?</a>
+      </div>
+    </form>
 	</div>
 	<div id="observe-confirm"  style="display:none;">
 		<h3>Observe <span id="object-name"></span></h3>

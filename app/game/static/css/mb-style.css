@@ -270,6 +270,8 @@ label {display:block; font-family: "Birch Std", Didot, "Bodoni MT", "Century Sch
 
 .hidden { display: none; }
 
+.error { display:block; color: white; background-color: red;}
+
 .flatbtngreen {
     background: #009d00 none repeat scroll 0 0;
     border: 1px solid rgba(0, 0, 0, 0.2);
