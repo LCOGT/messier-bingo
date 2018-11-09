@@ -45,55 +45,64 @@ function logout(){
   localStorage.removeItem('token');
 }
 
-function submit_to_serol(){
-  var request = format_request();
-  console.log(localStorage.getItem('proposal_code'));
+function submit_to_serol(object, start, end){
+  var target = {
+    "type": "SIDEREAL",
+    "name": object['m'],
+    "ra": object['ra'],
+    "dec": object['dec']
+  }
+  var molecules = new Array();
+  for (i=0;i<object['filters'].length;i++){
+      var mol = {
+              "type": "EXPOSE",
+              "instrument_name": "0M4-SCICAM-SBIG",
+              "filter": object['filters'][i]['name'],
+              "exposure_time": object['filters'][i]['exposure'],
+              "exposure_count": 1
+            }
+      molecules.push(mol)
+  }
+  console.log(start,end);
+  var timewindow = {
+    "start": start,
+    "end": end
+    }
+  var request = {
+    "location":{"telescope_class":"0m4"},
+    "constraints":{"max_airmass":2.0},
+    "target": target,
+    "molecules": molecules,
+    "windows": [timewindow],
+    "observation_note" : "Serol",
+    "type":"request"
+  }
+  var data = {
+      "group_id": "mb_"+start.substr(0,10)+"_"+object['m'],
+      "proposal": localStorage.getItem("proposal_code"),
+      "ipp_value": 1.05,
+      "operator": "SINGLE",
+      "observation_type": "NORMAL",
+      "requests": [request],
+  }
   $.ajax({
     url: 'https://observe.lco.global/api/userrequests/',
     type: 'post',
-    data: {
-        'group_id': 'Submit me',
-        'proposal': localStorage.getItem('proposal_code'),
-        'ipp_value': 1.05,
-        'operator': 'SINGLE',
-        'observation_type': 'NORMAL',
-        'requests': [request]
-    },
+    data: JSON.stringify(data),
+    headers: {'Authorization': 'Token '+localStorage.getItem("token")},
     dataType: 'json',
-    success: function(data){
-      console.log(data);
-    },
-    error: function(e){
-      console.log(e);
-    }
-});
-}
-
-function format_request(){
-  var target = {
-    'type': 'SIDEREAL',
-    'name': 'm42',
-    'ra': 83.8220792,
-    'dec': -5.3911111,
-  }
-  var molecules = {
-    'type': 'EXPOSE',
-    'instrument_name': '0M4-SCICAM-SBIG',
-    'filter': 'v',
-    'exposure_time': 30.0,
-    'exposure_count': 1,
-  }
-  var windows = {
-    'start': '2018-11-01 14:26:08',
-    'end': '2018-11-22 14:26:08'
-  }
-
-  var request = {
-    'location': {'telescope_class': '0m4'},
-    'constraints': {},
-    'target': target,
-    'molecules': [molecules],
-    'windows': [windows],
-    }
-  return request;
+    contentType: 'application/json'})
+    .done(function(resp){
+      var content = "<h3>Success!</h3><p>Your image will be ready in the next week.</p><img src='https://lco.global/files/edu/serol/serol_looking_though_telescope_sm.png'>"
+      $('#message-content').html(content);
+      $('#observe_button').hide();
+      closePopup(delay='2000');
+      // Stop them from accidentally submitting a second time
+    })
+    .fail(function(resp){
+      console.log(resp);
+      var content = "<h3>Error!</h3><p>Sorry, there was a problem submitting your request. Please try later.</p>"
+			$('#message-content').html(content);
+			closePopup(delay='2000');
+    });
 }

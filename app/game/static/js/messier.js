@@ -533,37 +533,7 @@
 		var url = '/schedule/';
 		var mobject = $('#make-request').attr('data-objectid')
 		var obs_vals = $.grep(this.catalogue, function(e){ return e.m == mobject; });
-		var data = {start:this.startstamp,
-					end:this.endstamp,
-					aperture:'0m4', //obs_vals[0]['aperture'],
-					object_name:obs_vals[0]['m'],
-					object_ra:obs_vals[0]['ra'],
-					object_dec:obs_vals[0]['dec'],
-					obs_filter:JSON.stringify(obs_vals[0]['filters']),
-					csrfmiddlewaretoken: token,
-          token : portal_token,
-          proposal : proposal
-				};
-		$.ajax({
-			url: url,
-			method: 'POST',
-			cache: false,
-			data: data,
-			error: function(e){
-				console.log('Error: '+e);
-				var content = "<h3>Error!</h3><p>Sorry, there was a problem submitting your request. Please try later.</p>"
-				$('#message-content').html(content);
-				closePopup(delay='2000');
-			},
-			success: function(data){
-				var content = "<h3>Success!</h3><p>Your image will be ready in the next week.</p><img src='http://lcogt.net/files/edu/serol/serol_sm.png'>"
-				$('#message-content').html(content);
-				closePopup(delay='2000');
-				// Stop them from accidentally submitting a second time
-				$('#observe_button').hide();
-
-			}
-		});
+    submit_to_serol(obs_vals[0], this.startstamp, this.endstamp)
 	}
 
 	// Update the hardwired catalogue with latest observing info from WhatsUP API call
