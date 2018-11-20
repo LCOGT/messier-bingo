@@ -27,3 +27,11 @@ Build the image:
 Push to the LCO internal Docker registry:
 
     $ docker push docker.lco.global/messierbingo:latest
+
+## Build Instructions
+
+If you change any of the DB of Messier objects, regenerate the JSON files with:
+
+'''
+curl -o "M#1.json" "http://localhost:8000/db/M[1-110]/?format=json"
+'''

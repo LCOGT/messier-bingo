@@ -63,7 +63,6 @@ function submit_to_serol(object, start, end){
             }
       molecules.push(mol)
   }
-  console.log(start,end);
   var timewindow = {
     "start": start,
     "end": end

@@ -1,5 +1,4 @@
-#!/bin/bash
-
+#!/bin/sh
 cd /var/www/apps/messierbingo/
 python manage.py migrate --no-input
 python manage.py collectstatic --no-input
