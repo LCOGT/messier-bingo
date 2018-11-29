@@ -1,21 +1,7 @@
 Messier Bingo
 =============
 
-[Charles Messier](https://en.wikipedia.org/wiki/Charles_Messier) lived in Paris in the 18th century. He wanted to become famous by discovering comets. When he looked through his telescope he often re-discovered objects which were already known and were not comets. So he didn't waste time, each time he found an object that did not move in the sky he catalogued it.
-
-This project creates a bingo game based around the 110 objects in the Messier catalogue displaying images of each object taken with the LCOGT network.
-
-How to play
------------
- 1. Download as many [bingo cards](http://lcogt.net/education/messierbingo) as you have players. There are 10 cards in total but more than one person could have the same card in a large group.
- 1. Launch the Messier Bingo random image tombola (this).
- 1. When you want to start click the arrow button in the bottom right
- 1. Mark your card each time one of your objects appears
- 1. When you have marked all the objects on your card shout 'Bingo', 'House' or even 'Messier' to win.
-
-Authors
--------
-Created and maintained by [Edward Gomez](http://lcogt.net/user/egomez), interface designed by [Charlotte Provot](http://www.charlotteprovot.com/), initial code developed by [Stuart Lowe](http://strudel.org.uk) for [Las Cumbres Observatory Global Telescope](http://lcogt.net/). LCOGT is a private operating foundation, building a global network of telescopes for professional research and citizen investigations.
+This application generates the static content for [Messier Bingo](http://messierbingo.lco.global) game, including the bingo cards and JSON files. The code for the game is publicly available as [Messier Bingo web](https://github.com/LCOGT/messier-bingo-web). 
 
 Docker Instructions
 ===================
@@ -32,6 +18,12 @@ Push to the LCO internal Docker registry:
 
 If you change any of the DB of Messier objects, regenerate the JSON files with:
 
-'''
-curl -o "M#1.json" "http://localhost:8000/db/M[1-110]/?format=json"
-'''
+    $ python manage.py runserver
+
+In the directory where you want to save the DB files
+
+    $ curl -o "M#1.json" "http://localhost:8000/db/M[1-110]/?format=json"
+
+Authors
+-------
+Created and maintained by [Edward Gomez](http://lcogt.net/user/egomez), interface designed by [Charlotte Provot](http://www.charlotteprovot.com/), initial code developed by [Stuart Lowe](http://strudel.org.uk) for [Las Cumbres Observatory Global Telescope](http://lcogt.net/). LCOGT is a private operating foundation, building a global network of telescopes for professional research and citizen investigations.
