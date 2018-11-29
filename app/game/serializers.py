@@ -13,7 +13,7 @@ class ImageSerializer(serializers.ModelSerializer):
     telescope = ScopeSerializer()
     class Meta:
         model = MessierObject
-        fields = ('name','ra', 'dec', 'image','image_thumb','observer_name','avm_code','telescope')
+        fields = ('name','ra', 'dec', 'image','observer_name','avm_code','telescope')
 
 class RequestSerializer(serializers.Serializer):
     """
